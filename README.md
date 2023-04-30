@@ -5,8 +5,7 @@ Nuxtr VSCode extension offers a set of commands and tools to help with your Nuxt
 <br>
 
 ### Features
-- [What does Nuxtr do?](#what-does-nuxtr-do)
-- [Features](#features)
+
 - [Create Nuxt project directories](#create-nuxt-project-directories)
 - [Create Nuxt.js files](#create-nuxtjs-files)
 - [Installing dependencies](#installing-dependencies)
