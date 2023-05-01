@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/nuxtrdev/nuxtr-vscode/discussions
+    about: Use discussions if you have an idea, an improvement or for asking questions.

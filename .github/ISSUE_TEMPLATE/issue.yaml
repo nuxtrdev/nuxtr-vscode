@@ -1,0 +1,25 @@
+name: 🐞 Bug Report
+description: Report any issues and help us enhance Nuxtr
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: textarea
+    id: bug-env
+    attributes:
+      label: Environment
+      description: You can use `npx nuxi info` to fill this section
+      placeholder: Environment
+    validations:
+      required: true
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: What went wrong?
+      description: Explain what were you trying to do and what happened.
+      placeholder: Bug description
+    validations:
+      required: true
