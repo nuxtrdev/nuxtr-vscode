@@ -23,3 +23,11 @@ body:
       placeholder: Bug description
     validations:
       required: true
+  - type: textarea
+    id: bug-steps-to-reproduce
+    attributes:
+      label: How to reproduce it?
+      description: Explain how to reproduce the issue.
+      placeholder: Steps to reproduce
+    validations:
+      required: true
