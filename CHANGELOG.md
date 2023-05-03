@@ -41,7 +41,10 @@
 - ✨ IMPROVE: Depndencies card in the sidebar.
 - ✨ IMPROVE: Grouping extension settings.
 - 🐞 FIX: Nuxt Devtools installation error on Windows & Linux.
-- 🐞 FIX: Sidebar Icon not showing on Linux.
+- 🐞 FIX: Activity Bar icon not showing on Linux.
 
 
+### Version 0.0.5
 
+- 🐞 FIX: Activity Bar icon not showing on Linux.
+- 🐞 FIX: Windows performance issues.
