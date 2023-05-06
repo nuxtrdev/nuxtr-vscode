@@ -23,6 +23,8 @@ Nuxtr VSCode extension offers a set of commands and tools to help with your Nuxt
 
 ### Create Nuxt project directories
 
+You can create all Nuxt.js project directories with few clicks either using a command or a context menu.
+
 ![Nuxt Project Creation](./.github/media/directories_creation.gif)
 
 
@@ -30,7 +32,7 @@ Nuxtr VSCode extension offers a set of commands and tools to help with your Nuxt
 <br>
 
 ### Create Nuxt.js files
-You can create all kind of files that Nuxt.js needs (Vue/TypeScript) and special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config) files. Flat/sub directories structure are supported too.
+You can create all kind of files that Nuxt.js needs (Vue/TypeScript) and special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config) files using commands or context menus on each directory. Flat/sub directories structure are supported too.
 
 ![Nuxt Files Creation](./.github/media/items_creation.gif)
 
@@ -107,6 +109,14 @@ Almost full support for Nuxt modules with typical searching/filters experience a
 
 ### Install and Configure most CSS frameworks with few steps
 
-You can install and configure most CSS frameworks with few steps. (TailwindCSS, WindiCSS, UnoCSS, and more coming soon)
+You can install and configure most CSS frameworks with few steps.
+
+- Tailwind CSS.
+- Uno CSS.
+- Windi CSS.
+- Vueitfy.
+
+More coming soon.
+
 
 ![Nuxt Modules](./.github/media/css_frameworks.gif)

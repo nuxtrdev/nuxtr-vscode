@@ -2,29 +2,23 @@
 
 <br>
 
-### Version 0.0.1
+### Version 0.0.6
 
-- 📦 NEW: Create Nuxt project directories.
-- 📦 NEW: Create Nuxt.js files.
-- 📦 NEW: Open Nuxt.js Docs.
-- 📦 NEW: Installing dependencies.
-- 📦 NEW: Run scripts from the VSCode command palette or sidebar.
-- 📦 NEW: Toggle Nuxt Devtools from your status bar.
-- 📦 NEW: Install, remove and update project dependencies.
-- 📦 NEW: Search and install nuxt modules.
-
-<br>
-
-### Version 0.0.2
-
-- 📖 DOCS: Update README.md.
+- 📦 NEW: Install and Configure Vuetify.
+- ✨ IMPROVE: Commmands prefixing.
+- ✨ IMPROVE: Information/Error messages.
+- ✨ IMPROVE: Context menu prefixing.
+- ✨ IMPROVE: Handling no lockfiles or default package manager.
+- ✨ IMPROVE: Nuxt Devtools installation for Linux/Windows.
+- ✨ IMPROVE: vueFiles templates.
+- 🐞 FIX: Sidebar not working on Windows.
 
 <br>
 
-### Version 0.0.3
+### Version 0.0.5
 
-- 📖 DOCS: Update README.md.
-- ✨ IMPROVE: Extension performance.
+- 🐞 FIX: Activity Bar icon not showing on Linux.
+- 🐞 FIX: Windows performance issues.
 
 <br>
 
@@ -43,8 +37,36 @@
 - 🐞 FIX: Nuxt Devtools installation error on Windows & Linux.
 - 🐞 FIX: Activity Bar icon not showing on Linux.
 
+<br>
 
-### Version 0.0.5
+### Version 0.0.3
 
-- 🐞 FIX: Activity Bar icon not showing on Linux.
-- 🐞 FIX: Windows performance issues.
+- 📖 DOCS: Update README.md.
+- ✨ IMPROVE: Extension performance.
+
+<br>
+
+
+### Version 0.0.2
+
+- 📖 DOCS: Update README.md.
+
+<br>
+
+
+### Version 0.0.1
+
+- 📦 NEW: Create Nuxt project directories.
+- 📦 NEW: Create Nuxt.js files.
+- 📦 NEW: Open Nuxt.js Docs.
+- 📦 NEW: Installing dependencies.
+- 📦 NEW: Run scripts from the VSCode command palette or sidebar.
+- 📦 NEW: Toggle Nuxt Devtools from your status bar.
+- 📦 NEW: Install, remove and update project dependencies.
+- 📦 NEW: Search and install nuxt modules.
+
+<br>
+
+
+
+
