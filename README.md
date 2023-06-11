@@ -140,6 +140,9 @@ Or locate your nuxt project in your monorepo using this setting in `.vscode/sett
   "nuxtr.monorepoMode.DiretoryName": "directory-name"
 ```
 
+<br>
+<br>
+
 
 ### Run scripts from the VSCode command palette or sidebar
 
