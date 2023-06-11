@@ -1,40 +1,58 @@
+<br />
+
+<div align="center">
+  <a href="https://github.com/krvaibhaw/best-readme-template">
+    <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
+  </a>
+
+  <h3 align="center">Nuxtr VSCode</h3>
+
+  <p align="center">
+    An extension offering commands and tools <br /> to make your experience with Nuxt.js more pleasant!
+  </p>
+
+  <p align="center">
+    <a href="https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxtr-vscode" target="_blank">
+      <img src="https://img.shields.io/visual-studio-marketplace/v/Nuxtr.nuxtr-vscode.svg?color=eee&label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" />
+    </a>
+  </p>
+
+  <p align="center">
+    <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/issues/new?assignees=&labels=bug%2Ctriage&projects=&template=issue.yaml&title=%5BBug%5D%3A+">
+      <strong>Report Bug</strong> »
+    </a>
+    ·
+    <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/discussions">
+      <strong>Start a Discussion</strong> »
+    </a>
+  </p>
+</div>
+
+
+![Nuxt Dependencies](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/dependencies.gif)
+
+
+<br>
+
 ### What does Nuxtr do?
 
-Nuxtr VSCode extension offers a set of commands and tools to help with your Nuxt.js development workflow. You can create items (components, pages, layouts, stores, etc.), run Nuxt.js commands from the VSCode command palette. Toggle Nuxt Devtools from your status bar, manage your Nuxt.js project dependencies, find, install and add your modules to nuxt.config.ts files with one click and more.
 
-<br>
-
-### Features
-
-- [Create Nuxt project directories.](#create-nuxt-project-directories)
-- [Create Nuxt.js files.](#create-nuxtjs-files)
-- Open Nuxt documentation.
-- [Installing dependencies.](#installing-dependencies)
+- [Project directories and files creation](#project-directories-and-files-creation)
+- [Dependencies management](#dependencies-management)
+- [Nuxt/Custom Snippets](#nuxtcustom-snippets)
+- [Vue File Templates](#vue-file-templates)
 - [Run scripts from the VSCode command palette or sidebar.](#run-scripts-from-the-vscode-command-palette-or-sidebar)
-- [Toggle Nuxt Devtools from your status bar.](#toggle-nuxt-devtools-from-your-status-bar)
-- [Install, remove and update project dependencies.](#install-remove-and-update-project-dependencies)
-- [Search and install nuxt modules.](#search-and-install-nuxt-modules)
-- [Install and Configure most CSS frameworks with few steps. (TailwindCSS, WindiCSS, UnoCSS, and more coming soon)](#install-and-configure-most-css-frameworks-with-few-steps)
-
-
+- [Toggle Nuxt Devtools from your status bar](#toggle-nuxt-devtools-from-your-status-bar)
+- [Search and install Nuxt integrations](#search-and-install-nuxt-integrations)
+- [Install & Configure CSS frameworks and Linters](#install--configure-css-frameworks-and-linters)
 
 <br>
 <br>
 
-### Create Nuxt project directories
+### Project directories and files creation
 
-You can create all Nuxt.js project directories with few clicks either using a command or a context menu.
+With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt.js project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
 
-![Nuxt Project Creation](./.github/media/directories_creation.gif)
-
-
-<br>
-<br>
-
-### Create Nuxt.js files
-You can create all kind of files that Nuxt.js needs (Vue/TypeScript) and special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config) files using commands or context menus on each directory. Flat/sub directories structure are supported too.
-
-![Nuxt Files Creation](./.github/media/items_creation.gif)
 
 You can customize Vue file templates using the following settings:
 
@@ -52,71 +70,111 @@ And auto open the created file using:
   "nuxtr.openItemsAfterCreation": true
 ```
 
+![Nuxt Project Creation](./.github/media/file_creation.gif)
+
 <br>
 <br>
 
-### Installing dependencies
+### Dependencies management
 
-Detecting your package manager if a lock file exists. Or letting you choose which package manager to use with this setting
+**Package Manager Detection**: Detecting your package manager if a lock file exists. Or letting you choose which package manager to use with this setting. You can select your default package manager from the setting:
 
 ```JSON
-  "nuxtr.defaultPackageManager": "yarn"
+  "nuxtr.defaultPackageManager": "pnpm"
 ```
 
+**Dependency Removal and Upgrade/Downgrade**: From sidebar inside project view, You can remove or upgrade/downgrade your dependencies by selecting which version you want to install.
+
+**Status Bar Icon**: In your statusbar you can see your outdated dependencies and update them with few clicks.
+
+<br>
+
+![Nuxt Dependencies](./.github/media/dependencies.png)
+
+
 <br>
 <br>
 
-### Run scripts from the VSCode command palette or sidebar.
-Main scripts are available from command palette, if you want to use a custom command you can find it in the sidebar.
+
+### Nuxt/Custom Snippets
+
+**Nuxt Snippets**: You can use Nuxt snippets by typing `nuxt` for components, `use` for Composables or just start typing Nuxt utils and selecting your snippet from the list.
+
+**Custom Snippets**: Easily manage your custom snippets from the sidebar. You can create, edit or delete your snippets.
+
+More on this side of the extension is coming soon!
+
+![Snippets](./.github/media/snippets.gif)
+
+
+<br>
+<br>
+
+### Vue File Templates
+
+To provide users with greater flexibility in customizing their Vue files, we offer the ability to create and utilize personalized templates. These templates can be set as defaults or used selectively as per the user's preference.
+
+We currently support two types of templates for ensuring a consistent user experience: `.page-template` and `.layout-template`. When Nuxt.js is loaded, these files are treated as regular Vue files, simplifying the editing process. Templates creation can be done from existing respective files via context menu item or empty templates from sidebar.
+
+You can set your default template from these settings:
+
+```JSON
+"nuxtr.vueFiles.pages.defaultTemplate": "default.page-template",
+"nuxtr.vueFiles.layouts.defaultTemplate": "default.layout-template"
+```
+
+![File Templates](./.github/media/file_templates.gif)
+
+<br>
+<br>
+
+
+### Run scripts from the VSCode command palette or sidebar
+
+Main scripts are available from command palette, if you want to use a custom command you can find it in the sidebar. Besides `nuxt dev` command, all other commands run in the background and you can see the output in the VSCode output channel.
 
 ![Nuxt Scripts](./.github/media/scripts.gif)
-
 
 <br>
 <br>
 
 ### Toggle Nuxt Devtools from your status bar
+
 [Nuxt Devtools](https://devtools.nuxtjs.org/) is a great tool! One of the great features it offer is working globally with your project if you are using Nuxt <= 3.4.0. You can toggle it from your status bar. Extension detects your Nuxt.js version and advices you to update if not.
 
 Manual toggling from nuxt.config.ts is detected and state is synced.
 
 ![Nuxt Devtools](./.github/media/devtools.gif)
 
-
 <br>
 <br>
 
-### Install, remove and update project dependencies.
 
-You can remove or update your dependencies by selecting which version you want to install.
+### Search and install Nuxt integrations
 
-![Nuxt Dependencies](./.github/media/dependencies.gif)
+Almost full support for Nuxt modules with a typical searching/filters experience as Nuxt Modules directory. Once you have found your desired module and detected your package manager, it will be installed and added to the nuxt.config file. A success message will be displayed, along with a button to access the module documentation.
 
-
-
-<br>
-<br>
-
-### Search and install nuxt modules.
-
-Almost full support for Nuxt modules with typical searching/filters experience as [Nuxt Modules directory](https://nuxt.com/modules). Once you found your wanted module, clicking install will install using the right flag (normal/dev) after detecting your package manager, add them to nuxt.config.ts and showing you a success message with a button to the module docs.
+Starting from v0.1.0, you can filter integration types (modules/layers) from the sidebar.
 
 ![Nuxt Modules](./.github/media/modules.gif)
 
-
 <br>
 <br>
 
-### Install and Configure most CSS frameworks with few steps
+### Install & Configure CSS frameworks and Linters
 
-You can install and configure most CSS frameworks with few steps.
+You can install and configure most CSS frameworks with few steps:
 
 - Tailwind CSS.
 - Uno CSS.
 - Windi CSS.
 - Vueitfy.
 
-More coming soon.
+Same for linters:
 
+- Stylelint.
+- Eslint.
+
+More coming soon.
 
 ![Nuxt Modules](./.github/media/css_frameworks.gif)
