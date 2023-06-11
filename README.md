@@ -29,9 +29,6 @@
 </div>
 
 
-![Nuxt Dependencies](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/dependencies.gif)
-
-
 <br>
 
 ### What does Nuxtr do?
@@ -41,6 +38,7 @@
 - [Dependencies management](#dependencies-management)
 - [Nuxt/Custom Snippets](#nuxtcustom-snippets)
 - [Vue File Templates](#vue-file-templates)
+- [srcDir and monorepo support](#srcdir-and-monorepo-support)
 - [Run scripts from the VSCode command palette or sidebar.](#run-scripts-from-the-vscode-command-palette-or-sidebar)
 - [Toggle Nuxt Devtools from your status bar](#toggle-nuxt-devtools-from-your-status-bar)
 - [Search and install Nuxt integrations](#search-and-install-nuxt-integrations)
@@ -127,6 +125,20 @@ You can set your default template from these settings:
 
 <br>
 <br>
+
+### srcDir and monorepo support
+
+Nuxtr supports `srcDir` and monorepo projects. You can set your `srcDir` from your `nuxt.config.ts` file and Nuxtr will create files/directories in the right place for you.
+
+```JSON
+  "srcDir": "src"
+```
+
+Or locate your nuxt project in your monorepo using this setting in `.vscode/settings.json`:
+
+```JSON
+  "nuxtr.monorepoMode.DiretoryName": "directory-name"
+```
 
 
 ### Run scripts from the VSCode command palette or sidebar
