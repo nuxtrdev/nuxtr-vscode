@@ -1,5 +1,28 @@
 ## Change Log
 
+### Version 0.1.7
+<br>
+
+✨ Improvements
+
+ - Activation time reduction.
+ - Nuxt Devtools detection.
+
+ <br>
+
+🩹 Fixes
+
+- VSCode Activation errors when no Nuxt project is opened.
+- Devtools detection errors.
+- Codelens making `nuxt.config.ts` scroll when typing.
+- Dependencies update errors when using pnpm.
+
+<br>
+
+💚 Thanks
+
+- [Lucie](https://github.com/lihbr)
+
 <br>
 
 ### Version 0.1.0

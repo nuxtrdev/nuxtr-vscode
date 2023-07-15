@@ -1,9 +1,7 @@
 <br />
 
 <div align="center">
-  <a href="https://github.com/krvaibhaw/best-readme-template">
-    <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
-  </a>
+  <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
 
   <h3 align="center">Nuxtr VSCode</h3>
 
@@ -181,8 +179,8 @@ Starting from v0.1.0, you can filter integration types (modules/layers) from the
 You can install and configure most CSS frameworks with few steps:
 
 - Tailwind CSS.
-- Uno CSS.
-- Windi CSS.
+- UnoCSS.
+- WindiCSS (RIP).
 - Vueitfy.
 
 Same for linters:
