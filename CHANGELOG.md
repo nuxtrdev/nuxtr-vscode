@@ -1,7 +1,17 @@
 ## Change Log
 
-### Version 0.1.7
+
+### Version 0.1.8
+
+✨ Improvements
+
+- New Nuxt modules.
+- Performance improvements.
+
 <br>
+
+### Version 0.1.7
+
 
 ✨ Improvements
 
@@ -26,7 +36,6 @@
 <br>
 
 ### Version 0.1.0
-<br>
 
 📦 New
 
@@ -73,8 +82,6 @@
 
 ### Version 0.0.6
 
-<br>
-
 📦 New
 - Supporting Vuetify among the CSS frameworks.
 
@@ -94,8 +101,6 @@
 
 ### Version 0.0.5
 
-<br>
-
 🩹 Fixes
 
 - Activity Bar icon not showing on Linux.
@@ -104,8 +109,6 @@
 <br>
 
 ### Version 0.0.4
-
-<br>
 
 📦 New
 
@@ -133,8 +136,6 @@
 
 ### Version 0.0.3
 
-<br>
-
 📖 Documentation:
 
 - Update README.md.
@@ -148,16 +149,12 @@
 
 ### Version 0.0.2
 
-<br>
-
 - 📖 DOCS: Update README.md.
 
 <br>
 
 
 ### Version 0.0.1
-
-<br>
 
 📦 New
 
