@@ -5,7 +5,10 @@ node_modules
 *.vsix
 
 ui/node_modules
+ui/.env
 
 .DS_Store
 
 TODOs.md
+
+.env
