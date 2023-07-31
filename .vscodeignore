@@ -1,0 +1,21 @@
+.vscode/**
+.vscode-test/**
+src/**
+.gitignore
+.yarnrc
+vsc-extension-quickstart.md
+**/tsconfig.json
+**/.eslintrc.json
+**/*.map
+**/*.ts
+
+
+# Ignore all webview-ui files except the build directory
+ui/src/**
+ui/public/**
+ui/scripts/**
+ui/index.html
+ui/README.md
+ui/package.json
+ui/package-lock.json
+ui/node_modules/**

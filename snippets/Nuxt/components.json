@@ -1,0 +1,115 @@
+{
+    "Nuxt | NuxtLink": {
+        "prefix": "nuxtLink",
+        "body": [
+            "<NuxtLink to=\"$1\">$2</NuxtLink>"
+        ],
+        "description": "Nuxt NuxtLink component."
+    },
+    "Nuxt | Teleport": {
+        "prefix": "nuxtTeleport",
+        "body": [
+            "<Teleport to=\"$1\">$2</Teleport>"
+        ],
+        "description": "Nuxt Teleport component"
+    },
+    "Nuxt | NuxtLayout": {
+        "prefix": "nuxtLayout",
+        "body": [
+            "<NuxtLayout $1>$2</NuxtLayout>"
+        ],
+        "description": "Nuxt | NuxtLayout"
+    },
+    "Nuxt | NuxtPage": {
+        "prefix": "nuxtPage",
+        "body": [
+            "<NuxtPage $1/>"
+        ],
+        "description": "Nuxt | NuxtPage"
+    },
+    "Nuxt | NuxtWelcome": {
+        "prefix": "nuxtWelcome",
+        "body": [
+            "<NuxtWelcome $1/>"
+        ],
+        "description": "NuxtWelcome Component"
+    },
+    "Nuxt | NuxtErrorBoundary": {
+        "prefix": "nuxtErrorBoundary",
+        "body": [
+            "<NuxtErrorBoundary ${1:@error=\"$2\"}>",
+            "$3",
+            "</NuxtErrorBoundary>"
+        ],
+        "description": "Nuxt | NuxtErrorBoundary"
+    },
+    "Nuxt | Template with ID": {
+        "prefix": "templateWithId",
+        "body": [
+            "<template #$1>",
+            "  $2",
+            "</template>"
+        ],
+        "description": "Nuxt | Template with ID"
+    },
+    "Nuxt | NuxtLoadingIndicator": {
+        "prefix": "nuxtLoadingIndicator",
+        "body": [
+            "<NuxtLoadingIndicator $1/>"
+        ],
+        "description": "Nuxt | NuxtLoadingIndicator"
+    },
+    "Nuxt | ClientOnly": {
+        "prefix": "clientonly",
+        "body": [
+            "<ClientOnly $1>",
+            "  $2",
+            "</ClientOnly>"
+        ],
+        "description": "Nuxt | NuxtPortal"
+    },
+    "Nuxt | NuxtClientFallback": {
+        "prefix": "nuxtClientFallback",
+        "body": [
+            "<NuxtClientFallback $1>",
+            "  $2",
+            "</NuxtClientFallback>"
+        ],
+        "description": "Nuxt | NuxtClientFallback"
+    },
+    "Nuxt | fallback": {
+        "prefix": "fallback",
+        "body": [
+            "fallback=\"$1\""
+        ],
+        "description": "Nuxt | fallback"
+    },
+    "Nuxt | fallbackTag": {
+        "prefix": "fallbackTag",
+        "body": [
+            "fallback-tag=\"$1\""
+        ],
+        "description": "Nuxt | fallbackTag"
+    },
+    "Nuxt | SSR Error": {
+        "prefix": "ssrError",
+        "body": [
+            " @ssr-error=\"$1\""
+        ],
+        "description": "Nuxt | SSR Error"
+    },
+    "Nuxt | name": {
+        "prefix": "name",
+        "body": [
+            "name=\"$1\""
+        ],
+        "description": "Nuxt | name"
+    },
+    "Nuxt | pageKey": {
+        "prefix": "pageKey",
+        "body": [
+            "page-key=\"$1\""
+        ],
+        "description": "Nuxt | pageKey"
+    }
+}

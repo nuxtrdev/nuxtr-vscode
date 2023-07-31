@@ -1,0 +1,215 @@
+{
+    "useAppConfig": {
+        "prefix": "useAppConfig",
+        "body": [
+            "const appConfig = useAppConfig();"
+        ],
+        "description": "useAppConfig"
+    },
+    "useAsyncData": {
+        "prefix": "useAsyncData",
+        "body": [
+            "const { data, pending, error, refresh } = await useAsyncData(",
+            "    '$2',",
+            "    () => \\$fetch('$3')",
+            ");"
+        ],
+        "description": "useAsyncData"
+    },
+    "useCookie": {
+        "prefix": "useCookie",
+        "body": [
+            "const ${1:cookie} = useCookie('$2'${3:, })"
+        ],
+        "description": "useCookie"
+    },
+    "getCookie": {
+        "prefix": "getCookie",
+        "body": [
+            "const ${1:cookie} = getCookie('$2'${3:, })"
+        ],
+        "description": "getCookie"
+    },
+    "setCookie": {
+        "prefix": "setCookie",
+        "body": [
+            "setCookie('$1'${2:, })"
+        ],
+        "description": "setCookie"
+    },
+    "useError": {
+        "prefix": "useError",
+        "body": [
+            "const ${1:error} = useError()"
+        ],
+        "description": "useError"
+    },
+    "useFetch": {
+        "prefix": "useFetch",
+        "body": [
+            "const { data, pending, error, refresh } = await useFetch('$1',{",
+            "    $2",
+            "})"
+        ],
+        "description": "useFetch"
+    },
+    "onRequest": {
+        "prefix": "onRequest",
+        "body": [
+            "onRequest({ request, options }) {",
+            "    $1",
+            "}"
+        ],
+        "description": "onRequest"
+    },
+    "onRequestError": {
+        "prefix": "onRequestError",
+        "body": [
+            "onRequestError({ request, options, error }) {",
+            "    $1",
+            "}"
+        ],
+        "description": "onRequestError"
+    },
+    "onResponse": {
+        "prefix": "onResponse",
+        "body": [
+            "onResponse({ request, response, options }) {",
+            "    $1",
+            "}"
+        ],
+        "description": "onResponse"
+    },
+    "onResponseError": {
+        "prefix": "onResponseError",
+        "body": [
+            "onResponseError({ request, response, options }) {",
+            "    $1",
+            "}"
+        ],
+        "description": "onResponseError"
+    },
+    "useHeadSafe": {
+        "prefix": "useHeadSafe",
+        "body": [
+            "useHeadSafe({",
+            "    $1",
+            "});"
+        ],
+        "description": "useHeadSafe"
+    },
+    "useHead": {
+        "prefix": "useHead",
+        "body": [
+            "useHead({",
+            "  $1",
+            "})"
+        ],
+        "description": "useHead"
+    },
+    "useHydration": {
+        "prefix": "useHydration",
+        "body": [
+            "useHydration({",
+            "  $1",
+            "})"
+        ],
+        "description": "useHydration"
+    },
+    "useLazyAsyncData": {
+        "prefix": "useLazyAsyncData",
+        "body": [
+            "const { $1 } = await useLazyAsyncData('$2', () => \\$fetch('$3'))"
+        ],
+        "description": "useLazyAsyncData"
+    },
+    "useLazyFetch": {
+        "prefix": "useLazyFetch",
+        "body": [
+            "const { $1 } = await useLazyFetch('$3')"
+        ],
+        "description": "useLazyFetch"
+    },
+    "useNuxtApp": {
+        "prefix": "useNuxtApp",
+        "body": [
+            "const nuxtApp = useNuxtApp()",
+            ""
+        ],
+        "description": "useNuxtApp"
+    },
+    "useNuxtData": {
+        "prefix": "useNuxtData",
+        "body": [
+            "const { data: $1 } = useNuxtData('$2')"
+        ],
+        "description": "useNuxtData"
+    },
+    "useRequestEvent": {
+        "prefix": "useRequestEvent",
+        "body": [
+            "const event = useRequestEvent()"
+        ],
+        "description": "useRequestEvent"
+    },
+    "useRequestHeaders": {
+        "prefix": "useRequestHeaders",
+        "body": [
+            "const headers = useRequestHeaders($1)"
+        ],
+        "description": "useRequestHeaders"
+    },
+    "useRequestURL": {
+        "prefix": "useRequestURL",
+        "body": [
+            "const url = useRequestURL()"
+        ],
+        "description": "useRequestURL"
+    },
+    "useRoute": {
+        "prefix": "useRoute",
+        "body": [
+            "const route = useRoute();"
+        ],
+        "description": "useRoute"
+    },
+    "useRouter": {
+        "prefix": "useRouter",
+        "body": [
+            "const router = useRouter();"
+        ],
+        "description": "useRouter"
+    },
+    "useRuntimeConfig": {
+        "prefix": "useRuntimeConfig",
+        "body": [
+            "const config = useRuntimeConfig()"
+        ],
+        "description": "useRuntimeConfig"
+    },
+    "useSeoMeta": {
+        "prefix": "useSeoMeta",
+        "body": [
+            "useSeoMeta({",
+            "  $1",
+            "})"
+        ],
+        "description": "useSeoMeta"
+    },
+    "useServerSeoMeta": {
+        "prefix": "useServerSeoMeta",
+        "body": [
+            "useServerSeoMeta({",
+            "  $1",
+            "})"
+        ],
+        "description": "useServerSeoMeta"
+    },
+    "useState": {
+        "prefix": "useState",
+        "body": [
+            "const $1 = useState('$2', () => $3)"
+        ],
+        "description": "useState"
+    }
+}

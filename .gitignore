@@ -1,0 +1,11 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+
+ui/node_modules
+
+.DS_Store
+
+TODOs.md

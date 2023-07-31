@@ -1,0 +1,171 @@
+{
+    "$fetch": {
+        "prefix": "fetch",
+        "body": [
+            "const $1 = await \\$fetch('$2')"
+        ],
+        "description": "$fetch"
+    },
+    "abortNavigation": {
+        "prefix": "abortNavigation()",
+        "body": [
+            "abortNavigation($1)"
+        ],
+        "description": "abortNavigation"
+    },
+    "addRouteMiddleware": {
+        "prefix": "addRouteMiddleware",
+        "body": [
+            "addRouteMiddleware('$1', (${2:to, from}) => {",
+            "    $3",
+            "}, { global: true })"
+        ],
+        "description": "addRouteMiddleware"
+    },
+    "clearError": {
+        "prefix": "clearError",
+        "body": [
+            "clearError($1)"
+        ],
+        "description": "clearError"
+    },
+    "clearNuxtData": {
+        "prefix": "clearNuxtData",
+        "body": [
+            "clearNuxtData($1)"
+        ],
+        "description": "clearNuxtData"
+    },
+    "createError": {
+        "prefix": "createError",
+        "body": [
+            "throw createError({",
+            "    statusCode: $1,",
+            "    statusMessage: '$2'",
+            "})"
+        ],
+        "description": "createError"
+    },
+    "defineNuxtComponent": {
+        "prefix": "defineNuxtComponent",
+        "body": [
+            "export default defineNuxtComponent({",
+            "$1",
+            "})"
+        ],
+        "description": "defineNuxtComponent"
+    },
+    "defineNuxtRouteMiddleware": {
+        "prefix": "defineNuxtRouteMiddleware",
+        "body": [
+            "export default defineNuxtRouteMiddleware((${1:to, from}) => {",
+            "   $2",
+            "})",
+            ""
+        ],
+        "description": "defineNuxtRouteMiddleware"
+    },
+    "definePageMeta": {
+        "prefix": "definePageMeta",
+        "body": [
+            "definePageMeta({",
+            "    $1",
+            "})"
+        ],
+        "description": "definePageMeta"
+    },
+    "navigateTo": {
+        "prefix": "navigateTo",
+        "body": [
+            "navigateTo('$1', $2)"
+        ],
+        "description": "navigateTo"
+    },
+    "onBeforeRouteLeave": {
+        "prefix": "onBeforeRouteLeave",
+        "body": [
+            "onBeforeRouteLeave($1)"
+        ],
+        "description": "onBeforeRouteLeave"
+    },
+    "onBeforeRouteUpdate": {
+        "prefix": "onBeforeRouteUpdate",
+        "body": [
+            "onBeforeRouteUpdate($1)"
+        ],
+        "description": "onBeforeRouteUpdate"
+    },
+    "onNuxtReady": {
+        "prefix": "onNuxtReady",
+        "body": [
+            "onNuxtReady(async () => {",
+            "    $1",
+            "})"
+        ],
+        "description": "onNuxtReady"
+    },
+    "prefetchComponents": {
+        "prefix": "prefetchComponents",
+        "body": [
+            "prefetchComponents('$1')"
+        ],
+        "description": "prefetchComponents"
+    },
+    "preloadComponents": {
+        "prefix": "preloadComponents",
+        "body": [
+            "preloadComponents('$1')"
+        ],
+        "description": "preloadComponents"
+    },
+    "preloadRouteComponents": {
+        "prefix": "preloadRouteComponents",
+        "body": [
+            "preloadRouteComponents('$1')"
+        ],
+        "description": "preloadRouteComponents"
+    },
+    "refreshNuxtData": {
+        "prefix": "refreshNuxtData",
+        "body": [
+            "refreshNuxtData('$1')"
+        ],
+        "description": "refreshNuxtData"
+    },
+    "reloadNuxtApp": {
+        "prefix": "reloadNuxtApp",
+        "body": [
+            "reloadNuxtApp('$1')"
+        ],
+        "description": "reloadNuxtApp"
+    },
+    "setPageLayout": {
+        "prefix": "setPageLayout",
+        "body": [
+            "setPageLayout('$1')"
+        ],
+        "description": "setPageLayout"
+    },
+    "setResponseStatus": {
+        "prefix": "setResponseStatus",
+        "body": [
+            "setResponseStatus('$1:event', $2:404, ${3: '${4:'Message'}'})"
+        ],
+        "description": "setResponseStatus"
+    },
+    "showError": {
+        "prefix": "showError",
+        "body": [
+            "showError({ statusCode: $1, statusMessage: \"$2\" })"
+        ],
+        "description": "showError"
+    },
+    "updateAppConfig": {
+        "prefix": "updateAppConfig",
+        "body": [
+            "const ${1:newAppConfig} = { $2 }",
+            "updateAppConfig($1)"
+        ],
+        "description": "updateAppConfig"
+    }
+}

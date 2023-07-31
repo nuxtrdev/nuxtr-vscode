@@ -1,6 +1,4 @@
 {
-    "cSpell.words": [
-        "Vueitfy",
-        "Windi"
-    ]
+    "typescript.tsc.autoDetect": "off",
+    "editor.formatOnSave": true
 }

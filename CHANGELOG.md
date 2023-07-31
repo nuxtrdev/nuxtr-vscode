@@ -1,5 +1,27 @@
-## Change Log
+## Changelog
 
+### Version 0.1.9
+
+📦 New
+
+- `serverDiv` support.
+- [`$development`](https://nuxt.com/blog/v3-5#environment-config) support for Nuxt Devtools toggling.
+- `nuxtr.vueFiles.script.defaultLanguage` setting.
+
+✨ Improvements
+
+- Basic Vue files template snippets.
+- Monorepo support for actions/scripts.
+- Highlighting outdated dependencies in the sidebar.
+- Terminal icon/names.
+- Performance improvements.
+
+🩹 Fixes
+
+- Menu items for Vue page/layout templates creation not showing on Windows.
+- Integration views not detecting installed integrations.
+
+<br>
 
 ### Version 0.1.8
 
@@ -12,11 +34,10 @@
 
 ### Version 0.1.7
 
-
 ✨ Improvements
 
- - Activation time reduction.
- - Nuxt Devtools detection.
+- Activation time reduction.
+- Nuxt Devtools detection.
 
  <br>
 
@@ -42,16 +63,16 @@
 - All Nuxt API (Components/Composables/Utils) snippets.
 - Snippets section in Project View.
 - Introducing File Templates for pages/layout:
-    - File Templates section in Project View.
-    - `nuxtr.vueFiles.pages.defaultTemplate` setting.
-    - `nuxtr.vueFiles.layouts.defaultTemplate` setting.
-    - `.page-template` and `.layout-template` extensions for ile templates.
+  - File Templates section in Project View.
+  - `nuxtr.vueFiles.pages.defaultTemplate` setting.
+  - `nuxtr.vueFiles.layouts.defaultTemplate` setting.
+  - `.page-template` and `.layout-template` extensions for ile templates.
 - Actions to add (Modules/Plugins/ and Layers) in `nuxt.config.ts`.
 - Auto adding plugins to `nuxt.config.ts` upon creating them.
 - Layers detection and auto adding to `extends` field inside `nuxt.config.ts`.
 - Linters Configuration (ESLint/Stylelint).
 - `srcDir` and Monorepo Support.
-    - `nuxtr.monorepoMode.DiretoryName` setting.
+  - `nuxtr.monorepoMode.DiretoryName` setting.
 - Output channel.
 - New filter for Ingration view (modules/layers/all).
 - Outdated NPM dependencies update statusBar Icon.
@@ -64,7 +85,6 @@
 - Running Nuxtr on VSCode startup finishing.
 - Handling deprected configuration for Devtools.
 - Dependencies section UI in Project View.
-
 
 🩹 Fixes
 
@@ -83,6 +103,7 @@
 ### Version 0.0.6
 
 📦 New
+
 - Supporting Vuetify among the CSS frameworks.
 
 ✨ Improvements
@@ -113,24 +134,23 @@
 📦 New
 
 - Install and Configure most CSS frameworks with few steps.
-    - TailwindCSS.
-    - UnoCSS.
-    - WindiCSS.
+  - TailwindCSS.
+  - UnoCSS.
+  - WindiCSS.
 - Introducing `nuxtr.vueFiles.style.alwaysScoped` setting.
 - Introducing `nuxtr.defaultPackageManager` setting.
 - Create project directories Settings.
 
 ✨ Improvements
 
--  Files creation is not relying on Nuxi CLI.
--  Dependencies card in the sidebar.
--  Grouping extension settings.
-
+- Files creation is not relying on Nuxi CLI.
+- Dependencies card in the sidebar.
+- Grouping extension settings.
 
 🩹 Fixes
 
--  Devtools installation error on Windows & Linux.
--  Activity Bar icon not showing on Linux.
+- Devtools installation error on Windows & Linux.
+- Activity Bar icon not showing on Linux.
 
 <br>
 
@@ -146,13 +166,11 @@
 
 <br>
 
-
 ### Version 0.0.2
 
 - 📖 DOCS: Update README.md.
 
 <br>
-
 
 ### Version 0.0.1
 

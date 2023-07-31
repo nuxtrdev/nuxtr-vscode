@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  @font-face {
+    font-family: Inter;
+    font-weight: 100;
+    src: url("./inter/Inter-Thin.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 200;
+    src: url("./inter/Inter-ExtraLight.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 300;
+    src: url("./inter/Inter-Light.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 400;
+    src: url("./inter/Inter-Regular.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 500;
+    src: url("./inter/Inter-Medium.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 600;
+    src: url("./inter/Inter-SemiBold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 700;
+    src: url("./inter/Inter-Bold.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 800;
+    src: url("./inter/Inter-ExtraLight.woff") format("woff");
+  }
+
+  @font-face {
+    font-family: Inter;
+    font-weight: 900;
+    src: url("./inter/Inter-Black.woff") format("woff");
+  }
+} */
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+.slide-down-fade-enter-active,
+.slide-down-fade-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.slide-down-fade-enter-from,
+.slide-down-fade-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}

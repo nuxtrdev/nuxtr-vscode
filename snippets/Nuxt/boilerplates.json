@@ -1,0 +1,38 @@
+{
+    "template": {
+        "prefix": "template",
+        "body": [
+            "<template>",
+            "",
+            "</template>"
+        ],
+        "description": "template tag"
+    },
+    "setupScriptTag": {
+        "prefix": "setupScript",
+        "body": [
+            "<script setup>",
+            "",
+            "</script>"
+        ],
+        "description": "setup script tag"
+    },
+    "scriptTag": {
+        "prefix": "script",
+        "body": [
+            "<script>",
+            "",
+            "</script>"
+        ],
+        "description": "script tag"
+    },
+    "styleTag": {
+        "prefix": "style",
+        "body": [
+            "<style>",
+            "",
+            "</style>"
+        ],
+        "description": "style tag"
+    }
+}
