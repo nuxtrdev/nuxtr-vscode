@@ -453,7 +453,8 @@
                             "scss",
                             "sass",
                             "less",
-                            "stylus"
+                            "stylus",
+                            "postcss"
                         ],
                         "description": "Default language for style tag"
                     },
