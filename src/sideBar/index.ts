@@ -123,9 +123,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
         switch (packageManager?.name) {
             case 'Yarn':
-                if (script === 'dev' || script === 'preview' || script === 'start' || script === 'lint' || script === 'stylelint') {
-                    newTerminal(`Nuxtr: ${script}`, `yarn ${script}`, `${projectRootDirectory()}`)
-                } else {
+                if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `yarn ${script}`,
                         message: `Nuxtr: ${script}`,
@@ -133,12 +131,12 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         errorMessage: `Nuxtr: ${script} failed`,
                         logger: true
                     })
+                } else {
+                    newTerminal(`Nuxtr: ${script}`, `yarn ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'NPM':
-                if (script === 'dev' || script === 'preview' || script === 'start' || script === 'lint' || script === 'stylelint') {
-                    newTerminal(`Nuxtr: ${script}`, `npm run ${script}`, `${projectRootDirectory()}`)
-                } else {
+                if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `npm run ${script}`,
                         message: `Nuxtr: ${script}`,
@@ -146,12 +144,12 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         errorMessage: `Nuxtr: ${script} failed`,
                         logger: true
                     })
+                } else {
+                    newTerminal(`Nuxtr: ${script}`, `npm run ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'pnpm':
-                if (script === 'dev' || script === 'preview' || script === 'start' || script === 'lint' || script === 'stylelint') {
-                    newTerminal(`Nuxtr: ${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
-                } else {
+                if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `pnpm ${script}`,
                         message: `Nuxtr: ${script}`,
@@ -159,6 +157,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         errorMessage: `Nuxtr: ${script} failed`,
                         logger: true
                     })
+                } else {
+                    newTerminal(`Nuxtr: ${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             default:
