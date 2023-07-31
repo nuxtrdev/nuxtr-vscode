@@ -56,7 +56,6 @@ export async function activateExtension(context: ExtensionContext) {
 
     const sidebarProvider = new ModulesView(context.extensionUri)
 
-    const refreshModules = () => sidebarProvider.updateModules()
 
     // Initialize file watchers
     new FileWatchers(sidebarProvider, context, statusBars.updatesStatusBar)
@@ -80,7 +79,7 @@ export async function activateExtension(context: ExtensionContext) {
         context.subscriptions.push(commands.registerCommand(command, commandFunction));
     });
 
-    context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', refreshModules))
+    context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', () => sidebarProvider.updateModules()))
 
     context.subscriptions.push(window.registerWebviewViewProvider('nuxtrSidebar', sidebarProvider))
 

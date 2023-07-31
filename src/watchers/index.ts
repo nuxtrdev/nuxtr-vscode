@@ -11,10 +11,6 @@ class FileWatchers {
         this.statusBar = statusBar
     }
 
-    public refreshModules = () => {
-        this.sidebarProvider.updateModules()
-    }
-
     public nuxtConfigFileWatcher = workspace
         .createFileSystemWatcher(findNuxtConfig() as string)
         .onDidChange(() => {
@@ -24,7 +20,7 @@ class FileWatchers {
     public packageJsonFileWatcher = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/package.json`)
         .onDidCreate(async (uri: Uri) => {
-            this.refreshModules()
+            this.sidebarProvider.updateModules()
             await this.sidebarProvider.getDependencies()
 
             const outdatedDependencies: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
@@ -42,7 +38,7 @@ class FileWatchers {
     public packageJsonFileChangedWatcher = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/package.json`)
         .onDidChange(async (uri: Uri) => {
-            this.refreshModules()
+            this.sidebarProvider.updateModules()
             await this.sidebarProvider.getDependencies()
 
             const outdatedDependencies: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
