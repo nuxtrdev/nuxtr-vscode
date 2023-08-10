@@ -469,6 +469,21 @@
                         "description": "Default layout template"
                     }
                 }
+            },
+            {
+                "title": "Path Intellisense",
+                "properties": {
+                    "nuxtr.intellisense.allow.nuxtignore": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Allow .nuxtignore intellisense"
+                    },
+                    "nuxtr.intellisense.allow.public": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Allow public intellisense"
+                    }
+                }
             }
         ],
         "commands": [

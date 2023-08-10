@@ -1,7 +1,8 @@
 import { window } from 'vscode';
-import { writeFileSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
+import { join } from 'path';
 import { parseModule } from 'magicast';
-import { projectRootDirectory } from '.';
+import { projectRootDirectory, projectSrcDirectory } from '.';
 
 
 export const findNuxtConfig = (): string | undefined => {
@@ -179,3 +180,56 @@ export const updateNuxtConfig = (update: (config: any) => void) => {
         );
     }
 };
+
+
+export const scanNuxtDirectories = async () => {
+    let projectSrcDir = `${projectSrcDirectory()}`;
+    let nuxtDirectories = ['layouts', 'pages', 'components', 'composables', 'middleware'];
+    let existingDirectories: string[] = [];
+
+    if (existsSync(projectSrcDir)) {
+        try {
+            const srcDirContents = await promises.readdir(projectSrcDir);
+
+            for (const directory of nuxtDirectories) {
+                if (srcDirContents.includes(directory)) {
+                    existingDirectories.push(directory);
+                }
+            }
+        } catch (error) {
+            console.error('Error scanning Nuxt directories:', error);
+        }
+
+    }
+    return existingDirectories;
+}
+
+export async function scanFilesAndSubdirectories(directoryPath: string): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+        readdir(directoryPath, { withFileTypes: true }, (err, files) => {
+            if (err) {
+                reject(err);
+            } else {
+                const fileAndDirNames: string[] = [];
+                files.forEach((file: any) => {
+                    const fullPath = join(directoryPath, file.name);
+                    fileAndDirNames.push(fullPath);
+                    if (file.isDirectory()) {
+                        scanFilesAndSubdirectories(fullPath).then((subFiles) => {
+                            fileAndDirNames.push(...subFiles);
+                            if (fileAndDirNames.length === files.length) {
+                                resolve(fileAndDirNames);
+                            }
+                        }).catch((error) => {
+                            reject(error);
+                        });
+                    } else {
+                        if (fileAndDirNames.length === files.length) {
+                            resolve(fileAndDirNames);
+                        }
+                    }
+                });
+            }
+        });
+    });
+}

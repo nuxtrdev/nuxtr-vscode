@@ -18,7 +18,8 @@ import {
     hasServerDir,
     updateNuxtConfig,
     findNuxtConfig,
-    isNuxtProject
+    isNuxtProject,
+    scanNuxtDirectories,
 } from './nuxt'
 
 import {
@@ -70,5 +71,7 @@ export {
     createDir,
     findNuxtConfig,
     isNuxtProject,
-    getCommandType
+    getCommandType,
+    scanNuxtDirectories
+
 }

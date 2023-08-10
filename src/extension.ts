@@ -5,6 +5,7 @@ import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
 import FileWatchers from './watchers'
 import { statusBars, activateStatusBarIcons } from './statusBar'
+import { activatePathIntellisense } from './pathIntellisense'
 
 
 const commandList = [
@@ -61,6 +62,8 @@ export async function activateExtension(context: ExtensionContext) {
     new FileWatchers(sidebarProvider, context, statusBars.updatesStatusBar)
 
     activateStatusBarIcons(context)
+
+    activatePathIntellisense(context)
 
     codelens.activateCodelenses(context)
 
