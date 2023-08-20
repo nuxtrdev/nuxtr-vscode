@@ -29,6 +29,7 @@ const commandList = [
     { command: 'nuxtr.nuxtInfo', function: nuxtrCommands.nuxtInfo },
     { command: 'nuxtr.appConfig', function: nuxtrCommands.appConfig },
     { command: 'nuxtr.nuxtIgnore', function: nuxtrCommands.nuxtIgnore },
+    { command: 'nuxtr.nuxtRC', function: nuxtrCommands.nuxtRC },
     { command: 'nuxtr.installDependencies', function: nuxtrCommands.installDependencies },
     { command: 'nuxtr.openSettings', function: nuxtrCommands.openSettings },
     { command: 'nuxtr.configureCSS', function: nuxtrCommands.configureCSS },
