@@ -45,7 +45,7 @@
 
 ### Project directories and files creation
 
-With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt.js project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
+With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt.js project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
 
 You can customize Vue file templates using the following settings:
 

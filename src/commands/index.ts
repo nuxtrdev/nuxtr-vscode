@@ -5,7 +5,7 @@ import { createLayout, directCreateLayout } from './Layout'
 import { createPlugin, directCreatePlugin } from './Plugin'
 import { createMiddleware, directCreateMiddleware } from './Middleware'
 import { createApi, directCreateApi } from './Api'
-import { projectStructure, appConfig, nuxtIgnore } from './Structure'
+import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
 import {
     nuxtDev,
@@ -55,6 +55,7 @@ const commands = {
     directCreateStore,
     appConfig,
     nuxtIgnore,
+    nuxtRC,
     installDependencies,
     upgradePackage,
     managePackageVersion,

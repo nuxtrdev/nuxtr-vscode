@@ -3976,13 +3976,13 @@
         },
         {
             "name": "directus",
-            "description": "Easily connect your Nuxt3 application to your directus server.",
+            "description": "Easily connect your Nuxt application to your directus server.",
             "repo": "intevel/nuxt-directus",
             "npm": "nuxt-directus",
             "icon": "directus.svg",
-            "github": "https://github.com/directus/nuxt-directus/",
-            "website": "https://nuxt-directus.netlify.app/",
-            "learn_more": "https://nuxt-directus.netlify.app/",
+            "github": "https://github.com/intevel/nuxt-directus/",
+            "website": "https://nuxt-directus.site/",
+            "learn_more": "https://nuxt-directus.site/",
             "category": "CMS",
             "type": "3rd-party",
             "maintainers": [
@@ -3993,25 +3993,28 @@
                 }
             ],
             "compatibility": {
-                "nuxt": "^2.0.0 || ^3.0.0",
-                "requires": {
-                    "bridge": true
-                }
+                "nuxt": "^3.0.0",
+                "requires": {}
             },
-            "downloads": 2272,
-            "stars": 147,
+            "downloads": 3713,
+            "stars": 188,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 59223342,
                     "username": "Intevel",
-                    "contributions": 171
+                    "contributions": 215
                 },
                 {
                     "id": 93563771,
                     "username": "codiam",
-                    "contributions": 7
+                    "contributions": 22
+                },
+                {
+                    "id": 85650530,
+                    "username": "casualmatt",
+                    "contributions": 14
                 },
                 {
                     "id": 74846767,
@@ -4024,14 +4027,19 @@
                     "contributions": 7
                 },
                 {
-                    "id": 324026,
-                    "username": "craigharman",
-                    "contributions": 6
+                    "id": 13056429,
+                    "username": "Sandros94",
+                    "contributions": 7
                 },
                 {
-                    "id": 85650530,
-                    "username": "casualmatt",
-                    "contributions": 5
+                    "id": 324026,
+                    "username": "craigharman",
+                    "contributions": 7
+                },
+                {
+                    "id": 3519378,
+                    "username": "amerkay",
+                    "contributions": 6
                 },
                 {
                     "id": 25180681,
@@ -4049,8 +4057,23 @@
                     "contributions": 3
                 },
                 {
+                    "id": 49699333,
+                    "username": "dependabot[bot]",
+                    "contributions": 2
+                },
+                {
+                    "id": 80765270,
+                    "username": "VicFleur",
+                    "contributions": 1
+                },
+                {
                     "id": 24437987,
                     "username": "linkb15",
+                    "contributions": 1
+                },
+                {
+                    "id": 38366502,
+                    "username": "ranseur92",
                     "contributions": 1
                 },
                 {
@@ -4064,6 +4087,11 @@
                     "contributions": 1
                 },
                 {
+                    "id": 10852176,
+                    "username": "halwesit",
+                    "contributions": 1
+                },
+                {
                     "id": 1553757,
                     "username": "mklueh",
                     "contributions": 1
@@ -4071,11 +4099,6 @@
                 {
                     "id": 1492215,
                     "username": "Nainterceptor",
-                    "contributions": 1
-                },
-                {
-                    "id": 13056429,
-                    "username": "Sandros94",
                     "contributions": 1
                 },
                 {
@@ -4092,10 +4115,14 @@
                     "id": 17858793,
                     "username": "dochoss",
                     "contributions": 1
+                },
+                {
+                    "id": 18407632,
+                    "username": "drennvinn",
+                    "contributions": 1
                 }
             ],
             "tags": [
-                "2.x-bridge",
                 "3.x"
             ],
             "isLayer": false
@@ -20235,70 +20262,6 @@
             "isLayer": false
         },
         {
-            "name": "yandex-metrika",
-            "description": "Yandex metrika Module for Nuxt.js",
-            "repo": "nuxt-community/yandex-metrika-module",
-            "npm": "@nuxtjs/yandex-metrika",
-            "icon": "",
-            "github": "https://github.com/nuxt-community/yandex-metrika-module",
-            "website": "https://github.com/nuxt-community/yandex-metrika-module",
-            "learn_more": "https://metrica.yandex.com/about",
-            "category": "Analytics",
-            "type": "community",
-            "maintainers": [
-                {
-                    "name": "Pooya Parsa",
-                    "github": "pi0",
-                    "twitter": "_pi0_"
-                }
-            ],
-            "compatibility": {
-                "nuxt": "^2.0.0",
-                "requires": {}
-            },
-            "downloads": 0,
-            "stars": 0,
-            "publishedAt": null,
-            "createdAt": null,
-            "contributors": [],
-            "tags": [
-                "2.x"
-            ],
-            "isLayer": false
-        },
-        {
-            "name": "yandex-metrika-next",
-            "description": "Yandex Metrika integration for Nuxt",
-            "repo": "artmizu/yandex-metrika-nuxt",
-            "npm": "@artmizu/yandex-metrika-nuxt",
-            "icon": "yandex-metrika.svg",
-            "github": "https://github.com/artmizu/yandex-metrika-nuxt",
-            "website": "https://github.com/artmizu/yandex-metrika-nuxt",
-            "learn_more": "",
-            "category": "Analytics",
-            "type": "3rd-party",
-            "maintainers": [
-                {
-                    "name": "Aleksandr Saburov",
-                    "github": "artmizu",
-                    "avatar": "https://avatars.githubusercontent.com/artmizu?v=4"
-                }
-            ],
-            "compatibility": {
-                "nuxt": "^3.0.0",
-                "requires": {}
-            },
-            "downloads": 0,
-            "stars": 0,
-            "publishedAt": null,
-            "createdAt": null,
-            "contributors": [],
-            "tags": [
-                "3.x"
-            ],
-            "isLayer": false
-        },
-        {
             "name": "zendesk",
             "description": "Nuxt.js module for Zendesk",
             "repo": "DansMaCulotte/nuxt-zendesk",
@@ -21195,21 +21158,23 @@
                 }
             ],
             "compatibility": {
-                "nuxt": "^3.6.0",
+                "nuxt": "^3.0.0",
                 "requires": {}
             },
-            "downloads": 563,
-            "stars": 9,
+            "downloads": 1141,
+            "stars": 12,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 8353081,
                     "username": "Boomgeek",
-                    "contributions": 20
+                    "contributions": 33
                 }
             ],
-            "tags": [],
+            "tags": [
+                "3.x"
+            ],
             "isLayer": false
         },
         {
@@ -21279,6 +21244,308 @@
                     "id": 95148327,
                     "username": "helltraitor",
                     "contributions": 33
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "ark-ui",
+            "description": "A headless library for building reusable, scalable design systems that works for a wide range of JS frameworks.",
+            "repo": "iamdin/nuxt-ark-ui",
+            "npm": "nuxt-ark-ui",
+            "icon": "ark-ui.svg",
+            "github": "https://github.com/iamdin/nuxt-ark-ui",
+            "website": "https://ark-ui.com/",
+            "learn_more": "https://github.com/iamdin/nuxt-ark-ui",
+            "category": "UI",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Din",
+                    "github": "iamdin",
+                    "twitter": "iamdinq"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 185,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 36906371,
+                    "username": "iamdin",
+                    "contributions": 10
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt3-leaflet",
+            "description": "Leaflet integration with Nuxt",
+            "repo": "Gugustinette/Nuxt-Leaflet",
+            "npm": "nuxt3-leaflet",
+            "icon": "leaflet.png",
+            "github": "https://github.com/Gugustinette/Nuxt-Leaflet",
+            "website": "https://github.com/Gugustinette/Nuxt-Leaflet",
+            "learn_more": "https://github.com/Gugustinette/Nuxt-Leaflet",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Augustin MERCIER",
+                    "github": "Gugustinette"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 692,
+            "stars": 12,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 63470020,
+                    "username": "Gugustinette",
+                    "contributions": 38
+                },
+                {
+                    "id": 49699333,
+                    "username": "dependabot[bot]",
+                    "contributions": 1
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-bootstrap-icons",
+            "description": "Just a simple integration for Bootstrap Icons",
+            "repo": "OyewoleOyedeji/nuxt-bootstrap-icons",
+            "npm": "nuxt-bootstrap-icons",
+            "icon": "bootstrap-icons.svg",
+            "github": "https://github.com/OyewoleOyedeji/nuxt-bootstrap-icons",
+            "website": "https://github.com/OyewoleOyedeji/nuxt-bootstrap-icons",
+            "learn_more": "https://github.com/OyewoleOyedeji/nuxt-bootstrap-icons",
+            "category": "UI",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "OyewoleOyedeji",
+                    "github": "OyewoleOyedeji"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 183,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 57059138,
+                    "username": "OyewoleOyedeji",
+                    "contributions": 11
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "use-wagmi",
+            "description": "Vue Composition for Ethereum based on wagmi",
+            "repo": "unicape/use-wagmi#main/packages/nuxt",
+            "npm": "@use-wagmi/nuxt",
+            "icon": "use-wagmi.png",
+            "github": "https://github.com/unicape/use-wagmi",
+            "website": "https://github.com/unicape/use-wagmi",
+            "learn_more": "https://github.com/unicape/use-wagmi",
+            "category": "Extensions",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Unic Ape",
+                    "github": "unicape"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^2.0.0 || ^3.0.0",
+                "requires": {
+                    "bridge": true
+                }
+            },
+            "downloads": 0,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [],
+            "tags": [
+                "2.x-bridge",
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "vcalendar",
+            "description": "VCalendar module for Nuxt",
+            "repo": "samk-dev/nuxt-vcalendar",
+            "npm": "@samk-dev/nuxt-vcalendar",
+            "icon": "vcalendar.png",
+            "github": "https://github.com/samk-dev/vcalendar",
+            "website": "https://github.com/samk-dev/vcalendar",
+            "learn_more": "",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Sam K",
+                    "github": "samk-dev"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 0,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-feedme",
+            "description": "The RSS feed module for Nuxt web framework with ATOM, JSON and RSS support",
+            "repo": "helltraitor/nuxt-feedme",
+            "npm": "nuxt-feedme",
+            "icon": "",
+            "github": "https://github.com/helltraitor/nuxt-feedme",
+            "website": "https://github.com/helltraitor/nuxt-feedme",
+            "learn_more": "",
+            "category": "SEO",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Helltraitor",
+                    "github": "helltraitor"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 270,
+            "stars": 14,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 95148327,
+                    "username": "helltraitor",
+                    "contributions": 112
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "lucide-icons",
+            "description": "Nuxt 3 module to integrate Lucide icons",
+            "repo": "swisnl/nuxt-lucide-icons",
+            "npm": "nuxt-lucide-icons",
+            "icon": "lucide-icons.svg",
+            "github": "https://github.com/swisnl/nuxt-lucide-icons",
+            "website": "https://github.com/swisnl/nuxt-lucide-icons",
+            "learn_more": "",
+            "category": "UI",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "SWIS",
+                    "github": "swisnl"
+                },
+                {
+                    "name": "Jasper Zonneveld",
+                    "github": "JaZo"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 34,
+            "stars": 1,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 3475007,
+                    "username": "JaZo",
+                    "contributions": 7
+                },
+                {
+                    "id": 5618114,
+                    "username": "drprofesq",
+                    "contributions": 2
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-basic-auth",
+            "description": "Nuxt 3 Module for Basic Authentication",
+            "repo": "kgierke/nuxt-basic-auth",
+            "npm": "@kgierke/nuxt-basic-auth",
+            "icon": "",
+            "github": "https://github.com/kgierke/nuxt-basic-auth",
+            "website": "https://github.com/kgierke/nuxt-basic-auth",
+            "learn_more": "",
+            "category": "Security",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "kgierke",
+                    "github": "kgierke"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 234,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 1983246,
+                    "username": "kgierke",
+                    "contributions": 13
                 }
             ],
             "tags": [

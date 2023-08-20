@@ -1,5 +1,11 @@
 ## Changelog
 
+### Version 0.1.11
+
+🩹 Fixes
+
+- Removing Plugins watcher.
+
 ### Version 0.1.9
 
 📦 New

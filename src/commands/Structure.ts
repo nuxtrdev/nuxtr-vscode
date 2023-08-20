@@ -68,4 +68,12 @@ const nuxtIgnore = () => {
     })
 }
 
-export { projectStructure, appConfig, nuxtIgnore }
+const nuxtRC = () => {
+    createFile({
+        fileName: '.nuxtrc',
+        content: '',
+        fullPath: `${projectRootDirectory()}/.nuxtrc`,
+    })
+}
+
+export { projectStructure, appConfig, nuxtIgnore, nuxtRC }

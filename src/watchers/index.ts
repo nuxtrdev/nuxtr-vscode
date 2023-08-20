@@ -66,31 +66,6 @@ class FileWatchers {
             this.sidebarProvider.getDependencies()
         })
 
-
-    public pluginsFileWatcher = workspace
-        .createFileSystemWatcher(`${projectRootDirectory()}/plugins/**/*`)
-        .onDidCreate(async (uri: Uri) => {
-            const pluginsFiles = await workspace.findFiles('plugins/**/*').then((files) => {
-                return files.map((file: any) => {
-                    return file.path.replace(`${projectRootDirectory()}/`, '~/')
-                })
-            })
-            updateNuxtConfig((config) => config.plugins = pluginsFiles)
-        })
-
-    public pluginsFileWatcherDeleted = workspace
-        .createFileSystemWatcher(`${projectRootDirectory()}/plugins/**/*`)
-        .onDidDelete(async (uri: Uri) => {
-
-            const pluginsFiles = await workspace.findFiles('plugins/**/*').then((files) => {
-                return files.map((file: any) => {
-                    return file.path.replace(`${projectRootDirectory()}/`, '~/')
-                })
-            })
-
-            updateNuxtConfig((config) => config.plugins = pluginsFiles)
-        })
-
 }
 
 export default FileWatchers
