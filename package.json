@@ -79,6 +79,21 @@
                     "text/x-code-output",
                     "x-code-output"
                 ]
+            },
+            {
+                "id": "ignore",
+                "extensions": [
+                    ".nuxtignore"
+                ]
+            },
+            {
+                "id": "nuxtrc",
+                "aliases": [
+                    "nuxtRC"
+                ],
+                "extensions": [
+                    ".nuxtrc"
+                ]
             }
         ],
         "configurationDefaults": {
@@ -92,7 +107,12 @@
             {
                 "language": "Log",
                 "scopeName": "code.log",
-                "path": "./log.tmLanguage"
+                "path": "./syntaxes/log.tmLanguage.json"
+            },
+            {
+                "language": "nuxtrc",
+                "scopeName": "source.nuxtrc",
+                "path": "./syntaxes/nuxtrc.tmLanguage.json"
             }
         ],
         "viewsContainers": {
@@ -100,7 +120,7 @@
                 {
                     "id": "sidebar-view",
                     "title": "Nuxtr",
-                    "icon": "./resources/nuxtr.svg",
+                    "icon": "./resources/nuxt.svg",
                     "when": "nuxtr.isNuxtProject"
                 }
             ]
@@ -111,7 +131,7 @@
                     "type": "webview",
                     "id": "nuxtrSidebar",
                     "name": "Sidebar",
-                    "icon": "./resources/nuxtr.svg",
+                    "icon": "./resources/nuxt.svg",
                     "contextualTitle": "Nuxtr",
                     "when": "nuxtr.isNuxtProject"
                 }
@@ -872,6 +892,7 @@
         "typescript": "^5.1.6"
     },
     "dependencies": {
+        "@nuxt/schema": "^3.6.5",
         "@types/axios": "^0.14.0",
         "@types/util.promisify": "^1.0.4",
         "axios": "^1.4.0",

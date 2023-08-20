@@ -1,0 +1,21 @@
+{
+    "scopeName": "source.nuxtrc",
+    "patterns": [
+        {
+            "include": "#key-value-pair"
+        }
+    ],
+    "repository": {
+        "key-value-pair": {
+            "match": "^(\\s*)([a-zA-Z_][\\w-]*)\\s*=\\s*(true|false)",
+            "captures": {
+                "2": {
+                    "name": "variable.other"
+                },
+                "3": {
+                    "name": "constant.language"
+                }
+            }
+        }
+    }
+}

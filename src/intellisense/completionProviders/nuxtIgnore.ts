@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { scanNuxtDirectories, projectSrcDirectory, projectRootDirectory } from '../../utils';
+import { projectSrcDirectory, projectRootDirectory } from '../../utils';
 
 let srcDir = `${projectSrcDirectory()}`;
 let rootDir = `${projectRootDirectory()}`
@@ -87,9 +87,6 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
             }
         } catch (error) {
             // Log the error to the Output channel for debugging
-            const outputChannel = vscode.window.createOutputChannel('NuxtIgnoreCompletionError');
-            outputChannel.appendLine(`Error occurred while reading subdirectories: ${error}`);
-            outputChannel.show();
         }
 
         return [];
