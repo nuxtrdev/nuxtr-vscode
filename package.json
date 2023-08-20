@@ -204,6 +204,10 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                    "command": "nuxtr.nuxtRC",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
                     "command": "nuxtr.installDependencies",
                     "when": "nuxtr.isNuxtProject"
                 },
@@ -661,6 +665,12 @@
             {
                 "command": "nuxtr.nuxtIgnore",
                 "title": "Create .nuxtignore file",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.nuxtRC",
+                "title": "Create .nuxtrc file",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
