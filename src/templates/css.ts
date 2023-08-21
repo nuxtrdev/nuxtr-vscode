@@ -19,9 +19,9 @@ module.exports = {
   plugins: [],
 }`
 
-export const tailwindCSSFile = `@tailwind base
-@tailwind components
-@tailwind utilities`
+export const tailwindCSSFile = `@tailwind base;
+@tailwind components;
+@tailwind utilities;`
 
 export const vuetifyConfigFile = `// vuetify.options.js
 export default {
