@@ -1,3 +1,4 @@
+// TODO: fix matching of key-value-pair
 {
     "scopeName": "source.nuxtrc",
     "patterns": [
