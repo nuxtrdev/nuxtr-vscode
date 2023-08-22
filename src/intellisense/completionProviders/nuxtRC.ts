@@ -24,6 +24,20 @@ function completionItem (propertyName: string, property: any) {
     return snippet;
 }
 
+function getPropertyByPath(schema: any, propertyPath: string): any {
+    const pathParts = propertyPath.split('.');
+    let currentProperty = schema;
+
+    for (const pathPart of pathParts) {
+        if (currentProperty && currentProperty.properties && currentProperty.properties[pathPart]) {
+            currentProperty = currentProperty.properties[pathPart];
+        } else {
+            return null; // Property not found
+        }
+    }
+
+    return currentProperty;
+}
 
 export class CustomCompletionProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(
@@ -32,28 +46,38 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
         _token: vscode.CancellationToken,
         _context: vscode.CompletionContext
     ): vscode.CompletionItem[] | Thenable<vscode.CompletionItem[]> {
-        let linePrefix = document.lineAt(position).text.substr(0, position.character);
+        const linePrefix = document.lineAt(position).text.substr(0, position.character);
 
         if (/^[_.\s]/.test(linePrefix)) {
             return [];
         }
 
-        if (linePrefix.endsWith('.')) {
-            let propertyName = linePrefix.slice(0, -1);
-            console.log("Property Name:", propertyName);
-
-        }
-
         if (!linePrefix.endsWith('.')) {
-            console.log("linePrefix:", linePrefix);
+            const prefix = linePrefix.trim();
 
             return Object.keys(nuxtRcSchema.properties)
-                .filter(propertyName => !propertyName.startsWith('_'))
+                .filter(propertyName => propertyName.startsWith(prefix) && !propertyName.startsWith('_'))
                 .map(propertyName => {
                     // @ts-ignore
-                    let property = nuxtRcSchema.properties[propertyName];
+                    const property = nuxtRcSchema.properties[propertyName];
                     return completionItem(propertyName, property);
                 });
+        } else {
+            const parentPropertyPath = linePrefix.substr(0, linePrefix.lastIndexOf('.'));
+            const parentPropertyName = parentPropertyPath.split('.').pop();
+
+            // Find the parent property in the schema
+            const parentProperty = getPropertyByPath(nuxtRcSchema.properties, parentPropertyPath);
+
+            if (parentProperty && parentProperty.properties) {
+                return Object.keys(parentProperty.properties)
+                    // @ts-ignore
+                    .filter(propertyName => propertyName.startsWith(parentPropertyName))
+                    .map(propertyName => {
+                        const property = parentProperty.properties[propertyName];
+                        return completionItem(propertyName, property);
+                    });
+            }
         }
 
         return [];

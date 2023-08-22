@@ -1,4 +1,3 @@
-// TODO: fix matching of key-value-pair
 {
     "scopeName": "source.nuxtrc",
     "patterns": [
@@ -6,15 +5,33 @@
             "include": "#key-value-pair"
         }
     ],
+    "$schema": "../src/intellisense/schemas/nuxt.schema.json",
     "repository": {
         "key-value-pair": {
-            "match": "^(\\s*)([a-zA-Z_][\\w-]*)\\s*=\\s*(true|false)",
+            "match": "^(\\s*)([a-zA-Z_][\\w-]*(?:\\.[a-zA-Z_][\\w-]*)*)\\s*=\\s*([^\\n]*)$",
             "captures": {
                 "2": {
                     "name": "variable.other"
                 },
                 "3": {
-                    "name": "constant.language"
+                    "patterns": [
+                        {
+                            "match": "\\b(true|false|null)\\b",
+                            "name": "constant.language"
+                        },
+                        {
+                            "match": "\\d+",
+                            "name": "constant.numeric"
+                        },
+                        {
+                            "match": "\"[^\"]*\"",
+                            "name": "string.quoted.double"
+                        },
+                        {
+                            "match": "[^\\s=]+(?=\\s*$)",
+                            "name": "string.unquoted"
+                        }
+                    ]
                 }
             }
         }
