@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
-import * as nuxtRcSchema from '../schemas/nuxt.schema.json';
+import * as nuxtRcSchema from "@nuxt/schema/schema/config.schema.json";
 
-function completionItem (propertyName: string, property: any) {
+function createCompletionItem (propertyName: string, property: any) {
     const snippet = new vscode.CompletionItem(propertyName);
     snippet.detail = property.title || '';
     snippet.label = propertyName;
@@ -17,7 +17,23 @@ function completionItem (propertyName: string, property: any) {
         snippet.insertText = new vscode.SnippetString(`${propertyName}=\${1|true,false|}`);
     } else if (property.type === 'string') {
         snippet.insertText = new vscode.SnippetString(`${propertyName}=\${1:}`);
-    } else if (property.type === 'object' && !property.properties) {
+    } else if (property.type === 'object' && property.properties) {
+        const properties = Object.keys(property.properties).map(propName => {
+            console.log('propName', propName);
+            console.log('propertyName', propertyName);
+            console.log('property.properties[propName]', property.properties[propName]);
+
+
+
+            if (propName === propertyName) {
+                const prop = property.properties[propName];
+                return prop
+            } else {
+                return propName
+            }
+        }).join(',\n');
+        snippet.insertText = new vscode.SnippetString(`${properties}`);
+    } else if (property.type === 'any' && !property.properties) {
         snippet.insertText = new vscode.SnippetString(`${propertyName}=\${1:}`);
     }
 
@@ -39,6 +55,7 @@ function getPropertyByPath(schema: any, propertyPath: string): any {
     return currentProperty;
 }
 
+
 export class CustomCompletionProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(
         document: vscode.TextDocument,
@@ -46,40 +63,30 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
         _token: vscode.CancellationToken,
         _context: vscode.CompletionContext
     ): vscode.CompletionItem[] | Thenable<vscode.CompletionItem[]> {
-        const linePrefix = document.lineAt(position).text.substr(0, position.character);
+        let linePrefix = document.lineAt(position).text.substr(0, position.character);
 
         if (/^[_.\s]/.test(linePrefix)) {
             return [];
         }
 
-        if (!linePrefix.endsWith('.')) {
-            const prefix = linePrefix.trim();
-
-            return Object.keys(nuxtRcSchema.properties)
-                .filter(propertyName => propertyName.startsWith(prefix) && !propertyName.startsWith('_'))
-                .map(propertyName => {
-                    // @ts-ignore
-                    const property = nuxtRcSchema.properties[propertyName];
-                    return completionItem(propertyName, property);
-                });
-        } else {
-            const parentPropertyPath = linePrefix.substr(0, linePrefix.lastIndexOf('.'));
-            const parentPropertyName = parentPropertyPath.split('.').pop();
-
-            // Find the parent property in the schema
-            const parentProperty = getPropertyByPath(nuxtRcSchema.properties, parentPropertyPath);
-
-            if (parentProperty && parentProperty.properties) {
-                return Object.keys(parentProperty.properties)
-                    // @ts-ignore
-                    .filter(propertyName => propertyName.startsWith(parentPropertyName))
-                    .map(propertyName => {
-                        const property = parentProperty.properties[propertyName];
-                        return completionItem(propertyName, property);
-                    });
+        if (linePrefix.endsWith('.')) {
+            const propertyName = linePrefix.split('.').pop();
+            if (propertyName) {
+                const property = getPropertyByPath(nuxtRcSchema, propertyName);
+                if (property) {
+                    return [createCompletionItem(propertyName, property)];
+                }
             }
         }
 
-        return [];
+        const prefix = linePrefix.trim();
+
+        return Object.keys(nuxtRcSchema.properties)
+            .filter(propertyName => propertyName.startsWith(prefix) && !propertyName.startsWith('_'))
+            .map(propertyName => {
+                // @ts-ignore
+                const property = nuxtRcSchema.properties[propertyName];
+                return createCompletionItem(propertyName, property);
+            });
     }
 }
