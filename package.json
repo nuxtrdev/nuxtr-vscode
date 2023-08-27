@@ -81,7 +81,10 @@
                 ]
             },
             {
-                "id": "ignore",
+                "id": "nuxtignore",
+                "aliases": [
+                    "nuxtignore"
+                ],
                 "extensions": [
                     ".nuxtignore"
                 ]
@@ -89,7 +92,7 @@
             {
                 "id": "nuxtrc",
                 "aliases": [
-                    "nuxtRC"
+                    "nuxtrc"
                 ],
                 "extensions": [
                     ".nuxtrc"
@@ -113,6 +116,11 @@
                 "language": "nuxtrc",
                 "scopeName": "source.nuxtrc",
                 "path": "./syntaxes/nuxtrc.tmLanguage.json"
+            },
+            {
+                "language": "nuxtignore",
+                "scopeName": "source.nuxtignore",
+                "path": "./syntaxes/nuxtignore.tmLanguage.json"
             }
         ],
         "viewsContainers": {

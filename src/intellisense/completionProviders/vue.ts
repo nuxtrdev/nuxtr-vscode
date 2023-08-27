@@ -1,3 +1,5 @@
+// TODO: Handle aliasses from nuxt.config.js
+// TODO: Handle dynamic routes and /index.vue case
 import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
 import { isNuxtTwo, projectSrcDirectory } from '../../utils';
 import * as fs from 'fs';
@@ -96,8 +98,6 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
     }
 }
 
-
-// TODO: handle /index.vue case
 export class NuxtPagesCompletionProvider implements CompletionItemProvider {
     provideCompletionItems(document: TextDocument, position: Position):
     ProviderResult<CompletionItem[]> {

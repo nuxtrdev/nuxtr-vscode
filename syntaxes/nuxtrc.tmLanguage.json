@@ -5,7 +5,6 @@
             "include": "#key-value-pair"
         }
     ],
-    "$schema": "../src/intellisense/schemas/nuxt.schema.json",
     "repository": {
         "key-value-pair": {
             "match": "^(\\s*)([a-zA-Z_][\\w-]*(?:\\.[a-zA-Z_][\\w-]*)*)\\s*=\\s*([^\\n]*)$",

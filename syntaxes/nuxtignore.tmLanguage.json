@@ -1,0 +1,18 @@
+{
+    "scopeName": "source.nuxtignore",
+    "patterns": [
+        {
+            "begin": "^\\s*#",
+            "end": "$",
+            "name": "comment.line.nuxtignore"
+        },
+        {
+            "match": "^[^#\\s].*$",
+            "name": "string.path.nuxtignore"
+        }
+    ],
+    "fileTypes": [
+        "nuxtignore"
+    ],
+    "$schema": "../src/intellisense/schemas/nuxt.schema.json"
+}

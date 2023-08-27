@@ -1,3 +1,4 @@
+// TODO: Handlie dynamic imports for first level of directories
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
