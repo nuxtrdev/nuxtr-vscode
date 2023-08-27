@@ -39,6 +39,8 @@ import { getCommandType } from './commands'
 
 import { logger } from './outputChannel'
 
+import { languageSelector, patternSelector } from './vscode';
+
 export {
     openExternalLink,
     getProjectDependencies,
@@ -72,6 +74,7 @@ export {
     findNuxtConfig,
     isNuxtProject,
     getCommandType,
-    scanNuxtDirectories
-
+    scanNuxtDirectories,
+    languageSelector,
+    patternSelector
 }
