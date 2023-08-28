@@ -131,5 +131,3 @@ export async function activateExtension(context: ExtensionContext) {
         })
     )
 }
-
-export function deactivate() { }

@@ -3,7 +3,7 @@
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
     "version": "0.1.11",
-    "packageManager": "pnpm@8.6.12",
+    "packageManager": "pnpm@8.7.0",
     "engines": {
         "vscode": "^1.80.0"
     },
@@ -912,7 +912,7 @@
     "dependencies": {
         "@nuxt/schema": "^3.7.0",
         "@types/util.promisify": "^1.0.4",
-        "axios": "^1.4.0",
+        "axios": "^1.5.0",
         "destr": "^2.0.1",
         "fs": "^0.0.1-security",
         "magicast": "^0.2.10",

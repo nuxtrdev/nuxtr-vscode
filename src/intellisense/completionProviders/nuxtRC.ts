@@ -1,17 +1,7 @@
 import * as vscode from 'vscode';
-import * as nuxtRcSchemaRaw from "@nuxt/schema/schema/config.schema.json";
-const nuxtRcSchema = nuxtRcSchemaRaw as { properties: { [key: string]: ConfigurationProperty } };
-interface ConfigurationProperty {
-    title?: string;
-    description?: string;
-    tags?: string[];
-    tsType?: string;
-    markdownType?: string;
-    id?: string;
-    properties?: { [key: string]: ConfigurationProperty };
-    default?: any;
-    type: string;
-}
+import * as nuxtRcSchemaJson from "@nuxt/schema/schema/config.schema.json";
+const nuxtRcSchema = nuxtRcSchemaJson as { properties: { [key: string]: ConfigurationProperty } };
+import type { ConfigurationProperty } from '../types';
 
 const autoImportProperty: ConfigurationProperty = {
     type: "boolean",

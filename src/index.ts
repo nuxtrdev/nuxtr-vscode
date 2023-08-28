@@ -39,6 +39,3 @@ export async function activate(context: ExtensionContext) {
         window.showInformationMessage('Nuxtr: Not a Nuxt project')
     }
 }
-
-export async function deactivate() {
-}

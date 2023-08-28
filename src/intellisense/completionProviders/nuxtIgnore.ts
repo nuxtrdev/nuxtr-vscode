@@ -2,10 +2,6 @@
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
-import { projectSrcDirectory, projectRootDirectory } from '../../utils';
-
-let srcDir = `${projectSrcDirectory()}`;
-let rootDir = `${projectRootDirectory()}`
 
 export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(
