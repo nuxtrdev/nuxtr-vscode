@@ -1,7 +1,10 @@
-// TODO: Handlie dynamic imports for first level of directories
 import * as vscode from 'vscode';
 import * as fs from 'fs';
 import * as path from 'path';
+
+const EXTENSIONS = ['.vue', '.js', '.ts'];
+const DIR_SEPARATOR = path.sep;
+const SCOPED_DIRECTORIES = ['components', 'layouts', 'pages', 'composables', 'middleware'];
 
 export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvider {
     provideCompletionItems(
@@ -10,82 +13,68 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
         token: vscode.CancellationToken
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList> {
         try {
-            // Check if the current document is a .nuxtignore file
-            if (document.fileName.endsWith('.nuxtignore')) {
-                const lineText = document.lineAt(position).text;
-                const currentDirectory = path.dirname(document.fileName);
+            const lineText = document.lineAt(position).text;
+            const currentDirectory = path.dirname(document.fileName);
 
-                // Check if the cursor is at the end of the line before providing completions
-                if (position.character === lineText.length) {
-                    // Get the word at the current cursor position
-                    const wordRange = document.getWordRangeAtPosition(position);
-                    const currentWord = wordRange ? document.getText(wordRange) : '';
+            if (position.character === lineText.length) {
+                const textBeforeCursor = lineText.substr(0, position.character);
+                const pathSeparatorIndex = textBeforeCursor.lastIndexOf(DIR_SEPARATOR);
 
-                    // Get the text before the cursor position
-                    const textBeforeCursor = lineText.substr(0, position.character);
+                if (pathSeparatorIndex !== -1) {
+                    const userTypedPath = textBeforeCursor.substring(0, pathSeparatorIndex);
+                    const targetDirectory = path.join(currentDirectory, userTypedPath);
+                    const subDirectories = this.getSubDirectories(targetDirectory);
 
-                    // Check if the user is typing a path (ending with '/')
-                    const pathSeparatorIndex = textBeforeCursor.lastIndexOf('/');
-                    if (pathSeparatorIndex !== -1) {
-                        const userTypedPath = textBeforeCursor.substring(0, pathSeparatorIndex);
-                        const targetDirectory = path.join(currentDirectory, userTypedPath);
-
-                        // Get all subdirectories within the target directory
-                        const subDirectories = this.getSubDirectories(targetDirectory);
-
-                        // Create completion items for subdirectories
-                        const completionItems: vscode.CompletionItem[] = subDirectories.map(subDir => {
-                            const type = subDir.endsWith('.vue') ? vscode.CompletionItemKind.File : vscode.CompletionItemKind.Folder;
-                            const item = new vscode.CompletionItem(subDir, type);
-                            // Insert trailing slash for directories, but not for Vue files
-                            item.insertText = type === vscode.CompletionItemKind.Folder ? new vscode.SnippetString(subDir + '/') : subDir;
-
-                            return item;
-                        });
-
-                        return completionItems;
-                    } else {
-                        // User is typing the initial path or listing options, so provide top-level subdirectories
-                        const topLevelSubDirectories = this.getSubDirectories(currentDirectory);
-                        const completionItems: vscode.CompletionItem[] = topLevelSubDirectories.map(subDir => {
-                            const item = new vscode.CompletionItem(subDir, vscode.CompletionItemKind.Folder);
-                            item.insertText = new vscode.SnippetString(subDir + '/');
-                            return item;
-                        });
-
-                        // If the current word matches the word in the line, add it as a completion item
-                        if (currentWord && !topLevelSubDirectories.includes(currentWord)) {
-                            const currentWordItem = new vscode.CompletionItem(currentWord, vscode.CompletionItemKind.Folder);
-                            currentWordItem.insertText = new vscode.SnippetString(currentWord + '/');
-                            completionItems.push(currentWordItem);
-                        }
-
-                        return completionItems;
-                    }
+                    return this.createCompletionItems(subDirectories);
+                } else {
+                    const topLevelSubDirectories = this.getTopLevelSubDirectories(currentDirectory);
+                    return this.createCompletionItems(topLevelSubDirectories);
                 }
             }
         } catch (error) {
-            // Log the error to the Output channel for debugging
-            const outputChannel = vscode.window.createOutputChannel('NuxtIgnoreCompletionError');
-            outputChannel.appendLine(`Error occurred in NuxtIgnoreCompletionProvider: ${error}`);
-            outputChannel.show();
+            this.logError(error);
         }
 
-        // Return null if not inside a .nuxtignore file or any error occurred
         return null;
+    }
+
+    private createCompletionItems(directories: string[]): vscode.CompletionItem[] {
+        return directories.map(subDir => {
+            const type = this.getCompletionItemType(subDir);
+            const item = new vscode.CompletionItem(subDir, type);
+
+            if (type === vscode.CompletionItemKind.Folder) {
+                item.insertText = new vscode.SnippetString(subDir + DIR_SEPARATOR);
+            }
+
+            return item;
+        });
+    }
+
+    private getCompletionItemType(name: string): vscode.CompletionItemKind {
+        const extension = path.extname(name);
+        return EXTENSIONS.includes(extension) ? vscode.CompletionItemKind.File : vscode.CompletionItemKind.Folder;
     }
 
     private getSubDirectories(directory: string): string[] {
         try {
             if (fs.existsSync(directory)) {
                 return fs.readdirSync(directory, { withFileTypes: true })
-                    .filter(dirent => dirent.isDirectory() || dirent.name.endsWith('.vue'))
+                    .filter(dirent => dirent.isDirectory() || EXTENSIONS.includes(path.extname(dirent.name)))
                     .map(dirent => dirent.name);
             }
         } catch (error) {
-            // Log the error to the Output channel for debugging
+            this.logError(error);
         }
 
         return [];
+    }
+
+    private getTopLevelSubDirectories(directory: string): string[] {
+        return this.getSubDirectories(directory).filter(subDir => SCOPED_DIRECTORIES.includes(subDir));
+    }
+
+    private logError(error: any): void {
+        console.error(error);
     }
 }

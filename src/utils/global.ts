@@ -1,7 +1,9 @@
 import { exec } from 'child_process';
 import { env, Uri, Webview, workspace, window, ProgressLocation, ThemeIcon } from 'vscode';
+import type { WorkspaceConfiguration } from 'vscode';
 import { hasSrcDir } from './nuxt';
 import { logger } from './outputChannel';
+import type { NuxtrConfiguration } from '../types';
 
 export const getNonce = () => {
     let text = '';
@@ -41,7 +43,11 @@ export const openExternalLink = (url: string) => {
     env.openExternal(Uri.parse(url));
 };
 
-export const getConfiguration = () => workspace.getConfiguration('nuxtr');
+export const getConfiguration = (): NuxtrConfiguration => {
+    const configuration: WorkspaceConfiguration = workspace.getConfiguration('nuxtr');
+    return configuration as unknown as NuxtrConfiguration;
+};
+
 
 export const newTerminal = (terminalName: string, command: string, cwd?: string) => {
     const terminal = window.createTerminal({

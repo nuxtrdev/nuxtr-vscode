@@ -1,4 +1,4 @@
-import { window, ExtensionContext, commands, Uri, workspace } from 'vscode';
+import { window, ExtensionContext, commands, Uri } from 'vscode';
 import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
 import { logger, updateDependencies } from './utils';

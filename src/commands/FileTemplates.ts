@@ -1,11 +1,8 @@
 import { window } from 'vscode'
 import * as fs from 'fs'
 
-import { createVueTemplate } from "../utils/file"
+import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate  } from '../utils'
 
-import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, } from '../utils'
-
-import { generateVueFileTemplate, generateVueFileBasicTemplate } from '../utils/vueFiles'
 
 
 function createPageTemplate() {

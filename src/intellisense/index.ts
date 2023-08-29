@@ -2,37 +2,45 @@ import { languages, ExtensionContext } from 'vscode';
 import { NuxtIgnoreCompletionProvider } from './completionProviders/nuxtIgnore';
 import { CustomCompletionProvider } from './completionProviders/nuxtRC'
 import { PublicDirCompletionProvider, NuxtPagesCompletionProvider } from './completionProviders/vue';
-import { languageSelector, patternSelector } from '../utils';
+import { languageSelector, patternSelector, getConfiguration } from '../utils';
 
+const intelliSenseConfig = getConfiguration().intellisense;
 
-const nuxtIgnoreProvider = languages.registerCompletionItemProvider(
-    patternSelector('**/.nuxtignore'),
-    new NuxtIgnoreCompletionProvider(),
-    '/'
-)
-
-const nuxtPagesProvider = languages.registerCompletionItemProvider(
-    languageSelector('vue'),
-    new NuxtPagesCompletionProvider(),
-    '/'
-)
-
-const publicDirProvider = languages.registerCompletionItemProvider(
-    languageSelector('vue'),
-    new PublicDirCompletionProvider(),
-    '/'
-)
-const nuxtRCProvider = languages.registerCompletionItemProvider(
-    patternSelector('**/.nuxtrc'),
-    new CustomCompletionProvider(),
-    '.'
-)
 
 export function activateIntellisense(context: ExtensionContext) {
-    context.subscriptions.push(
-        nuxtIgnoreProvider,
-        nuxtPagesProvider,
-        publicDirProvider,
-        nuxtRCProvider
-    );
+    if (intelliSenseConfig.nuxtignore) {
+        const nuxtIgnoreProvider = languages.registerCompletionItemProvider(
+            patternSelector('**/.nuxtignore'),
+            new NuxtIgnoreCompletionProvider(),
+            '/'
+        )
+
+        context.subscriptions.push(nuxtIgnoreProvider);
+    }
+
+    if (intelliSenseConfig.vueFiles) {
+        const nuxtPagesProvider = languages.registerCompletionItemProvider(
+            languageSelector('vue'),
+            new NuxtPagesCompletionProvider(),
+            '/'
+        )
+
+        const publicDirProvider = languages.registerCompletionItemProvider(
+            languageSelector('vue'),
+            new PublicDirCompletionProvider(),
+            '/'
+        )
+
+        context.subscriptions.push(nuxtPagesProvider, publicDirProvider);
+    }
+
+    if (intelliSenseConfig.nuxtrc) {
+        const nuxtRCProvider = languages.registerCompletionItemProvider(
+            patternSelector('**/.nuxtrc'),
+            new CustomCompletionProvider(),
+            '.'
+        )
+
+        context.subscriptions.push(nuxtRCProvider);
+    }
 }

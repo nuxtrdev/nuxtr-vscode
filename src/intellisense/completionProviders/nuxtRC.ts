@@ -1,7 +1,8 @@
 import * as vscode from 'vscode';
 import * as nuxtRcSchemaJson from "@nuxt/schema/schema/config.schema.json";
+import type { ConfigurationProperty } from '../../types';
+
 const nuxtRcSchema = nuxtRcSchemaJson as { properties: { [key: string]: ConfigurationProperty } };
-import type { ConfigurationProperty } from '../types';
 
 const autoImportProperty: ConfigurationProperty = {
     type: "boolean",

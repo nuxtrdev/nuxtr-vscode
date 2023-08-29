@@ -1,5 +1,3 @@
-// TODO: Handle aliasses from nuxt.config.js
-// TODO: Handle dynamic routes and /index.vue case
 import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
 import { isNuxtTwo, projectSrcDirectory } from '../../utils';
 import * as fs from 'fs';
@@ -8,26 +6,26 @@ import * as path from 'path';
 let publicDir = isNuxtTwo() ? 'static' : 'public';
 let pagesDir = 'pages';
 
+const DIR_SEPARATOR = path.sep;
+
 async function provider(dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
-    const fullPath = `${projectSrcDirectory()}/${dirPath}`
+    const fullPath = path.join(`${projectSrcDirectory()}`, dirPath);
 
-    if (fs.existsSync(fullPath)) {
-        const files = fs.readdirSync(fullPath);
-        for (const item of files) {
-            const filePath = path.join(fullPath, item);
-            const stat = fs.statSync(filePath);
+    try {
+        if (fs.existsSync(fullPath)) {
+            const files = fs.readdirSync(fullPath);
+            for (const item of files) {
+                const filePath = path.join(fullPath, item);
+                const stat = fs.statSync(filePath);
 
-            if (stat.isFile()) {
-                const file = new CompletionItem(item, CompletionItemKind.File);
-                file.insertText = path.join(item);
-                items.push(file);
-            } else if (stat.isDirectory()) {
-                const dir = new CompletionItem(item, CompletionItemKind.Folder);
-                dir.insertText = `${item}/`; // Note the trailing slash
-                items.push(dir);
+                const completionItem = new CompletionItem(item, stat.isFile() ? CompletionItemKind.File : CompletionItemKind.Folder);
+                completionItem.insertText = stat.isFile() ? item : item + DIR_SEPARATOR;
+                items.push(completionItem);
             }
         }
+    } catch (error) {
+        console.error(error);
     }
 
     return items;
@@ -40,11 +38,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
         const cursorPosition = position.character;
         const contentBeforeCursor = currentLine.substring(0, cursorPosition);
 
-
         const subDirMatch = /src="\/([^"]*)/.exec(contentBeforeCursor);
-
-        console.log('subDirMatch', subDirMatch);
-
 
         if (!contentBeforeCursor.includes('src="/')) {
             return [];
@@ -67,11 +61,9 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
 
             // Fetch the suggestions only once for the complete path
             promises.push(provider(currentDir));
-            console.log('promises', promises);
 
             return Promise.all(promises)
                 .then(subdirectorySuggestionsArray => {
-                    // Combine all suggestions into a single array
                     const allSuggestions: CompletionItem[] = [];
                     for (const subdirectorySuggestions of subdirectorySuggestionsArray) {
                         allSuggestions.push(...subdirectorySuggestions);
@@ -92,9 +84,12 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
             publicDir = isNuxtTwo() ? 'static' : 'public'; // Reset if not in path context
         }
 
-        console.log('it came here btw');
-
         return provider(publicDir);
+    }
+
+    private logError(error: any): void {
+        // Log the error to the Output channel for debugging
+        console.error(error);
     }
 }
 
@@ -104,12 +99,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
         const contentBeforeCursor = currentLine.substring(0, cursorPosition);
-
-
         const subDirMatch = /to="\/([^"]*)/.exec(contentBeforeCursor);
-
-        console.log('subDirMatch', subDirMatch);
-
 
         if (!contentBeforeCursor.includes('to="/')) {
             return [];
@@ -132,11 +122,9 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
 
             // Fetch the suggestions only once for the complete path
             promises.push(provider(currentDir));
-            console.log('promises', promises);
 
             return Promise.all(promises)
                 .then(subdirectorySuggestionsArray => {
-                    // Combine all suggestions into a single array
                     const allSuggestions: CompletionItem[] = [];
                     for (const subdirectorySuggestions of subdirectorySuggestionsArray) {
                         allSuggestions.push(...subdirectorySuggestions);
@@ -157,7 +145,11 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
             pagesDir = 'pages';
         }
 
-        console.log('it came here btw');
-
         return provider(pagesDir);
-    }}
+    }
+
+    private logError(error: any): void {
+        // Log the error to the Output channel for debugging
+        console.error(error);
+    }
+}

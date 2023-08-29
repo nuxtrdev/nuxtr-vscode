@@ -503,17 +503,22 @@
                 }
             },
             {
-                "title": "Path Intellisense",
+                "title": "Intellisense",
                 "properties": {
-                    "nuxtr.intellisense.allow.nuxtignore": {
+                    "nuxtr.intellisense.vueFiles": {
                         "type": "boolean",
-                        "default": false,
+                        "default": true,
+                        "description": "Allow vueFiles intellisense"
+                    },
+                    "nuxtr.intellisense.nuxtignore": {
+                        "type": "boolean",
+                        "default": true,
                         "description": "Allow .nuxtignore intellisense"
                     },
-                    "nuxtr.intellisense.allow.public": {
+                    "nuxtr.intellisense.nuxtrc": {
                         "type": "boolean",
-                        "default": false,
-                        "description": "Allow public intellisense"
+                        "default": true,
+                        "description": "Allow .nuxtrc intellisense"
                     }
                 }
             }
@@ -901,8 +906,8 @@
         "@types/mocha": "^10.0.1",
         "@types/node": "20.4.1",
         "@types/vscode": "^1.81.0",
-        "@typescript-eslint/eslint-plugin": "^6.4.1",
-        "@typescript-eslint/parser": "^6.4.1",
+        "@typescript-eslint/eslint-plugin": "^6.5.0",
+        "@typescript-eslint/parser": "^6.5.0",
         "@vscode/test-electron": "^2.3.4",
         "esbuild": "^0.19.2",
         "eslint": "^8.48.0",
