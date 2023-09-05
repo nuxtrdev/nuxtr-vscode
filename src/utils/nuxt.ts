@@ -2,7 +2,9 @@ import { window } from 'vscode';
 import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
 import { join } from 'path';
 import { parseModule } from 'magicast';
+import { readTSConfig } from 'pkg-types'
 import { projectRootDirectory, projectSrcDirectory } from '.';
+import { parseTsconfigPaths } from './tsConfig';
 
 
 export const findNuxtConfig = (): string | undefined => {
@@ -136,6 +138,28 @@ export const hasSrcDir = (): string => {
             : mod.exports.default;
 
     return config.srcDir ? `/${config.srcDir}` : '/';
+};
+
+
+export const fetchNuxtAlias = async () => {
+    const path = `${projectRootDirectory()}/.nuxt/tsconfig.json`;
+
+    if (!existsSync(path)) {
+        return {};
+    }
+
+    try {
+        let tsconfig = await readTSConfig(path);
+
+        if (tsconfig) {
+            const paths = tsconfig.compilerOptions?.paths;
+            let parsedPaths = parseTsconfigPaths(paths);
+            return parsedPaths;
+        }
+
+    } catch (error) {
+        console.error('Error fetching Nuxt alias:', error);
+    }
 };
 
 

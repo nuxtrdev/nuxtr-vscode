@@ -1,13 +1,4 @@
-import {
-    getNonce,
-    getUri,
-    projectRootDirectory,
-    openExternalLink,
-    getConfiguration,
-    newTerminal,
-    runCommand,
-    projectSrcDirectory,
-} from './global'
+import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, } from './global'
 
 import {
     addNuxtModule,
@@ -15,6 +6,7 @@ import {
     getNuxtVersion,
     isNuxtTwo,
     hasSrcDir,
+    fetchNuxtAlias,
     hasServerDir,
     updateNuxtConfig,
     findNuxtConfig,
@@ -39,7 +31,7 @@ import { getCommandType } from './commands'
 
 import { logger } from './outputChannel'
 
-import { languageSelector, patternSelector } from './vscode';
+import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory } from './vscode';
 
 import { generateVueFileBasicTemplate, generateVueFileTemplate } from './vueFiles'
 
@@ -53,6 +45,7 @@ export {
     isNuxtTwo,
     hasSrcDir,
     hasServerDir,
+    fetchNuxtAlias,
     updateNuxtConfig,
     createDirectoryAndFile,
     projectSrcDirectory,
@@ -84,6 +77,9 @@ export {
     scanNuxtDirectories,
     languageSelector,
     patternSelector,
+    pathExists,
+    isDirectory,
+    readDirectory,
     removePackage,
     managePackageVersion
 }

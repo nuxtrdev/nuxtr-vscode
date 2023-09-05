@@ -44,7 +44,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
             const item = new vscode.CompletionItem(subDir, type);
 
             if (type === vscode.CompletionItemKind.Folder) {
-                item.insertText = new vscode.SnippetString(subDir + DIR_SEPARATOR);
+                item.insertText = new vscode.SnippetString(subDir);
             }
 
             return item;

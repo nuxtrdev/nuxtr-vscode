@@ -1,7 +1,8 @@
 import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
-import { isNuxtTwo, projectSrcDirectory } from '../../utils';
-import * as fs from 'fs';
+import { readdirSync, existsSync, statSync } from 'fs';
 import * as path from 'path';
+
+import { isNuxtTwo, projectSrcDirectory, isDirectory } from '../../utils';
 
 let publicDir = isNuxtTwo() ? 'static' : 'public';
 let pagesDir = 'pages';
@@ -11,24 +12,27 @@ const DIR_SEPARATOR = path.sep;
 async function provider(dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
     const fullPath = path.join(`${projectSrcDirectory()}`, dirPath);
+    let isDir = await isDirectory(fullPath);
 
-    try {
-        if (fs.existsSync(fullPath)) {
-            const files = fs.readdirSync(fullPath);
-            for (const item of files) {
-                const filePath = path.join(fullPath, item);
-                const stat = fs.statSync(filePath);
+    if (isDir) {
+        const files = readdirSync(fullPath);
 
-                const completionItem = new CompletionItem(item, stat.isFile() ? CompletionItemKind.File : CompletionItemKind.Folder);
-                completionItem.insertText = stat.isFile() ? item : item + DIR_SEPARATOR;
-                items.push(completionItem);
-            }
+        for (const item of files) {
+            const filePath = path.join(fullPath, item);
+            const stat = statSync(filePath);
+
+            const completionItem = new CompletionItem(
+                item,
+                stat.isFile() ? CompletionItemKind.File : CompletionItemKind.Folder
+            );
+            completionItem.insertText = stat.isFile() ? item : item + DIR_SEPARATOR;
+            items.push(completionItem);
         }
-    } catch (error) {
-        console.error(error);
-    }
 
-    return items;
+        return items;
+    } else {
+        return []
+    }
 }
 
 export class PublicDirCompletionProvider implements CompletionItemProvider {
@@ -37,10 +41,9 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
         const contentBeforeCursor = currentLine.substring(0, cursorPosition);
-
         const subDirMatch = /src="\/([^"]*)/.exec(contentBeforeCursor);
 
-        if (!contentBeforeCursor.includes('src="/')) {
+        if (!subDirMatch) {
             return [];
         }
 
@@ -48,11 +51,25 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
             return [];
         }
 
+        let isDir: Promise<boolean>;
+
+        if (subDirMatch && subDirMatch[1] === '..') {
+            let fullPathTest = path.join(`${projectSrcDirectory()}`, subDirMatch[1]);
+
+            try {
+                isDir = isDirectory(fullPathTest);
+                console.log('isDirectory:', isDir);
+            } catch (error) {
+                console.error('Error checking directory:', fullPathTest, error);
+                return [];
+            }
+        }
+
         if (subDirMatch) {
             const subdirectoryPath = subDirMatch[1];
             const subdirectories = subdirectoryPath.split('/');
 
-            let currentDir = publicDir;
+            let currentDir = isNuxtTwo() ? 'static' : 'public';
             const promises: Promise<CompletionItem[]>[] = [];
 
             for (const subdirectory of subdirectories) {
@@ -79,17 +96,12 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
                     });
 
                     return suggestionsArray;
-                });
+                })
         } else {
-            publicDir = isNuxtTwo() ? 'static' : 'public'; // Reset if not in path context
+            publicDir = isNuxtTwo() ? 'static' : 'public';
         }
 
         return provider(publicDir);
-    }
-
-    private logError(error: any): void {
-        // Log the error to the Output channel for debugging
-        console.error(error);
     }
 }
 
@@ -101,12 +113,26 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
         const contentBeforeCursor = currentLine.substring(0, cursorPosition);
         const subDirMatch = /to="\/([^"]*)/.exec(contentBeforeCursor);
 
-        if (!contentBeforeCursor.includes('to="/')) {
+        if (!subDirMatch) {
             return [];
         }
 
         if (subDirMatch && subDirMatch[1] === '..') {
             return [];
+        }
+
+        let isDir: Promise<boolean>;
+
+        if (subDirMatch && subDirMatch[1] === '..') {
+            let fullPathTest = path.join(`${projectSrcDirectory()}`, subDirMatch[1]);
+
+            try {
+                isDir = isDirectory(fullPathTest);
+                console.log('isDirectory:', isDir);
+            } catch (error) {
+                console.error('Error checking directory:', fullPathTest, error);
+                return [];
+            }
         }
 
         if (subDirMatch) {
@@ -140,16 +166,11 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
                     });
 
                     return suggestionsArray;
-                });
+                })
         } else {
             pagesDir = 'pages';
         }
 
         return provider(pagesDir);
-    }
-
-    private logError(error: any): void {
-        // Log the error to the Output channel for debugging
-        console.error(error);
     }
 }

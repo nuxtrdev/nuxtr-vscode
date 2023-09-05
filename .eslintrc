@@ -21,12 +21,14 @@
         "@typescript-eslint/indent": [
             "error",
             4
-        ]
+        ],
+        "no-multiple-empty-lines": "warn",
+        "no-empty": "warn"
     },
     "ignorePatterns": [
         "out",
         "dist",
         "**/*.d.ts",
         "ui/**"
-    ],
+    ]
 }

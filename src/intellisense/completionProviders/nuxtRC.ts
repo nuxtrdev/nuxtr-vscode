@@ -42,7 +42,7 @@ function createCompletionItem(propertyName: string, property: ConfigurationPrope
     } else if (property.type === 'string') {
         snippet.insertText = new vscode.SnippetString(`${propertyName}=\${1:}`);
     } else if (property.type === 'object' && property.properties) {
-        snippet.insertText = new vscode.SnippetString(`${propertyName}.`);
+        snippet.insertText = new vscode.SnippetString(`${propertyName}`);
     } else if (property.type === 'any' && !property.properties) {
         snippet.insertText = new vscode.SnippetString(`${propertyName}=\${1:}`);
     }

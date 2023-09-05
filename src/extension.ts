@@ -88,7 +88,6 @@ export async function activateExtension(context: ExtensionContext) {
     context.subscriptions.push(window.registerWebviewViewProvider('nuxtrSidebar', sidebarProvider))
 
 
-
     // sidebarProjectView
     context.subscriptions.push(
         commands.registerCommand('nuxtr.sidebarProjectView', () => {

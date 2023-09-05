@@ -1,7 +1,7 @@
 import { languages, ExtensionContext } from 'vscode';
 import { NuxtIgnoreCompletionProvider } from './completionProviders/nuxtIgnore';
 import { CustomCompletionProvider } from './completionProviders/nuxtRC'
-import { PublicDirCompletionProvider, NuxtPagesCompletionProvider } from './completionProviders/vue';
+import { PublicDirCompletionProvider, NuxtPagesCompletionProvider } from './completionProviders/vueFiles';
 import { languageSelector, patternSelector, getConfiguration } from '../utils';
 
 const intelliSenseConfig = getConfiguration().intellisense;
@@ -12,7 +12,7 @@ export function activateIntellisense(context: ExtensionContext) {
         const nuxtIgnoreProvider = languages.registerCompletionItemProvider(
             patternSelector('**/.nuxtignore'),
             new NuxtIgnoreCompletionProvider(),
-            '/'
+            '/',
         )
 
         context.subscriptions.push(nuxtIgnoreProvider);
@@ -22,14 +22,15 @@ export function activateIntellisense(context: ExtensionContext) {
         const nuxtPagesProvider = languages.registerCompletionItemProvider(
             languageSelector('vue'),
             new NuxtPagesCompletionProvider(),
-            '/'
+            '/', '\\'
         )
 
         const publicDirProvider = languages.registerCompletionItemProvider(
             languageSelector('vue'),
             new PublicDirCompletionProvider(),
-            '/'
+            '/', '\\'
         )
+
 
         context.subscriptions.push(nuxtPagesProvider, publicDirProvider);
     }
@@ -43,4 +44,6 @@ export function activateIntellisense(context: ExtensionContext) {
 
         context.subscriptions.push(nuxtRCProvider);
     }
+
+
 }

@@ -17,9 +17,6 @@ export function generateVueFileTemplate(type: string, template?: string) {
     }
 }
 
-
-
-
 export function generateVueFileBasicTemplate(type: string) {
     let fileTemplate = ``
     let firstTag = vueFilesConfig.firstTag
