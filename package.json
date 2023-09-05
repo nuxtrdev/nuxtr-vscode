@@ -3,7 +3,7 @@
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
     "version": "0.1.11",
-    "packageManager": "pnpm@8.6.12",
+    "packageManager": "pnpm@8.7.1",
     "engines": {
         "vscode": "^1.80.0"
     },
@@ -79,6 +79,24 @@
                     "text/x-code-output",
                     "x-code-output"
                 ]
+            },
+            {
+                "id": "nuxtignore",
+                "aliases": [
+                    "nuxtignore"
+                ],
+                "extensions": [
+                    ".nuxtignore"
+                ]
+            },
+            {
+                "id": "nuxtrc",
+                "aliases": [
+                    "nuxtrc"
+                ],
+                "extensions": [
+                    ".nuxtrc"
+                ]
             }
         ],
         "configurationDefaults": {
@@ -92,7 +110,17 @@
             {
                 "language": "Log",
                 "scopeName": "code.log",
-                "path": "./log.tmLanguage"
+                "path": "./syntaxes/log.tmLanguage.json"
+            },
+            {
+                "language": "nuxtrc",
+                "scopeName": "source.nuxtrc",
+                "path": "./syntaxes/nuxtrc.tmLanguage.json"
+            },
+            {
+                "language": "nuxtignore",
+                "scopeName": "source.nuxtignore",
+                "path": "./syntaxes/nuxtignore.tmLanguage.json"
             }
         ],
         "viewsContainers": {
@@ -100,7 +128,7 @@
                 {
                     "id": "sidebar-view",
                     "title": "Nuxtr",
-                    "icon": "./resources/nuxtr.svg",
+                    "icon": "./resources/nuxt.svg",
                     "when": "nuxtr.isNuxtProject"
                 }
             ]
@@ -111,7 +139,7 @@
                     "type": "webview",
                     "id": "nuxtrSidebar",
                     "name": "Sidebar",
-                    "icon": "./resources/nuxtr.svg",
+                    "icon": "./resources/nuxt.svg",
                     "contextualTitle": "Nuxtr",
                     "when": "nuxtr.isNuxtProject"
                 }
@@ -471,6 +499,26 @@
                         "type": "string",
                         "default": "default.layout-template",
                         "description": "Default layout template"
+                    }
+                }
+            },
+            {
+                "title": "Intellisense",
+                "properties": {
+                    "nuxtr.intellisense.vueFiles": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Allow intellisense for Vue files"
+                    },
+                    "nuxtr.intellisense.nuxtignore": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Allow .nuxtignore intellisense"
+                    },
+                    "nuxtr.intellisense.nuxtrc": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Allow .nuxtrc intellisense"
                     }
                 }
             }
@@ -857,22 +905,24 @@
     "devDependencies": {
         "@types/mocha": "^10.0.1",
         "@types/node": "20.4.1",
-        "@types/vscode": "^1.80.0",
-        "@typescript-eslint/eslint-plugin": "^6.4.0",
-        "@typescript-eslint/parser": "^6.4.0",
-        "@vscode/test-electron": "^2.3.3",
+        "@types/vscode": "^1.81.0",
+        "@typescript-eslint/eslint-plugin": "^6.6.0",
+        "@typescript-eslint/parser": "^6.6.0",
+        "@vscode/test-electron": "^2.3.4",
         "esbuild": "^0.19.2",
-        "eslint": "^8.47.0",
+        "eslint": "^8.48.0",
         "mocha": "^10.2.0",
-        "typescript": "^5.1.6"
+        "typescript": "^5.2.2"
     },
     "dependencies": {
-        "@types/util.promisify": "^1.0.4",
-        "axios": "^1.4.0",
+        "@nuxt/schema": "^3.7.0",
+        "@types/util.promisify": "^1.0.5",
+        "axios": "^1.5.0",
         "destr": "^2.0.1",
         "fs": "^0.0.1-security",
-        "magicast": "^0.2.9",
+        "magicast": "^0.2.10",
         "path": "^0.12.7",
+        "pkg-types": "^1.0.3",
         "util": "^0.12.5"
     },
     "pnpm": {

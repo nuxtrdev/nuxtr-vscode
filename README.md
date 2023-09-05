@@ -33,6 +33,7 @@
 - [Project directories and files creation](#project-directories-and-files-creation)
 - [Dependencies management](#dependencies-management)
 - [Nuxt/Custom Snippets](#nuxtcustom-snippets)
+- [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
 - [Vue File Templates](#vue-file-templates)
 - [srcDir, serverDir and monorepo support](#srcdir-serverdir-and-monorepo-support)
 - [Run scripts from the VSCode command palette or sidebar.](#run-scripts-from-the-vscode-command-palette-or-sidebar)
@@ -97,6 +98,21 @@ And auto open the created file using:
 More on this side of the extension is coming soon!
 
 ![Snippets](./.github/media/snippets.gif)
+
+<br>
+<br>
+
+### IntelliSense and Auto Completion
+
+Nuxtr VSCode offers a robust IntelliSense with focused support for Vue files, offering relative path completion from the pages directory for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) and from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public) for media resources, depending on your Nuxt version. Moreover, it offers IntelliSense for essential configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](), empowering you with accurate insights and efficient coding.
+
+You can enable/disable IntelliSense from the settings:
+
+```JSON
+ "nuxtr.intellisense.nuxtrc": true,
+ "nuxtr.intellisense.vueFiles": true,
+ "nuxtr.intellisense.nuxtignore": true,
+```
 
 <br>
 <br>
@@ -198,6 +214,8 @@ More coming soon.
 
 We always welcome new ideas! 💚 <br>
 If you have any idea, feel free to [open a discussion](https://github.com/orgs/nuxtrdev/discussions/new?category=ideas) first and let's talk about it!
+
+<br>
 
 ### Acknowledgements
 

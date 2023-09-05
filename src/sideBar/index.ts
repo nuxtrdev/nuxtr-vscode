@@ -13,11 +13,13 @@ import {
     getInstallationCommand,
     getOutdatedPackages,
     runCommand,
+    managePackageVersion,
+    removePackage,
 } from '../utils'
 import * as fs from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"
-import { managePackageVersion, removePackage } from '../utils/dependency'
+
 
 const nonce = getNonce()
 export class ModulesView implements vscode.WebviewViewProvider {

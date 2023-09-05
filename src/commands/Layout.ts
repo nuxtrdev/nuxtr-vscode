@@ -1,5 +1,4 @@
 import { window } from 'vscode'
-import * as fs from 'fs'
 import { projectSrcDirectory, createFile, createDir } from '../utils'
 
 

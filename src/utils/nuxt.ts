@@ -1,7 +1,10 @@
 import { window } from 'vscode';
-import { writeFileSync, readFileSync, existsSync } from 'fs';
+import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
+import { join } from 'path';
 import { parseModule } from 'magicast';
-import { projectRootDirectory } from '.';
+import { readTSConfig } from 'pkg-types'
+import { projectRootDirectory, projectSrcDirectory } from '.';
+import { parseTsconfigPaths } from './tsConfig';
 
 
 export const findNuxtConfig = (): string | undefined => {
@@ -138,6 +141,28 @@ export const hasSrcDir = (): string => {
 };
 
 
+export const fetchNuxtAlias = async () => {
+    const path = `${projectRootDirectory()}/.nuxt/tsconfig.json`;
+
+    if (!existsSync(path)) {
+        return {};
+    }
+
+    try {
+        let tsconfig = await readTSConfig(path);
+
+        if (tsconfig) {
+            const paths = tsconfig.compilerOptions?.paths;
+            let parsedPaths = parseTsconfigPaths(paths);
+            return parsedPaths;
+        }
+
+    } catch (error) {
+        console.error('Error fetching Nuxt alias:', error);
+    }
+};
+
+
 export const hasServerDir = (): string => {
     const nuxtConfigPath = findNuxtConfig();
     const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
@@ -179,3 +204,56 @@ export const updateNuxtConfig = (update: (config: any) => void) => {
         );
     }
 };
+
+
+export const scanNuxtDirectories = async () => {
+    let projectSrcDir = `${projectSrcDirectory()}`;
+    let nuxtDirectories = ['layouts', 'pages', 'components', 'composables', 'middleware'];
+    let existingDirectories: string[] = [];
+
+    if (existsSync(projectSrcDir)) {
+        try {
+            const srcDirContents = await promises.readdir(projectSrcDir);
+
+            for (const directory of nuxtDirectories) {
+                if (srcDirContents.includes(directory)) {
+                    existingDirectories.push(directory);
+                }
+            }
+        } catch (error) {
+            console.error('Error scanning Nuxt directories:', error);
+        }
+
+    }
+    return existingDirectories;
+}
+
+export async function scanFilesAndSubdirectories(directoryPath: string): Promise<string[]> {
+    return new Promise((resolve, reject) => {
+        readdir(directoryPath, { withFileTypes: true }, (err, files) => {
+            if (err) {
+                reject(err);
+            } else {
+                const fileAndDirNames: string[] = [];
+                files.forEach((file: any) => {
+                    const fullPath = join(directoryPath, file.name);
+                    fileAndDirNames.push(fullPath);
+                    if (file.isDirectory()) {
+                        scanFilesAndSubdirectories(fullPath).then((subFiles) => {
+                            fileAndDirNames.push(...subFiles);
+                            if (fileAndDirNames.length === files.length) {
+                                resolve(fileAndDirNames);
+                            }
+                        }).catch((error) => {
+                            reject(error);
+                        });
+                    } else {
+                        if (fileAndDirNames.length === files.length) {
+                            resolve(fileAndDirNames);
+                        }
+                    }
+                });
+            }
+        });
+    });
+}

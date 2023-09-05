@@ -1,13 +1,4 @@
-import {
-    getNonce,
-    getUri,
-    projectRootDirectory,
-    openExternalLink,
-    getConfiguration,
-    newTerminal,
-    runCommand,
-    projectSrcDirectory,
-} from './global'
+import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, } from './global'
 
 import {
     addNuxtModule,
@@ -15,10 +6,12 @@ import {
     getNuxtVersion,
     isNuxtTwo,
     hasSrcDir,
+    fetchNuxtAlias,
     hasServerDir,
     updateNuxtConfig,
     findNuxtConfig,
-    isNuxtProject
+    isNuxtProject,
+    scanNuxtDirectories,
 } from './nuxt'
 
 import {
@@ -32,11 +25,17 @@ import {
     updateDependencies
 } from './dependency'
 
-import { createDirectoryAndFile, createFile, createSubFolders, showSubFolderQuickPick, createDir } from './file'
+import { createDirectoryAndFile, createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate } from './file'
 
 import { getCommandType } from './commands'
 
 import { logger } from './outputChannel'
+
+import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory } from './vscode';
+
+import { generateVueFileBasicTemplate, generateVueFileTemplate } from './vueFiles'
+
+import { removePackage, managePackageVersion } from './dependency'
 
 export {
     openExternalLink,
@@ -46,6 +45,7 @@ export {
     isNuxtTwo,
     hasSrcDir,
     hasServerDir,
+    fetchNuxtAlias,
     updateNuxtConfig,
     createDirectoryAndFile,
     projectSrcDirectory,
@@ -54,11 +54,14 @@ export {
     showSubFolderQuickPick,
     getConfiguration,
     createFile,
+    createVueTemplate,
     areDependenciesInstalled,
     detectPackageManagerByName,
     getInstallationCommand,
     getOutdatedPackages,
     dependenciesUpdatesHandler,
+    generateVueFileBasicTemplate,
+    generateVueFileTemplate,
     updateDependencies,
     newTerminal,
     getNonce,
@@ -70,5 +73,13 @@ export {
     createDir,
     findNuxtConfig,
     isNuxtProject,
-    getCommandType
+    getCommandType,
+    scanNuxtDirectories,
+    languageSelector,
+    patternSelector,
+    pathExists,
+    isDirectory,
+    readDirectory,
+    removePackage,
+    managePackageVersion
 }

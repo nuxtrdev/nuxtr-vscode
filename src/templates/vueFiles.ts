@@ -4,7 +4,7 @@ const templateTag = (type: string) => `<template>
   </div>
 </template>\n\n`
 
-function generateStyleTag(lang: string, scoped: string) {
+function generateStyleTag(lang: string, scoped: boolean) {
     return `
 <style${lang === 'css' ? '' : ` lang="${lang}"`}${scoped ? ' scoped' : ''}>
 

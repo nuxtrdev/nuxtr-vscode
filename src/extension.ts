@@ -1,10 +1,11 @@
-import { window, ExtensionContext, commands, Uri, workspace } from 'vscode';
+import { window, ExtensionContext, commands, Uri } from 'vscode';
 import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
 import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
 import FileWatchers from './watchers'
 import { statusBars, activateStatusBarIcons } from './statusBar'
+import { activateIntellisense } from './intellisense'
 
 
 const commandList = [
@@ -63,6 +64,8 @@ export async function activateExtension(context: ExtensionContext) {
 
     activateStatusBarIcons(context)
 
+    activateIntellisense(context)
+
     codelens.activateCodelenses(context)
 
     // global state command
@@ -83,7 +86,6 @@ export async function activateExtension(context: ExtensionContext) {
     context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', () => sidebarProvider.updateModules()))
 
     context.subscriptions.push(window.registerWebviewViewProvider('nuxtrSidebar', sidebarProvider))
-
 
 
     // sidebarProjectView
@@ -128,5 +130,3 @@ export async function activateExtension(context: ExtensionContext) {
         })
     )
 }
-
-export function deactivate() { }

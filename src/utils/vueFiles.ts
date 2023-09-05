@@ -2,12 +2,12 @@ import * as fs from 'fs'
 import { getConfiguration, projectSrcDirectory } from '../utils'
 import { generateStyleTag, generateScriptTag, templateTag, } from '../templates/vueFiles'
 
-let configuration = getConfiguration()
+let vueFilesConfig = getConfiguration().vueFiles
 
 export function generateVueFileTemplate(type: string, template?: string) {
     const userDefaultTemplate = template || (type === 'page'
-        ? configuration.vueFiles.pages.defaultTemplate
-        : configuration.vueFiles.layouts.defaultTemplate);
+        ? vueFilesConfig.pages.defaultTemplate
+        : vueFilesConfig.layouts.defaultTemplate);
 
     const templatePath = `${projectSrcDirectory()}/.vscode/${userDefaultTemplate}`;
     try {
@@ -17,17 +17,14 @@ export function generateVueFileTemplate(type: string, template?: string) {
     }
 }
 
-
-
-
 export function generateVueFileBasicTemplate(type: string) {
     let fileTemplate = ``
-    let firstTag = configuration.vueFiles.firstTag
-    let scriptType = configuration.vueFiles.script.type
-    let addStyleTag = configuration.vueFiles.style.addStyleTag
-    let styleLang = configuration.vueFiles.style.defaultLanguage
-    let isScoped = configuration.vueFiles.style.alwaysScoped
-    let lang = configuration.vueFiles.script.defaultLanguage
+    let firstTag = vueFilesConfig.firstTag
+    let scriptType = vueFilesConfig.script.type
+    let addStyleTag = vueFilesConfig.style.addStyleTag
+    let styleLang = vueFilesConfig.style.defaultLanguage
+    let isScoped = vueFilesConfig.style.alwaysScoped
+    let lang = vueFilesConfig.script.defaultLanguage
 
     let scriptTag = generateScriptTag(scriptType, lang)
 
