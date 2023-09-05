@@ -81,6 +81,10 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
                     nestedCompletionItems.push(createCompletionItem("autoImport", autoImportProperty));
                     nestedCompletionItems.push(createCompletionItem("transform", transformProperty));
                 }
+                // TODO: Create a separate snippet
+                if (propertyPath ===  'nitro') {
+                    nestedCompletionItems.push(createCompletionItem("timing", autoImportProperty));
+                }
 
                 return nestedCompletionItems;
             }

@@ -521,6 +521,21 @@
                         "description": "Allow .nuxtrc intellisense"
                     }
                 }
+            },
+            {
+                "title": "Snippets",
+                "properties": {
+                    "nuxtr.snippets.nuxtSnippets": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable / Disable Nuxt Snippets"
+                    },
+                    "nuxtr.snippets.nitroSnippets": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable / Disable Nitro Snippets"
+                    }
+                }
             }
         ],
         "commands": [
