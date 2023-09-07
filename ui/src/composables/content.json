@@ -7494,7 +7494,7 @@
             "npm": "@nuxt/image",
             "icon": "image.png",
             "github": "https://github.com/nuxt/image",
-            "website": "https://image.nuxtjs.org",
+            "website": "https://image.nuxt.com",
             "learn_more": "",
             "category": "Images",
             "type": "official",
@@ -7503,6 +7503,11 @@
                     "name": "Ahad Birang",
                     "github": "farnabaz",
                     "twitter": "a_birang"
+                },
+                {
+                    "name": "Daniel Roe",
+                    "github": "danielroe",
+                    "twitter": "danielcroe"
                 },
                 {
                     "name": "Pooya Parsa",
@@ -7521,15 +7526,15 @@
                     "bridge": "optional"
                 }
             },
-            "downloads": 154876,
-            "stars": 919,
+            "downloads": 224574,
+            "stars": 1039,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 5158436,
                     "username": "pi0",
-                    "contributions": 211
+                    "contributions": 213
                 },
                 {
                     "id": 2047945,
@@ -7537,19 +7542,19 @@
                     "contributions": 129
                 },
                 {
-                    "id": 29139614,
-                    "username": "renovate[bot]",
-                    "contributions": 61
-                },
-                {
                     "id": 28706372,
                     "username": "danielroe",
-                    "contributions": 41
+                    "contributions": 96
+                },
+                {
+                    "id": 29139614,
+                    "username": "renovate[bot]",
+                    "contributions": 94
                 },
                 {
                     "id": 904724,
                     "username": "Atinux",
-                    "contributions": 41
+                    "contributions": 48
                 },
                 {
                     "id": 2152968,
@@ -7562,6 +7567,11 @@
                     "contributions": 6
                 },
                 {
+                    "id": 1439623,
+                    "username": "clemcode",
+                    "contributions": 4
+                },
+                {
                     "id": 13734256,
                     "username": "daletom",
                     "contributions": 4
@@ -7569,11 +7579,6 @@
                 {
                     "id": 3385679,
                     "username": "btkostner",
-                    "contributions": 3
-                },
-                {
-                    "id": 1439623,
-                    "username": "clemcode",
                     "contributions": 3
                 },
                 {
@@ -7642,6 +7647,11 @@
                     "contributions": 2
                 },
                 {
+                    "id": 5109593,
+                    "username": "Tragio",
+                    "contributions": 2
+                },
+                {
                     "id": 40848950,
                     "username": "abhinavr4",
                     "contributions": 2
@@ -7669,11 +7679,6 @@
                 {
                     "id": 26205172,
                     "username": "Alucard17",
-                    "contributions": 1
-                },
-                {
-                    "id": 342104,
-                    "username": "podlebar",
                     "contributions": 1
                 }
             ],
@@ -20480,11 +20485,11 @@
         {
             "name": "form-actions",
             "description": "A set of features and composables to interact with forms and server data.",
-            "repo": "Hebilicious/form-actions-nuxt/packages/form-action-nuxt#main",
+            "repo": "Hebilicious/form-actions-nuxt#main/packages/form-action-nuxt",
             "npm": "@hebilicious/form-actions-nuxt",
             "icon": "form-actions.svg",
             "github": "https://github.com/Hebilicious/form-actions-nuxt",
-            "website": "https://github.com/Hebilicious/form-actions-nuxt#readme",
+            "website": "https://form-actions-nuxt.pages.dev/",
             "learn_more": "https://github.com/Hebilicious/form-actions-nuxt#readme",
             "category": "Request",
             "type": "3rd-party",
@@ -20496,28 +20501,31 @@
                 }
             ],
             "compatibility": {
-                "nuxt": "^3.0.0",
+                "nuxt": "^3.7.0",
                 "requires": {}
             },
-            "downloads": 315,
-            "stars": 33,
+            "downloads": 1150,
+            "stars": 47,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 13395944,
                     "username": "Hebilicious",
-                    "contributions": 56
+                    "contributions": 76
                 },
                 {
                     "id": 29139614,
                     "username": "renovate[bot]",
-                    "contributions": 11
+                    "contributions": 20
+                },
+                {
+                    "id": 52015,
+                    "username": "jangxyz",
+                    "contributions": 1
                 }
             ],
-            "tags": [
-                "3.x"
-            ],
+            "tags": [],
             "isLayer": false
         },
         {
@@ -21546,6 +21554,240 @@
                     "id": 1983246,
                     "username": "kgierke",
                     "contributions": 13
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-mdi",
+            "description": "Add 7,000+ icons to your Nuxt application, from Material Design Icons.",
+            "repo": "ERPedersen/nuxt-mdi",
+            "npm": "nuxt-mdi",
+            "icon": "mdi.png",
+            "github": "https://github.com/ERPedersen/nuxt-mdi",
+            "website": "https://nuxt-mdi.emilrosenius.com",
+            "learn_more": "https://github.com/ERPedersen/nuxt-mdi/blob/main/README.md",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Emil Rosenius",
+                    "github": "ERPedersen"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 12,
+            "stars": 10,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 8896149,
+                    "username": "ERPedersen",
+                    "contributions": 17
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-facebook-chat",
+            "description": "nuxt-plotly module is thin Nuxt3 wrapper for Facebook's Customer Chat SDK",
+            "repo": "superdev-tech/nuxt-facebook-chat",
+            "npm": "nuxt-facebook-chat",
+            "icon": "nuxt-facebook-chat.svg",
+            "github": "https://github.com/superdev-tech/nuxt-facebook-chat",
+            "website": "https://github.com/superdev-tech/nuxt-facebook-chat",
+            "learn_more": "https://www.npmjs.com/package/nuxt-facebook-chat",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Supanut Dokmaithong",
+                    "github": "Boomgeek"
+                },
+                {
+                    "name": "superdev-tech",
+                    "github": "superdev-tech"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 401,
+            "stars": 1,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 8353081,
+                    "username": "Boomgeek",
+                    "contributions": 15
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "arco-design-nuxt-module",
+            "description": "Nuxt Module for Arco Design Vue. Automatically import components, icons and more.",
+            "repo": "wiidede/arco-design-nuxt-module",
+            "npm": "arco-design-nuxt-module",
+            "icon": "arco-design.svg",
+            "github": "https://github.com/wiidede/arco-design-nuxt-module",
+            "website": "https://arco.design/vue",
+            "learn_more": "https://github.com/wiidede/arco-design-nuxt-module#readme",
+            "category": "UI",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "wiidede",
+                    "github": "wiidede"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 563,
+            "stars": 0,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 25472916,
+                    "username": "wiidede",
+                    "contributions": 39
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "prepare",
+            "description": "Initialization steps at build time – like Nuxt 2 server init",
+            "repo": "johannschopplich/nuxt-prepare",
+            "npm": "nuxt-prepare",
+            "icon": "nuxt-prepare.svg",
+            "github": "https://github.com/johannschopplich/nuxt-prepare",
+            "website": "https://nuxt-prepare.jhnn.dev",
+            "learn_more": "",
+            "category": "Devtools",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Johann Schopplich",
+                    "github": "johannschopplich",
+                    "twitter": "jschopplich",
+                    "avatar": "https://avatars.githubusercontent.com/johannschopplich?v=4"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 416,
+            "stars": 53,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 27850750,
+                    "username": "johannschopplich",
+                    "contributions": 29
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "aos",
+            "description": "A Nuxt module that adds Animate On Scroll",
+            "repo": "egidiusmengelberg/nuxt-aos",
+            "npm": "nuxt-aos",
+            "icon": "aos.png",
+            "github": "https://github.com/egidiusmengelberg/nuxt-aos",
+            "website": "https://github.com/egidiusmengelberg/nuxt-aos",
+            "learn_more": "",
+            "category": "Devtools",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "egidiusmengelberg",
+                    "github": "egidiusmengelberg"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 324,
+            "stars": 3,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 22946100,
+                    "username": "egidiusmengelberg",
+                    "contributions": 10
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "particles",
+            "description": "Easily add particle animations to your Nuxt projects using tsParticles",
+            "repo": "Joepocalyptic/nuxt-particles",
+            "npm": "nuxt-particles",
+            "icon": "",
+            "github": "https://github.com/Joepocalyptic/nuxt-particles",
+            "website": "https://nuxt-particles.joeypereira.dev",
+            "learn_more": "https://particles.js.org/",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Joey Pereira",
+                    "github": "Joepocalyptic",
+                    "avatar": "https://avatars.githubusercontent.com/Joepocalyptic?v=4"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 518,
+            "stars": 3,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 42530725,
+                    "username": "Joepocalyptic",
+                    "contributions": 17
+                },
+                {
+                    "id": 29139614,
+                    "username": "renovate[bot]",
+                    "contributions": 1
                 }
             ],
             "tags": [
