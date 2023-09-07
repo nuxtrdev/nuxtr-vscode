@@ -37,6 +37,8 @@ import { generateVueFileBasicTemplate, generateVueFileTemplate } from './vueFile
 
 import { removePackage, managePackageVersion } from './dependency'
 
+import { createConfigWatcher } from './watchers'
+
 export {
     openExternalLink,
     getProjectDependencies,
@@ -81,5 +83,6 @@ export {
     isDirectory,
     readDirectory,
     removePackage,
-    managePackageVersion
+    managePackageVersion,
+    createConfigWatcher
 }

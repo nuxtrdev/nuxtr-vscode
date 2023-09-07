@@ -245,7 +245,9 @@ const configureVuetify = async () => {
                     }
                 }
             })
-    } catch (error) { }
+    } catch (error) {
+        console.log(error);
+    }
 }
 
 export { configureCSS }

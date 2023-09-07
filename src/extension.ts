@@ -3,10 +3,9 @@ import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
 import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
-import FileWatchers from './watchers'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
-
+import {filesWatcher} from './watchers'
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -60,13 +59,22 @@ export async function activateExtension(context: ExtensionContext) {
 
 
     // Initialize file watchers
-    new FileWatchers(sidebarProvider, context, statusBars.updatesStatusBar)
+    new filesWatcher(sidebarProvider, context, statusBars.updatesStatusBar)
 
+    // activate status bar icons
     activateStatusBarIcons(context)
 
+    // activate intellisense
     activateIntellisense(context)
 
+    // activate codelens
     codelens.activateCodelenses(context)
+
+    //  activate extension config watcher
+    // context.subscriptions.push(configWatcher)
+
+    // snippetsConfigWatcher
+    // context.subscriptions.push(snippetsConfigWatcher)
 
     // global state command
     context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {

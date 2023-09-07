@@ -2,13 +2,15 @@ export const unoCSSConfig = `import { defineConfig } from 'unocss'
 
 export default defineConfig({
 
-})`
+})
+`
 
 export const windiCSSConfig = `import { defineConfig } from 'windicss/helpers'
 
 export default defineConfig({
 
-})`
+})
+`
 
 export const tailwindCSSConfig = `/** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -17,7 +19,8 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}`
+}
+`
 
 export const tailwindCSSFile = `@tailwind base;
 @tailwind components;
@@ -30,4 +33,5 @@ export default {
   lang: {},
   rtl: true,
   theme: {}
-}`
+}
+`

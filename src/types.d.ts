@@ -45,4 +45,7 @@ export interface NuxtrConfiguration {
     nuxtignore: boolean;
     nuxtrc: boolean;
   };
+    snippets: {
+        nuxt: boolean;
+  }
 }
