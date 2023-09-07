@@ -26,6 +26,13 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
                     const subDirectories = this.getSubDirectories(targetDirectory);
 
                     return this.createCompletionItems(subDirectories);
+                } else if (textBeforeCursor.endsWith('!')) {
+                    const parts = textBeforeCursor.split('!');
+                    const userTypedPath = parts[0];
+                    const targetDirectory = path.join(currentDirectory, userTypedPath);
+                    const subDirectories = this.getSubDirectories(targetDirectory);
+
+                    return this.createCompletionItems(subDirectories);
                 } else {
                     const topLevelSubDirectories = this.getTopLevelSubDirectories(currentDirectory);
                     return this.createCompletionItems(topLevelSubDirectories);
@@ -57,6 +64,10 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
     }
 
     private getSubDirectories(directory: string): string[] {
+        console.log('getSubDirectories', directory);
+        directory = directory.replace(/!/g, '');
+        console.log('getSubDirectories', directory);
+
         try {
             if (fs.existsSync(directory)) {
                 return fs.readdirSync(directory, { withFileTypes: true })
