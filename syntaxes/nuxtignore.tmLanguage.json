@@ -7,16 +7,12 @@
             "name": "comment.line.nuxtignore"
         },
         {
-            "begin": "^\\s*!",
-            "end": "$",
-            "name": "comment.line.nuxtignore"
-        },
-        {
-            "match": "^[^#!\\s].*$",
+            "match": "^[^#\\s].*$",
             "name": "string.path.nuxtignore"
         }
     ],
     "fileTypes": [
         "nuxtignore"
-    ]
+    ],
+    "$schema": "../src/intellisense/schemas/nuxt.schema.json"
 }
