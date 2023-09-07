@@ -93,10 +93,18 @@ And auto open the created file using:
 
 **Nuxt Snippets**: You can use Nuxt snippets by typing `nuxt` for components, `use` for Composables or just start typing Nuxt utils and selecting your snippet from the list.
 
-Nuxt Snippets is enabled by default. You can enable/disable Nuxt snippets from the settings.
+Nuxt Snippets is enabled by default. You can enable/disable them using this setting.
 
 ```JSON
  "nuxtr.snippets.nuxt": true
+```
+
+**Nitro Snippets**: Nitro is empoweing Nuxt Server Engine. Please, refer to [Nitro Docs](https://nitro.unjs.io) for more information.
+
+Nitro Snippets is enabled by default. You can enable/disable them using this setting.
+
+```JSON
+ "nuxtr.snippets.nitro": true
 ```
 
 **Custom Snippets**: Easily manage your custom snippets from the sidebar. You can create, edit or delete your snippets.
