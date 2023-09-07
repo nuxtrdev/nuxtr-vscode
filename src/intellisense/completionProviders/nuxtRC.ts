@@ -25,6 +25,15 @@ const transformProperty: ConfigurationProperty = {
     }
 };
 
+const timingProperty: ConfigurationProperty = {
+    type: "boolean",
+    id: "#nitro/timing",
+    default: true,
+    title: "Enable timing information for each build step.",
+    markdownType: "SrcTypesNitroNitroOptions"
+};
+
+
 function createCompletionItem(propertyName: string, property: ConfigurationProperty) {
     const snippet = new vscode.CompletionItem(propertyName);
     snippet.detail = property.title || '';
@@ -81,9 +90,9 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
                     nestedCompletionItems.push(createCompletionItem("autoImport", autoImportProperty));
                     nestedCompletionItems.push(createCompletionItem("transform", transformProperty));
                 }
-                // TODO: Create a separate snippet
-                if (propertyPath ===  'nitro') {
-                    nestedCompletionItems.push(createCompletionItem("timing", autoImportProperty));
+
+                if (propertyPath === 'nitro') {
+                    nestedCompletionItems.push(createCompletionItem("timing", timingProperty));
                 }
 
                 return nestedCompletionItems;

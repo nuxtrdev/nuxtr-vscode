@@ -1,12 +1,11 @@
-import { workspace, window, commands, ConfigurationChangeEvent} from 'vscode';
+import { Disposable } from 'vscode';
+import { createConfigWatcher, getConfiguration } from '../utils';
+import { toggleSnippets } from '../snippets';
 
-export const configWatcher = workspace.onDidChangeConfiguration((event: ConfigurationChangeEvent) => {
-    if (event.affectsConfiguration('nuxtr')) {
-        const question = window.showInformationMessage(`Nuxtr configuration updated.`, 'Reload Window');
-        question.then((answer) => {
-            if (answer === 'Reload Window') {
-                commands.executeCommand('workbench.action.reloadWindow');
-            }
-        })
-    }
+const snippetsConfig = getConfiguration().snippets
+
+export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
+    console.log('snippets', snippetsConfig);
+    await toggleSnippets('Nuxt')
+    return Promise.resolve();
 });

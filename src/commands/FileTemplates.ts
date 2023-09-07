@@ -4,7 +4,6 @@ import * as fs from 'fs'
 import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate  } from '../utils'
 
 
-
 function createPageTemplate() {
     let editor = window.activeTextEditor
     if (editor) {

@@ -58,7 +58,6 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
 
             try {
                 isDir = isDirectory(fullPathTest);
-                console.log('isDirectory:', isDir);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
                 return [];
@@ -128,7 +127,6 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
 
             try {
                 isDir = isDirectory(fullPathTest);
-                console.log('isDirectory:', isDir);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
                 return [];

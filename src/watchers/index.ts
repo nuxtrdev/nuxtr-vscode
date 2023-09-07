@@ -1,7 +1,7 @@
 import filesWatcher from './files'
-import { configWatcher } from './config'
+import {  snippetsConfigWatcher } from './config'
 
 export  {
     filesWatcher,
-    configWatcher
+    snippetsConfigWatcher
 }

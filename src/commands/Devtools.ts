@@ -68,8 +68,6 @@ async function directToggleDevTools() {
 }
 
 
-
-
 async function isDevtoolsInstalled(): Promise<boolean> {
     const packageJsonPath = path.join(`${projectRootDirectory()}/package.json`);
     const packageJson = require(packageJsonPath);
@@ -123,7 +121,6 @@ async function nuxtConfigWatcher() {
         color,
     });
 }
-
 
 
 async function nuxtDevToolsHandler() {

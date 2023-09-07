@@ -3,9 +3,9 @@
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
     "version": "0.1.11",
-    "packageManager": "pnpm@8.7.1",
+    "packageManager": "pnpm@8.7.4",
     "engines": {
-        "vscode": "^1.80.0"
+        "vscode": "^1.81.0"
     },
     "categories": [
         "Other"
@@ -529,11 +529,6 @@
                         "type": "boolean",
                         "default": true,
                         "description": "Enable / Disable Nuxt Snippets"
-                    },
-                    "nuxtr.snippets.nitroSnippets": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Enable / Disable Nitro Snippets"
                     }
                 }
             }
@@ -930,11 +925,13 @@
         "typescript": "^5.2.2"
     },
     "dependencies": {
-        "@nuxt/schema": "^3.7.0",
+        "@nuxt/schema": "^3.7.1",
+        "@types/fs-extra": "^11.0.1",
         "@types/util.promisify": "^1.0.5",
         "axios": "^1.5.0",
         "destr": "^2.0.1",
         "fs": "^0.0.1-security",
+        "fs-extra": "^11.1.1",
         "magicast": "^0.2.10",
         "path": "^0.12.7",
         "pkg-types": "^1.0.3",
