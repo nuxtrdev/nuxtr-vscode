@@ -17,14 +17,14 @@
     },
     "devDependencies": {
         "@types/vscode-webview": "^1.57.2",
-        "@vitejs/plugin-vue": "^4.3.3",
+        "@vitejs/plugin-vue": "^4.3.4",
         "autoprefixer": "^10.4.15",
-        "postcss": "^8.4.28",
-        "prettier": "^3.0.2",
-        "prettier-plugin-tailwindcss": "^0.5.3",
+        "postcss": "^8.4.29",
+        "prettier": "^3.0.3",
+        "prettier-plugin-tailwindcss": "^0.5.4",
         "tailwindcss": "^3.3.3",
         "typescript": "^5.2.2",
         "vite": "^4.4.9",
-        "vue-tsc": "^1.8.8"
+        "vue-tsc": "^1.8.10"
     }
 }

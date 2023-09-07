@@ -536,61 +536,61 @@
         "commands": [
             {
                 "command": "nuxtr.createPage",
-                "title": "Create new page",
+                "title": "Create new Page",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.createComponent",
-                "title": "Create new component",
+                "title": "Create new Component",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.createComposable",
-                "title": "Create new composable",
+                "title": "Create new Composable",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreateComposable",
-                "title": "Create new composable",
+                "title": "New Composable...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.createLayout",
-                "title": "Create new layout",
+                "title": "Create new Layout",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreateLayout",
-                "title": "Create new layout",
+                "title": "New Layout...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.createPlugin",
-                "title": "Create new plugin",
+                "title": "Create new Plugin",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreatePlugin",
-                "title": "Create new plugin",
+                "title": "New Plugin...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.createMiddleware",
-                "title": "Create new middleware",
+                "title": "Create new Middleware",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreateMiddleware",
-                "title": "Create new middleware",
+                "title": "New Middleware...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
@@ -602,14 +602,14 @@
             },
             {
                 "command": "nuxtr.directCreateApi",
-                "title": "Create new API",
+                "title": "New API...",
                 "shortTitle": "Create new API",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.projectStructure",
-                "title": "Create Nuxt project directories",
+                "title": "Create project directories",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
@@ -636,7 +636,7 @@
             },
             {
                 "command": "nuxtr.createLayer",
-                "title": "Create new extend",
+                "title": "Create new Layer",
                 "icon": "$(nuxtr-module)",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
@@ -704,13 +704,13 @@
             },
             {
                 "command": "nuxtr.createStore",
-                "title": "Create new store",
+                "title": "Create new Store",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreateStore",
-                "title": "Create new store",
+                "title": "Create new Store",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
@@ -746,14 +746,14 @@
             },
             {
                 "command": "nuxtr.directCreateComponent",
-                "title": "Create Vue Component",
+                "title": "New Component...",
                 "shortTitle": "Create Component",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.directCreatePage",
-                "title": "Create Vue Page",
+                "title": "New Page...",
                 "category": "Nuxtr",
                 "shortTitle": "Create Page",
                 "when": "nuxtr.isNuxtProject"
@@ -808,7 +808,7 @@
             },
             {
                 "command": "nuxtr.createFileFromTemplate",
-                "title": "Create new page",
+                "title": "Create new Page",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },

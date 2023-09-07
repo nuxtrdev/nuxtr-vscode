@@ -4,7 +4,7 @@ import { createComposable, directCreateComposable } from './Composable'
 import { createLayout, directCreateLayout } from './Layout'
 import { createPlugin, directCreatePlugin } from './Plugin'
 import { createMiddleware, directCreateMiddleware } from './Middleware'
-import { createApi, directCreateApi } from './Api'
+import { createApi, directCreateApi } from './Nitro'
 import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
 import {

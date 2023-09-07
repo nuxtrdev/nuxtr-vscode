@@ -99,7 +99,7 @@ export const showSubFolderQuickPick = (args: {
                     });
                     break;
                 case 'Create new folder...':
-                    createDirectoryAndFile(args.name, type.name.toLocaleLowerCase(), args.content);
+                    createDirectoryAndFile(args.name, type.name, args.content);
                     break;
                 default:
                     const fileNameAndPath = `${selection}/${args.name}${type.extension}`;

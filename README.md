@@ -6,7 +6,7 @@
   <h3 align="center">Nuxtr VSCode</h3>
 
   <p align="center">
-    An extension offering commands and tools <br /> to make your experience with Nuxt.js more pleasant!
+    An extension offering commands and tools <br /> to make your experience with Nuxt more pleasant!
   </p>
 
   <p align="center">
@@ -46,7 +46,7 @@
 
 ### Project directories and files creation
 
-With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt.js project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
+With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
 
 You can customize Vue file templates using the following settings:
 
@@ -127,7 +127,7 @@ You can enable/disable IntelliSense from the settings:
 
 To provide users with greater flexibility in customizing their Vue files, we offer the ability to create and utilize personalized templates. These templates can be set as defaults or used selectively as per the user's preference.
 
-We currently support two types of templates for ensuring a consistent user experience: `.page-template` and `.layout-template`. When Nuxt.js is loaded, these files are treated as regular Vue files, simplifying the editing process. Templates creation can be done from existing respective files via context menu item or empty templates from sidebar.
+We currently support two types of templates for ensuring a consistent user experience: `.page-template` and `.layout-template`. When Nuxt is loaded, these files are treated as regular Vue files, simplifying the editing process. Templates creation can be done from existing respective files via context menu item or empty templates from sidebar.
 
 You can set your default template from these settings:
 
@@ -170,7 +170,7 @@ Main scripts are available from command palette, if you want to use a custom com
 
 ### Toggle Nuxt Devtools from your status bar
 
-[Nuxt Devtools](https://devtools.nuxtjs.org/) is a great tool! One of the great features it offer is working globally with your project if you are using Nuxt <= 3.4.0. You can toggle it from your status bar. Extension detects your Nuxt.js version and advices you to update if not.
+[Nuxt Devtools](https://devtools.nuxtjs.org/) is a great tool! One of the great features it offer is working globally with your project if you are using Nuxt <= 3.4.0. You can toggle it from your status bar. Extension detects your Nuxt version and advices you to update if not.
 
 Manual toggling from nuxt.config.ts is detected and state is synced.
 

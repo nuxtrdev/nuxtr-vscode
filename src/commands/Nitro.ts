@@ -10,7 +10,7 @@ const createApi = () => {
     window
         .showInputBox({
             prompt: 'What is your api name?',
-            placeHolder: 'api name',
+            placeHolder: 'Api name',
         })
         .then((name) => {
             if (!name) { return }
