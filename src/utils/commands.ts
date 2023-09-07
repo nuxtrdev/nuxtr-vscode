@@ -63,6 +63,13 @@ const getCommandType = (commandType: string) => {
                 extension: '.ts',
             };
             break;
+        case 'route':
+            type = {
+                name: 'Route',
+                path: `${hasServerDir()}/routes`,
+                extension: '.ts',
+            };
+            break;
         default:
             // show error message
             type = {
