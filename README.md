@@ -93,6 +93,12 @@ And auto open the created file using:
 
 **Nuxt Snippets**: You can use Nuxt snippets by typing `nuxt` for components, `use` for Composables or just start typing Nuxt utils and selecting your snippet from the list.
 
+Nuxt Snippets is enabled by default. You can enable/disable Nuxt snippets from the settings.
+
+```JSON
+ "nuxtr.snippets.nuxt": true
+```
+
 **Custom Snippets**: Easily manage your custom snippets from the sidebar. You can create, edit or delete your snippets.
 
 More on this side of the extension is coming soon!

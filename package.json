@@ -525,7 +525,7 @@
             {
                 "title": "Snippets",
                 "properties": {
-                    "nuxtr.snippets.nuxtSnippets": {
+                    "nuxtr.snippets.nuxt": {
                         "type": "boolean",
                         "default": true,
                         "description": "Enable / Disable Nuxt Snippets"

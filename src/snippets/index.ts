@@ -25,7 +25,7 @@ async function manageSnippetState(snippetSource: string) {
         mkdirSync(disabledSnippetSourceDir, { recursive: true });
     }
 
-    if (!snippetsConfigurations.nuxtSnippets) {
+    if (!snippetsConfigurations.nuxt) {
         const files = readdirSync(disabledSnippetSourceDir);
         for (const file of files) {
             await move(join(disabledSnippetSourceDir, file), join(snippetSourceDir, file));
