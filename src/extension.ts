@@ -15,6 +15,7 @@ const commandList = [
     { command: 'nuxtr.createPlugin', function: nuxtrCommands.createPlugin },
     { command: 'nuxtr.createMiddleware', function: nuxtrCommands.createMiddleware },
     { command: 'nuxtr.createApi', function: nuxtrCommands.createApi },
+    { command: 'nuxtr.createRoute', function: nuxtrCommands.createRoute },
     { command: 'nuxtr.createStore', function: nuxtrCommands.createStore },
     { command: 'nuxtr.projectStructure', function: nuxtrCommands.projectStructure },
     { command: 'nuxtr.openDocumentation', function: nuxtrCommands.openDocumentation },
@@ -47,6 +48,7 @@ const commandList = [
     { command: 'nuxtr.directCreatePlugin', function: (filePath: Uri) => nuxtrCommands.directCreatePlugin(filePath.path) },
     { command: 'nuxtr.directCreateMiddleware', function: (filePath: Uri) => nuxtrCommands.directCreateMiddleware(filePath.path) },
     { command: 'nuxtr.directCreateApi', function: (filePath: Uri) => nuxtrCommands.directCreateApi(filePath.path) },
+    { command: 'nuxtr.directCreateRoute', function: (filePath: Uri) => nuxtrCommands.directCreateRoute(filePath.path) },
     { command: 'nuxtr.directCreateStore', function: (filePath: Uri) => nuxtrCommands.directCreateStore(filePath.path) },
 ];
 

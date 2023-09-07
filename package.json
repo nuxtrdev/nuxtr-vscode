@@ -272,6 +272,10 @@
                     "when": "false"
                 },
                 {
+                    "command": "nuxtr.directCreateRoute",
+                    "when": "false"
+                },
+                {
                     "command": "nuxtr.directCreateComposable",
                     "when": "false"
                 },
@@ -362,7 +366,12 @@
                 },
                 {
                     "command": "nuxtr.directCreateApi",
-                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(server.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(server.*)/ && explorerResourceIsFolder)",
+                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(api.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(api.*)/ && explorerResourceIsFolder)",
+                    "group": "navigation"
+                },
+                {
+                    "command": "nuxtr.directCreateRoute",
+                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(routes.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(routes.*)/ && explorerResourceIsFolder)",
                     "group": "navigation"
                 },
                 {
@@ -601,6 +610,12 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.createRoute",
+                "title": "Create new Route",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.directCreateApi",
                 "title": "New API...",
                 "shortTitle": "Create new API",
@@ -608,8 +623,15 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.directCreateRoute",
+                "title": "New Route...",
+                "shortTitle": "Create new Route",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.projectStructure",
-                "title": "Create project directories",
+                "title": "Nuxt project structure...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
