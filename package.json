@@ -8,7 +8,8 @@
         "vscode": "^1.81.0"
     },
     "categories": [
-        "Other"
+        "Programming Languages",
+        "Snippets"
     ],
     "repository": "https://github.com/nuxtrdev/nuxtr-vscode",
     "homepage": "https://nuxtr.com",
@@ -21,11 +22,11 @@
     "license": "MIT",
     "keywords": [
         "Nuxt",
-        "nuxt.js",
         "Vue",
-        "Vue.js",
-        "DX",
-        "Nuxt Framework"
+        "Nuxt Framework",
+        "VSCode",
+        "Nuxtr",
+        "Nuxtr VSCode"
     ],
     "contributes": {
         "snippets": [
@@ -60,6 +61,14 @@
             {
                 "language": "typescript",
                 "path": "./snippets/nuxt/utils.json"
+            },
+            {
+                "language": "javascript",
+                "path": "./snippets/nitro/imports.json"
+            },
+            {
+                "language": "typescript",
+                "path": "./snippets/nitro/imports.json"
             }
         ],
         "languages": [
@@ -538,6 +547,11 @@
                         "type": "boolean",
                         "default": true,
                         "description": "Enable / Disable Nuxt Snippets"
+                    },
+                    "nuxtr.snippets.nitro": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable / Disable Nitro Snippets"
                     }
                 }
             }

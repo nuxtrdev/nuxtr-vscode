@@ -1,0 +1,44 @@
+{
+    "defineNitroPlugin": {
+        "prefix": "defineNitroPlugin",
+        "description": "Define Nitro Plugins",
+        "body": [
+            "export default defineNitroPlugin((${1:plugin}) => {",
+            "  $2",
+            "})"
+        ],
+        "isFileTemplate": true
+    },
+    "getRouteRules": {
+        "prefix": "getRouteRules",
+        "description": "Get Route Rules",
+        "body": [
+            "const ${1:routeRules} = getRouteRules($2);"
+        ]
+    },
+    "useNitroApp": {
+        "prefix": "useNitroApp",
+        "description": "Use Nitro App",
+        "body": [
+            "const ${1:nitroApp} = useNitroApp();"
+        ]
+    },
+    "useStorage": {
+        "prefix": "useStorage",
+        "description": "Use Storage",
+        "body": [
+            "const ${1:storage} = useStorage();"
+        ]
+    },
+    "defineRenderHandler": {
+        "prefix": "defineRenderHandler",
+        "body": [
+            "export function defineRenderHandler(${1:handler}) {",
+            "  return eventHandler(async (event) => {",
+            "    ${2:}",
+            "  })",
+            "}"
+        ],
+        "description": "defineRenderHandler"
+    }
+}

@@ -6,6 +6,7 @@ import { getConfiguration } from '../utils';
 
 export enum SnippetSource {
     nuxt = 'Nuxt',
+    nitro = 'Nitro',
 }
 
 const homeDir = os.homedir()
@@ -17,7 +18,7 @@ const extensionName = 'nuxtr.nuxtr-vscode'
 const nuxtrVersion = extensions.getExtension(extensionName)?.packageJSON.version
 let extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`)
 
-async function manageSnippetState(snippetSource: string) {
+async function manageSnippetState(snippetSource: string, snippetConfig: boolean) {
     const snippetSourceDir = join(extensionDir, snippetsDir, snippetSource);
     const disabledSnippetSourceDir = join(extensionDir, disabledSnippetsDir, snippetSource);
 
@@ -25,7 +26,7 @@ async function manageSnippetState(snippetSource: string) {
         mkdirSync(disabledSnippetSourceDir, { recursive: true });
     }
 
-    if (!snippetsConfigurations.nuxt) {
+    if (!snippetConfig) {
         const files = readdirSync(disabledSnippetSourceDir);
         for (const file of files) {
             await move(join(disabledSnippetSourceDir, file), join(snippetSourceDir, file));
@@ -43,6 +44,7 @@ async function manageSnippetState(snippetSource: string) {
 }
 
 
-export const toggleSnippets = async (dir: string) => {
-    await manageSnippetState(SnippetSource.nuxt);
+export const toggleSnippets = async () => {
+    await manageSnippetState(SnippetSource.nuxt, snippetsConfigurations.nuxt);
+    await manageSnippetState(SnippetSource.nitro, snippetsConfigurations.nitro);
 }

@@ -47,5 +47,6 @@ export interface NuxtrConfiguration {
   };
     snippets: {
         nuxt: boolean;
+        nitro: boolean;
   }
 }
