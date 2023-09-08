@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir } from '../utils'
-import { apiTemplate } from '../templates/typeScriptFiles'
+import { nitroDefaultTemplate } from '../templates/typeScriptFiles'
 
 let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
 
@@ -26,7 +26,7 @@ const createApi = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'api',
-                content: apiTemplate(name)
+                content: nitroDefaultTemplate(name)
             })
         })
 }
@@ -52,7 +52,7 @@ const createRoute = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'route',
-                content: apiTemplate(name)
+                content: nitroDefaultTemplate(name)
             })
         })
 }
@@ -73,7 +73,7 @@ const directCreateApi = (path: string) => {
             let filePath = `${path}/${name}.ts`
             createFile({
                 fileName: `${name}.ts`,
-                content: apiTemplate(name),
+                content: nitroDefaultTemplate(name),
                 fullPath: filePath,
             })
         })
@@ -95,7 +95,7 @@ const directCreateRoute = (path: string) => {
 
             createFile({
                 fileName: `${name}.ts`,
-                content: apiTemplate(name),
+                content: nitroDefaultTemplate(name),
                 fullPath: filePath,
             })
         })
