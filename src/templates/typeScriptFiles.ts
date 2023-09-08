@@ -3,8 +3,8 @@ function capitalizeFirstLettee(name: string) {
         .replace(/\/([a-z])/g, (g) => g[1].toUpperCase())
 }
 
-export const nitroDefaultTemplate = (name: string) => `export default defineEventHandler(async (event) => {
-  return 'Hello ${name}'
+export const nitroDefaultTemplate = `export default defineEventHandler(async (event) => {
+  return 'Hello Nitro'
 })
 `
 

@@ -44,7 +44,7 @@ const directCreateMiddleware = (path: string) => {
 
             createFile({
                 fileName: `${name}.ts`,
-                content: filePath.includes(`${serverDir}`) ? nitroDefaultTemplate('nitroMiddleware') : nuxtMiddlewareTemplate,
+                content: filePath.includes(`${serverDir}`) ? nitroDefaultTemplate : nuxtMiddlewareTemplate,
                 fullPath: filePath,
             })
         })

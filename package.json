@@ -185,7 +185,7 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
-                    "command": "nuxtr.createApi",
+                    "command": "nuxtr.createNitroAPI",
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
@@ -277,11 +277,11 @@
                     "when": "false"
                 },
                 {
-                    "command": "nuxtr.directCreateApi",
+                    "command": "nuxtr.directCreateNitroAPI",
                     "when": "false"
                 },
                 {
-                    "command": "nuxtr.directCreateRoute",
+                    "command": "nuxtr.directCreateNitroRoute",
                     "when": "false"
                 },
                 {
@@ -374,12 +374,12 @@
                     "group": "navigation"
                 },
                 {
-                    "command": "nuxtr.directCreateApi",
+                    "command": "nuxtr.directCreateNitroAPI",
                     "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(api.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(api.*)/ && explorerResourceIsFolder)",
                     "group": "navigation"
                 },
                 {
-                    "command": "nuxtr.directCreateRoute",
+                    "command": "nuxtr.directCreateNitroRoute",
                     "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(routes.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(routes.*)/ && explorerResourceIsFolder)",
                     "group": "navigation"
                 },
@@ -600,6 +600,12 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.createNitroPlugin",
+                "title": "Create new Nitro Plugin",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.directCreatePlugin",
                 "title": "New Plugin...",
                 "category": "Nuxtr",
@@ -618,26 +624,38 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
-                "command": "nuxtr.createApi",
-                "title": "Create new API",
+                "command": "nuxtr.createNitroAPI",
+                "title": "Create new Nitro API",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
-                "command": "nuxtr.createRoute",
-                "title": "Create new Route",
+                "command": "nuxtr.createNitroPlugin",
+                "title": "Create new Nitro Plugin",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
-                "command": "nuxtr.directCreateApi",
+                "command": "nuxtr.createNitroMiddleware",
+                "title": "Create new Nitro Middleware",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.createNitroRoute",
+                "title": "Create new Nitro Route",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.directCreateNitroAPI",
                 "title": "New API...",
                 "shortTitle": "Create new API",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
-                "command": "nuxtr.directCreateRoute",
+                "command": "nuxtr.directCreateNitroRoute",
                 "title": "New Route...",
                 "shortTitle": "Create new Route",
                 "category": "Nuxtr",

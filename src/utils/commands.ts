@@ -70,6 +70,20 @@ const getCommandType = (commandType: string) => {
                 extension: '.ts',
             };
             break;
+        case 'nitroPlugin':
+            type = {
+                name: 'Plugin',
+                path: `${hasServerDir()}/plugins`,
+                extension: '.ts',
+            };
+            break;
+        case 'nitroMiddleware':
+            type = {
+                name: 'Middleware',
+                path: `${hasServerDir()}/middleware`,
+                extension: '.ts',
+            };
+            break;
         default:
             // show error message
             type = {
