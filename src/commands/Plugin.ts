@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir } from '../utils'
-import { pluginTemplate } from '../templates/typeScriptFiles'
+import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir } from '../utils'
+import { nuxtPluginTemplate, nitroPluginTemplate } from '../templates/typeScriptFiles'
 
 const createPlugin = () => {
     window
@@ -21,7 +21,7 @@ const createPlugin = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'plugins',
-                content: pluginTemplate
+                content: nuxtPluginTemplate
             })
 
         })
@@ -29,6 +29,8 @@ const createPlugin = () => {
 
 
 const directCreatePlugin = (path: string) => {
+    const serverDir = hasServerDir()
+
     window
         .showInputBox({
             prompt: 'What is your plugin name?',
@@ -39,9 +41,10 @@ const directCreatePlugin = (path: string) => {
 
             let filePath = `${path}/${name}.ts`
 
+
             createFile({
                 fileName: `${name}.ts`,
-                content: pluginTemplate,
+                content: filePath.includes(`${serverDir}`) ? nitroPluginTemplate : nuxtPluginTemplate,
                 fullPath: filePath,
             })
         })

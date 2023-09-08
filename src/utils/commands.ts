@@ -58,15 +58,29 @@ const getCommandType = (commandType: string) => {
             break;
         case 'api':
             type = {
-                name: 'Api',
+                name: 'APIs',
                 path: `${hasServerDir()}/api`,
                 extension: '.ts',
             };
             break;
         case 'route':
             type = {
-                name: 'Route',
+                name: 'Routes',
                 path: `${hasServerDir()}/routes`,
+                extension: '.ts',
+            };
+            break;
+        case 'nitroPlugin':
+            type = {
+                name: 'Plugins',
+                path: `${hasServerDir()}/plugins`,
+                extension: '.ts',
+            };
+            break;
+        case 'nitroMiddleware':
+            type = {
+                name: 'Middleware',
+                path: `${hasServerDir()}/middleware`,
                 extension: '.ts',
             };
             break;

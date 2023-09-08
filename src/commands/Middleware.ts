@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir } from '../utils'
-import { middlewareTemplate } from '../templates/typeScriptFiles'
+import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir } from '../utils'
+import { nuxtMiddlewareTemplate, nitroDefaultTemplate } from '../templates/typeScriptFiles'
 
 const createMiddleware = () => {
     window
@@ -22,7 +22,7 @@ const createMiddleware = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'middleware',
-                content: middlewareTemplate
+                content: nuxtMiddlewareTemplate
             })
 
 
@@ -30,6 +30,8 @@ const createMiddleware = () => {
 }
 
 const directCreateMiddleware = (path: string) => {
+    const serverDir = hasServerDir()
+
     window
         .showInputBox({
             prompt: 'What is your middleware name?',
@@ -42,7 +44,7 @@ const directCreateMiddleware = (path: string) => {
 
             createFile({
                 fileName: `${name}.ts`,
-                content: middlewareTemplate,
+                content: filePath.includes(`${serverDir}`) ? nitroDefaultTemplate : nuxtMiddlewareTemplate,
                 fullPath: filePath,
             })
         })

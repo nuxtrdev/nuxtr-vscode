@@ -1,11 +1,11 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir } from '../utils'
-import { apiTemplate } from '../templates/typeScriptFiles'
+import { nitroDefaultTemplate, nitroPluginTemplate } from '../templates/typeScriptFiles'
 
 let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
 
 
-const createApi = () => {
+const createNitroAPI = () => {
     const apiDir = `${serverDir}/api`
 
     window
@@ -26,12 +26,12 @@ const createApi = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'api',
-                content: apiTemplate(name)
+                content: nitroDefaultTemplate
             })
         })
 }
 
-const createRoute = () => {
+const createNitroRoute = () => {
     const routeDir = `${serverDir}/routes`
 
     window
@@ -52,13 +52,65 @@ const createRoute = () => {
                 name,
                 subFolders: subFolders,
                 commandType: 'route',
-                content: apiTemplate(name)
+                content: nitroDefaultTemplate
+            })
+        })
+}
+
+const createNitroPlugin = () => {
+    const pluginsDir = `${serverDir}/plugins`
+
+    window
+        .showInputBox({
+            prompt: 'What is your route name?',
+            placeHolder: 'Route name',
+        })
+        .then((name) => {
+            if (!name) { return }
+
+
+            createDir('server')
+            createDir('server/plugins')
+
+            let subFolders = createSubFolders(pluginsDir, 'nitroPlugin')
+
+            showSubFolderQuickPick({
+                name,
+                subFolders: subFolders,
+                commandType: 'nitroPlugin',
+                content: nitroPluginTemplate
+            })
+        })
+}
+
+const createNitroMiddleware = () => {
+    const middlewareDir = `${serverDir}/middleware`
+
+    window
+        .showInputBox({
+            prompt: 'What is your route name?',
+            placeHolder: 'Route name',
+        })
+        .then((name) => {
+            if (!name) { return }
+
+
+            createDir('server')
+            createDir('server/middleware')
+
+            let subFolders = createSubFolders(middlewareDir, 'nitroMiddleware')
+
+            showSubFolderQuickPick({
+                name,
+                subFolders: subFolders,
+                commandType: 'nitroMiddleware',
+                content: nitroDefaultTemplate
             })
         })
 }
 
 
-const directCreateApi = (path: string) => {
+const directCreateNitroAPI = (path: string) => {
     window
         .showInputBox({
             prompt: 'What is your api name?',
@@ -73,13 +125,13 @@ const directCreateApi = (path: string) => {
             let filePath = `${path}/${name}.ts`
             createFile({
                 fileName: `${name}.ts`,
-                content: apiTemplate(name),
+                content: nitroDefaultTemplate,
                 fullPath: filePath,
             })
         })
 }
 
-const directCreateRoute = (path: string) => {
+const directCreateNitroRoute = (path: string) => {
     window
         .showInputBox({
             prompt: 'What is your route name?',
@@ -95,10 +147,17 @@ const directCreateRoute = (path: string) => {
 
             createFile({
                 fileName: `${name}.ts`,
-                content: apiTemplate(name),
+                content: nitroDefaultTemplate,
                 fullPath: filePath,
             })
         })
 }
 
-export { createApi, directCreateApi, createRoute, directCreateRoute}
+export {
+    createNitroAPI,
+    directCreateNitroAPI,
+    createNitroRoute,
+    directCreateNitroRoute,
+    createNitroPlugin,
+    createNitroMiddleware
+}

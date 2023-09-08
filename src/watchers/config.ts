@@ -6,6 +6,6 @@ const snippetsConfig = getConfiguration().snippets
 
 export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
     console.log('snippets', snippetsConfig);
-    await toggleSnippets('Nuxt')
+    await toggleSnippets()
     return Promise.resolve();
 });

@@ -4,7 +4,7 @@ import { createComposable, directCreateComposable } from './Composable'
 import { createLayout, directCreateLayout } from './Layout'
 import { createPlugin, directCreatePlugin } from './Plugin'
 import { createMiddleware, directCreateMiddleware } from './Middleware'
-import { createApi, directCreateApi, createRoute, directCreateRoute } from './Nitro'
+import { createNitroAPI, directCreateNitroAPI, createNitroRoute, directCreateNitroRoute, createNitroPlugin, createNitroMiddleware } from './Nitro'
 import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtBuildModule, nuxtAnalyze, nuxtInfo, } from './TerminalCommands'
@@ -31,10 +31,12 @@ const commands = {
     directCreatePlugin,
     createMiddleware,
     directCreateMiddleware,
-    createApi,
-    createRoute,
-    directCreateApi,
-    directCreateRoute,
+    createNitroAPI,
+    createNitroRoute,
+    directCreateNitroAPI,
+    directCreateNitroRoute,
+    createNitroPlugin,
+    createNitroMiddleware,
     projectStructure,
     openDocumentation,
     openModules,
