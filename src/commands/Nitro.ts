@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir } from '../utils'
-import { nitroDefaultTemplate, nitroPluginTemplate } from '../templates/typeScriptFiles'
+import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates/typeScriptFiles'
 
 let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
 
@@ -83,6 +83,32 @@ const createNitroPlugin = () => {
         })
 }
 
+const createNitroUtil = () => {
+    const utilsDir = `${serverDir}/plugins`
+
+    window
+        .showInputBox({
+            prompt: 'What is your utility name?',
+            placeHolder: 'Utility name',
+        })
+        .then((name) => {
+            if (!name) { return }
+
+
+            createDir('server')
+            createDir('server/plugins')
+
+            let subFolders = createSubFolders(utilsDir, 'nitroUtil')
+
+            showSubFolderQuickPick({
+                name,
+                subFolders: subFolders,
+                commandType: 'nitroUtil',
+                content: nitroUtilTemplate
+            })
+        })
+}
+
 const createNitroMiddleware = () => {
     const middlewareDir = `${serverDir}/middleware`
 
@@ -159,5 +185,6 @@ export {
     createNitroRoute,
     directCreateNitroRoute,
     createNitroPlugin,
-    createNitroMiddleware
+    createNitroMiddleware,
+    createNitroUtil
 }

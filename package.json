@@ -181,6 +181,10 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                    "command": "nuxtr.createUtil",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
                     "command": "nuxtr.createMiddleware",
                     "when": "nuxtr.isNuxtProject"
                 },
@@ -404,6 +408,11 @@
                     "group": "navigation"
                 },
                 {
+                    "command": "nuxtr.directCreateUtil",
+                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(utils.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(utils.*)/ && explorerResourceIsFolder)",
+                    "group": "navigation"
+                },
+                {
                     "command": "nuxtr.directCreateComposable",
                     "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(composables.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(composables.*)/ && explorerResourceIsFolder)",
                     "group": "navigation"
@@ -600,14 +609,32 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.createUtil",
+                "title": "Create new Utility",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.createNitroPlugin",
                 "title": "Create new Nitro Plugin",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.createNitroUtil",
+                "title": "Create new Nitro Utility",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.directCreatePlugin",
                 "title": "New Plugin...",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.directCreateUtil",
+                "title": "New Utility...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
@@ -626,12 +653,6 @@
             {
                 "command": "nuxtr.createNitroAPI",
                 "title": "Create new Nitro API",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroPlugin",
-                "title": "Create new Nitro Plugin",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },

@@ -84,6 +84,20 @@ const getCommandType = (commandType: string) => {
                 extension: '.ts',
             };
             break;
+        case 'nuxtUtil':
+            type = {
+                name: 'Utilities',
+                path: `utils`,
+                extension: '.ts',
+            };
+            break;
+        case 'nitroUtil':
+            type = {
+                name: 'Utility',
+                path: `${hasServerDir()}/utils`,
+                extension: '.ts',
+            };
+            break;
         default:
             // show error message
             type = {
