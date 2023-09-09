@@ -16,9 +16,11 @@ const commandList = [
     { command: 'nuxtr.createMiddleware', function: nuxtrCommands.createMiddleware },
     { command: 'nuxtr.createNitroAPI', function: nuxtrCommands.createNitroAPI },
     { command: 'nuxtr.createNitroPlugin', function: nuxtrCommands.createNitroPlugin },
+    { command: 'nuxtr.createNitroUtil', function: nuxtrCommands.createNitroUtil },
     { command: 'nuxtr.createNitroMiddleware', function: nuxtrCommands.createNitroMiddleware },
     { command: 'nuxtr.createNitroRoute', function: nuxtrCommands.createNitroRoute },
     { command: 'nuxtr.createStore', function: nuxtrCommands.createStore },
+    { command: 'nuxtr.createUtil', function: nuxtrCommands.createUtil },
     { command: 'nuxtr.projectStructure', function: nuxtrCommands.projectStructure },
     { command: 'nuxtr.openDocumentation', function: nuxtrCommands.openDocumentation },
     { command: 'nuxtr.openModules', function: nuxtrCommands.openModules },
@@ -52,6 +54,7 @@ const commandList = [
     { command: 'nuxtr.directCreateNitroAPI', function: (filePath: Uri) => nuxtrCommands.directCreateNitroAPI(filePath.path) },
     { command: 'nuxtr.directCreateNitroRoute', function: (filePath: Uri) => nuxtrCommands.directCreateNitroRoute(filePath.path) },
     { command: 'nuxtr.directCreateStore', function: (filePath: Uri) => nuxtrCommands.directCreateStore(filePath.path) },
+    { command: 'nuxtr.directCreateUtil', function: (filePath: Uri) => nuxtrCommands.directCreateUtil(filePath.path) },
 ];
 
 // categorize commands and functions
