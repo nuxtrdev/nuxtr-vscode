@@ -51,6 +51,7 @@ With just a few clicks or using commands and context menus, you can effortlessly
 You can customize Vue file templates using the following settings:
 
 ```JSON
+  "vueFiles.template.defaultLanguage": "html",
   "nuxtr.vueFiles.firstTag": "template",
   "nuxtr.vueFiles.script.type": "setup",
   "nuxtr.vueFiles.script.defaultLanguage": "ts",
