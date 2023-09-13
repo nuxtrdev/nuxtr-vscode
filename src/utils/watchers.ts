@@ -1,6 +1,6 @@
 import { workspace, window, commands, ConfigurationChangeEvent, Disposable } from 'vscode';
 
-export function createConfigWatcher(configKey: string, callback?: () => Promise<void>): Disposable {
+export function createConfigWatcher(configKey: string, callback?: () => Promise<void>, defaultBehavior?: boolean): Disposable {
     const watcher = workspace.onDidChangeConfiguration(async (event: ConfigurationChangeEvent) => {
         if (event.affectsConfiguration(configKey)) {
             // Execute the provided callback when the configuration changes.
@@ -8,17 +8,19 @@ export function createConfigWatcher(configKey: string, callback?: () => Promise<
                 await callback();
             }
 
-            const question = window.showInformationMessage(
-                `Nuxtr configuration updated.`,
-                'Reload Window'
-            );
+            if (defaultBehavior) {
+                const question = window.showInformationMessage(
+                    `Nuxtr configuration updated.`,
+                    'Reload Window'
+                );
 
-            question.then((answer) => {
-                if (answer === 'Reload Window') {
-                    commands.executeCommand('workbench.action.reloadWindow');
+                question.then((answer) => {
+                    if (answer === 'Reload Window') {
+                        commands.executeCommand('workbench.action.reloadWindow');
 
-                }
-            });
+                    }
+                });
+            }
         }
     });
 

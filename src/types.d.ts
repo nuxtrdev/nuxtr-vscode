@@ -1,3 +1,5 @@
+import { TSConfig } from 'pkg-types'
+
 export interface ConfigurationProperty {
     title?: string;
     description?: string;
@@ -11,42 +13,51 @@ export interface ConfigurationProperty {
 }
 
 export interface NuxtrConfiguration {
-  openItemsAfterCreation: boolean;
-  defaultPackageManager: "null" | "Yarn" | "NPM" | "pnpm";
-  monorepoMode: {
-    DirectoryName: string | null;
-  };
-  vueFiles: {
-    firstTag: "template" | "script";
-    script: {
-      type: "setup" | "normal";
-      defaultLanguage: "js" | "ts";
+    openItemsAfterCreation: boolean;
+    defaultPackageManager: "null" | "Yarn" | "NPM" | "pnpm";
+    monorepoMode: {
+        DirectoryName: string | null;
     };
-    style: {
-      addStyleTag: boolean;
-      alwaysScoped: boolean;
-      defaultLanguage:
-        | "css"
-        | "scss"
-        | "sass"
-        | "less"
-        | "stylus"
-        | "postcss";
+    vueFiles: {
+        template: {
+            defaultLanguage: "html" | "pug";
+        }
+        firstTag: "template" | "script";
+        script: {
+            type: "setup" | "normal";
+            defaultLanguage: "js" | "ts";
+        };
+        style: {
+            addStyleTag: boolean;
+            alwaysScoped: boolean;
+            defaultLanguage:
+            | "css"
+            | "scss"
+            | "sass"
+            | "less"
+            | "stylus"
+            | "postcss";
+        };
+        pages: {
+            defaultTemplate: string;
+        };
+        layouts: {
+            defaultTemplate: string;
+        };
     };
-    pages: {
-      defaultTemplate: string;
+    intellisense: {
+        vueFiles: boolean;
+        nuxtignore: boolean;
+        nuxtrc: boolean;
     };
-    layouts: {
-      defaultTemplate: string;
-    };
-  };
-  intellisense: {
-    vueFiles: boolean;
-    nuxtignore: boolean;
-    nuxtrc: boolean;
-  };
     snippets: {
         nuxt: boolean;
         nitro: boolean;
-  }
+    }
+}
+
+interface TSConfigNuxt extends TSConfig {
+    vueCompilerOptions?: {
+        plugins?: string[] | undefined;
+    }
 }

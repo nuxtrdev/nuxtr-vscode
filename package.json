@@ -467,6 +467,15 @@
                 "title": "Vue Files",
                 "type": "object",
                 "properties": {
+                    "nuxtr.vueFiles.template.defaultLanguage": {
+                        "type": "string",
+                        "default": "html",
+                        "enum": [
+                            "html",
+                            "pug"
+                        ],
+                        "description": "Default language for script tag"
+                    },
                     "nuxtr.vueFiles.firstTag": {
                         "type": "string",
                         "default": "template",
