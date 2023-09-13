@@ -139,6 +139,15 @@ export const detectPackageManagerByName = () => {
         }
     }
 
+    if (projectDirectory.includes('bun.lockb')) {
+        return {
+            name: 'Bun',
+            lockFile: 'bun.lockb',
+            installCommand: 'bun install',
+            uninstallCommand: 'bun remove',
+        }
+    }
+
     return undefined
 }
 
@@ -151,6 +160,7 @@ export const getInstallationCommand = async (packageName: string, devFlag: boole
         Yarn: `yarn add ${packageName} ${devFlag ? '-D' : ''}`,
         NPM: `npm install ${packageName} ${devFlag ? '-D' : ''}`,
         pnpm: `pnpm add ${packageName} ${devFlag ? '-D' : ''}`,
+        Bun: `bun install ${packageName} ${devFlag ? '-D' : ''}`,
     }
 
     if (packageManager) {

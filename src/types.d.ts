@@ -12,7 +12,7 @@ export interface ConfigurationProperty {
 
 export interface NuxtrConfiguration {
   openItemsAfterCreation: boolean;
-  defaultPackageManager: "null" | "Yarn" | "NPM" | "pnpm";
+  defaultPackageManager: "null" | "Yarn" | "NPM" | "pnpm" | "Bun";
   monorepoMode: {
     DirectoryName: string | null;
   };
