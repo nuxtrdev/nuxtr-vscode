@@ -163,6 +163,19 @@ export class ModulesView implements vscode.WebviewViewProvider {
                     newTerminal(`Nuxtr: ${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
+            case 'Bun':
+                if (script.includes('build') || script.includes('generate')) {
+                    runCommand({
+                        command: `bun --bun run ${script}`,
+                        message: `Nuxtr: ${script}`,
+                        successMessage: `Nuxtr: ${script} successfully`,
+                        errorMessage: `Nuxtr: ${script} failed`,
+                        logger: true
+                    })
+                } else {
+                    newTerminal(`Nuxtr: ${script}`, `bun ${script}`, `${projectRootDirectory()}`)
+                }
+                break
             default:
                 vscode.window.showErrorMessage('Nuxtr: No package manager found')
         }

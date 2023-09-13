@@ -17,6 +17,12 @@ const pm = [
         installCommand: 'pnpm install',
         uninstallCommand: 'pnpm remove',
     },
+    {
+        name: 'Bun',
+        lockFile: 'bun.lockb',
+        installCommand: 'bun install',
+        uninstallCommand: 'bun remove',
+    }
 ]
 
 export default pm
