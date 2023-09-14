@@ -3,7 +3,7 @@
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
     "version": "0.1.11",
-    "packageManager": "pnpm@8.7.4",
+    "packageManager": "pnpm@8.7.5",
     "engines": {
         "vscode": "^1.81.0"
     },
@@ -1009,24 +1009,24 @@
     "devDependencies": {
         "@types/mocha": "^10.0.1",
         "@types/node": "20.4.1",
-        "@types/vscode": "^1.81.0",
-        "@typescript-eslint/eslint-plugin": "^6.6.0",
-        "@typescript-eslint/parser": "^6.6.0",
+        "@types/vscode": "^1.82.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.0",
+        "@typescript-eslint/parser": "^6.7.0",
         "@vscode/test-electron": "^2.3.4",
-        "esbuild": "^0.19.2",
-        "eslint": "^8.48.0",
+        "esbuild": "^0.19.3",
+        "eslint": "^8.49.0",
         "mocha": "^10.2.0",
         "typescript": "^5.2.2"
     },
     "dependencies": {
-        "@nuxt/schema": "^3.7.1",
+        "@nuxt/schema": "^3.7.3",
         "@types/fs-extra": "^11.0.1",
         "@types/util.promisify": "^1.0.5",
         "axios": "^1.5.0",
         "destr": "^2.0.1",
         "fs": "^0.0.1-security",
         "fs-extra": "^11.1.1",
-        "magicast": "^0.2.10",
+        "magicast": "^0.2.11",
         "path": "^0.12.7",
         "pkg-types": "^1.0.3",
         "util": "^0.12.5"
