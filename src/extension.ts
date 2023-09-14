@@ -39,6 +39,7 @@ const commandList = [
     { command: 'nuxtr.openSettings', function: nuxtrCommands.openSettings },
     { command: 'nuxtr.configureCSS', function: nuxtrCommands.configureCSS },
     { command: 'nuxtr.configureLinters', function: nuxtrCommands.configureLinters },
+    { command: 'nuxtr.configurePug', function: nuxtrCommands.configurePug },
     { command: 'nuxtr.createPageTemplate', function: nuxtrCommands.createPageTemplate },
     { command: 'nuxtr.createLayoutTemplate', function: nuxtrCommands.createLayoutTemplate },
     { command: 'nuxtr.createEmptyFileTemplate', function: nuxtrCommands.createEmptyFileTemplate },

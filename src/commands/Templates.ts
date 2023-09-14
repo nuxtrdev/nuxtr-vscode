@@ -10,8 +10,10 @@ export enum PugConfigurationSteps {
     addPluginToTSConfig = 'Add @vue/language-plugin-pug to tsconfig.json',
 }
 
+const defaultOptions = Object.values(PugConfigurationSteps)
 
-export const configurePug = (options: string[]) => {
+
+export const configurePug = (options: string[] = defaultOptions) => {
     try {
         window
             .showQuickPick(options, {

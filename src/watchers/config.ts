@@ -12,7 +12,6 @@ const watcherDefaultBehavior = false
 const dependencies = getProjectDependencies() as unknown as Array<string>;
 
 export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
-    console.log('snippets', getConfiguration().snippets);
     await toggleSnippets()
     return Promise.resolve();
 });

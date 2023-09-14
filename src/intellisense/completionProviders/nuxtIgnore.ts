@@ -64,9 +64,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
     }
 
     private getSubDirectories(directory: string): string[] {
-        console.log('getSubDirectories', directory);
         directory = directory.replace(/!/g, '');
-        console.log('getSubDirectories', directory);
 
         try {
             if (fs.existsSync(directory)) {

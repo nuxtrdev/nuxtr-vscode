@@ -265,6 +265,10 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                    "command": "nuxtr.configurePug",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
                     "command": "nuxtr.directToggleDevTools",
                     "when": "nuxtr.isNuxtProject"
                 },
@@ -869,6 +873,12 @@
             {
                 "command": "nuxtr.configureLinters",
                 "title": "Configure Linters",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.configurePug",
+                "title": "Configure Pug",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
