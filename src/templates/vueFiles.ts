@@ -1,8 +1,17 @@
-const templateTag = (type: string) => `<template>
+const templateTag = (type: string, language: string) => {
+    if (language === 'html') {
+        return `<template>
   <div>
     ${type === 'layout' ? '<slot />' : ''}
   </div>
 </template>\n\n`
+    } else {
+        return `<template>
+  div
+    ${type === 'layout' ? 'slot' : ''}
+</template>\n\n`
+    }
+}
 
 function generateStyleTag(lang: string, scoped: boolean) {
     return `
