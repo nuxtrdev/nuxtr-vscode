@@ -19,6 +19,7 @@ export function generateVueFileTemplate(type: string, template?: string) {
 
 export function generateVueFileBasicTemplate(type: string) {
     let fileTemplate = ``
+    let templateLang = vueFilesConfig.template.defaultLanguage
     let firstTag = vueFilesConfig.firstTag
     let scriptType = vueFilesConfig.script.type
     let addStyleTag = vueFilesConfig.style.addStyleTag
@@ -29,11 +30,11 @@ export function generateVueFileBasicTemplate(type: string) {
     let scriptTag = generateScriptTag(scriptType, lang)
 
     if (firstTag === 'template') {
-        fileTemplate = templateTag(type);
+        fileTemplate = templateTag(type, templateLang);
         fileTemplate += scriptTag;
     } else {
         fileTemplate = scriptTag;
-        fileTemplate += templateTag(type);
+        fileTemplate += templateTag(type, templateLang);
     }
 
     if (addStyleTag) { fileTemplate += generateStyleTag(styleLang, isScoped); }
