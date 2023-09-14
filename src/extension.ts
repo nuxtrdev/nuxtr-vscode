@@ -5,7 +5,7 @@ import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
-import {filesWatcher} from './watchers'
+import { filesWatcher } from './watchers'
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -39,6 +39,7 @@ const commandList = [
     { command: 'nuxtr.openSettings', function: nuxtrCommands.openSettings },
     { command: 'nuxtr.configureCSS', function: nuxtrCommands.configureCSS },
     { command: 'nuxtr.configureLinters', function: nuxtrCommands.configureLinters },
+    { command: 'nuxtr.configurePug', function: nuxtrCommands.configurePug },
     { command: 'nuxtr.createPageTemplate', function: nuxtrCommands.createPageTemplate },
     { command: 'nuxtr.createLayoutTemplate', function: nuxtrCommands.createLayoutTemplate },
     { command: 'nuxtr.createEmptyFileTemplate', function: nuxtrCommands.createEmptyFileTemplate },
@@ -76,12 +77,6 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate codelens
     codelens.activateCodelenses(context)
-
-    //  activate extension config watcher
-    // context.subscriptions.push(configWatcher)
-
-    // snippetsConfigWatcher
-    // context.subscriptions.push(snippetsConfigWatcher)
 
     // global state command
     context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {

@@ -265,6 +265,10 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                    "command": "nuxtr.configurePug",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
                     "command": "nuxtr.directToggleDevTools",
                     "when": "nuxtr.isNuxtProject"
                 },
@@ -467,6 +471,15 @@
                 "title": "Vue Files",
                 "type": "object",
                 "properties": {
+                    "nuxtr.vueFiles.template.defaultLanguage": {
+                        "type": "string",
+                        "default": "html",
+                        "enum": [
+                            "html",
+                            "pug"
+                        ],
+                        "description": "Default language for script tag"
+                    },
                     "nuxtr.vueFiles.firstTag": {
                         "type": "string",
                         "default": "template",
@@ -860,6 +873,12 @@
             {
                 "command": "nuxtr.configureLinters",
                 "title": "Configure Linters",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.configurePug",
+                "title": "Configure Pug",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },

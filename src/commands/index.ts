@@ -14,6 +14,7 @@ import { openSettings } from '../utils/navigation'
 import { upgradePackage, managePackageVersion } from '../utils/dependency'
 import { configureCSS } from './CSS'
 import { configureLinters } from './Linters'
+import { configurePug } from './Templates'
 import { createPageTemplate, createLayoutTemplate, createFileFromTemplate, createEmptyFileTemplate } from './FileTemplates'
 import { nuxtConfigWatcher, directToggleDevTools } from './Devtools'
 import { createUtil, directCreateUtil } from './Util'
@@ -62,6 +63,7 @@ const commands = {
     openSettings,
     configureCSS,
     configureLinters,
+    configurePug,
     createPageTemplate,
     createLayoutTemplate,
     searchAndInstallDependencies,

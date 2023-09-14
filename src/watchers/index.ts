@@ -1,7 +1,8 @@
 import filesWatcher from './files'
-import {  snippetsConfigWatcher } from './config'
+import { snippetsConfigWatcher, templatesConfigWatcher } from './config'
 
-export  {
+export {
     filesWatcher,
-    snippetsConfigWatcher
+    snippetsConfigWatcher,
+    templatesConfigWatcher
 }

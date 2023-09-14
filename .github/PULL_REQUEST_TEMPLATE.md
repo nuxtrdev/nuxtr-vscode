@@ -5,7 +5,7 @@ Please carefully read the contribution docs before creating a pull request
  👉 https://github.com/nuxtrdev/nuxtr-vscode/blob/main/CONTRIBUTING.md
 -->
 
-### 🔗 Linked issue
+### 🔗 Linked issue / Discussion
 
 <!-- Please ensure there is an open issue and mention its number as #123 -->
 
