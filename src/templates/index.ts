@@ -1,24 +1,39 @@
-export const piniaContent = (name: string) => {
-    return `
-import { defineStore } from 'pinia'
+import { eslintConfig, stylelintConfig, stylelintIgnore, eslintIgnore } from './linters'
+import { unoCSSConfig, windiCSSConfig, tailwindCSSConfig, tailwindCSSFile, vuetifyConfigFile } from './css'
+import {
+    nitroDefaultTemplate,
+    nuxtMiddlewareTemplate,
+    composableTemplate,
+    nuxtPluginTemplate,
+    nitroPluginTemplate,
+    nuxtUtilTemplate,
+    nitroUtilTemplate
+} from './typeScriptFiles'
+import { generateStyleTag, generateScriptTag, templateTag } from './vueFiles'
+import { vuexContent, piniaContent, appConfigContent } from './stores'
 
-export const useMy${name.charAt(0).toUpperCase() + name.slice(1)}Store = defineStore({
-  id: 'my${name.charAt(0).toUpperCase() + name.slice(1)}Store',
-  state: () => ({ }),
-  actions: {},
-})
-`}
 
-export const vuexContent = `
-export const state = () => ({ })
-
-export const mutations = {}
-
-export const actions = { }
-`
-
-export const appConfigContent = `
-export default defineAppConfig({
-
-})
-`
+export {
+    unoCSSConfig,
+    windiCSSConfig,
+    tailwindCSSConfig,
+    tailwindCSSFile,
+    vuetifyConfigFile,
+    eslintConfig,
+    stylelintConfig,
+    stylelintIgnore,
+    eslintIgnore,
+    nitroDefaultTemplate,
+    nuxtMiddlewareTemplate,
+    composableTemplate,
+    nuxtPluginTemplate,
+    nitroPluginTemplate,
+    nuxtUtilTemplate,
+    nitroUtilTemplate,
+    generateStyleTag,
+    generateScriptTag,
+    templateTag,
+    vuexContent,
+    piniaContent,
+    appConfigContent
+}

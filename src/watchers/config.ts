@@ -8,9 +8,6 @@ import nuxtrCommands from '../commands'
 import { PugConfigurationSteps } from '../commands/Templates'
 
 
-const watcherDefaultBehavior = false
-const dependencies = getProjectDependencies() as unknown as Array<string>;
-
 export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
     await toggleSnippets()
     return Promise.resolve();
@@ -19,15 +16,19 @@ export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snip
 export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles.template.defaultLanguage', async () => {
     const options: string[] = [];
 
+    const dependencies = await getProjectDependencies();
+
     if (getConfiguration().vueFiles.template.defaultLanguage === 'pug') {
+        const pugDependency = dependencies.find(dep => dep.name === 'pug');
 
-
-        if (!dependencies.includes('pug')) {
-            options.push(PugConfigurationSteps.installPug)
+        if (!pugDependency) {
+            options.push(PugConfigurationSteps.installPug);
         }
 
-        if (!dependencies.includes('@vue/language-plugin-pug')) {
-            options.push(PugConfigurationSteps.installLanguagePlugin)
+        const languagePluginPugDependency = dependencies.find(dep => dep.name === '@vue/language-plugin-pug');
+
+        if (!languagePluginPugDependency) {
+            options.push(PugConfigurationSteps.installLanguagePlugin);
         }
 
         const path = `${projectRootDirectory()}/tsconfig.json`;

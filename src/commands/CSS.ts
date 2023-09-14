@@ -1,22 +1,29 @@
 import { window } from 'vscode'
-import {
-    isNuxtTwo,
-    createFile,
-    projectSrcDirectory,
-    runCommand,
-    openExternalLink,
-    addNuxtModule,
-    getInstallationCommand,
-} from '../utils'
-import {
-    unoCSSConfig,
-    windiCSSConfig,
-    tailwindCSSFile,
-    tailwindCSSConfig,
-    vuetifyConfigFile,
-} from '../templates/css'
+import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSConfig, vuetifyConfigFile } from '../templates'
+import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
+
+enum TailwindOptions {
+    installModule = 'Install @nuxtjs/tailwindcss module and add it to nuxt config',
+    createConfigFile = 'Create TailwindCSS config file',
+    createTailwindCSSFile = 'Create tailwind.css file inside assets/css',
+}
+
+enum WindiOptions {
+    installModule = 'Install nuxt-windicss module and add it to nuxt config',
+    createConfigFile = 'Create WindiCSS config file',
+}
+
+enum UnoCSSOptions {
+    installModule = 'Install unocss/nuxt module and add it to nuxt config',
+    createConfigFile = 'Create uno.config.ts file',
+}
+
+enum VuetifyOptions {
+    installModule = 'Install @nuxtjs/vuetify module and add it to nuxt config',
+    createConfigFile = 'Create vuetify.options.js file',
+}
 
 function configureCSS() {
     window
@@ -39,11 +46,8 @@ function configureCSS() {
 
 const configureTailwind = () => {
     try {
-        const tailwindOptions = [
-            'Install @nuxtjs/tailwindcss module and add it to nuxt config',
-            'Create TailwindCSS config file',
-            'Create tailwind.css file inside assets/css',
-        ]
+
+        const tailwindOptions = Object.values(TailwindOptions)
 
         window
             .showQuickPick(tailwindOptions, {
@@ -52,7 +56,7 @@ const configureTailwind = () => {
             })
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes('Install @nuxtjs/tailwindcss module and add it to nuxt config')) {
+                    if (selections.includes(TailwindOptions.installModule)) {
                         const moduleName = '@nuxtjs/tailwindcss'
                         const command = await getInstallationCommand(moduleName, true)
 
@@ -65,7 +69,7 @@ const configureTailwind = () => {
                         await addNuxtModule({ npm: moduleName })
                     }
 
-                    if (selections.includes('Create tailwind.css file inside assets/css')) {
+                    if (selections.includes(TailwindOptions.createTailwindCSSFile)) {
                         const filePath = `${projectSrcDirectory()}/assets/css/tailwind.css`
 
                         await createFile({
@@ -75,7 +79,7 @@ const configureTailwind = () => {
                         })
                     }
 
-                    if (selections.includes('Create TailwindCSS config file')) {
+                    if (selections.includes(TailwindOptions.createConfigFile)) {
                         await createFile({
                             fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
                             content: tailwindCSSConfig,
@@ -101,10 +105,7 @@ const configureWindi = async () => {
     try {
         const filePath = `${projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : 'ts'}`
 
-        const windiOptions = [
-            'Install nuxt-windicss module and add it to nuxt config',
-            'Create windi.config.js file',
-        ]
+        const windiOptions = Object.values(WindiOptions)
 
         window
             .showQuickPick(windiOptions, {
@@ -113,7 +114,7 @@ const configureWindi = async () => {
             })
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes('Install nuxt-windicss module and add it to nuxt config')) {
+                    if (selections.includes(WindiOptions.installModule)) {
                         const moduleName = 'nuxt-windicss'
                         const command = await getInstallationCommand(moduleName, true)
 
@@ -127,7 +128,7 @@ const configureWindi = async () => {
                         await addNuxtModule({ npm: moduleName })
                     }
 
-                    if (selections.includes('Create windi.config.js file')) {
+                    if (selections.includes(WindiOptions.createConfigFile)) {
                         await createFile({
                             fileName: `windi.config.${isNuxtTwo() ? 'js' : 'ts'}`,
                             content: windiCSSConfig,
@@ -152,19 +153,16 @@ const configureUno = async () => {
     try {
         const filePath = `${projectSrcDirectory()}/uno.config.ts`
 
-        const unoCssOptions = [
-            'Install unocss/nuxt module and add it to nuxt config',
-            'Create uno.config.ts file',
-        ]
+        const unoCSSOptions = Object.values(UnoCSSOptions)
 
         window
-            .showQuickPick(unoCssOptions, {
+            .showQuickPick(unoCSSOptions, {
                 canPickMany: true,
                 placeHolder: 'Select files to create',
             })
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes('Install unocss/nuxt module and add it to nuxt config')) {
+                    if (selections.includes(UnoCSSOptions.installModule)) {
                         const moduleName = '@unocss/nuxt'
                         const command = await getInstallationCommand(moduleName, true)
 
@@ -178,7 +176,7 @@ const configureUno = async () => {
                         await addNuxtModule({ npm: moduleName })
                     }
 
-                    if (selections.includes('Create uno.config.ts file')) {
+                    if (selections.includes(UnoCSSOptions.createConfigFile)) {
                         await createFile({
                             fileName: `uno.config.ts`,
                             content: unoCSSConfig,
@@ -203,10 +201,7 @@ const configureVuetify = async () => {
     try {
         const filePath = `${projectSrcDirectory()}/vuetify.options.js`
 
-        const vuetifyOptions = [
-            'Install @nuxtjs/vuetify module and add it to nuxt config',
-            'Create vuetify.options.js file',
-        ]
+        const vuetifyOptions = Object.values(VuetifyOptions)
 
         window
             .showQuickPick(vuetifyOptions, {
@@ -215,7 +210,7 @@ const configureVuetify = async () => {
             })
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes('Install @nuxtjs/vuetify module and add it to nuxt config')) {
+                    if (selections.includes(VuetifyOptions.installModule)) {
                         const moduleName = '@nuxtjs/vuetify'
                         const command = await getInstallationCommand(moduleName, true)
 
@@ -229,7 +224,7 @@ const configureVuetify = async () => {
                         await addNuxtModule({ npm: moduleName })
                     }
 
-                    if (selections.includes('Create vuetify.options.js file')) {
+                    if (selections.includes(VuetifyOptions.createConfigFile)) {
                         await createFile({
                             fileName: `vuetify.options.js`,
                             content: vuetifyConfigFile,

@@ -16,8 +16,7 @@ export async function activate(context: ExtensionContext) {
         userRoot = workspace.workspaceFolders?.[0]?.uri.fsPath + `/` + configuration
     }
 
-    if (!userRoot && !existsSync(`${userRoot}/package.json`))
-    {return}
+    if (!userRoot && !existsSync(`${userRoot}/package.json`)) { return }
 
     const nuxtConfigPathTS = join(`${userRoot}/`, 'nuxt.config.ts')
     const nuxtConfigPathJS = join(`${userRoot}/`, 'nuxt.config.js')
@@ -25,7 +24,7 @@ export async function activate(context: ExtensionContext) {
     const nuxtConfigExistsTS = await fs.access(nuxtConfigPathTS).then(() => true).catch(() => false)
     const nuxtConfigExistsJS = await fs.access(nuxtConfigPathJS).then(() => true).catch(() => false)
 
-    if (!nuxtConfigExistsTS && !nuxtConfigExistsJS) {return}
+    if (!nuxtConfigExistsTS && !nuxtConfigExistsJS) { return }
 
 
     const nuxtProject = await isNuxtProject()

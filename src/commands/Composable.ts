@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir } from '../utils'
-import { composableTemplate } from '../templates/typeScriptFiles'
+import { composableTemplate } from '../templates'
 
 const createComposable = () => {
     window
@@ -10,7 +10,7 @@ const createComposable = () => {
         })
         .then((name) => {
 
-            if (!name) {return}
+            if (!name) { return }
 
             let composablesDir = `${projectSrcDirectory()}/composables`
 
@@ -35,7 +35,7 @@ const directCreateComposable = (path: string) => {
             placeHolder: 'composable name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${path}/${name}.ts`
 

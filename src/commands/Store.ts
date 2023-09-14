@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, isNuxtTwo, createFile } from '../utils'
-import { piniaContent, vuexContent } from '../templates/index'
+import { piniaContent, vuexContent } from '../templates'
 
 const createStore = () => {
     window
@@ -9,7 +9,7 @@ const createStore = () => {
             placeHolder: 'store name',
         })
         .then((name: any) => {
-            if (!name) {return}
+            if (!name) { return }
 
             const filePath = `${projectSrcDirectory()}/${isNuxtTwo() ? 'store' : 'stores'}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
             if (isNuxtTwo()) {
@@ -35,7 +35,7 @@ const directCreateStore = (path: string) => {
             placeHolder: 'store name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${path}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
 

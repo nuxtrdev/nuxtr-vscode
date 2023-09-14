@@ -2,6 +2,7 @@ import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, Exten
 import { existsSync, readFileSync, readdirSync} from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"
+import { readPackageJSON } from 'pkg-types'
 import { getConfiguration, projectRootDirectory, runCommand } from './global'
 import { installDependencies } from '../commands/InstallDependencies'
 import pm from '../content/pm'
@@ -15,38 +16,40 @@ const items: QuickPickItem[] = pm.map((item) => {
     }
 })
 
+interface Dependency {
+    name: string;
+    version: string;
+}
 
-export const getProjectDependencies = () => {
+export const getProjectDependencies = async ():  Promise<Dependency[]>  => {
+    const dependencies: { name: string; version: string }[] = [];
+
     let packageJsonPath = `${projectRootDirectory()}/package.json`
 
     if (!existsSync(packageJsonPath)) {
-        return
+        return dependencies
     } else {
-        let packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
 
-        let dependencies = []
+        const packageJSON = await readPackageJSON(packageJsonPath)
 
-        if (packageJson.dependencies) {
+        const addDependencies = (depObj: Record<string, string>) => {
             dependencies.push(
-                ...Object.keys(packageJson.dependencies).map((key) => {
-                    return {
-                        name: key,
-                        version: packageJson.dependencies[key],
-                    }
-                })
-            )
-        }
-        if (packageJson.devDependencies) {
-            dependencies.push(
-                ...Object.keys(packageJson.devDependencies).map((key) => {
-                    return {
-                        name: key,
-                        version: packageJson.devDependencies[key],
-                    }
-                })
+                ...Object.keys(depObj).map((key) => ({
+                    name: key,
+                    version: depObj[key].replace(/[\^~]/, ''),
+                }))
+            );
+        };
 
-            )
+        if (packageJSON?.dependencies) {
+            addDependencies(packageJSON.dependencies,);
         }
+
+        if (packageJSON?.devDependencies) {
+            addDependencies(packageJSON.devDependencies);
+        }
+
+        console.log('dependencies', dependencies);
 
         return dependencies
     }
@@ -321,6 +324,8 @@ export async function managePackageVersion(packageName: string) {
     const packageManager = detectPackageManagerByName()
     const defaultPackageManager = getConfiguration().defaultPackageManager
 
+    const dependencies = await getProjectDependencies()
+
     const options: QuickPickOptions = {
         canPickMany: false,
         ignoreFocusOut: true,
@@ -363,13 +368,13 @@ export async function managePackageVersion(packageName: string) {
                         } else {
                             resolve(stdout)
                             let versions: any = []
-                            let versionOfPackage = getProjectDependencies()
+                            let versionOfPackage = dependencies
                             JSON.parse(stdout)
                                 .reverse()
                                 .forEach((version: any) => {
                                     versions.push({
                                         label: version,
-                                        description: versionOfPackage?.find((item: any) => item.name === packageName)?.version.replace('^', '') === version ? 'current version' : '',
+                                        description: versionOfPackage?.find((item: any) => item.name === packageName)?.version === version ? 'current version' : '',
                                     })
                                 })
 

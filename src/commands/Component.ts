@@ -9,7 +9,7 @@ const createComponent = () => {
             placeHolder: 'component name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let componentsDir = `${projectSrcDirectory()}/components`
 
@@ -33,7 +33,7 @@ const directCreateComponent = (path: string) => {
             placeHolder: 'component name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${path}/${name}.vue`
 
