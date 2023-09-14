@@ -16,13 +16,10 @@ const items: QuickPickItem[] = pm.map((item) => {
     }
 })
 
-interface Dependency {
-    name: string;
-    version: string;
-}
+interface Dependency { name: string; version: string; }
 
 export const getProjectDependencies = async ():  Promise<Dependency[]>  => {
-    const dependencies: { name: string; version: string }[] = [];
+    const dependencies: Dependency[] = [];
 
     let packageJsonPath = `${projectRootDirectory()}/package.json`
 
