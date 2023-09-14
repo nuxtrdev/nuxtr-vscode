@@ -1,18 +1,21 @@
-export const eslintConfig = `{
+const eslintConfig = `{
     "extends": ["@nuxtjs/eslint-config-typescript"]
 }
 `
 
-export const stylelintConfig = `{
+const stylelintConfig = `{
   "extends": "stylelint-config-recommended-vue"
 }
 `
 
-export const stylelintIgnore = `node_modules`
+const stylelintIgnore = `node_modules`
 
-export const eslintIgnore = `dist
+const eslintIgnore = `dist
 node_modules
 schema
 **/*.tmpl.*
 sw.js
 `
+
+
+export { eslintConfig, stylelintConfig, stylelintIgnore, eslintIgnore }

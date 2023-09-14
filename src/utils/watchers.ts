@@ -3,7 +3,6 @@ import { workspace, window, commands, ConfigurationChangeEvent, Disposable } fro
 export function createConfigWatcher(configKey: string, callback?: () => Promise<void>, defaultBehavior?: boolean): Disposable {
     const watcher = workspace.onDidChangeConfiguration(async (event: ConfigurationChangeEvent) => {
         if (event.affectsConfiguration(configKey)) {
-            // Execute the provided callback when the configuration changes.
             if (callback && typeof callback === 'function') {
                 await callback();
             }
@@ -24,6 +23,5 @@ export function createConfigWatcher(configKey: string, callback?: () => Promise<
         }
     });
 
-    // Return a Disposable object that can be used to stop watching for changes.
     return watcher;
 }

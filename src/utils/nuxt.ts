@@ -4,7 +4,6 @@ import { join } from 'path';
 import { parseModule } from 'magicast';
 import { readTSConfig } from 'pkg-types'
 import { projectRootDirectory, projectSrcDirectory } from '.';
-import * as vscode from 'vscode';
 type TsconfigPaths = Record<string, string[]>;
 
 

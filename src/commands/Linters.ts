@@ -2,9 +2,20 @@ import { window } from 'vscode'
 import { createFile, projectRootDirectory, runCommand, getInstallationCommand } from '../utils'
 
 import * as fs from 'fs'
-import { eslintConfig, eslintIgnore, stylelintConfig, stylelintIgnore } from '../templates/linters'
-
+import { eslintConfig, eslintIgnore, stylelintConfig, stylelintIgnore } from '../templates'
 const frameworks = ['Eslint', 'Stylelint']
+
+enum EslintOptions {
+    installModule = 'Install Eslint module',
+    addScriptToPackageJSON = 'Add lint script to package.json',
+    createESLintAndIgnoreFiles = 'Create .eslintrc & .eslintignore files',
+}
+
+enum StylelintOptions {
+    installModule = 'Install Stylelint & Stylelint module',
+    addScriptToPackageJSON = 'Add lint script to package.json',
+    createStyleLintAndIgnoreFiles = 'Create .stylelintrc & .stylelintignore files',
+}
 
 function configureLinters() {
     window
@@ -25,11 +36,7 @@ function configureLinters() {
 
 const configureEslint = () => {
     try {
-        const eslintOptions = [
-            'Install Eslint module',
-            'Add lint script to package.json',
-            'Create .eslintrc & .eslintignore files',
-        ]
+        const eslintOptions = Object.values(EslintOptions)
 
         window
             .showQuickPick(eslintOptions, {
@@ -38,7 +45,7 @@ const configureEslint = () => {
             })
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes('Install Eslint module')) {
+                    if (selections.includes(EslintOptions.installModule)) {
                         const moduleName = '@nuxtjs/eslint-config-typescript eslint'
                         const command = await getInstallationCommand(moduleName, true)
 
@@ -50,7 +57,7 @@ const configureEslint = () => {
                         })
                     }
 
-                    if (selections.includes('Add lint script to package.json')) {
+                    if (selections.includes(EslintOptions.addScriptToPackageJSON)) {
                         const packageJsonPath = `${projectRootDirectory()}/package.json`
                         const packageJson = require(packageJsonPath)
 
@@ -59,7 +66,7 @@ const configureEslint = () => {
                         fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
                     }
 
-                    if (selections.includes('Create .eslintrc & .eslintignore files')) {
+                    if (selections.includes(EslintOptions.createESLintAndIgnoreFiles)) {
                         const eslintPath = `${projectRootDirectory()}/.eslintrc`
                         const eslintIgnorePath = `${projectRootDirectory()}/.eslintignore`
 
@@ -83,11 +90,7 @@ const configureEslint = () => {
 }
 
 const configureStylelint = () => {
-    const stylelintOptions = [
-        'Install Stylelint & Stylelint module',
-        'Add lint script to package.json',
-        'Create .stylelintrc & .stylelintignore files',
-    ]
+    const stylelintOptions = Object.values(StylelintOptions)
 
     window
         .showQuickPick(stylelintOptions, {
@@ -96,7 +99,7 @@ const configureStylelint = () => {
         })
         .then(async (selections) => {
             if (selections !== undefined && selections.length > 0) {
-                if (selections.includes('Install Stylelint & Stylelint module')) {
+                if (selections.includes(StylelintOptions.installModule)) {
 
                     const moduleName = 'stylelint @nuxtjs/stylelint-module stylelint-config-recommended-vue'
                     const command = await getInstallationCommand(moduleName, true)
@@ -110,7 +113,7 @@ const configureStylelint = () => {
 
                 }
 
-                if (selections.includes('Add lint script to package.json')) {
+                if (selections.includes(StylelintOptions.addScriptToPackageJSON)) {
                     const packageJsonPath = `${projectRootDirectory()}/package.json`
                     const packageJson = require(packageJsonPath)
 
@@ -119,7 +122,7 @@ const configureStylelint = () => {
                     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
                 }
 
-                if (selections.includes('Create .stylelintrc & .stylelintignore files')) {
+                if (selections.includes(StylelintOptions.createStyleLintAndIgnoreFiles)) {
                     const stylelintPath = `${projectRootDirectory()}/.stylelintrc`
                     const stylelintIgnorePath = `${projectRootDirectory()}/.stylelintignore`
 

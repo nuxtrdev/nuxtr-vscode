@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir } from '../utils'
-import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates/typeScriptFiles'
+import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
 
 let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
 

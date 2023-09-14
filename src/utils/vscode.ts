@@ -1,14 +1,8 @@
 import { DocumentSelector, workspace, Uri, FileType } from 'vscode';
 
-export const languageSelector = (language: string): DocumentSelector => ({
-    scheme: 'file',
-    language,
-} as const);
+export const languageSelector = (language: string): DocumentSelector => ({ scheme: 'file', language, } as const);
 
-export const patternSelector = (pattern: string): DocumentSelector => ({
-    scheme: 'file',
-    pattern,
-} as const);
+export const patternSelector = (pattern: string): DocumentSelector => ({ scheme: 'file', pattern, } as const);
 
 export async function pathExists(localPath: string): Promise<boolean> {
     try {

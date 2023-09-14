@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir } from '../utils'
-import { nuxtUtilTemplate, nitroUtilTemplate } from '../templates/typeScriptFiles'
+import { nuxtUtilTemplate, nitroUtilTemplate } from '../templates'
 
 const createUtil = () => {
     window
@@ -9,7 +9,7 @@ const createUtil = () => {
             placeHolder: 'utility name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let utilsDir = `${projectSrcDirectory()}/utils`
 
@@ -37,7 +37,7 @@ const directCreateUtil = (path: string) => {
             placeHolder: 'utility name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${path}/${name}.ts`
 

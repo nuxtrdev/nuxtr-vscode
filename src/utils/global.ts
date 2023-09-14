@@ -18,25 +18,26 @@ export const getUri = (webview: Webview, extensionUri: Uri, pathList: string[]) 
     return webview.asWebviewUri(Uri.joinPath(extensionUri, ...pathList));
 };
 
-export const projectRootDirectory = () => {
-
+export const projectRootDirectory = (): string => {
     const configuration = getConfiguration().monorepoMode.DirectoryName;
+    const workspaceFolder = workspace.workspaceFolders?.[0]?.uri.fsPath;
 
-    if (!configuration) {
-        return workspace.workspaceFolders?.[0]?.uri.fsPath;
-    } else {
-
-        return workspace.workspaceFolders?.[0]?.uri.fsPath + `/` + configuration;
+    if (!workspaceFolder) {
+        throw new Error('Workspace folder not found');
     }
 
+    if (configuration) {
+        return `${workspaceFolder}/${configuration}`;
+    }
+
+    return workspaceFolder;
 };
 
-export const projectSrcDirectory = () => {
-    if (hasSrcDir() === '/') {
-        return projectRootDirectory();
-    } else {
-        return projectRootDirectory() + hasSrcDir();
-    }
+
+export const projectSrcDirectory = (): string => {
+    const projectRootDir = projectRootDirectory();
+    const srcDir = hasSrcDir();
+    return srcDir === '/' ? projectRootDir : projectRootDir + srcDir;
 };
 
 export const openExternalLink = (url: string) => {

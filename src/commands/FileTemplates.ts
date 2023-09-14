@@ -1,7 +1,7 @@
 import { window } from 'vscode'
 import * as fs from 'fs'
 
-import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate  } from '../utils'
+import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate } from '../utils'
 
 
 function createPageTemplate() {
@@ -45,7 +45,7 @@ const createFileFromTemplate = (template?: string) => {
                 placeHolder: `Page name`,
             })
             .then((name) => {
-                if (!name) {return}
+                if (!name) { return }
 
                 let pagesDir = `${projectSrcDirectory()}/pages`
 
@@ -72,7 +72,7 @@ const createFileFromTemplate = (template?: string) => {
                 placeHolder: 'Layout name',
             })
             .then((name) => {
-                if (!name) {return}
+                if (!name) { return }
 
                 let layoutDir = `${projectSrcDirectory()}/layouts`
 
@@ -101,7 +101,7 @@ const createFileTemplate = (type: string) => {
             placeHolder: `${type} name`,
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${projectSrcDirectory()}/.vscode/${name}.${type}-template`
 

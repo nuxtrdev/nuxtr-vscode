@@ -12,7 +12,7 @@ const createLayout = () => {
             placeHolder: 'Layout name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let layoutDir = `${projectSrcDirectory()}/layouts`
 
@@ -35,7 +35,7 @@ const directCreateLayout = (path: string) => {
             placeHolder: 'layout name',
         })
         .then((name) => {
-            if (!name) {return}
+            if (!name) { return }
 
             let filePath = `${path}/${name}.vue`
 

@@ -56,7 +56,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
 
     public async getDependencies() {
-        const dependencies = getProjectDependencies()
+        const dependencies = await getProjectDependencies()
         const scripts = getProjectScripts()
 
         const vscodeVersion = vscode.version
@@ -182,7 +182,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
 
     public async updateModules() {
-        const installedModules = getProjectDependencies()
+        const installedModules = await getProjectDependencies()
         this.postMessage({
             command: 'installedModules',
             data: installedModules,

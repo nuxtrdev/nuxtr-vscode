@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import { getConfiguration, projectSrcDirectory } from '../utils'
-import { generateStyleTag, generateScriptTag, templateTag, } from '../templates/vueFiles'
+import { generateStyleTag, generateScriptTag, templateTag, } from '../templates'
 
 let vueFilesConfig = getConfiguration().vueFiles
 
