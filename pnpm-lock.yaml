@@ -29,9 +29,15 @@ dependencies:
   fs-extra:
     specifier: ^11.1.1
     version: 11.1.1
+  jiti:
+    specifier: ^1.20.0
+    version: 1.20.0
   magicast:
     specifier: 0.2.10
     version: 0.2.10
+  nuxi-edge:
+    specifier: 3.9.0-1694711034.61383d1
+    version: 3.9.0-1694711034.61383d1
   path:
     specifier: ^0.12.7
     version: 0.12.7
@@ -1959,6 +1965,14 @@ packages:
   /normalize-path@3.0.0:
     resolution: {integrity: sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==}
     engines: {node: '>=0.10.0'}
+
+  /nuxi-edge@3.9.0-1694711034.61383d1:
+    resolution: {integrity: sha512-mdG64aIWJM9Aj7ZE9TwFSB1cuCBUV/Jw4aSGTb3YQI9YVnLNUGOXK0WOyK3IUxAtc1xaUHbw8R5CasrQjiAEdg==}
+    engines: {node: ^14.18.0 || >=16.10.0}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: false
 
   /object-is@1.1.5:
     resolution: {integrity: sha512-3cyDsyHgtmi7I7DfSSI2LDp6SK2lwvtbg0p0R1e0RvTqF5ceGx+K2dfSjm1bKDMVCFEDAQvy+o8c6a7VujOddw==}

@@ -6,6 +6,7 @@ import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
+import { main, runCommand, runMain } from './nuxtCLI';
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },

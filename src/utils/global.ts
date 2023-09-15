@@ -105,3 +105,6 @@ export const runCommand = async (args: {
         }
     );
 };
+
+
+export const jiti = require("jiti")(__filename, { debug: true, esmResolve: true, interopDefault: true });
