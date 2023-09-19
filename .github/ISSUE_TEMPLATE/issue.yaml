@@ -1,5 +1,5 @@
 name: 🐞 Bug Report
-description: Report any issues and help us enhance Nuxtr
+description: Report any issues and help us enhance Nuxtr. Please,  use issues for reporting bugs and bugs only.
 title: "[Bug]: "
 labels: ["bug", "triage"]
 body:
