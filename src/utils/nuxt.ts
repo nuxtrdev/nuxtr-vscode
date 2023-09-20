@@ -3,6 +3,7 @@ import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
 import { join } from 'path';
 import { parseModule } from 'magicast';
 import { readTSConfig } from 'pkg-types'
+import { exec } from 'child_process'
 import { projectRootDirectory, projectSrcDirectory } from '.';
 type TsconfigPaths = Record<string, string[]>;
 
@@ -282,4 +283,17 @@ export function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
     }
 
     return parsedTsconfigPaths;
+}
+
+export function isNuxiInstalled(): Promise<boolean> {
+    return new Promise((resolve) => {
+        exec('npm ls -g --depth=0', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error: ${error}`);
+                resolve(false);
+            } else {
+                resolve(stdout.includes('nuxi'));
+            }
+        });
+    });
 }

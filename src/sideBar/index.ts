@@ -134,7 +134,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`Nuxtr: ${script}`, `yarn ${script}`, `${projectRootDirectory()}`)
+                    newTerminal(`${script}`, `yarn ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'NPM':
@@ -147,7 +147,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`Nuxtr: ${script}`, `npm run ${script}`, `${projectRootDirectory()}`)
+                    newTerminal(`${script}`, `npm run ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'pnpm':
@@ -160,7 +160,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`Nuxtr: ${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
+                    newTerminal(`${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'Bun':
@@ -173,7 +173,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`Nuxtr: ${script}`, `bun ${script}`, `${projectRootDirectory()}`)
+                    newTerminal(`${script}`, `bun ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             default:
