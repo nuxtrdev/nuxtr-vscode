@@ -58,7 +58,6 @@ export const newTerminal = (terminalName: string, command: string, cwd?: string)
     });
 
     terminal.sendText(command);
-
     terminal.show();
 };
 
@@ -107,4 +106,4 @@ export const runCommand = async (args: {
 };
 
 
-export const jiti = require("jiti")(__filename, { debug: true, esmResolve: true, interopDefault: true });
+export const jiti = require("jiti")(__filename, { esmResolve: true, interopDefault: true });

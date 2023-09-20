@@ -31,6 +31,7 @@ const commandList = [
     { command: 'nuxtr.nuxtCleanUp', function: nuxtrCommands.nuxtCleanUp },
     { command: 'nuxtr.nuxtAnalyze', function: nuxtrCommands.nuxtAnalyze },
     { command: 'nuxtr.nuxtBuildModule', function: nuxtrCommands.nuxtBuildModule },
+    { command: 'nuxtr.showCLICommands', function: nuxtrCommands.showCLICommands },
     { command: 'nuxtr.updateDependencies', function: updateDependencies },
     { command: 'nuxtr.nuxtInfo', function: nuxtrCommands.nuxtInfo },
     { command: 'nuxtr.appConfig', function: nuxtrCommands.appConfig },

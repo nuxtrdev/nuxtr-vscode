@@ -12,6 +12,7 @@ import {
     findNuxtConfig,
     isNuxtProject,
     scanNuxtDirectories,
+    isNuxiInstalled
 } from './nuxt'
 
 import {
@@ -85,5 +86,6 @@ export {
     readDirectory,
     removePackage,
     managePackageVersion,
-    createConfigWatcher
+    createConfigWatcher,
+    isNuxiInstalled
 }
