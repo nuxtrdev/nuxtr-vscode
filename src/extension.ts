@@ -6,7 +6,7 @@ import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
-import { main, runCommand, runMain } from './nuxtCLI';
+import { checkCLIInstallation } from './nuxtCLI';
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -75,6 +75,9 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate intellisense
     activateIntellisense(context)
+
+    // check nuxt cli installation
+    await checkCLIInstallation()
 
     // activate codelens
     codelens.activateCodelenses(context)

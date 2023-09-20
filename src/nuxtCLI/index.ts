@@ -1,2 +1,24 @@
-import { jiti } from '../utils'
-export const { main, runCommand, runMain } = jiti("nuxi-edge");
+import { window } from 'vscode'
+import { jiti, isNuxiInstalled, newTerminal } from '../utils'
+const { main, runMain, runCommand } = jiti("nuxi-edge");
+
+
+export async function checkCLIInstallation() {
+    const result = await isNuxiInstalled()
+
+    if (!result) {
+        let message = 'Nuxt CLI is not installed. Do you want to install it?'
+        let action = 'Install Nuxt CLI'
+
+        window.showInformationMessage(message, action).then((value) => {
+            if (value) {
+                const command = 'npm install -g nuxi'
+                newTerminal("Install Nuxi", command)
+            }
+        })
+    }
+}
+
+export const cliCommands = main.subCommands
+export const runCliCommands = runMain
+export const runCliCommand = runCommand
