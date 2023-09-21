@@ -1,8 +1,10 @@
-import { ThemeIcon, QuickInputButton, QuickPickItem, window } from 'vscode';
-import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../utils';
+import { ThemeIcon, QuickPickItem, window } from 'vscode';
+import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../../utils';
+import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
+import { showNuxtModules } from './moduleCommands';
 
 const pm = detectPackageManagerByName();
-const rumCommand = pm ? pm.runCommand : 'npx';
+const runCommand = pm ? pm.runCommand : 'npx';
 
 enum CLICommandDescription {
     add = "Create a new template file",
@@ -26,23 +28,12 @@ enum CLICommandDescription {
 }
 
 const directlyExecutableCommands = ['dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'test', 'typecheck', 'preview', 'prepare'];
+const indirectlyExecutableCommands = ['module'];
 const moduleCommands = ['build-module']
 const internalCommands = ['_dev']
 
 const shouldDirectlyRun = (command: any) => directlyExecutableCommands.includes(command);
-
-
-const nuxtDev = () => newTerminal('Nuxi: Dev', `${rumCommand} nuxi dev`, `${projectRootDirectory()}`)
-const nuxtBuild = () => newTerminal('Nuxi: Build', '${rumCommand} nuxi build', `${projectRootDirectory()}`)
-const nuxtGenerate = () => newTerminal('Nuxi: Build', `${rumCommand} nuxi generate`, `${projectRootDirectory()}`)
-const nuxtCleanUp = () => newTerminal('Nuxi: Cleanup', `${rumCommand} nuxi clean`, `${projectRootDirectory()}`)
-const nuxtAnalyze = () => newTerminal('Nuxi: Analyze', `${rumCommand} nuxi analyze`, `${projectRootDirectory()}`)
-const nuxtInfo = () => newTerminal('Nuxi: Info', `${rumCommand} nuxi info`, `${projectRootDirectory()}`)
-
-const github: QuickInputButton = {
-    iconPath: new ThemeIcon('github'),
-    tooltip: 'GitHub',
-};
+const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.includes(command);
 
 const showCLICommands = async () => {
     const { main } = jiti("nuxi-edge");
@@ -62,28 +53,31 @@ const showCLICommands = async () => {
             .filter((command) => !internalCommands.includes(command))
             .map((command) => {
                 const description: CLICommandDescription = CLICommandDescription;
-                const item: QuickPickItem  = {
+                const item: QuickPickItem = {
                     label: command.charAt(0).toUpperCase() + command.slice(1),
                     description: description[command],
                     iconPath: new ThemeIcon('nuxt-logo'),
                 };
 
-                item.buttons = [github];
-
                 return item;
             });
 
-    window.showQuickPick(items, options).then((selection) => {
+    window.showQuickPick(items, options).then(async (selection) => {
         if (!selection) {
             return;
         }
 
+        const command = selection.label;
+
         if (shouldDirectlyRun(selection.label.toLowerCase())) {
-            const command = selection.label;
             const terminalName = `Nuxi: ${command}`;
-            newTerminal(terminalName, `${rumCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
+            newTerminal(terminalName, `${runCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
+        } else if (shouldIndirectlyRun(command.toLowerCase())) {
+            if (command.toLowerCase() === 'module') {
+                await showNuxtModules();
+            }
         } else {
-            window.showInformationMessage('Command is not yet supported');
+            window.showInformationMessage(`Command ${command} is not supported yet`);
         }
     });
 };

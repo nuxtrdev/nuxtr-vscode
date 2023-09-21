@@ -64,6 +64,17 @@ export async function activateExtension(context: ExtensionContext) {
     // initial output channel logger
     logger.log('Nuxtr is active')
 
+    // global state command
+    context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {
+        if (update) {
+            context.globalState.update(name, value)
+            return
+        } else {
+            return context.globalState.get(name)
+        }
+    }))
+
+
     const sidebarProvider = new ModulesView(context.extensionUri)
 
 
@@ -81,16 +92,6 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate codelens
     codelens.activateCodelenses(context)
-
-    // global state command
-    context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {
-        if (update) {
-            context.globalState.update(name, value)
-            return
-        } else {
-            return context.globalState.get(name)
-        }
-    }))
 
 
     commandList.forEach(({ command, function: commandFunction }) => {

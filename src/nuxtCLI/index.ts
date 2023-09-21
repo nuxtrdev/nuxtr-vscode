@@ -3,6 +3,10 @@ import { jiti, isNuxiInstalled, newTerminal } from '../utils'
 const { main, runMain, runCommand } = jiti("nuxi-edge");
 
 
+export const cliCommands = main.subCommands
+export const runCliCommands = runMain
+export const runCliCommand = runCommand
+
 export async function checkCLIInstallation() {
     const result = await isNuxiInstalled()
 
@@ -18,7 +22,3 @@ export async function checkCLIInstallation() {
         })
     }
 }
-
-export const cliCommands = main.subCommands
-export const runCliCommands = runMain
-export const runCliCommand = runCommand

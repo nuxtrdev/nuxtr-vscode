@@ -61,3 +61,17 @@ interface TSConfigNuxt extends TSConfig {
         plugins?: string[] | undefined;
     }
 }
+
+type nuxtModule = {
+    name: string;
+    description: string;
+    repo: string;
+    npm: string;
+    github: string;
+    category: string;
+    type: string;
+    compatibility: {
+        nuxt: string;
+        requires: Record<string, any>;
+    };
+};
