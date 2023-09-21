@@ -233,10 +233,6 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
-                    "command": "nuxtr.nuxtBuildModule",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
                     "command": "nuxtr.createStore",
                     "when": "nuxtr.isNuxtProject"
                 },
@@ -758,31 +754,31 @@
             },
             {
                 "command": "nuxtr.nuxtDev",
-                "title": "Run Nuxt Dev",
+                "title": "Run Nuxi Dev",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.nuxtBuild",
-                "title": "Run Nuxt Build",
+                "title": "Run Nuxi Build",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.nuxtGenerate",
-                "title": "Run Nuxt Generate",
+                "title": "Run Nuxi Generate",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.nuxtCleanUp",
-                "title": "Run Nuxt CleanUp",
+                "title": "Run Nuxi CleanUp",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
             {
                 "command": "nuxtr.nuxtInfo",
-                "title": "Run Nuxt Info",
+                "title": "Run Nuxi Info",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
@@ -794,13 +790,7 @@
             },
             {
                 "command": "nuxtr.nuxtAnalyze",
-                "title": "Run Nuxt Analyze",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtBuildModule",
-                "title": "Run Nuxt Build Module",
+                "title": "Run Nuxi Analyze",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },

@@ -7,7 +7,7 @@ import { createMiddleware, directCreateMiddleware } from './Middleware'
 import { createNitroAPI, directCreateNitroAPI, createNitroRoute, directCreateNitroRoute, createNitroPlugin, createNitroMiddleware, createNitroUtil } from './Nitro'
 import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
-import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtBuildModule, nuxtAnalyze, nuxtInfo, showCLICommands } from './NuxtCLI'
+import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, showCLICommands } from './NuxtCLI'
 import { createStore, directCreateStore } from './Store'
 import { installDependencies, searchAndInstallDependencies } from './InstallDependencies'
 import { openSettings } from '../utils/navigation'
@@ -49,7 +49,6 @@ const commands = {
     nuxtBuild,
     nuxtGenerate,
     nuxtCleanUp,
-    nuxtBuildModule,
     nuxtAnalyze,
     nuxtInfo,
     showCLICommands,

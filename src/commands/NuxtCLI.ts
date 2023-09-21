@@ -1,6 +1,9 @@
 import { ThemeIcon, QuickInputButton, QuickPickItem, window } from 'vscode';
 import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../utils';
 
+const pm = detectPackageManagerByName();
+const rumCommand = pm ? pm.runCommand : 'npx';
+
 enum CLICommandDescription {
     add = "Create a new template file",
     analyze = "Build nuxt and analyze production bundle (experimental)",
@@ -29,13 +32,12 @@ const internalCommands = ['_dev']
 const shouldDirectlyRun = (command: any) => directlyExecutableCommands.includes(command);
 
 
-const nuxtDev = () => newTerminal('Dev', 'npx nuxi dev', `${projectRootDirectory()}`)
-const nuxtBuild = () => newTerminal('Build', 'npx nuxi build', `${projectRootDirectory()}`)
-const nuxtGenerate = () => newTerminal('Build', 'npx nuxi generate', `${projectRootDirectory()}`)
-const nuxtCleanUp = () => newTerminal('Clean Up', 'npx nuxi clean', `${projectRootDirectory()}`)
-const nuxtAnalyze = () => newTerminal('Analyze', 'npx nuxi analyze', `${projectRootDirectory()}`)
-const nuxtBuildModule = () => newTerminal('Build Modules', 'npx nuxi buildModule', `${projectRootDirectory()}`)
-const nuxtInfo = () => newTerminal('Info', 'npx nuxi info', `${projectRootDirectory()}`)
+const nuxtDev = () => newTerminal('Nuxi: Dev', `${rumCommand} nuxi dev`, `${projectRootDirectory()}`)
+const nuxtBuild = () => newTerminal('Nuxi: Build', '${rumCommand} nuxi build', `${projectRootDirectory()}`)
+const nuxtGenerate = () => newTerminal('Nuxi: Build', `${rumCommand} nuxi generate`, `${projectRootDirectory()}`)
+const nuxtCleanUp = () => newTerminal('Nuxi: Cleanup', `${rumCommand} nuxi clean`, `${projectRootDirectory()}`)
+const nuxtAnalyze = () => newTerminal('Nuxi: Analyze', `${rumCommand} nuxi analyze`, `${projectRootDirectory()}`)
+const nuxtInfo = () => newTerminal('Nuxi: Info', `${rumCommand} nuxi info`, `${projectRootDirectory()}`)
 
 const github: QuickInputButton = {
     iconPath: new ThemeIcon('github'),
@@ -71,9 +73,6 @@ const showCLICommands = async () => {
                 return item;
             });
 
-    const pm = await detectPackageManagerByName();
-    const rumCommand = pm ? pm.runCommand : 'npx';
-
     window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
@@ -81,7 +80,7 @@ const showCLICommands = async () => {
 
         if (shouldDirectlyRun(selection.label.toLowerCase())) {
             const command = selection.label;
-            const terminalName = `Nuxi: ${command.toLowerCase()}`;
+            const terminalName = `Nuxi: ${command}`;
             newTerminal(terminalName, `${rumCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
         } else {
             window.showInformationMessage('Command is not yet supported');
@@ -90,4 +89,4 @@ const showCLICommands = async () => {
 };
 
 
-export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtBuildModule, nuxtInfo, showCLICommands }
+export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, showCLICommands }
