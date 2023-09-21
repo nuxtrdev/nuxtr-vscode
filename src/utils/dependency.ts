@@ -118,6 +118,7 @@ export const detectPackageManagerByName = () => {
             lockFile: 'package-lock.json',
             installCommand: 'npm install',
             uninstallCommand: 'npm uninstall',
+            runCommand: 'npm run',
         }
     }
 
@@ -127,6 +128,7 @@ export const detectPackageManagerByName = () => {
             lockFile: 'yarn.lock',
             installCommand: 'yarn add',
             uninstallCommand: 'yarn remove',
+            runCommand: 'yarn',
         }
     }
 
@@ -136,6 +138,7 @@ export const detectPackageManagerByName = () => {
             lockFile: 'pnpm-lock.yaml',
             installCommand: 'pnpm install',
             uninstallCommand: 'pnpm remove',
+            runCommand: 'pnpm',
         }
     }
 
@@ -145,6 +148,7 @@ export const detectPackageManagerByName = () => {
             lockFile: 'bun.lockb',
             installCommand: 'bun install',
             uninstallCommand: 'bun remove',
+            runCommand: 'bun',
         }
     }
 

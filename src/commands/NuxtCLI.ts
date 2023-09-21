@@ -1,8 +1,8 @@
-import { window } from 'vscode'
-import { newTerminal, projectRootDirectory, jiti } from '../utils'
+import { ThemeIcon, QuickInputButton, QuickPickItem, window } from 'vscode';
+import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../utils';
 
 enum CLICommandDescription {
-    add = "Create a new template file.",
+    add = "Create a new template file",
     analyze = "Build nuxt and analyze production bundle (experimental)",
     "build-module" = "Helper command for using @nuxt/module-builder",
     build = "Build nuxt for production deployment",
@@ -15,10 +15,10 @@ enum CLICommandDescription {
     init = "Initialize a fresh project",
     module = "Manage Nuxt Modules",
     prepare = "Prepare nuxt for development/build",
-    preview = "Launches nitro server for local testing after nuxi build.",
-    start = "Launches nitro server for local testing after nuxi build.",
+    preview = "Launches nitro server for local testing after nuxi build",
+    start = "Launches nitro server for local testing after nuxi build",
     test = "Run tests",
-    typecheck = "Runs vue-tsc to check types throughout your app.",
+    typecheck = "Runs vue-tsc to check types throughout your app",
     upgrade = "Upgrade nuxt"
 }
 
@@ -37,12 +37,17 @@ const nuxtAnalyze = () => newTerminal('Analyze', 'npx nuxi analyze', `${projectR
 const nuxtBuildModule = () => newTerminal('Build Modules', 'npx nuxi buildModule', `${projectRootDirectory()}`)
 const nuxtInfo = () => newTerminal('Info', 'npx nuxi info', `${projectRootDirectory()}`)
 
-const showCLICommands = () => {
+const github: QuickInputButton = {
+    iconPath: new ThemeIcon('github'),
+    tooltip: 'GitHub',
+};
+
+const showCLICommands = async () => {
     const { main } = jiti("nuxi-edge");
     const commands = Object.keys(main.subCommands);
 
     const options = {
-        placeHolder: 'Select a command'
+        placeHolder: 'Select a command',
     };
 
     type CLICommandDescription = {
@@ -55,26 +60,32 @@ const showCLICommands = () => {
             .filter((command) => !internalCommands.includes(command))
             .map((command) => {
                 const description: CLICommandDescription = CLICommandDescription;
-                return {
-                    label: command,
+                const item: QuickPickItem  = {
+                    label: command.charAt(0).toUpperCase() + command.slice(1),
                     description: description[command],
+                    iconPath: new ThemeIcon('nuxt-logo'),
                 };
+
+                item.buttons = [github];
+
+                return item;
             });
+
+    const pm = await detectPackageManagerByName();
+    const rumCommand = pm ? pm.runCommand : 'npx';
 
     window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
         }
 
-        if (shouldDirectlyRun(selection.label)) {
+        if (shouldDirectlyRun(selection.label.toLowerCase())) {
             const command = selection.label;
-            const terminalName = `Nuxi: ${command}`;
-            newTerminal(terminalName, `npx nuxi ${command}`, `${projectRootDirectory()}`);
+            const terminalName = `Nuxi: ${command.toLowerCase()}`;
+            newTerminal(terminalName, `${rumCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
         } else {
             window.showInformationMessage('Command is not yet supported');
         }
-
-
     });
 };
 
