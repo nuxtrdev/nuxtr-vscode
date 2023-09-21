@@ -193,6 +193,26 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                    "command": "nuxtr.createNitroPlugin",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
+                    "command": "nuxtr.createNitroUtil",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
+                    "command": "nuxtr.createNitroMiddleware",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
+                    "command": "nuxtr.createNitroRoute",
+                    "when": "nuxtr.isNuxtProject"
+                },
+                {
+                    "command": "nuxtr.directCreateUtil",
+                    "when": "false"
+                },
+                {
                     "command": "nuxtr.openSettings",
                     "when": "nuxtr.isNuxtProject"
                 },

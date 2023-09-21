@@ -1,7 +1,7 @@
 import { ThemeIcon, QuickPickItem, window } from 'vscode';
 import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../../utils';
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
-import { showNuxtModules } from './moduleCommands';
+import { showNuxtModules } from './moduleCommand';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
@@ -27,8 +27,9 @@ enum CLICommandDescription {
     upgrade = "Upgrade nuxt"
 }
 
-const directlyExecutableCommands = ['dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'test', 'typecheck', 'preview', 'prepare'];
+const directlyExecutableCommands = [ 'dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'typecheck', 'preview', 'prepare', 'upgrade', 'start', 'test' ];
 const indirectlyExecutableCommands = ['module'];
+const unsupportedCommands = ['add', 'devtools', 'init'];
 const moduleCommands = ['build-module']
 const internalCommands = ['_dev']
 
@@ -51,6 +52,7 @@ const showCLICommands = async () => {
         commands
             .filter((command) => !moduleCommands.includes(command))
             .filter((command) => !internalCommands.includes(command))
+            .filter((command) => !unsupportedCommands.includes(command))
             .map((command) => {
                 const description: CLICommandDescription = CLICommandDescription;
                 const item: QuickPickItem = {
@@ -76,6 +78,7 @@ const showCLICommands = async () => {
             if (command.toLowerCase() === 'module') {
                 await showNuxtModules();
             }
+
         } else {
             window.showInformationMessage(`Command ${command} is not supported yet`);
         }
