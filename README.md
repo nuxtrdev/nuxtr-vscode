@@ -33,6 +33,7 @@
 - [Project directories and files creation](#project-directories-and-files-creation)
 - [Dependencies management](#dependencies-management)
 - [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
+- [Nuxi CLI Integration](#nuxi-cli-integration)
 - [Nuxt/Custom Snippets](#nuxtcustom-snippets)
 - [Vue File Templates](#vue-file-templates)
 - [srcDir, serverDir and monorepo support](#srcdir-serverdir-and-monorepo-support)
