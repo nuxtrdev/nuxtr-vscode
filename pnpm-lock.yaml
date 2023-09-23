@@ -12,7 +12,7 @@ dependencies:
     specifier: ^3.7.3
     version: 3.7.3
   '@types/fs-extra':
-    specifier: ^11.0.1
+    specifier: ^11.0.2
     version: 11.0.2
   '@types/util.promisify':
     specifier: ^1.0.5
@@ -62,10 +62,10 @@ devDependencies:
     specifier: ^1.82.0
     version: 1.82.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.7.0
+    specifier: ^6.7.2
     version: 6.7.2(@typescript-eslint/parser@6.7.2)(eslint@8.49.0)(typescript@5.2.2)
   '@typescript-eslint/parser':
-    specifier: ^6.7.0
+    specifier: ^6.7.2
     version: 6.7.2(eslint@8.49.0)(typescript@5.2.2)
   '@vscode/test-electron':
     specifier: ^2.3.4
