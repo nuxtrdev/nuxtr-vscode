@@ -32,8 +32,8 @@
 
 - [Project directories and files creation](#project-directories-and-files-creation)
 - [Dependencies management](#dependencies-management)
-- [Nuxt/Custom Snippets](#nuxtcustom-snippets)
 - [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
+- [Nuxt/Custom Snippets](#nuxtcustom-snippets)
 - [Vue File Templates](#vue-file-templates)
 - [srcDir, serverDir and monorepo support](#srcdir-serverdir-and-monorepo-support)
 - [Run scripts from the VSCode command palette or sidebar.](#run-scripts-from-the-vscode-command-palette-or-sidebar)
@@ -90,6 +90,31 @@ And auto open the created file using:
 <br>
 <br>
 
+### IntelliSense and Auto Completion
+
+Nuxtr VSCode offers a robust IntelliSense with focused support for Vue files, offering relative path completion from the pages directory for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) and from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public) for media resources, depending on your Nuxt version. Moreover, it offers IntelliSense for essential configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](), empowering you with accurate insights and efficient coding.
+
+You can enable/disable IntelliSense from the settings:
+
+```JSON
+ "nuxtr.intellisense.nuxtrc": true,
+ "nuxtr.intellisense.vueFiles": true,
+ "nuxtr.intellisense.nuxtignore": true,
+```
+
+<br>
+<br>
+
+### Nuxi CLI Integration
+
+The Nuxt CLI, also known as [Nuxi](https://github.com/nuxt/cli), stands as an indispensable tool in the arsenal of every Nuxt developer. Nuxtr seamlessly incorporates this powerful CLI, allowing you to execute Nuxi commands right from the command palette. Under the `Nuxtr: Run` prefix, you'll find a set of pre-defined most-used commands readily available. Additionally, you have the option to access the complete list of Nuxi commands through the `Nuxtr: Nuxi CLI` command.
+
+While it's entirely sensible to employ the CLI directly from your terminal, Nuxtr's inclusion will enhance your DX working with multiple terminals. It provides a structured approach to your terminal environment, categorizing commands based on their scope. This not only streamlines your workflow but also simplifies the process of adding modules, eliminating the need to recall or search for exact names.
+
+
+<br>
+<br>
+
 ### Nuxt/Custom Snippets
 
 **Nuxt Snippets**: You can use Nuxt snippets by typing `nuxt` for components, `use` for Composables or just start typing Nuxt utils and selecting your snippet from the list.
@@ -114,20 +139,6 @@ More on this side of the extension is coming soon!
 
 ![Snippets](./.github/media/snippets.gif)
 
-<br>
-<br>
-
-### IntelliSense and Auto Completion
-
-Nuxtr VSCode offers a robust IntelliSense with focused support for Vue files, offering relative path completion from the pages directory for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) and from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public) for media resources, depending on your Nuxt version. Moreover, it offers IntelliSense for essential configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](), empowering you with accurate insights and efficient coding.
-
-You can enable/disable IntelliSense from the settings:
-
-```JSON
- "nuxtr.intellisense.nuxtrc": true,
- "nuxtr.intellisense.vueFiles": true,
- "nuxtr.intellisense.nuxtignore": true,
-```
 
 <br>
 <br>

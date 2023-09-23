@@ -804,7 +804,7 @@
             },
             {
                 "command": "nuxtr.showCLICommands",
-                "title": "Nuxi CLI Commands",
+                "title": "Nuxi CLI",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
