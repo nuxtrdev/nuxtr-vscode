@@ -1,8 +1,7 @@
 import { ThemeIcon, QuickPickItem, window } from 'vscode';
 import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../../utils';
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
-import { showNuxtModules } from './moduleCommand';
-import { handleAddCommand } from './addCommand';
+import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
@@ -29,8 +28,8 @@ enum CLICommandDescription {
 }
 
 const directlyExecutableCommands = [ 'dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'typecheck', 'preview', 'prepare', 'upgrade', 'start', 'test' ];
-const indirectlyExecutableCommands = ['module', 'add'];
-const unsupportedCommands = ['devtools', 'init'];
+const indirectlyExecutableCommands = ['module', 'add', 'devtools'];
+const unsupportedCommands = ['init'];
 const moduleCommands = ['build-module']
 const internalCommands = ['_dev']
 
@@ -77,11 +76,15 @@ const showCLICommands = async () => {
             newTerminal(terminalName, `${runCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
         } else if (shouldIndirectlyRun(command.toLowerCase())) {
             if (command.toLowerCase() === 'module') {
-                await showNuxtModules();
+                await handleModuleCommand();
             }
 
             if (command.toLowerCase() === 'add') {
                 await handleAddCommand();
+            }
+
+            if (command.toLowerCase() === 'devtools') {
+                await handleDevtoolsCommand()
             }
 
         } else {
