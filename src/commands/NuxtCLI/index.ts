@@ -2,6 +2,7 @@ import { ThemeIcon, QuickPickItem, window } from 'vscode';
 import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../../utils';
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
 import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
+import { cliCommands } from '../../nuxtCLI';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
@@ -37,8 +38,7 @@ const shouldDirectlyRun = (command: any) => directlyExecutableCommands.includes(
 const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.includes(command);
 
 const showCLICommands = async () => {
-    const { main } = jiti("nuxi-edge");
-    const commands = Object.keys(main.subCommands);
+    const commands = Object.keys(await cliCommands);
 
     const options = {
         placeHolder: 'Select a command',

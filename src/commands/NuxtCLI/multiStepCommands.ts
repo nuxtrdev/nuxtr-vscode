@@ -1,5 +1,5 @@
 import { QuickPickItem, window, QuickPickOptions } from 'vscode';
-import { newTerminal, detectPackageManagerByName, projectRootDirectory } from '../../utils';
+import { newTerminal, detectPackageManagerByName, projectRootDirectory, isNuxtTwo } from '../../utils';
 import type { nuxtModule } from '../../types';
 import axios from 'axios';
 
@@ -66,14 +66,16 @@ export const handleModuleCommand = async () => {
             canPickMany: true
         };
 
-        const items = modules.map((module) => {
-            const item: QuickPickItem = {
-                label: module.name,
-                description: module.description
-            };
+        const items = modules
+            .filter(module => isNuxtTwo() ? module.tags.includes('2.x') : module.tags.includes('3.x'))
+            .map((module) => {
+                const item: QuickPickItem = {
+                    label: module.name,
+                    description: module.description
+                };
 
-            return item;
-        });
+                return item;
+            });
 
         window.showQuickPick(items, options).then((selection) => {
             if (!selection) {

@@ -74,4 +74,5 @@ type nuxtModule = {
         nuxt: string;
         requires: Record<string, any>;
     };
+    tags: string[];
 };
