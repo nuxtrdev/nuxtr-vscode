@@ -51,16 +51,23 @@ export const getConfiguration = (): NuxtrConfiguration => {
 
 
 export const newTerminal = (terminalName: string, command: string, cwd?: string) => {
-    const terminal = window.createTerminal({
-        name: terminalName,
-        cwd: cwd,
-        iconPath: new ThemeIcon('nuxt-logo'),
-    });
+    let existingTerminal = window.terminals.find(terminal => terminal.name === terminalName);
 
-    terminal.sendText(command);
+    if (existingTerminal) {
+        existingTerminal.show();
+        existingTerminal.sendText(command);
+    } else {
+        const terminal = window.createTerminal({
+            name: terminalName,
+            cwd: cwd,
+            iconPath: new ThemeIcon('nuxt-logo'),
+        });
 
-    terminal.show();
+        terminal.sendText(command);
+        terminal.show();
+    }
 };
+
 
 export const runCommand = async (args: {
     command: string
@@ -105,3 +112,6 @@ export const runCommand = async (args: {
         }
     );
 };
+
+
+export const jiti = require("jiti")(__filename, { esmResolve: true, interopDefault: true });

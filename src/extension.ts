@@ -6,6 +6,7 @@ import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
+import { checkCLIInstallation } from './nuxtCLI';
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -29,7 +30,7 @@ const commandList = [
     { command: 'nuxtr.nuxtGenerate', function: nuxtrCommands.nuxtGenerate },
     { command: 'nuxtr.nuxtCleanUp', function: nuxtrCommands.nuxtCleanUp },
     { command: 'nuxtr.nuxtAnalyze', function: nuxtrCommands.nuxtAnalyze },
-    { command: 'nuxtr.nuxtBuildModule', function: nuxtrCommands.nuxtBuildModule },
+    { command: 'nuxtr.showCLICommands', function: nuxtrCommands.showCLICommands },
     { command: 'nuxtr.updateDependencies', function: updateDependencies },
     { command: 'nuxtr.nuxtInfo', function: nuxtrCommands.nuxtInfo },
     { command: 'nuxtr.appConfig', function: nuxtrCommands.appConfig },
@@ -63,6 +64,17 @@ export async function activateExtension(context: ExtensionContext) {
     // initial output channel logger
     logger.log('Nuxtr is active')
 
+    // global state command
+    context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {
+        if (update) {
+            context.globalState.update(name, value)
+            return
+        } else {
+            return context.globalState.get(name)
+        }
+    }))
+
+
     const sidebarProvider = new ModulesView(context.extensionUri)
 
 
@@ -75,18 +87,11 @@ export async function activateExtension(context: ExtensionContext) {
     // activate intellisense
     activateIntellisense(context)
 
+    // check nuxt cli installation
+    await checkCLIInstallation()
+
     // activate codelens
     codelens.activateCodelenses(context)
-
-    // global state command
-    context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {
-        if (update) {
-            context.globalState.update(name, value)
-            return
-        } else {
-            return context.globalState.get(name)
-        }
-    }))
 
 
     commandList.forEach(({ command, function: commandFunction }) => {

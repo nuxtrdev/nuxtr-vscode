@@ -1,4 +1,4 @@
-import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, } from './global'
+import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, jiti } from './global'
 
 import {
     addNuxtModule,
@@ -12,6 +12,7 @@ import {
     findNuxtConfig,
     isNuxtProject,
     scanNuxtDirectories,
+    isNuxiInstalled
 } from './nuxt'
 
 import {
@@ -43,6 +44,7 @@ export {
     openExternalLink,
     getProjectDependencies,
     getProjectScripts,
+    jiti,
     getNuxtVersion,
     isNuxtTwo,
     hasSrcDir,
@@ -84,5 +86,6 @@ export {
     readDirectory,
     removePackage,
     managePackageVersion,
-    createConfigWatcher
+    createConfigWatcher,
+    isNuxiInstalled
 }

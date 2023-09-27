@@ -39,7 +39,7 @@ const installDependencies = () => {
                     (item) => item.name === name.label
                 )?.installCommand
                 if (command) {
-                    newTerminal("Nuxtr: Install Dependencies", command)
+                    newTerminal("Install Dependencies", command)
                 }
             }
         })
@@ -47,7 +47,7 @@ const installDependencies = () => {
         if (packageManager.installCommand.includes("yarn")) {
             packageManager.installCommand = "yarn"
         }
-        newTerminal("Nuxtr: Install Dependencies", packageManager.installCommand)
+        newTerminal("Install Dependencies", packageManager.installCommand)
     }
 }
 
