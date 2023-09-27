@@ -292,7 +292,6 @@ export function isNuxiInstalled(): Promise<boolean> {
                 console.error(`Error: ${error}`);
                 resolve(false);
             } else {
-                console.log(`stdout: ${stdout}`);
                 const versionPattern = /^\s*\d+\.\d+\.\d+\s*$/;
                 resolve(versionPattern.test(stdout.toString()));
             }
