@@ -1,15 +1,46 @@
+// {
+//     "compilerOptions": {
+//         "module": "commonjs",
+//         "target": "ES2022",
+//         "outDir": "dist",
+//         "lib": [
+//             "ES2022"
+//         ],
+//         "moduleResolution": "node",
+//         "esModuleInterop": true,
+//         "sourceMap": true,
+//         "strict": true,
+//         "strictNullChecks": true,
+//         "resolveJsonModule": true,
+//         "skipLibCheck": true,
+//         "skipDefaultLibCheck": true
+//     },
+//     "typeAcquisition": {
+//         "include": [
+//             "node"
+//         ]
+//     },
+//     "exclude": [
+//         "node_modules",
+//         ".vscode-test",
+//         "ui"
+//     ]
+// }
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES2022",
+        "target": "es2017",
+        "module": "esnext",
         "outDir": "out",
         "lib": [
-            "ES2022"
+            "esnext"
         ],
-        "sourceMap": true,
-        "rootDir": "src",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
         "strict": true,
-        "resolveJsonModule": true
+        "strictNullChecks": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true
     },
     "typeAcquisition": {
         "include": [
