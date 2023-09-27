@@ -287,12 +287,14 @@ export function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
 
 export function isNuxiInstalled(): Promise<boolean> {
     return new Promise((resolve) => {
-        exec('npm ls -g --depth=0', (error, stdout, stderr) => {
+        exec('nuxi --version', (error, stdout) => {
             if (error) {
                 console.error(`Error: ${error}`);
                 resolve(false);
             } else {
-                resolve(stdout.includes('nuxi'));
+                console.log(`stdout: ${stdout}`);
+                const versionPattern = /^\s*\d+\.\d+\.\d+\s*$/;
+                resolve(versionPattern.test(stdout.toString()));
             }
         });
     });
