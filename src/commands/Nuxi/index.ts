@@ -1,8 +1,8 @@
 import { ThemeIcon, QuickPickItem, window } from 'vscode';
-import { newTerminal, projectRootDirectory, jiti, detectPackageManagerByName } from '../../utils';
+import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
 import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
-import { cliCommands } from '../../nuxtCLI';
+import { tryImportNuxi } from '../../nuxi';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
@@ -38,7 +38,12 @@ const shouldDirectlyRun = (command: any) => directlyExecutableCommands.includes(
 const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.includes(command);
 
 const showCLICommands = async () => {
-    const commands = Object.keys(await cliCommands);
+    const nuxi = await tryImportNuxi()
+    if (!nuxi) {
+        console.log('nuxi not found')
+        return
+    }
+    const commands = Object.keys(nuxi.main.subCommands);
 
     const options = {
         placeHolder: 'Select a command',
