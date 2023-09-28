@@ -1,4 +1,4 @@
-import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, jiti } from './global'
+import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, tryImport } from './global'
 
 import {
     addNuxtModule,
@@ -44,7 +44,7 @@ export {
     openExternalLink,
     getProjectDependencies,
     getProjectScripts,
-    jiti,
+    tryImport,
     getNuxtVersion,
     isNuxtTwo,
     hasSrcDir,
