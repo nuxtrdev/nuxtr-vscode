@@ -114,4 +114,13 @@ export const runCommand = async (args: {
 };
 
 
-export const jiti = require("jiti")(__filename, { esmResolve: true, interopDefault: true });
+const _jiti = require("jiti")(projectRootDirectory(), { esmResolve: true, interopDefault: true });
+
+export async function tryImport (path: string): Promise<undefined | unknown> {
+    try {
+        return _jiti(path)
+    } catch (error) {
+        return undefined;
+    }
+}
+
