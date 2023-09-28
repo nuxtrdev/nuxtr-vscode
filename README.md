@@ -1,30 +1,21 @@
 <br />
 
 <div align="center">
-  <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
-
-  <h3 align="center">Nuxtr VSCode</h3>
-
-  <p align="center">
-    An extension offering commands and tools <br /> to make your experience with Nuxt more pleasant!
-  </p>
-
-  <p align="center">
-    <a href="https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxtr-vscode" target="_blank">
-      <img src="https://img.shields.io/visual-studio-marketplace/v/Nuxtr.nuxtr-vscode.svg?color=eee&label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" />
-    </a>
-  </p>
-
-  <p align="center">
-    <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/issues/new?assignees=&labels=bug%2Ctriage&projects=&template=issue.yaml&title=%5BBug%5D%3A+">
-      <strong>Report Bug</strong> »
-    </a>
-    ·
-    <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/discussions/new/choose">
-      <strong>Start a Discussion</strong> »
-    </a>
-  </p>
+    <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
+    <h3 align="center">Nuxtr VSCode</h3>
+    <p align="center">An extension offering commands and tools <br /> to make your experience with Nuxt more pleasant!</p>
+    <div align="center">
+        <a href="https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxtr-vscode" target="_blank"><img src="https://img.shields.io/visual-studio-marketplace/v/Nuxtr.nuxtr-vscode.svg?color=blue&label=VS%20Code%20Marketplace&logo=visual-studio-code" alt="Visual Studio Marketplace Version" /></a>
+        <a href="https://marketplace.visualstudio.com/items?itemName=Nuxtr.nuxtr-vscode" target="_blank"><img src="https://img.shields.io/visual-studio-marketplace/i/Nuxtr.nuxtr-vscode?color=blue&label=Installs&logo=visual-studio-code" alt="Visual Studio Marketplace Installs" /></a>
+    </div>
+    <br>
+    <div align="center">
+        <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/issues/new?assignees=&labels=bug%2Ctriage&projects=&template=issue.yaml&title=%5BBug%5D%3A+"><strong>Report Bug</strong> »</a>
+        ·
+        <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/discussions/new/choose"><strong>Start a Discussion</strong> »</a>
+    </div>
 </div>
+
 
 <br>
 
@@ -45,26 +36,28 @@
 <br>
 <br>
 
-### Project directories and files creation
+### Streamlined Directory and File Creation
 
-With just a few clicks or using commands and context menus, you can effortlessly create all the necessary directories and files for your Nuxt project, including Vue/TypeScript files, special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config) and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config). The flexibility extends to supporting both flat and subdirectory structures.
+Effortlessly generate all essential directories and files for your Nuxt project right from within VSCode. Utilize the command palette  or context menus to swiftly create Vue/TypeScript files, as well as special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config), and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config).
 
-You can customize Vue file templates using the following settings:
+To initiate any creation action, simply prepend it with the prefix **`Nuxtr: Create...`** and **`Nuxtr: Nuxt project structure...`** command for creating the entire project structure.
+
+Customize Vue file templates with these settings:
 
 ```JSON
-  "vueFiles.template.defaultLanguage": "html",
-  "nuxtr.vueFiles.firstTag": "template",
-  "nuxtr.vueFiles.script.type": "setup",
-  "nuxtr.vueFiles.script.defaultLanguage": "ts",
-  "nuxtr.vueFiles.style.addStyleTag": true,
-  "nuxtr.vueFiles.style.alwaysScoped": true,
-  "nuxtr.vueFiles.style.defaultLanguage": "scss"
+"vueFiles.template.defaultLanguage": "html",
+"nuxtr.vueFiles.firstTag": "template",
+"nuxtr.vueFiles.script.type": "setup",
+"nuxtr.vueFiles.script.defaultLanguage": "ts",
+"nuxtr.vueFiles.style.addStyleTag": true,
+"nuxtr.vueFiles.style.alwaysScoped": true,
+"nuxtr.vueFiles.style.defaultLanguage": "scss"
 ```
 
-And auto open the created file using:
+Additionally, you can choose to automatically open the newly created file with:
 
 ```JSON
-  "nuxtr.openItemsAfterCreation": true
+"nuxtr.openItemsAfterCreation": true
 ```
 
 ![Nuxt Project Creation](./.github/media/file_creation.gif)
@@ -74,15 +67,15 @@ And auto open the created file using:
 
 ### Dependencies management
 
-**Package Manager Detection**: Detecting your package manager if a lock file exists. Or letting you choose which package manager to use with this setting. You can select your default package manager from the setting:
+**Package Manager Detection**: Your package manager is automatically detected if a lock file exists. Alternatively, you can specify which package manager to use with the following setting:
 
 ```JSON
-  "nuxtr.defaultPackageManager": "pnpm"
+"nuxtr.defaultPackageManager": "pnpm"
 ```
 
-**Dependency Removal and Upgrade/Downgrade**: From sidebar inside project view, You can remove or upgrade/downgrade your dependencies by selecting which version you want to install.
+**Dependencies Management**: Within the sidebar of the project view, easily remove, upgrade, or downgrade your dependencies by selecting the desired version.
 
-**Status Bar Icon**: In your statusbar you can see your outdated dependencies and update them with few clicks.
+**Status Bar Icon**: Keep an eye on your outdated dependencies directly from the status bar. With just a few clicks, you can initiate the update process.
 
 <br>
 
@@ -91,9 +84,11 @@ And auto open the created file using:
 <br>
 <br>
 
+Certainly! Here's a refined version of the section on IntelliSense and Auto Completion:
+
 ### IntelliSense and Auto Completion
 
-Nuxtr VSCode offers a robust IntelliSense with focused support for Vue files, offering relative path completion from the pages directory for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) and from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public) for media resources, depending on your Nuxt version. Moreover, it offers IntelliSense for essential configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](), empowering you with accurate insights and efficient coding.
+Nuxtr VSCode offers robust IntelliSense capabilities tailored for Vue files. This includes dynamic path completion for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) within the pages directory, and seamless handling of media resources from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public), depending on your Nuxt version. Additionally, enjoy IntelliSense support for critical configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](https://nuxt.com/docs/guide/directory-structure/nuxtrc), ensuring precise guidance and efficient coding.
 
 You can enable/disable IntelliSense from the settings:
 
