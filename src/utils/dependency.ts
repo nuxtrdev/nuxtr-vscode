@@ -46,8 +46,6 @@ export const getProjectDependencies = async ():  Promise<Dependency[]>  => {
             addDependencies(packageJSON.devDependencies);
         }
 
-        console.log('dependencies', dependencies);
-
         return dependencies
     }
 }

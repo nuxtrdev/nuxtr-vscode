@@ -2,7 +2,7 @@
     "name": "nuxtr-vscode",
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
-    "version": "0.1.11",
+    "version": "0.2.0",
     "packageManager": "pnpm@8.8.0",
     "engines": {
         "vscode": "^1.82.0"
@@ -15,6 +15,9 @@
     "homepage": "https://nuxtr.com",
     "activationEvents": [
         "onStartupFinished"
+    ],
+    "files": [
+        "out"
     ],
     "main": "./out/index.js",
     "icon": "assets/logo.png",
@@ -1019,22 +1022,15 @@
         "http"
     ],
     "scripts": {
-        "install:all": "npm install && cd ui && yarn",
-        "start:ui": "cd ui && yarn start",
-        "build:ui": "cd ui && yarn build",
-        "dev:ui": "cd ui && yarn dev",
-        "vscode:prepublish": "npm run esbuild-base -- --minify",
-        "esbuild-base": "esbuild ./src/index.ts --bundle --outfile=out/index.js --external:vscode --format=cjs --platform=node",
-        "esbuild": "pnpm esbuild-base -- --sourcemap",
-        "esbuild-watch": "pnpm esbuild-base -- --sourcemap --watch",
-        "compile": "tsc -p ./",
-        "watch": "tsc -watch -p ./",
-        "pretest": "npm run compile && npm run lint",
+        "install:all": "pnpm install && cd ui && pnpm install",
+        "vscode:prepublish": "pnpm build",
+        "build": "tsup src/index.ts --format cjs --external vscode --no-shims",
+        "dev": "pnpm build -- --watch",
         "lint": "eslint ./src --ext .ts --fix",
-        "test": "node ./out/test/runTest.js",
-        "package": "vsce package --no-dependencies",
-        "publish:release": "vsce publish --no-dependencies",
-        "publish:pre": "vsce publish --pre-release --no-dependencies"
+        "package": "vsce package",
+        "publish:release": "vsce publish",
+        "publish:pre": "vsce publish --pre-release",
+        "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
         "@types/mocha": "^10.0.2",
@@ -1043,9 +1039,9 @@
         "@typescript-eslint/eslint-plugin": "^6.7.3",
         "@typescript-eslint/parser": "^6.7.3",
         "@vscode/test-electron": "^2.3.4",
-        "esbuild": "^0.19.3",
         "eslint": "^8.50.0",
-        "mocha": "^10.2.0",
+        "taze": "^0.11.3",
+        "tsup": "^7.2.0",
         "typescript": "^5.2.2"
     },
     "dependencies": {
@@ -1054,18 +1050,12 @@
         "@types/util.promisify": "^1.0.5",
         "axios": "^1.5.1",
         "destr": "^2.0.1",
-        "fs": "^0.0.1-security",
         "fs-extra": "^11.1.1",
         "jiti": "^1.20.0",
         "magicast": "^0.2.11",
-        "nuxi-edge": "3.9.0-1694711034.61383d1",
+        "nuxi-edge": "3.9.1-1695234696.c4b90f7",
         "path": "^0.12.7",
         "pkg-types": "^1.0.3",
         "util": "^0.12.5"
-    },
-    "pnpm": {
-        "overrides": {
-            "magicast": "0.2.10"
-        }
     }
 }

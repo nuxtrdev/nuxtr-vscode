@@ -1,15 +1,18 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
-        "target": "ES2022",
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "module": "ESNext",
         "outDir": "out",
         "lib": [
-            "ES2022"
+            "ESNext"
         ],
-        "sourceMap": true,
-        "rootDir": "src",
+        "target": "es2018",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
         "strict": true,
-        "resolveJsonModule": true
+        "strictNullChecks": true
     },
     "typeAcquisition": {
         "include": [
@@ -19,6 +22,7 @@
     "exclude": [
         "node_modules",
         ".vscode-test",
-        "ui"
+        "ui",
+        "taze.config.ts"
     ]
 }
