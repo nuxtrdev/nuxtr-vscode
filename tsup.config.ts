@@ -10,7 +10,25 @@ export default defineConfig({
     dts: false,
     splitting: false,
     clean: true,
+    minify: true,
+    platform: 'node',
+    sourcemap: false,
     external: [
         'vscode',
     ],
+    noExternal: [
+        "@nuxt/schema",
+        "@types/fs-extra",
+        "@types/util.promisify",
+        "axios",
+        "destr",
+        "fs-extra",
+        "jiti",
+        "magicast",
+        "nuxi-edge",
+        "path",
+        "pkg-types",
+        "util",
+    ]
+
 })

@@ -1023,13 +1023,13 @@
     ],
     "scripts": {
         "install:all": "pnpm install && cd ui && pnpm install",
+        "build": "tsup",
         "vscode:prepublish": "pnpm build",
-        "build": "tsup src/index.ts --format cjs --external vscode --no-shims",
         "dev": "pnpm build -- --watch",
         "lint": "eslint ./src --ext .ts --fix",
-        "package": "vsce package",
-        "publish:release": "vsce publish",
-        "publish:pre": "vsce publish --pre-release",
+        "package": "vsce package --no-dependencies",
+        "publish:release": "vsce publish --no-dependencies",
+        "publish:pre": "vsce publish --pre-release --no-dependencies",
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
@@ -1052,10 +1052,15 @@
         "destr": "^2.0.1",
         "fs-extra": "^11.1.1",
         "jiti": "^1.20.0",
-        "magicast": "^0.2.11",
+        "magicast": "^0.3.0",
         "nuxi-edge": "3.9.1-1695234696.c4b90f7",
         "path": "^0.12.7",
         "pkg-types": "^1.0.3",
         "util": "^0.12.5"
+    },
+    "pnpm": {
+        "overrides": {
+            "magicast": "^0.3.0"
+        }
     }
 }
