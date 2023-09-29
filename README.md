@@ -173,9 +173,9 @@ For monorepo configurations, specify the directory name containing your Nuxt pro
 <br>
 <br>
 
-### Run scripts from the VSCode command palette or sidebar
+### Execute Scripts with Ease
 
-Main scripts are available from command palette, if you want to use a custom command you can find it in the sidebar. Besides `nuxt dev` command, all other commands run in the background and you can see the output in the VSCode output channel.
+Access main scripts directly from the command palette for swift execution. Should you require a custom command, you can conveniently locate it in the sidebar. With the exception of nuxt dev, all other commands operate in the background, and you can monitor the output in the VSCode output channel.
 
 ![Nuxt Scripts](./.github/media/scripts.gif)
 
@@ -184,9 +184,9 @@ Main scripts are available from command palette, if you want to use a custom com
 
 ### Toggle Nuxt Devtools from your status bar
 
-[Nuxt Devtools](https://devtools.nuxtjs.org/) is a great tool! One of the great features it offer is working globally with your project if you are using Nuxt <= 3.4.0. You can toggle it from your status bar. Extension detects your Nuxt version and advices you to update if not.
+[Nuxt Devtools](https://devtools.nuxtjs.org/) empowers you to make informed decisions about your project. Provides invaluable insights and transparency for your Nuxt application. Uncover performance gaps and effortlessly fine-tune your app configurations and more!
 
-Manual toggling from nuxt.config.ts is detected and state is synced.
+ Nuxtr offers a toggle directly in your VSCode statusbar. Manual toggling from nuxt.config.ts is also detected and state is synced.
 
 ![Nuxt Devtools](./.github/media/devtools.gif)
 
@@ -195,7 +195,10 @@ Manual toggling from nuxt.config.ts is detected and state is synced.
 
 ### Search and install Nuxt integrations
 
-Almost full support for Nuxt modules with a typical searching/filters experience as Nuxt Modules directory. Once you have found your desired module and detected your package manager, it will be installed and added to the nuxt.config file. A success message will be displayed, along with a button to access the module documentation.
+Effortlessly search for and install Nuxt modules, mirroring the familiar experience of the [Nuxt Modules](https://nuxt.com/modules) directory. Once you've located your desired module and your package manager is detected, it will be seamlessly integrated into your nuxt.config file. A success message will confirm the installation, along with a quick link to access the module documentation.
+
+
+Search and Install Nuxt modules with a typical searching/filters experience as [Nuxt Modules](https://nuxt.com/modules) directory. Once you have found your desired module and your package manager is detected, it will be installed and added to the nuxt.config file. A success message will be displayed, along with a button to access the module documentation.
 
 Starting from v0.1.0, you can filter integration types (modules/layers) from the sidebar.
 
