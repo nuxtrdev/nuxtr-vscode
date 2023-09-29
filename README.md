@@ -36,7 +36,7 @@
 <br>
 <br>
 
-### Streamlined Directory and File Creation
+### Directory and File Creation
 
 Effortlessly generate all essential directories and files for your Nuxt project right from within VSCode. Utilize the command palette  or context menus to swiftly create Vue/TypeScript files, as well as special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config), and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config).
 
@@ -84,8 +84,6 @@ Additionally, you can choose to automatically open the newly created file with:
 <br>
 <br>
 
-Certainly! Here's a refined version of the section on IntelliSense and Auto Completion:
-
 ### IntelliSense and Auto Completion
 
 Nuxtr VSCode offers robust IntelliSense capabilities tailored for Vue files. This includes dynamic path completion for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) within the pages directory, and seamless handling of media resources from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public), depending on your Nuxt version. Additionally, enjoy IntelliSense support for critical configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](https://nuxt.com/docs/guide/directory-structure/nuxtrc), ensuring precise guidance and efficient coding.
@@ -103,35 +101,33 @@ You can enable/disable IntelliSense from the settings:
 
 ### Nuxi CLI Integration
 
-The Nuxt CLI, also known as [Nuxi](https://github.com/nuxt/cli), stands as an indispensable tool in the arsenal of every Nuxt developer. Nuxtr seamlessly incorporates this powerful CLI, allowing you to execute Nuxi commands right from the command palette. Under the `Nuxtr: Run` prefix, you'll find a set of pre-defined most-used commands readily available. Additionally, you have the option to access the complete list of Nuxi commands through the `Nuxtr: Nuxi CLI` command.
+The Nuxt CLI, also known as [Nuxi](https://github.com/nuxt/cli), is an essential tool for every Nuxt developer. Seamlessly integrated into Nuxtr, it enables you to effortlessly execute Nuxi commands directly from the command palette. Under the `Nuxtr: Run` prefix, you'll discover a curated set of frequently used commands at your fingertips. Additionally, you can access the complete list of Nuxi commands through the `Nuxtr: Nuxi CLI` command.
 
-While it's entirely sensible to employ the CLI directly from your terminal, Nuxtr's inclusion will enhance your DX working with multiple terminals. It provides a structured approach to your terminal environment, categorizing commands based on their scope. This not only streamlines your workflow but also simplifies the process of adding modules, eliminating the need to recall or search for exact names.
+While using the CLI directly from your terminal is perfectly viable, Nuxtr's integration enhances your development experience, especially when working with multiple terminals. It introduces a structured approach to your terminal environment, categorizing commands based on their scope. This not only streamlines your workflow but also simplifies the process of adding modules, eliminating the need to recall or search for exact names.
 
 
 <br>
 <br>
 
-### Nuxt/Custom Snippets
+### Nuxt, Nitro and Custom Snippets
 
-**Nuxt Snippets**: You can use Nuxt snippets by typing `nuxt` for components, `use` for Composables or just start typing Nuxt utils and selecting your snippet from the list.
+**Nuxt Snippets**: Enhance your development speed with Nuxt snippets. Simply type `nuxt` for components, `use` for Composables, or begin typing Nuxt utilities and select your desired snippet from the list.
 
-Nuxt Snippets is enabled by default. You can enable/disable them using this setting.
+Nuxt Snippets are enabled by default. You can toggle them on or off using this setting:
 
 ```JSON
  "nuxtr.snippets.nuxt": true
 ```
 
-**Nitro Snippets**: Nitro is empoweing Nuxt Server Engine. Please, refer to [Nitro Docs](https://nitro.unjs.io) for more information.
+**Nitro Snippets**: Nitro powers the Nuxt Server Engine. For detailed information, refer to the [Nitro Docs](https://nitro.unjs.io).
 
-Nitro Snippets is enabled by default. You can enable/disable them using this setting.
+Nitro Snippets are enabled by default. You can customize their behavior using this setting:
 
 ```JSON
  "nuxtr.snippets.nitro": true
 ```
 
-**Custom Snippets**: Easily manage your custom snippets from the sidebar. You can create, edit or delete your snippets.
-
-More on this side of the extension is coming soon!
+**Custom Snippets**: Easily manage your custom snippets directly from the sidebar. Create, edit, or delete your snippets with ease. Stay tuned for more updates on this feature!
 
 ![Snippets](./.github/media/snippets.gif)
 
@@ -139,13 +135,13 @@ More on this side of the extension is coming soon!
 <br>
 <br>
 
-### Vue File Templates
+### Personalized Vue File Templates
 
-To provide users with greater flexibility in customizing their Vue files, we offer the ability to create and utilize personalized templates. These templates can be set as defaults or used selectively as per the user's preference.
+In order to offer users greater flexibility in tailoring their Vue files, we provide the capability to create and utilize personalized templates. These templates can be set as defaults or used selectively based on the user's preference.
 
-We currently support two types of templates for ensuring a consistent user experience: `.page-template` and `.layout-template`. When Nuxt is loaded, these files are treated as regular Vue files, simplifying the editing process. Templates creation can be done from existing respective files via context menu item or empty templates from sidebar.
+We currently support two types of templates to ensure a consistent user experience: `.page-template` and `.layout-template`. When Nuxt is loaded, these files are treated as regular Vue files, simplifying the editing process. Templates can be created from existing respective files via the context menu or from empty templates accessed in the sidebar.
 
-You can set your default template from these settings:
+Set your default template with these settings:
 
 ```JSON
 "nuxtr.vueFiles.pages.defaultTemplate": "default.page-template",
@@ -157,16 +153,18 @@ You can set your default template from these settings:
 <br>
 <br>
 
-### srcDir, serverDir and monorepo support
+### Support for `srcDir`, `serverDir`, and Monorepo Projects
 
-Nuxtr supports `srcDir`, `serverDir` and monorepo projects. You can set your `srcDir` from your `nuxt.config.ts` file and Nuxtr will create files/directories in the right place for you.
+Nuxtr seamlessly integrates with projects using `srcDir` and `serverDir`, as well as monorepo setups. Set your `srcDir` or `serverDir` directly from your `nuxt.config.ts` file, and Nuxtr will detect and generate files/directories in the correct locations for you.
+
+Example:
 
 ```JSON
   "srcDir": "src",
   "serverDir": "server"
 ```
 
-Or locate your nuxt project in your monorepo using this setting in `.vscode/settings.json`:
+For monorepo configurations, specify the directory name containing your Nuxt project in your `.vscode/settings.json`:
 
 ```JSON
   "nuxtr.monorepoMode.DirectoryName": "directory-name"
