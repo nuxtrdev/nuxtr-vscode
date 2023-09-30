@@ -825,7 +825,7 @@
             },
             {
                 "command": "nuxtr.directCreateStore",
-                "title": "Create new Store",
+                "title": "New Store...",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
             },
