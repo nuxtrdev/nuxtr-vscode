@@ -1,28 +1,25 @@
 {
     "compilerOptions": {
-        "skipLibCheck": true,
-        "skipDefaultLibCheck": true,
-        "module": "ESNext",
-        "outDir": "out",
-        "lib": [
-            "ESNext"
-        ],
-        "target": "es2018",
-        "esModuleInterop": true,
         "moduleResolution": "node",
-        "resolveJsonModule": true,
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "target": "es2020",
+        "isolatedModules": true,
+        "moduleDetection": "force",
+        "outDir": "out",
         "strict": true,
-        "strictNullChecks": true
-    },
-    "typeAcquisition": {
-        "include": [
-            "node"
-        ]
+        "noUncheckedIndexedAccess": true,
+        "noFallthroughCasesInSwitch": true,
+        "forceConsistentCasingInFileNames": true,
+        "noPropertyAccessFromIndexSignature": true,
+        "skipLibCheck": true,
+        "incremental": true,
+        "tsBuildInfoFile": "node_modules/.cache/typescript/.tsbuildinfo",
     },
     "exclude": [
         "node_modules",
         ".vscode-test",
         "ui",
         "taze.config.ts"
-    ]
+    ],
 }

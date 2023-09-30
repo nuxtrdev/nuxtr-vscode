@@ -1,6 +1,5 @@
 const piniaContent = (name: string) => {
-    return `
-import { defineStore } from 'pinia'
+    return `import { defineStore } from 'pinia'
 
 export const useMy${name.charAt(0).toUpperCase() + name.slice(1)}Store = defineStore({
   id: 'my${name.charAt(0).toUpperCase() + name.slice(1)}Store',
@@ -9,16 +8,14 @@ export const useMy${name.charAt(0).toUpperCase() + name.slice(1)}Store = defineS
 })
 `}
 
-const vuexContent = `
-export const state = () => ({ })
+const vuexContent = `export const state = () => ({ })
 
 export const mutations = {}
 
 export const actions = { }
 `
 
-const appConfigContent = `
-export default defineAppConfig({
+const appConfigContent = `export default defineAppConfig({
 
 })
 `
