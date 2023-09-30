@@ -134,7 +134,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`${script}`, `yarn ${script}`, `${projectRootDirectory()}`)
+                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    newTerminal(`Project: ${command}`, `yarn ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'NPM':
@@ -147,7 +148,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`${script}`, `npm run ${script}`, `${projectRootDirectory()}`)
+                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    newTerminal(`Project: ${command}`, `npm run ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'pnpm':
@@ -160,7 +162,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`${script}`, `pnpm ${script}`, `${projectRootDirectory()}`)
+                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    newTerminal(`Project: ${command}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             case 'Bun':
@@ -173,7 +176,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    newTerminal(`${script}`, `bun ${script}`, `${projectRootDirectory()}`)
+                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    newTerminal(`Project: ${command}`, `bun ${script}`, `${projectRootDirectory()}`)
                 }
                 break
             default:
