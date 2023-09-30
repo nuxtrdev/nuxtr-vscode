@@ -12,7 +12,7 @@
     <div align="center">
         <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/issues/new?assignees=&labels=bug%2Ctriage&projects=&template=issue.yaml&title=%5BBug%5D%3A+"><strong>Report Bug</strong> »</a>
         ·
-        <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/discussions/new/choose"><strong>Start a Discussion</strong> »</a>
+        <a target="_blank" href="https://github.com/nuxtrdev/nuxtr-vscode/discussions/new/choose"><strong>Share Idea/feedback</strong> »</a>
     </div>
 </div>
 
@@ -21,17 +21,17 @@
 
 ### What does Nuxtr do?
 
-- [Project directories and files creation](#project-directories-and-files-creation)
+- [Directory and File Creation](#directory-and-file-creation)
 - [Dependencies management](#dependencies-management)
 - [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
 - [Nuxi CLI Integration](#nuxi-cli-integration)
-- [Nuxt/Custom Snippets](#nuxtcustom-snippets)
-- [Vue File Templates](#vue-file-templates)
-- [srcDir, serverDir and monorepo support](#srcdir-serverdir-and-monorepo-support)
-- [Run scripts from the VSCode command palette or sidebar.](#run-scripts-from-the-vscode-command-palette-or-sidebar)
+- [Nuxt, Nitro and Custom Snippets](#nuxt-nitro-and-custom-snippets)
+- [Personalized Vue File Templates](#personalized-vue-file-templates)
+- [Support for `srcDir`, `serverDir`, and Monorepo Projects](#support-for-srcdir-serverdir-and-monorepo-projects)
+- [Execute Scripts with Ease](#execute-scripts-with-ease)
 - [Toggle Nuxt Devtools from your status bar](#toggle-nuxt-devtools-from-your-status-bar)
 - [Search and install Nuxt integrations](#search-and-install-nuxt-integrations)
-- [Install & Configure CSS frameworks and Linters](#install--configure-css-frameworks-and-linters)
+- [Install \& Configure CSS frameworks and Linters](#install--configure-css-frameworks-and-linters)
 
 <br>
 <br>
@@ -79,7 +79,7 @@ Additionally, you can choose to automatically open the newly created file with:
 
 <br>
 
-![Nuxt Dependencies](./.github/media/dependencies.png)
+![Nuxt Dependencies](./.github/media/dependencies.gif)
 
 <br>
 <br>
@@ -96,6 +96,8 @@ You can enable/disable IntelliSense from the settings:
  "nuxtr.intellisense.nuxtignore": true,
 ```
 
+![IntelliSense](./.github/media/intellisense.gif)
+
 <br>
 <br>
 
@@ -105,6 +107,8 @@ The Nuxt CLI, also known as [Nuxi](https://github.com/nuxt/cli), is an essential
 
 While using the CLI directly from your terminal is perfectly viable, Nuxtr's integration enhances your development experience, especially when working with multiple terminals. It introduces a structured approach to your terminal environment, categorizing commands based on their scope. This not only streamlines your workflow but also simplifies the process of adding modules, eliminating the need to recall or search for exact names.
 
+
+![Nuxi CLI](./.github/media/nuxi.gif)
 
 <br>
 <br>
@@ -128,9 +132,6 @@ Nitro Snippets are enabled by default. You can customize their behavior using th
 ```
 
 **Custom Snippets**: Easily manage your custom snippets directly from the sidebar. Create, edit, or delete your snippets with ease. Stay tuned for more updates on this feature!
-
-![Snippets](./.github/media/snippets.gif)
-
 
 <br>
 <br>
@@ -177,7 +178,7 @@ For monorepo configurations, specify the directory name containing your Nuxt pro
 
 Access main scripts directly from the command palette for swift execution. Should you require a custom command, you can conveniently locate it in the sidebar. With the exception of nuxt dev, all other commands operate in the background, and you can monitor the output in the VSCode output channel.
 
-![Nuxt Scripts](./.github/media/scripts.gif)
+![Nuxt Scripts](./.github/media/scripts.png)
 
 <br>
 <br>
@@ -227,12 +228,6 @@ More coming soon.
 
 <br>
 
-### License
-
-[MIT](https://github.com/nuxtrdev/nuxtr-vscode/blob/main/LICENSE) License © 2023.
-
-<br>
-
 ### Contributing
 
 We always welcome new ideas! 💚 <br>
@@ -247,3 +242,9 @@ Nuxtr VSCode relies on the following projects/repositories:
 - [Nuxt Modules](https://github.com/nuxt/modules)
 - [Nuxt Assets](https://github.com/nuxt/assets)
 - [Tabler Icons](https://tablericons.com/)
+
+<br>
+
+### License
+
+[MIT](https://github.com/nuxtrdev/nuxtr-vscode/blob/main/LICENSE) License © 2023 with 💚
