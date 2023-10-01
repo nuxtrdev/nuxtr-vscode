@@ -1,14 +1,14 @@
 import { workspace, ExtensionContext, commands, window } from 'vscode'
 import { existsSync, promises as fs } from 'fs'
 import { join } from 'path'
-import { isNuxtProject } from './utils'
+import { isNuxtProject, getConfiguration } from './utils'
 import { activateExtension } from './extension'
 
 export async function activate(context: ExtensionContext) {
 
     let userRoot: string | undefined
 
-    const configuration = workspace.getConfiguration('nuxtr').monorepoMode.DirectoryName
+    const configuration = getConfiguration().monorepoMode.DirectoryName
 
     if (!configuration) {
         userRoot = workspace.workspaceFolders?.[0]?.uri.fsPath

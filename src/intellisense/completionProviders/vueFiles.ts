@@ -66,8 +66,12 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
 
         if (subDirMatch) {
             const subdirectoryPath = subDirMatch[1];
-            const subdirectories = subdirectoryPath.split('/');
 
+            if (!subdirectoryPath) {
+                return [];
+            }
+
+            const subdirectories = subdirectoryPath.split('/');
             let currentDir = isNuxtTwo() ? 'static' : 'public';
             const promises: Promise<CompletionItem[]>[] = [];
 
@@ -135,6 +139,11 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
 
         if (subDirMatch) {
             const subdirectoryPath = subDirMatch[1];
+
+            if (!subdirectoryPath) {
+                return [];
+            }
+
             const subdirectories = subdirectoryPath.split('/');
 
             let currentDir = 'pages';

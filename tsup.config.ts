@@ -18,8 +18,6 @@ export default defineConfig({
     ],
     noExternal: [
         "@nuxt/schema",
-        "@types/fs-extra",
-        "@types/util.promisify",
         "axios",
         "destr",
         "fs-extra",

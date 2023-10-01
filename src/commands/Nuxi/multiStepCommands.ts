@@ -88,6 +88,10 @@ export const handleModuleCommand = async () => {
                 userSelection = selection.map((module) => module.label).join(' ')
                 : userSelection = selection.label;
 
+            if (!userSelection || userSelection.length === 0) {
+                return;
+            }
+
             const terminalName = `Nuxi: Module`;
             const command = `${runCommand} nuxi module add ${userSelection}`;
             newTerminal(terminalName, command, `${projectRootDirectory()}`);

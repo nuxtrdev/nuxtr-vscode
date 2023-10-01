@@ -4,19 +4,10 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  magicast: ^0.3.0
-
 dependencies:
   '@nuxt/schema':
     specifier: ^3.7.4
     version: 3.7.4
-  '@types/fs-extra':
-    specifier: ^11.0.2
-    version: 11.0.2
-  '@types/util.promisify':
-    specifier: ^1.0.5
-    version: 1.0.5
   axios:
     specifier: ^1.5.1
     version: 1.5.1
@@ -46,12 +37,18 @@ dependencies:
     version: 0.12.5
 
 devDependencies:
+  '@types/fs-extra':
+    specifier: ^11.0.2
+    version: 11.0.2
   '@types/mocha':
     specifier: ^10.0.2
     version: 10.0.2
   '@types/node':
     specifier: 20.4.1
     version: 20.4.1
+  '@types/util.promisify':
+    specifier: ^1.0.5
+    version: 1.0.5
   '@types/vscode':
     specifier: ^1.82.0
     version: 1.82.0
@@ -815,7 +812,7 @@ packages:
     dependencies:
       '@types/jsonfile': 6.1.2
       '@types/node': 20.4.1
-    dev: false
+    dev: true
 
   /@types/json-schema@7.0.13:
     resolution: {integrity: sha512-RbSSoHliUbnXj3ny0CNFOoxrIDV6SUGyStHsvDqosw6CkdPV8TtWGlfecuK4ToyMEAql6pzNxgCFKanovUzlgQ==}
@@ -825,7 +822,7 @@ packages:
     resolution: {integrity: sha512-8t92P+oeW4d/CRQfJaSqEwXujrhH4OEeHRjGU3v1Q8mUS8GPF3yiX26sw4svv6faL2HfBtGTe2xWIoVgN3dy9w==}
     dependencies:
       '@types/node': 20.4.1
-    dev: false
+    dev: true
 
   /@types/mocha@10.0.2:
     resolution: {integrity: sha512-NaHL0+0lLNhX6d9rs+NSt97WH/gIlRHmszXbQ/8/MV/eVcFNdeJ/GYhrFuUc8K7WuPhRhTSdMkCp8VMzhUq85w==}
@@ -833,6 +830,7 @@ packages:
 
   /@types/node@20.4.1:
     resolution: {integrity: sha512-JIzsAvJeA/5iY6Y/OxZbv1lUcc8dNSE77lb2gnBH+/PJ3lFR1Ccvgwl5JWnHAkNHcRsT0TbpVOsiMKZ1F/yyJg==}
+    dev: true
 
   /@types/semver@7.5.3:
     resolution: {integrity: sha512-OxepLK9EuNEIPxWNME+C6WwbRAOOI2o2BaQEGzz5Lu2e4Z5eDnEo+/aVEDMIXywoJitJ7xWd641wrGLZdtwRyw==}
@@ -842,7 +840,7 @@ packages:
     resolution: {integrity: sha512-xxw38ulR0XfdeE+VxZTWFzTXhzbwnFliXdoNJrt9jWC35R9owGqao5xcwqHOoTY+be+SrO7ptqTCNtkRXIFMMw==}
     dependencies:
       '@types/node': 20.4.1
-    dev: false
+    dev: true
 
   /@types/vscode@1.82.0:
     resolution: {integrity: sha512-VSHV+VnpF8DEm8LNrn8OJ8VuUNcBzN3tMvKrNpbhhfuVjFm82+6v44AbDhLvVFgCzn6vs94EJNTp7w8S6+Q1Rw==}
@@ -1168,7 +1166,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001541
-      electron-to-chromium: 1.4.536
+      electron-to-chromium: 1.4.537
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
     dev: false
@@ -1434,8 +1432,8 @@ packages:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
     dev: true
 
-  /electron-to-chromium@1.4.536:
-    resolution: {integrity: sha512-L4VgC/76m6y8WVCgnw5kJy/xs7hXrViCFdNKVG8Y7B2isfwrFryFyJzumh3ugxhd/oB1uEaEEvRdmeLrnd7OFA==}
+  /electron-to-chromium@1.4.537:
+    resolution: {integrity: sha512-W1+g9qs9hviII0HAwOdehGYkr+zt7KKdmCcJcjH0mYg6oL8+ioT3Skjmt7BLoAQqXhjf40AXd+HlR4oAWMlXjA==}
     dev: false
 
   /emoji-regex@8.0.0:
