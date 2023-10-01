@@ -1,6 +1,5 @@
-function capitalizeFirstLettee(name: string) {
+function capitalizeFirstLetter(name: string) {
     return name.charAt(0).toUpperCase() + name.slice(1)
-        .replace(/\/([a-z])/g, (g) => g[1].toUpperCase())
 }
 
 const nitroDefaultTemplate = `export default defineEventHandler(async (event) => {
@@ -13,7 +12,7 @@ const nuxtMiddlewareTemplate = `export default defineNuxtRouteMiddleware((to, fr
 })
 `
 
-const composableTemplate = (name: string) => `export const use${capitalizeFirstLettee(
+const composableTemplate = (name: string) => `export const use${capitalizeFirstLetter(
     name
 )} = () => {
   return ref()

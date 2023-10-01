@@ -30,9 +30,11 @@ export const getProjectDependencies = async ():  Promise<Dependency[]>  => {
         const packageJSON = await readPackageJSON(packageJsonPath)
 
         const addDependencies = (depObj: Record<string, string>) => {
+
             dependencies.push(
                 ...Object.keys(depObj).map((key) => ({
                     name: key,
+                    // @ts-ignore
                     version: depObj[key].replace(/[\^~]/, ''),
                 }))
             );
@@ -60,7 +62,6 @@ export const getOutdatedPackages = async () => {
     checkingVersionCommand = `${pm} outdated --json`
 
 
-    logger.log(checkingVersionCommand)
     const child = exec(
         checkingVersionCommand,
         { cwd: projectRootDirectory() },

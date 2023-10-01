@@ -1033,6 +1033,8 @@
         "typecheck": "tsc --noEmit"
     },
     "devDependencies": {
+        "@types/fs-extra": "^11.0.2",
+        "@types/util.promisify": "^1.0.5",
         "@types/mocha": "^10.0.2",
         "@types/node": "20.4.1",
         "@types/vscode": "^1.82.0",
@@ -1046,8 +1048,6 @@
     },
     "dependencies": {
         "@nuxt/schema": "^3.7.4",
-        "@types/fs-extra": "^11.0.2",
-        "@types/util.promisify": "^1.0.5",
         "axios": "^1.5.1",
         "destr": "^2.0.1",
         "fs-extra": "^11.1.1",
@@ -1057,10 +1057,5 @@
         "path": "^0.12.7",
         "pkg-types": "^1.0.3",
         "util": "^0.12.5"
-    },
-    "pnpm": {
-        "overrides": {
-            "magicast": "^0.3.0"
-        }
     }
 }

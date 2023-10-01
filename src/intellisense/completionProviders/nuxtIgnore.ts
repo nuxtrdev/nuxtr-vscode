@@ -29,6 +29,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
                 } else if (textBeforeCursor.endsWith('!')) {
                     const parts = textBeforeCursor.split('!');
                     const userTypedPath = parts[0];
+                    // @ts-ignore
                     const targetDirectory = path.join(currentDirectory, userTypedPath);
                     const subDirectories = this.getSubDirectories(targetDirectory);
 
