@@ -8,9 +8,9 @@ export default defineConfig({
     format: ['cjs'],
     shims: false,
     dts: false,
-    splitting: false,
+    splitting: true,
     clean: true,
-    minify: true,
+    minify: 'terser',
     platform: 'node',
     sourcemap: false,
     external: [
@@ -18,14 +18,14 @@ export default defineConfig({
     ],
     noExternal: [
         "@nuxt/schema",
-        "axios",
         "destr",
         "fs-extra",
         "jiti",
         "magicast",
-        "nuxi-edge",
-        "path",
+        "ofetch",
+        "pathe",
         "pkg-types",
+        "string-ts",
         "util",
     ]
 

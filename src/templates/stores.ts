@@ -1,8 +1,10 @@
+import { capitalize } from "string-ts"
+
 const piniaContent = (name: string) => {
     return `import { defineStore } from 'pinia'
 
-export const useMy${name.charAt(0).toUpperCase() + name.slice(1)}Store = defineStore({
-  id: 'my${name.charAt(0).toUpperCase() + name.slice(1)}Store',
+export const useMy${capitalize(name)}Store = defineStore({
+  id: 'my${capitalize(name)}Store',
   state: () => ({ }),
   actions: {},
 })

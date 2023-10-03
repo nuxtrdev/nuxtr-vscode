@@ -1,7 +1,8 @@
-import { exec } from 'child_process';
 import { env, Uri, Webview, workspace, window, ProgressLocation, ThemeIcon } from 'vscode';
 import type { WorkspaceConfiguration } from 'vscode';
+import { exec } from 'child_process';
 import { hasSrcDir } from './nuxt';
+import { installDependencies } from '../commands/InstallDependencies'
 import { logger } from './outputChannel';
 import type { NuxtrConfiguration } from '../types';
 
@@ -120,7 +121,15 @@ export async function tryImport (path: string): Promise<undefined | unknown> {
     try {
         return _jiti(path)
     } catch (error) {
+        const response = await window.showErrorMessage(
+            'Dependencies are not installed. Install dependencies first?',
+            'Install',
+            'Close'
+        )
+
+        if (response === 'Install') {
+            installDependencies()
+        }
         return undefined;
     }
 }
-

@@ -1,8 +1,8 @@
 import * as vscode from "vscode"
-import axios from "axios"
 import { detectPackageManagerByName } from "../utils"
 import pm from "../content/pm"
 import { newTerminal, getInstallationCommand, runCommand } from "../utils"
+
 
 let currentRequest: any // Store the current request promise
 let timeout: NodeJS.Timeout | undefined // Store the timeout reference
@@ -51,81 +51,6 @@ const installDependencies = () => {
     }
 }
 
-async function searchAndInstallDependencies() {
-    const quickPick = vscode.window.createQuickPick<vscode.QuickPickItem>()
-    quickPick.placeholder = "Enter a package name"
-    quickPick.ignoreFocusOut = true
-
-    const closeButton: vscode.QuickInputButton = {
-        iconPath: new vscode.ThemeIcon("close"),
-        tooltip: "Close",
-    }
-
-    quickPick.buttons = [closeButton]
-
-    quickPick.onDidChangeValue((input) => {
-        if (timeout) {
-            clearTimeout(timeout) // Clear the previous timeout
-        }
-
-        timeout = setTimeout(async () => {
-            if (input.length >= 2) {
-                if (currentRequest) {
-                    currentRequest.cancel("Request canceled due to new input")
-                }
-
-                quickPick.busy = true
-                quickPick.enabled = false
-
-                try {
-                    const results = await performSearch(input)
-                    showSearchResults(results.results, quickPick)
-                    quickPick.value = ""
-                } catch (error) {
-                    console.error("Error during search:", error)
-                    quickPick.items = []
-                }
-
-                quickPick.busy = false
-                quickPick.enabled = true
-            } else {
-                quickPick.items = []
-            }
-        }, 500) // Delay in milliseconds (adjust as needed)
-
-        quickPick.onDidTriggerButton((button) => {
-            if (button === closeButton) {
-                // Close button is clicked, dispose the QuickPick dialog
-                quickPick.dispose()
-            }
-        })
-    })
-
-    quickPick.show()
-}
-
-async function performSearch(query: string) {
-    query = query.replace(/\s/g, "+")
-    const url = `https://api.npms.io/v2/search?q=${query}&size=20`
-
-    const source = axios.CancelToken.source()
-    currentRequest = source
-
-    try {
-        const response = await axios.get(url, {
-            cancelToken: source.token,
-        })
-
-        return response.data
-    } catch (error) {
-        if (axios.isCancel(error)) {
-            // Request was canceled, no need to handle the error
-        } else {
-            throw error // Re-throw the error to be caught in onDidChangeValue handler
-        }
-    }
-}
-
 function showSearchResults(
     results: any[],
     quickPick: vscode.QuickPick<vscode.QuickPickItem>
@@ -171,4 +96,4 @@ function showSearchResults(
     })
 }
 
-export { installDependencies, searchAndInstallDependencies }
+export { installDependencies  }

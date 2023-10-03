@@ -1,4 +1,9 @@
 import * as vscode from 'vscode'
+import { capitalize } from 'string-ts'
+import { existsSync, readFileSync, unlinkSync, readdirSync } from 'fs'
+import { exec } from 'child_process'
+import { destr } from "destr"
+
 import {
     getNonce,
     getUri,
@@ -16,9 +21,6 @@ import {
     managePackageVersion,
     removePackage,
 } from '../utils'
-import * as fs from 'fs'
-import { exec } from 'child_process'
-import { destr } from "destr"
 
 
 const nonce = getNonce()
@@ -60,8 +62,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
         const scripts = getProjectScripts()
 
         const vscodeVersion = vscode.version
-        const extension_version = fs.existsSync(`${this._extensionUri.fsPath}/package.json`)
-            ? JSON.parse(fs.readFileSync(`${this._extensionUri.fsPath}/package.json`, 'utf8')).version
+        const extension_version = existsSync(`${this._extensionUri.fsPath}/package.json`)
+            ? JSON.parse(readFileSync(`${this._extensionUri.fsPath}/package.json`, 'utf8')).version
             : 'undefined'
         const feedbackContent = {
             vscode_version: vscodeVersion,
@@ -70,16 +72,14 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
 
         // regex find list of snippets inside .vscode folder
-        const snippets = fs.existsSync(`${projectRootDirectory()}/.vscode`)
-            ? fs
-                .readdirSync(`${projectRootDirectory()}/.vscode`)
+        const snippets = existsSync(`${projectRootDirectory()}/.vscode`)
+            ? readdirSync(`${projectRootDirectory()}/.vscode`)
                 .filter((file) => file.match(/.*\.code-snippets/))
             : []
 
         // regex find list of file templates inside .vscode folder
-        const fileTemplates = fs.existsSync(`${projectRootDirectory()}/.vscode`)
-            ? fs
-                .readdirSync(`${projectRootDirectory()}/.vscode`)
+        const fileTemplates = existsSync(`${projectRootDirectory()}/.vscode`)
+            ? readdirSync(`${projectRootDirectory()}/.vscode`)
                 .filter((file) => file.match(/.*\.(page-template|layout-template)/))
             : []
 
@@ -134,7 +134,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    const command = capitalize(script)
                     newTerminal(`Project: ${command}`, `yarn ${script}`, `${projectRootDirectory()}`)
                 }
                 break
@@ -148,7 +148,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    const command = capitalize(script)
                     newTerminal(`Project: ${command}`, `npm run ${script}`, `${projectRootDirectory()}`)
                 }
                 break
@@ -162,7 +162,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    const command = capitalize(script)
                     newTerminal(`Project: ${command}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
@@ -176,7 +176,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         logger: true
                     })
                 } else {
-                    const command = script.charAt(0).toUpperCase() + script.slice(1)
+                    const command = capitalize(script)
                     newTerminal(`Project: ${command}`, `bun ${script}`, `${projectRootDirectory()}`)
                 }
                 break
@@ -314,7 +314,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
     public editSnippet(snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
-        if (fs.existsSync(snippetPath)) {
+        if (existsSync(snippetPath)) {
             vscode.window.showTextDocument(vscode.Uri.file(snippetPath))
         } else {
             vscode.window.showErrorMessage(`Snippet ${snippet} not found`)
@@ -323,7 +323,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     public editTemplate(snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
-        if (fs.existsSync(snippetPath)) {
+        if (existsSync(snippetPath)) {
             vscode.window.showTextDocument(vscode.Uri.file(snippetPath))
         } else {
             vscode.window.showErrorMessage(`Snippet ${snippet} not found`)
@@ -339,8 +339,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
         )
         if (confirmation === 'Yes') {
             const templatePath = `${projectRootDirectory()}/.vscode/${template}`
-            if (fs.existsSync(templatePath)) {
-                fs.unlinkSync(templatePath)
+            if (existsSync(templatePath)) {
+                unlinkSync(templatePath)
             } else {
                 vscode.window.showErrorMessage(`Template ${template} not found`)
             }
@@ -357,8 +357,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
         )
         if (confirmation === 'Yes') {
             const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
-            if (fs.existsSync(snippetPath)) {
-                fs.unlinkSync(snippetPath)
+            if (existsSync(snippetPath)) {
+                unlinkSync(snippetPath)
             } else {
                 vscode.window.showErrorMessage(`Snippet ${snippet} not found`)
             }

@@ -1,7 +1,7 @@
 import { extensions } from 'vscode';
 import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
-import { join, resolve } from 'path';
+import { join, resolve } from 'pathe';
 import { getConfiguration } from '../utils';
 
 export enum SnippetSource {

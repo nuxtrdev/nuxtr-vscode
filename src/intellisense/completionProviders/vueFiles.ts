@@ -1,24 +1,24 @@
 import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
-import { readdirSync, existsSync, statSync } from 'fs';
-import * as path from 'path';
+import { readdirSync, statSync } from 'fs';
+import { sep, join} from 'pathe';
 
 import { isNuxtTwo, projectSrcDirectory, isDirectory } from '../../utils';
 
 let publicDir = isNuxtTwo() ? 'static' : 'public';
 let pagesDir = 'pages';
 
-const DIR_SEPARATOR = path.sep;
+const DIR_SEPARATOR = sep;
 
 async function provider(dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
-    const fullPath = path.join(`${projectSrcDirectory()}`, dirPath);
+    const fullPath = join(`${projectSrcDirectory()}`, dirPath);
     let isDir = await isDirectory(fullPath);
 
     if (isDir) {
         const files = readdirSync(fullPath);
 
         for (const item of files) {
-            const filePath = path.join(fullPath, item);
+            const filePath = join(fullPath, item);
             const stat = statSync(filePath);
 
             const completionItem = new CompletionItem(
@@ -54,7 +54,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
         let isDir: Promise<boolean>;
 
         if (subDirMatch && subDirMatch[1] === '..') {
-            let fullPathTest = path.join(`${projectSrcDirectory()}`, subDirMatch[1]);
+            let fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
                 isDir = isDirectory(fullPathTest);
@@ -72,11 +72,12 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
             }
 
             const subdirectories = subdirectoryPath.split('/');
+
             let currentDir = isNuxtTwo() ? 'static' : 'public';
             const promises: Promise<CompletionItem[]>[] = [];
 
             for (const subdirectory of subdirectories) {
-                currentDir = path.join(currentDir, subdirectory);
+                currentDir = join(currentDir, subdirectory);
             }
 
             // Fetch the suggestions only once for the complete path
@@ -127,7 +128,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
         let isDir: Promise<boolean>;
 
         if (subDirMatch && subDirMatch[1] === '..') {
-            let fullPathTest = path.join(`${projectSrcDirectory()}`, subDirMatch[1]);
+            let fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
                 isDir = isDirectory(fullPathTest);
@@ -150,7 +151,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
             const promises: Promise<CompletionItem[]>[] = [];
 
             for (const subdirectory of subdirectories) {
-                currentDir = path.join(currentDir, subdirectory);
+                currentDir = join(currentDir, subdirectory);
             }
 
             // Fetch the suggestions only once for the complete path

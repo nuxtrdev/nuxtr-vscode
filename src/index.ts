@@ -1,6 +1,6 @@
 import { workspace, ExtensionContext, commands, window } from 'vscode'
 import { existsSync, promises as fs } from 'fs'
-import { join } from 'path'
+import { join } from 'pathe'
 import { isNuxtProject, getConfiguration } from './utils'
 import { activateExtension } from './extension'
 

@@ -1,15 +1,15 @@
 import { QuickPickItem, window, QuickPickOptions } from 'vscode';
 import { newTerminal, detectPackageManagerByName, projectRootDirectory, isNuxtTwo } from '../../utils';
 import type { nuxtModule } from '../../types';
-import axios from 'axios';
+import { ofetch } from 'ofetch'
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
 
 
 const fetchModules = async () => {
-    let res = await axios.get('https://nuxt.com/api/modules');
-    return res.data.modules;
+    let res = await ofetch('https://nuxt.com/api/modules');
+    return res.modules;
 }
 
 

@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import * as fs from 'fs'
+import { mkdirSync, existsSync } from 'node:fs'
 import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory } from '../utils'
 import { appConfigContent } from '../templates'
 import { generateVueFileTemplate } from '../utils/vueFiles'
@@ -32,8 +32,8 @@ function promptDirectorySelection() {
             if (selectedDirs !== undefined && selectedDirs.length > 0) {
                 selectedDirs.forEach((dir) => {
                     let path = `${projectSrcDirectory()}/${dir}`
-                    if (!fs.existsSync(path)) {
-                        fs.mkdirSync(path)
+                    if (!existsSync(path)) {
+                        mkdirSync(path)
                     }
 
                     if (dir === 'pages') {

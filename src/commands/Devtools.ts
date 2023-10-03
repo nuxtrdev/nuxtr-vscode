@@ -1,6 +1,7 @@
 import { window, ThemeColor } from 'vscode'
 import { readFileSync, writeFileSync } from 'fs'
-import * as path from 'path';
+import { trimEnd } from 'string-ts';
+import { join } from 'pathe';
 import { parseModule } from 'magicast'
 import { findNuxtConfig, projectRootDirectory, getInstallationCommand, runCommand } from '../utils';
 import { updateDevtoolsStatusBar } from '../statusBar'
@@ -60,7 +61,7 @@ async function directToggleDevTools() {
         }
 
         const generated = mod.generate().code
-        writeFileSync(`${nuxtConfigPath}`, `${generated.trimEnd()}\n`, 'utf-8')
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8')
         return
     } catch (error) {
         window.showErrorMessage(`Error toggling Nuxt Devtools: ${error}`)
@@ -69,7 +70,7 @@ async function directToggleDevTools() {
 
 
 async function isDevtoolsInstalled(): Promise<boolean> {
-    const packageJsonPath = path.join(`${projectRootDirectory()}/package.json`);
+    const packageJsonPath = join(`${projectRootDirectory()}/package.json`);
     const packageJson = require(packageJsonPath);
 
     return (packageJson.dependencies && packageJson.dependencies['@nuxt/devtools'] !== undefined) || (packageJson.devDependencies && packageJson.devDependencies['@nuxt/devtools'] !== undefined);
@@ -91,7 +92,7 @@ async function installDevtools() {
             errorMessage: 'Nuxt Devtools installation failed',
         }).then(async () => {
             const generated = mod.generate().code
-            writeFileSync(`${nuxtConfigPath}`, `${generated.trimEnd()}\n`, 'utf-8')
+            writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8')
         })
     }
 }

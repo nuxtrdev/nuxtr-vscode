@@ -1,4 +1,5 @@
 import { ThemeIcon, QuickPickItem, window } from 'vscode';
+import { capitalize } from 'string-ts';
 import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
 import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
@@ -61,7 +62,7 @@ const showCLICommands = async () => {
             .map((command) => {
                 const description: CLICommandDescription = CLICommandDescription;
                 const item: QuickPickItem = {
-                    label: command.charAt(0).toUpperCase() + command.slice(1),
+                    label: capitalize(command),
                     description: description[command],
                     iconPath: new ThemeIcon('nuxt-logo'),
                 };
