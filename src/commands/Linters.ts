@@ -1,7 +1,6 @@
 import { window } from 'vscode'
+import { writeFileSync } from 'node:fs'
 import { createFile, projectRootDirectory, runCommand, getInstallationCommand } from '../utils'
-
-import * as fs from 'fs'
 import { eslintConfig, eslintIgnore, stylelintConfig, stylelintIgnore } from '../templates'
 const frameworks = ['Eslint', 'Stylelint']
 
@@ -63,7 +62,7 @@ const configureEslint = () => {
 
                         packageJson.scripts.lint = 'eslint --ext .js,.vue,.ts,.tsx --ignore-path .gitignore .'
 
-                        fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
+                        writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
                     }
 
                     if (selections.includes(EslintOptions.createESLintAndIgnoreFiles)) {
@@ -119,7 +118,7 @@ const configureStylelint = () => {
 
                     packageJson.scripts.stylelint = 'stylelint --fix --allow-empty-input --ignore-path .gitignore .'
 
-                    fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
+                    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
                 }
 
                 if (selections.includes(StylelintOptions.createStyleLintAndIgnoreFiles)) {

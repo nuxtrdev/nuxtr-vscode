@@ -9,7 +9,7 @@ import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, showCLICommands } from './Nuxi'
 import { createStore, directCreateStore } from './Store'
-import { installDependencies, searchAndInstallDependencies } from './InstallDependencies'
+import { installDependencies } from './InstallDependencies'
 import { openSettings } from '../utils/navigation'
 import { upgradePackage, managePackageVersion } from '../utils/dependency'
 import { configureCSS } from './CSS'
@@ -66,7 +66,6 @@ const commands = {
     configurePug,
     createPageTemplate,
     createLayoutTemplate,
-    searchAndInstallDependencies,
     createFileFromTemplate,
     createEmptyFileTemplate,
     directToggleDevTools,

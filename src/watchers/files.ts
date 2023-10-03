@@ -1,5 +1,5 @@
 import { ExtensionContext, StatusBarItem, Uri, workspace, commands } from 'vscode'
-import { projectRootDirectory, updateNuxtConfig, findNuxtConfig } from '../utils'
+import { projectRootDirectory, findNuxtConfig } from '../utils';
 import { nuxtConfigWatcher } from '../commands/Devtools';
 class FileWatchers {
 

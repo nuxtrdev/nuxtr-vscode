@@ -1,7 +1,7 @@
 import { window, workspace, Uri } from 'vscode';
-import * as fs from 'fs';
-
-import * as path from 'path';
+import { trim } from 'string-ts';
+import { existsSync, mkdirSync, readdirSync } from 'fs';
+import { join } from 'pathe';
 import { TextEncoder } from 'util';
 
 import { getCommandType } from './commands';
@@ -18,17 +18,17 @@ export const createDirectoryAndFile = (componentName: any, commandType: string, 
             placeHolder: 'Directory name',
         })
         .then((name) => {
-            if (name !== undefined && name.trim() !== '') {
+            if (name !== undefined && trim(name) !== '') {
 
                 let workspaceFolder = workspace.workspaceFolders?.[0];
                 let cwd = workspaceFolder?.uri.fsPath;
 
                 if (cwd !== undefined) {
-                    let dir = path.join(cwd, `${type.path}`);
-                    let directoryPath = path.join(dir, name);
+                    let dir = join(cwd, `${type.path}`);
+                    let directoryPath = join(dir, name);
 
-                    if (!fs.existsSync(directoryPath)) {
-                        fs.mkdirSync(directoryPath);
+                    if (!existsSync(directoryPath)) {
+                        mkdirSync(directoryPath);
 
                         createFile({
                             fileName: componentName,
@@ -47,8 +47,8 @@ export const createDirectoryAndFile = (componentName: any, commandType: string, 
 
 export const createDir = (dir: string) => {
     if (`${projectSrcDirectory()}` !== `${projectRootDirectory()}`) {
-        if (!fs.existsSync(`${projectSrcDirectory()}`)) {
-            fs.mkdirSync(`${projectSrcDirectory()}`);
+        if (!existsSync(`${projectSrcDirectory()}`)) {
+            mkdirSync(`${projectSrcDirectory()}`);
         }
     }
 
@@ -58,17 +58,17 @@ export const createDir = (dir: string) => {
     for (let part of dirParts) {
         currentPath = `${currentPath}/${part}`;
 
-        if (!fs.existsSync(currentPath)) {
-            fs.mkdirSync(currentPath);
+        if (!existsSync(currentPath)) {
+            mkdirSync(currentPath);
         }
     }
 };
 
 export const createSubFolders = (dir: string, commandType: string) => {
-    let subFolders = fs
-        .readdirSync(dir, { withFileTypes: true })
-        .filter((dirent) => dirent.isDirectory())
-        .map((dirent) => dirent.name);
+    let subFolders =
+        readdirSync(dir, { withFileTypes: true })
+            .filter((dirent) => dirent.isDirectory())
+            .map((dirent) => dirent.name);
 
     const { type } = getCommandType(commandType);
 
@@ -120,7 +120,7 @@ export const showSubFolderQuickPick = (args: {
 export const createFile = async (args: { fileName: string; content: string; fullPath: string }) => {
     let parentDirectory = Uri.file(args.fullPath);
 
-    if (fs.existsSync(parentDirectory.fsPath)) {
+    if (existsSync(parentDirectory.fsPath)) {
         window.showErrorMessage(`File ${args.fileName} already exists`);
         return;
     }
@@ -146,8 +146,8 @@ export const createFile = async (args: { fileName: string; content: string; full
 
 export const createVueTemplate = (content: string, type: string) => {
 
-    if (!fs.existsSync(`${projectSrcDirectory()}/.vscode`)) {
-        fs.mkdirSync(`${projectSrcDirectory()}/.vscode`);
+    if (!existsSync(`${projectSrcDirectory()}/.vscode`)) {
+        mkdirSync(`${projectSrcDirectory()}/.vscode`);
     }
 
     window
@@ -156,7 +156,7 @@ export const createVueTemplate = (content: string, type: string) => {
             placeHolder: 'Page template name',
         })
         .then((name) => {
-            if (name !== undefined && name.trim() !== '') {
+            if (name !== undefined && trim(name) !== '') {
                 createFile({
                     fileName: name,
                     content,

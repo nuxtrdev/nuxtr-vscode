@@ -1,4 +1,4 @@
-import * as fs from 'fs'
+import { readFileSync } from 'fs'
 import { getConfiguration, projectSrcDirectory } from '../utils'
 import { generateStyleTag, generateScriptTag, templateTag, } from '../templates'
 
@@ -11,7 +11,7 @@ export function generateVueFileTemplate(type: string, template?: string) {
 
     const templatePath = `${projectSrcDirectory()}/.vscode/${userDefaultTemplate}`;
     try {
-        return fs.readFileSync(templatePath).toString();
+        return readFileSync(templatePath).toString();
     } catch (error) {
         return generateVueFileBasicTemplate(type);
     }

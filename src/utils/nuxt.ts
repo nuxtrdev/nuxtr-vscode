@@ -1,8 +1,9 @@
 import { window } from 'vscode';
 import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
-import { join } from 'path';
+import { join } from 'pathe';
 import { parseModule } from 'magicast';
 import { readTSConfig } from 'pkg-types'
+import { trimEnd } from 'string-ts';
 import { exec } from 'child_process'
 import { projectRootDirectory, projectSrcDirectory } from '.';
 type TsconfigPaths = Record<string, string[]>;
@@ -58,7 +59,7 @@ export const addNuxtModule = async (module: any) => {
         }
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${generated.trimEnd()}\n`, 'utf-8');
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
     } catch (error) {
         window.showErrorMessage(
             `${module.npm} failed to install, please install it manually, ${error}`
@@ -99,7 +100,7 @@ export const removeNuxtModule = async (module: any) => {
 
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${generated.trimEnd()}\n`, 'utf-8');
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
     } catch (error) {
         window.showErrorMessage(
             `${module} failed to uninstall, please uninstall it manually, ${error}`
@@ -198,7 +199,7 @@ export const updateNuxtConfig = (update: (config: any) => void) => {
         update(config);
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${generated.trimEnd()}\n`, 'utf-8');
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
     } catch (error) {
         window.showErrorMessage(
             `Failed to update nuxt config, please update it manually, ${error}`

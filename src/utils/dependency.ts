@@ -6,7 +6,6 @@ import { readPackageJSON } from 'pkg-types'
 import { getConfiguration, projectRootDirectory, runCommand } from './global'
 import { installDependencies } from '../commands/InstallDependencies'
 import pm from '../content/pm'
-import { logger } from './outputChannel'
 import { newTerminal } from '.'
 
 

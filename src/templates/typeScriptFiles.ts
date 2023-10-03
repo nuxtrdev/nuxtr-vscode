@@ -1,5 +1,7 @@
+import { capitalize } from "string-ts"
+
 function capitalizeFirstLetter(name: string) {
-    return name.charAt(0).toUpperCase() + name.slice(1)
+    return capitalize(name)
 }
 
 const nitroDefaultTemplate = `export default defineEventHandler(async (event) => {

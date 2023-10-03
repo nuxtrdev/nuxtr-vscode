@@ -1,9 +1,9 @@
 import * as vscode from 'vscode';
-import * as fs from 'fs';
-import * as path from 'path';
+import { existsSync, readdirSync } from 'node:fs';
+import { dirname, join, sep, extname } from 'pathe';
 
 const EXTENSIONS = ['.vue', '.js', '.ts'];
-const DIR_SEPARATOR = path.sep;
+const DIR_SEPARATOR = sep;
 const SCOPED_DIRECTORIES = ['components', 'layouts', 'pages', 'composables', 'middleware'];
 
 export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvider {
@@ -14,7 +14,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList> {
         try {
             const lineText = document.lineAt(position).text;
-            const currentDirectory = path.dirname(document.fileName);
+            const currentDirectory = dirname(document.fileName);
 
             if (position.character === lineText.length) {
                 const textBeforeCursor = lineText.substr(0, position.character);
@@ -22,7 +22,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
 
                 if (pathSeparatorIndex !== -1) {
                     const userTypedPath = textBeforeCursor.substring(0, pathSeparatorIndex);
-                    const targetDirectory = path.join(currentDirectory, userTypedPath);
+                    const targetDirectory = join(currentDirectory, userTypedPath);
                     const subDirectories = this.getSubDirectories(targetDirectory);
 
                     return this.createCompletionItems(subDirectories);
@@ -30,7 +30,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
                     const parts = textBeforeCursor.split('!');
                     const userTypedPath = parts[0];
                     // @ts-ignore
-                    const targetDirectory = path.join(currentDirectory, userTypedPath);
+                    const targetDirectory = join(currentDirectory, userTypedPath);
                     const subDirectories = this.getSubDirectories(targetDirectory);
 
                     return this.createCompletionItems(subDirectories);
@@ -60,7 +60,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
     }
 
     private getCompletionItemType(name: string): vscode.CompletionItemKind {
-        const extension = path.extname(name);
+        const extension = extname(name);
         return EXTENSIONS.includes(extension) ? vscode.CompletionItemKind.File : vscode.CompletionItemKind.Folder;
     }
 
@@ -68,9 +68,9 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
         directory = directory.replace(/!/g, '');
 
         try {
-            if (fs.existsSync(directory)) {
-                return fs.readdirSync(directory, { withFileTypes: true })
-                    .filter(dirent => dirent.isDirectory() || EXTENSIONS.includes(path.extname(dirent.name)))
+            if (existsSync(directory)) {
+                return readdirSync(directory, { withFileTypes: true })
+                    .filter(dirent => dirent.isDirectory() || EXTENSIONS.includes(extname(dirent.name)))
                     .map(dirent => dirent.name);
             }
         } catch (error) {

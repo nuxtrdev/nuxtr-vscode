@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import * as fs from 'fs'
+import { existsSync, mkdirSync } from 'node:fs'
 
 import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate } from '../utils'
 
@@ -51,8 +51,8 @@ const createFileFromTemplate = (template?: string) => {
 
 
                 if (projectSrcDirectory() !== undefined) {
-                    if (!fs.existsSync(pagesDir)) {
-                        fs.mkdirSync(pagesDir)
+                    if (!existsSync(pagesDir)) {
+                        mkdirSync(pagesDir)
                     }
                 }
 
@@ -77,8 +77,8 @@ const createFileFromTemplate = (template?: string) => {
                 let layoutDir = `${projectSrcDirectory()}/layouts`
 
                 if (projectSrcDirectory() !== undefined) {
-                    if (!fs.existsSync(layoutDir)) {
-                        fs.mkdirSync(layoutDir)
+                    if (!existsSync(layoutDir)) {
+                        mkdirSync(layoutDir)
                     }
                 }
 
