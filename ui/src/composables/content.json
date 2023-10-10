@@ -2,7 +2,7 @@
     "modules": [
         {
             "name": "ackee",
-            "description": "Nuxt.js module for Ackee analytics",
+            "description": "Nuxt module for Ackee analytics",
             "repo": "bdrtsky/nuxt-ackee",
             "npm": "nuxt-ackee",
             "icon": "ackee.png",
@@ -59,7 +59,7 @@
         },
         {
             "name": "agility-cms",
-            "description": "Agility CMS Integration for Nuxt.js",
+            "description": "Agility CMS Integration for Nuxt",
             "repo": "agility/agilitycms-nuxt-module",
             "npm": "@agility/agilitycms-nuxt-module",
             "icon": "agility.png",
@@ -97,7 +97,7 @@
         },
         {
             "name": "algolia",
-            "description": "Algolia Search Module for Nuxt 3",
+            "description": "Algolia Search Module for Nuxt",
             "repo": "nuxt-modules/algolia",
             "npm": "@nuxtjs/algolia",
             "icon": "algolia.svg",
@@ -391,7 +391,7 @@
         },
         {
             "name": "api-party",
-            "description": "Nuxt 3 module to securely connect with any API – server proxy & dynamic composable names",
+            "description": "Nuxt module to securely connect with any API – server proxy & dynamic composable names",
             "repo": "johannschopplich/nuxt-api-party",
             "npm": "nuxt-api-party",
             "icon": "api-party.svg",
@@ -474,7 +474,7 @@
         },
         {
             "name": "apollo",
-            "description": "Integrate GraphQL in your Nuxt.js apps using vue-apollo.",
+            "description": "Integrate GraphQL in your Nuxt apps using vue-apollo.",
             "repo": "nuxt-modules/apollo",
             "npm": "@nuxtjs/apollo",
             "icon": "apollo.png",
@@ -659,7 +659,7 @@
         },
         {
             "name": "applicationinsights",
-            "description": "AppInsights module for Nuxt.js",
+            "description": "AppInsights module for Nuxt",
             "repo": "nuxt-community/applicationinsights-module",
             "npm": "@nuxtjs/applicationinsights",
             "icon": "application-insights.png",
@@ -743,7 +743,7 @@
         },
         {
             "name": "auth",
-            "description": "Zero-boilerplate authentication support for Nuxt.js.",
+            "description": "Zero-boilerplate authentication support for Nuxt.",
             "repo": "nuxt-community/auth-module",
             "npm": "@nuxtjs/auth",
             "icon": "auth.png",
@@ -930,7 +930,7 @@
         },
         {
             "name": "axios",
-            "description": "Secure and easy Axios module with Nuxt.js",
+            "description": "Secure and easy Axios module with Nuxt",
             "repo": "nuxt-community/axios-module",
             "npm": "@nuxtjs/axios",
             "icon": "axios.svg",
@@ -1113,7 +1113,7 @@
         },
         {
             "name": "basic-auth",
-            "description": "Provide basic authentication to your Nuxt.js application",
+            "description": "Provide basic authentication to your Nuxt application",
             "repo": "potato4d/nuxt-basic-auth-module",
             "npm": "nuxt-basic-auth-module",
             "icon": "",
@@ -1682,7 +1682,7 @@
         },
         {
             "name": "bugsnag",
-            "description": "Bugsnag integration for nuxt.js. Makes it easy to add bugsnag to your Project. Supports uploading source maps.",
+            "description": "Bugsnag integration for Nuxt. Makes it easy to add bugsnag to your Project. Supports uploading source maps.",
             "repo": "JulianMar/nuxt-bugsnag",
             "npm": "nuxt-bugsnag",
             "icon": "bugsnag.png",
@@ -1733,7 +1733,7 @@
         },
         {
             "name": "bulma-slim",
-            "description": "Nuxt.js module to automatically make a slim Bulma build of used features with Purgecss",
+            "description": "Nuxt module to automatically make a slim Bulma build of used features with Purgecss",
             "repo": "mustardamus/nuxt-bulma-slim",
             "npm": "nuxt-bulma-slim",
             "icon": "bulma.png",
@@ -1860,7 +1860,7 @@
         },
         {
             "name": "canvas-sketch",
-            "description": "Nuxt.js module for making generative and 3D artwork with canvas-sketch in JavaScript",
+            "description": "Nuxt module for making generative and 3D artwork with canvas-sketch in JavaScript",
             "repo": "LuXDAmore/generative-art",
             "npm": "@luxdamore/nuxt-canvas-sketch",
             "icon": "",
@@ -1898,7 +1898,7 @@
         },
         {
             "name": "chakra-ui",
-            "description": "Chakra UI Module for Nuxt.js",
+            "description": "Chakra UI Module for Nuxt",
             "repo": "chakra-ui/chakra-ui-vue#develop/packages/chakra-ui-nuxt",
             "npm": "@chakra-ui/nuxt",
             "icon": "chakra-ui.png",
@@ -2271,7 +2271,7 @@
         },
         {
             "name": "cloudcms",
-            "description": "CloudCMS Nuxt.js Module",
+            "description": "CloudCMS Nuxt Module",
             "repo": "gitana/cloudcms-nuxt",
             "npm": "cloudcms-nuxt",
             "icon": "",
@@ -2370,7 +2370,7 @@
         },
         {
             "name": "cloudinary",
-            "description": "Optimize images and videos in your Nuxt.js application",
+            "description": "Optimize images and videos in your Nuxt application",
             "repo": "nuxt-community/cloudinary-module",
             "npm": "@nuxtjs/cloudinary",
             "icon": "cloudinary.png",
@@ -3359,7 +3359,7 @@
         },
         {
             "name": "darkmode.js",
-            "description": "Add darkmode / nightmode to your Nuxt.js project in a few seconds",
+            "description": "Add darkmode / nightmode to your Nuxt project in a few seconds",
             "repo": "sandoche/nuxtjs-darkmode-js-module#main",
             "npm": "nuxtjs-darkmode-js-module",
             "icon": "darkmode.png",
@@ -3401,7 +3401,7 @@
         },
         {
             "name": "date-fns",
-            "description": "Modern JavaScript date utility library - date-fns for Nuxt.js",
+            "description": "Modern JavaScript date utility library - date-fns for Nuxt",
             "repo": "nuxt-community/date-fns-module",
             "npm": "@nuxtjs/date-fns",
             "icon": "date-fns.png",
@@ -3527,7 +3527,7 @@
         },
         {
             "name": "datocms-nuxt2",
-            "description": "DatoCMS integration for Nuxt.js v2",
+            "description": "DatoCMS integration for Nuxt v2",
             "repo": "voorhoede/nuxt-datocms-module",
             "npm": "@voorhoede/nuxt-datocms-module",
             "icon": "datocms.svg",
@@ -3607,7 +3607,7 @@
         },
         {
             "name": "delay-hydration",
-            "description": "Improve your Nuxt.js v2 Google Lighthouse score by delaying hydration.",
+            "description": "Improve your Nuxt v2 Google Lighthouse score by delaying hydration.",
             "repo": "harlan-zw/nuxt-delay-hydration#main/packages/nuxt-delay-hydration",
             "npm": "nuxt-delay-hydration",
             "icon": "lighthouse.svg",
@@ -3656,12 +3656,12 @@
         },
         {
             "name": "device",
-            "description": "Device detection module for Nuxt.js",
-            "repo": "nuxt-community/device-module",
+            "description": "Device detection module for Nuxt",
+            "repo": "nuxt-modules/device",
             "npm": "@nuxtjs/device",
             "icon": "",
-            "github": "https://github.com/nuxt-community/device-module",
-            "website": "https://github.com/nuxt-community/device-module",
+            "github": "https://github.com/nuxt-modules/device",
+            "website": "https://github.com/nuxt-modules/device",
             "learn_more": "",
             "category": "Extensions",
             "type": "community",
@@ -3675,15 +3675,15 @@
                 "nuxt": "^2.0.0 || ^3.0.0",
                 "requires": {}
             },
-            "downloads": 203866,
-            "stars": 712,
+            "downloads": 230147,
+            "stars": 770,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 370602,
                     "username": "dotneet",
-                    "contributions": 100
+                    "contributions": 111
                 },
                 {
                     "id": 25185835,
@@ -3716,6 +3716,16 @@
                     "contributions": 4
                 },
                 {
+                    "id": 29139614,
+                    "username": "renovate[bot]",
+                    "contributions": 4
+                },
+                {
+                    "id": 20489824,
+                    "username": "MaxNvk",
+                    "contributions": 2
+                },
+                {
                     "id": 13103045,
                     "username": "iliyaZelenko",
                     "contributions": 2
@@ -3733,6 +3743,11 @@
                 {
                     "id": 24225949,
                     "username": "b-jan",
+                    "contributions": 1
+                },
+                {
+                    "id": 5326365,
+                    "username": "harlan-zw",
                     "contributions": 1
                 },
                 {
@@ -3776,13 +3791,13 @@
                     "contributions": 1
                 },
                 {
-                    "id": 24970784,
-                    "username": "mvrlin",
+                    "id": 36569518,
+                    "username": "markthree",
                     "contributions": 1
                 },
                 {
-                    "id": 29139614,
-                    "username": "renovate[bot]",
+                    "id": 24970784,
+                    "username": "mvrlin",
                     "contributions": 1
                 }
             ],
@@ -4129,7 +4144,7 @@
         },
         {
             "name": "dotenv",
-            "description": "A Nuxt.js module that loads your .env file into your context options",
+            "description": "A Nuxt module that loads your .env file into your context options",
             "repo": "nuxt-community/dotenv-module",
             "npm": "@nuxtjs/dotenv",
             "icon": "dotenv.png",
@@ -4226,7 +4241,7 @@
         },
         {
             "name": "drupal-ce",
-            "description": "Connects Nuxt.js with Drupal via the Lupus Custom Elements Renderer",
+            "description": "Connects Nuxt with Drupal via the Lupus Custom Elements Renderer",
             "repo": "drunomics/nuxtjs-drupal-ce",
             "npm": "nuxtjs-drupal-ce",
             "icon": "drupal-ce.png",
@@ -4309,7 +4324,7 @@
         },
         {
             "name": "druxt",
-            "description": "A bridge between frameworks, Drupal in the back, Nuxt.js in the front.",
+            "description": "A bridge between frameworks, Drupal in the back, Nuxt in the front.",
             "repo": "druxt/druxt.js#develop/packages/druxt",
             "npm": "druxt",
             "icon": "druxt.svg",
@@ -4492,7 +4507,7 @@
         },
         {
             "name": "emotion",
-            "description": "The Next Generation of CSS-in-JS for Nuxt.js",
+            "description": "The Next Generation of CSS-in-JS for Nuxt",
             "repo": "nuxt-modules/emotion",
             "npm": "@nuxtjs/emotion",
             "icon": "emotion.png",
@@ -4561,7 +4576,7 @@
         },
         {
             "name": "eslint",
-            "description": "ESLint module for Nuxt.js",
+            "description": "ESLint module for Nuxt",
             "repo": "nuxt-community/eslint-module",
             "npm": "@nuxtjs/eslint-module",
             "icon": "eslint.png",
@@ -4624,7 +4639,7 @@
         },
         {
             "name": "event-trace",
-            "description": "Module for event trace in Nuxt.js",
+            "description": "Module for event trace in Nuxt",
             "repo": "nuxt-community/nuxt-event-trace",
             "npm": "nuxt-event-trace",
             "icon": "",
@@ -4713,7 +4728,7 @@
         },
         {
             "name": "feature-toggle",
-            "description": "Feature toggle module for Nuxt.js",
+            "description": "Feature toggle module for Nuxt",
             "repo": "stephenkr/nuxt-feature-toggle",
             "npm": "nuxt-feature-toggle",
             "icon": "",
@@ -5055,7 +5070,7 @@
         },
         {
             "name": "floating-prompt-module",
-            "description": "Invite your users to support you on product hunt with this floating prompt Nuxt.js module",
+            "description": "Invite your users to support you on product hunt with this floating prompt Nuxt module",
             "repo": "sandoche/nuxt-floating-prompt-module#main",
             "npm": "nuxt-floating-prompt-module",
             "icon": "",
@@ -5568,7 +5583,7 @@
         },
         {
             "name": "google-adsense",
-            "description": "Google Adsense Module for Nuxt.js",
+            "description": "Google Adsense Module for Nuxt",
             "repo": "nuxt-community/google-adsense-module",
             "npm": "@nuxtjs/google-adsense",
             "icon": "google-adsense.png",
@@ -5690,7 +5705,7 @@
         },
         {
             "name": "google-analytics",
-            "description": "Google analytics Module for Nuxt.js",
+            "description": "Google analytics Module for Nuxt",
             "repo": "nuxt-community/analytics-module",
             "npm": "@nuxtjs/google-analytics",
             "icon": "google-analytics.png",
@@ -5928,7 +5943,7 @@
         },
         {
             "name": "google-gtag",
-            "description": "Google GTag for Nuxt.js",
+            "description": "Google GTag for Nuxt",
             "repo": "nuxt-community/google-gtag",
             "npm": "@nuxtjs/google-gtag",
             "icon": "gtm.png",
@@ -5994,7 +6009,7 @@
         },
         {
             "name": "google-optimize",
-            "description": "SSR friendly Google Optimize module for Nuxt.js",
+            "description": "SSR friendly Google Optimize module for Nuxt",
             "repo": "nuxt-community/google-optimize-module",
             "npm": "nuxt-google-optimize",
             "icon": "google-optimize.png",
@@ -6159,7 +6174,7 @@
         },
         {
             "name": "graphql-request",
-            "description": "Easy Minimal GraphQL client integration with Nuxt.js",
+            "description": "Easy Minimal GraphQL client integration with Nuxt",
             "repo": "gomah/nuxt-graphql-request",
             "npm": "nuxt-graphql-request",
             "icon": "graphql-request.png",
@@ -6215,7 +6230,8 @@
                 }
             ],
             "tags": [
-                "2.x"
+                "2.x",
+                "3.x"
             ],
             "isLayer": false
         },
@@ -6268,7 +6284,7 @@
         },
         {
             "name": "gtag",
-            "description": "Google Analytics integration for Nuxt 3",
+            "description": "Google Analytics integration for Nuxt",
             "repo": "johannschopplich/nuxt-gtag",
             "npm": "nuxt-gtag",
             "icon": "gtag.svg",
@@ -6307,7 +6323,7 @@
         },
         {
             "name": "gtm",
-            "description": "Google Tag Manager Module for Nuxt.js",
+            "description": "Google Tag Manager Module for Nuxt",
             "repo": "nuxt-community/gtm-module",
             "npm": "@nuxtjs/gtm",
             "icon": "gtm.png",
@@ -6415,7 +6431,7 @@
         },
         {
             "name": "guess",
-            "description": "Guess.js module for Nuxt.js",
+            "description": "Guess.js module for Nuxt",
             "repo": "nuxt-community/guess-module",
             "npm": "@nuxtjs/guess-module",
             "icon": "guessjs.png",
@@ -6595,7 +6611,7 @@
         },
         {
             "name": "helmet",
-            "description": "Easy Helmet module with Nuxt.js'",
+            "description": "Easy Helmet module with Nuxt'",
             "repo": "victor-perez/nuxt-helmet",
             "npm": "nuxt-helmet",
             "icon": "",
@@ -6699,7 +6715,7 @@
         },
         {
             "name": "history-state",
-            "description": "Nuxt.js module to backup or restore historical states",
+            "description": "Nuxt module to backup or restore historical states",
             "repo": "hidekatsu-izuno/nuxt-history-state",
             "npm": "nuxt-history-state",
             "icon": "",
@@ -6905,7 +6921,7 @@
         },
         {
             "name": "http",
-            "description": "Universal HTTP Module for Nuxt.js",
+            "description": "Universal HTTP Module for Nuxt",
             "repo": "nuxt/http",
             "npm": "@nuxt/http",
             "icon": "http.png",
@@ -7093,7 +7109,7 @@
         },
         {
             "name": "humans-txt",
-            "description": "An initiative for knowing the people behind a website. It is a Nuxt.js buildModules that add a TXT file containing information about the different people who have contributed to building the website.",
+            "description": "An initiative for knowing the people behind a website. It is a Nuxt buildModules that add a TXT file containing information about the different people who have contributed to building the website.",
             "repo": "Luxdamore/nuxt-humans-txt",
             "npm": "@luxdamore/nuxt-humans-txt",
             "icon": "",
@@ -7489,7 +7505,7 @@
         },
         {
             "name": "image",
-            "description": "Optimised images for NuxtJS, with progressive processing, lazy-loading, real-time resizes and providers support.",
+            "description": "Optimised images for Nuxt, with progressive processing, lazy-loading, real-time resizes and providers support.",
             "repo": "nuxt/image",
             "npm": "@nuxt/image",
             "icon": "image.png",
@@ -7524,9 +7540,13 @@
                 "nuxt": "^2.0.0 || ^3.0.0",
                 "requires": {
                     "bridge": "optional"
+                },
+                "versionMap": {
+                    "2.x": "latest",
+                    "3.x": "rc"
                 }
             },
-            "downloads": 224574,
+            "downloads": 255624,
             "stars": 1039,
             "publishedAt": null,
             "createdAt": null,
@@ -7691,7 +7711,7 @@
         },
         {
             "name": "image-loader",
-            "description": "An image loader module for nuxt.js that allows you to configure image style derivatives.",
+            "description": "An image loader module for Nuxt that allows you to configure image style derivatives.",
             "repo": "PivaleCo/nuxt-image-loader-module",
             "npm": "@pivale/nuxt-image-loader-module",
             "icon": "",
@@ -7733,7 +7753,7 @@
         },
         {
             "name": "imagemin",
-            "description": "Automatically optimize (compress) all images used in Nuxt.js",
+            "description": "Automatically optimize (compress) all images used in Nuxt",
             "repo": "nuxt-community/imagemin-module",
             "npm": "@nuxtjs/imagemin",
             "icon": "imagemin.png",
@@ -7821,7 +7841,7 @@
         },
         {
             "name": "intercom",
-            "description": "Conversational, messenger-based experiences with Intercom Module for Nuxt.js",
+            "description": "Conversational, messenger-based experiences with Intercom Module for Nuxt",
             "repo": "hex-digital/nuxt-intercom",
             "npm": "@hexdigital/nuxt-intercom",
             "icon": "intercom.png",
@@ -7956,7 +7976,7 @@
         },
         {
             "name": "jsonapi",
-            "description": "Easy JSON:API client integration for Nuxt.js",
+            "description": "Easy JSON:API client integration for Nuxt",
             "repo": "patrickcate/nuxt-jsonapi",
             "npm": "nuxt-jsonapi",
             "icon": "jsonapi.svg",
@@ -8071,7 +8091,7 @@
         },
         {
             "name": "kql",
-            "description": "Nuxt 3 module for Kirby's Query Language API",
+            "description": "Nuxt module for Kirby's Query Language API",
             "repo": "johannschopplich/nuxt-kql",
             "npm": "nuxt-kql",
             "icon": "kql.svg",
@@ -8157,7 +8177,7 @@
         },
         {
             "name": "laravel-echo",
-            "description": "Laravel Echo for Nuxt.js",
+            "description": "Laravel Echo for Nuxt",
             "repo": "nuxt-community/laravel-echo",
             "npm": "@nuxtjs/laravel-echo",
             "icon": "laravel-echo.png",
@@ -8338,13 +8358,13 @@
         },
         {
             "name": "link-checker",
-            "description": "Identify and fix link issues for prerendered Nuxt 3 apps.",
+            "description": "Find and magically fix links that may be negatively effecting your Nuxt sites SEO.",
             "repo": "harlan-zw/nuxt-link-checker",
             "npm": "nuxt-link-checker",
-            "icon": "",
+            "icon": "link-checker.svg",
             "github": "https://github.com/harlan-zw/nuxt-link-checker",
-            "website": "https://github.com/harlan-zw/nuxt-link-checker",
-            "learn_more": "",
+            "website": "https://nuxtseo.com/link-checker",
+            "learn_more": "https://nuxtseo.com/link-checker",
             "category": "SEO",
             "type": "3rd-party",
             "maintainers": [
@@ -8357,17 +8377,18 @@
             ],
             "compatibility": {
                 "nuxt": "^3.0.0",
-                "requires": {}
+                "requires": {},
+                "devtools": "^0.0.0"
             },
-            "downloads": 9602,
-            "stars": 26,
+            "downloads": 30796,
+            "stars": 57,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 5326365,
                     "username": "harlan-zw",
-                    "contributions": 47
+                    "contributions": 119
                 },
                 {
                     "id": 45267552,
@@ -8377,6 +8398,21 @@
                 {
                     "id": 640208,
                     "username": "manniL",
+                    "contributions": 1
+                },
+                {
+                    "id": 4778485,
+                    "username": "dargmuesli",
+                    "contributions": 1
+                },
+                {
+                    "id": 904724,
+                    "username": "Atinux",
+                    "contributions": 1
+                },
+                {
+                    "id": 5037600,
+                    "username": "tobiasdiez",
                     "contributions": 1
                 }
             ],
@@ -8684,12 +8720,12 @@
         },
         {
             "name": "logrocket",
-            "description": "LogRocket module for Nuxt.js to help you fix bugs and understand user behaviour.",
-            "repo": "nuxt-community/nuxt-logrocket",
+            "description": "LogRocket module for Nuxt to help you fix bugs and understand user behaviour.",
+            "repo": "nuxt-modules/logrocket",
             "npm": "nuxt-logrocket",
             "icon": "logrocket.png",
-            "github": "https://github.com/nuxt-community/nuxt-logrocket",
-            "website": "https://github.com/nuxt-community/nuxt-logrocket",
+            "github": "https://github.com/nuxt-modules/logrocket",
+            "website": "https://github.com/nuxt-modules/logrocket",
             "learn_more": "https://docs.logrocket.com/docs",
             "category": "Monitoring",
             "type": "community",
@@ -8704,15 +8740,15 @@
                 "nuxt": "^2.0.0 || ^3.0.0",
                 "requires": {}
             },
-            "downloads": 8172,
-            "stars": 117,
+            "downloads": 3849,
+            "stars": 129,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 19854715,
                     "username": "farzadso",
-                    "contributions": 347
+                    "contributions": 369
                 },
                 {
                     "id": 25180681,
@@ -8722,7 +8758,7 @@
                 {
                     "id": 29139614,
                     "username": "renovate[bot]",
-                    "contributions": 36
+                    "contributions": 59
                 },
                 {
                     "id": 49699333,
@@ -8735,8 +8771,18 @@
                     "contributions": 3
                 },
                 {
+                    "id": 904724,
+                    "username": "Atinux",
+                    "contributions": 2
+                },
+                {
                     "id": 498465,
                     "username": "gaelreyrol",
+                    "contributions": 1
+                },
+                {
+                    "id": 5326365,
+                    "username": "harlan-zw",
                     "contributions": 1
                 },
                 {
@@ -8753,7 +8799,7 @@
         },
         {
             "name": "lunr",
-            "description": "Full-text search with pre-build indexes for Nuxt.js using lunr.js",
+            "description": "Full-text search with pre-build indexes for Nuxt using lunr.js",
             "repo": "nuxt-community/lunr-module",
             "npm": "@nuxtjs/lunr-module",
             "icon": "",
@@ -8986,7 +9032,7 @@
         },
         {
             "name": "matomo",
-            "description": "Add Matomo analytics to your nuxt.js application. This plugin automatically sends first page and route change events to matomo",
+            "description": "Add Matomo analytics to your Nuxt application. This plugin automatically sends first page and route change events to matomo",
             "repo": "pimlie/nuxt-matomo",
             "npm": "nuxt-matomo",
             "icon": "matomo.png",
@@ -9101,7 +9147,7 @@
         },
         {
             "name": "medusa",
-            "description": "Easily connect to Medusa from your Nuxt 3 application",
+            "description": "Easily connect to Medusa from your Nuxt application",
             "repo": "Baroshem/nuxt-medusa",
             "npm": "nuxt-medusa",
             "icon": "medusa.svg",
@@ -9157,7 +9203,7 @@
         },
         {
             "name": "meilisearch",
-            "description": "Meilisearch Instant Search module for Nuxt 3",
+            "description": "Meilisearch Instant Search module for Nuxt",
             "repo": "xlanex6/nuxt-meilisearch",
             "npm": "nuxt-meilisearch",
             "icon": "meilisearch.svg",
@@ -9329,7 +9375,7 @@
         },
         {
             "name": "moment",
-            "description": "Efficient Moment.js module for Nuxt.js so you can Parse, validate, manipulate, and display dates and times in JavaScript.",
+            "description": "Efficient Moment.js module for Nuxt so you can Parse, validate, manipulate, and display dates and times in JavaScript.",
             "repo": "nuxt-community/moment-module",
             "npm": "@nuxtjs/moment",
             "icon": "momentjs.png",
@@ -9426,7 +9472,7 @@
         },
         {
             "name": "mq",
-            "description": "vue-mq module for Nuxt.js. Define your breakpoints and build responsive design semantically and declaratively in a mobile-first way with Vue.",
+            "description": "vue-mq module for Nuxt. Define your breakpoints and build responsive design semantically and declaratively in a mobile-first way with Vue.",
             "repo": "vanhoofmaarten/nuxt-mq",
             "npm": "nuxt-mq",
             "icon": "",
@@ -9483,7 +9529,7 @@
         },
         {
             "name": "neo",
-            "description": "A nuxt.js module that implements a universal api layer, same-way compatible between server and client side.",
+            "description": "A Nuxt module that implements a universal api layer, same-way compatible between server and client side.",
             "repo": "ezypeeze/nuxt-neo",
             "npm": "nuxt-neo",
             "icon": "",
@@ -9540,7 +9586,7 @@
         },
         {
             "name": "netlify",
-            "description": "Dynamically generate _headers and _redirects files for Netlify in your Nuxt.js projects.",
+            "description": "Dynamically generate _headers and _redirects files for Netlify in your Nuxt projects.",
             "repo": "bazzite/nuxt-netlify",
             "npm": "@aceforth/nuxt-netlify",
             "icon": "netlify.png",
@@ -9602,7 +9648,7 @@
         },
         {
             "name": "netlify-cache",
-            "description": "Nuxt.js module that uses netlify cache to speed up redeploy for Nuxt.js version < 2.14",
+            "description": "Nuxt module that uses netlify cache to speed up redeploy for Nuxt version < 2.14",
             "repo": "DreaMinder/nuxt-netlify-cache",
             "npm": "nuxt-netlify-cache",
             "icon": "netlify.png",
@@ -10056,7 +10102,7 @@
         },
         {
             "name": "nuxt-auth",
-            "description": "Zero-boilerplate authentication for nuxt 3 with support for many strategies (oauth, credentials, ...) and providers (google, azure, ...). Additionally supports session manipulation, client- and server-side protection and more.",
+            "description": "Zero-boilerplate authentication for Nuxt with support for many strategies (oauth, credentials, ...) and providers (google, azure, ...). Additionally supports session manipulation, client- and server-side protection and more.",
             "repo": "sidebase/nuxt-auth",
             "npm": "@sidebase/nuxt-auth",
             "icon": "sidebase-auth.png",
@@ -10219,7 +10265,7 @@
         },
         {
             "name": "nuxt-chatgpt",
-            "description": "ChatGPT integration for Nuxt 3",
+            "description": "ChatGPT integration for Nuxt",
             "repo": "schnapsterdog/nuxt-chatgpt",
             "npm": "nuxt-chatgpt",
             "icon": "chatgpt.svg",
@@ -10358,7 +10404,7 @@
         },
         {
             "name": "nuxt-gtm",
-            "description": "A Nuxt.js module for Google Tag Manager",
+            "description": "A Nuxt module for Google Tag Manager",
             "repo": "zadigetvoltaire/nuxt-gtm",
             "npm": "@zadigetvoltaire/nuxt-gtm",
             "icon": "nuxt-gtm.svg",
@@ -10489,7 +10535,7 @@
         },
         {
             "name": "nuxt-loco",
-            "description": "A localise.biz module to synth locale with Nuxt.js",
+            "description": "A localise.biz module to synth locale with Nuxt",
             "repo": "gaetansenn/nuxt-loco",
             "npm": "nuxt-loco",
             "icon": "",
@@ -10716,7 +10762,7 @@
         },
         {
             "name": "nuxt-png-to-ico",
-            "description": "Nuxt.js module for auto generating favicons",
+            "description": "Nuxt module for auto generating favicons",
             "repo": "b5710546232/nuxt-png-to-ico",
             "npm": "nuxt-png-to-ico",
             "icon": "",
@@ -10754,7 +10800,7 @@
         },
         {
             "name": "nuxt-smartlook",
-            "description": "Integrate Smartlook in your Nuxt.js apps using nuxt-smartlook.",
+            "description": "Integrate Smartlook in your Nuxt apps using nuxt-smartlook.",
             "repo": "f00b4r/nuxt-smartlook",
             "npm": "nuxt-smartlook",
             "icon": "nuxt-smartlook.png",
@@ -10917,7 +10963,7 @@
         },
         {
             "name": "nuxt-unleash",
-            "description": "Nuxt.js module to use Unleash toggle feature services",
+            "description": "Nuxt module to use Unleash toggle feature services",
             "repo": "conejerock/nuxt-unleash",
             "npm": "nuxt-unleash",
             "icon": "nuxt-unleash.svg",
@@ -11131,7 +11177,7 @@
         },
         {
             "name": "nuxt-vuetify",
-            "description": "Add Vuetify 3 to your Nuxt 3 application in 3 seconds.",
+            "description": "Add Vuetify 3 to your Nuxt application in 3 seconds.",
             "repo": "invictus-codes/nuxt-vuetify",
             "npm": "@invictus.codes/nuxt-vuetify",
             "icon": "vuetify-logo-v3-dark.svg",
@@ -11168,7 +11214,7 @@
         },
         {
             "name": "nuxt7",
-            "description": "Full Featured iOS & Android PWA Apps with Nuxt.js and Framework7",
+            "description": "Full Featured iOS & Android PWA Apps with Nuxt and Framework7",
             "repo": "nuxt-community/nuxt7",
             "npm": "nuxt7",
             "icon": "",
@@ -11250,118 +11296,42 @@
             "isLayer": false
         },
         {
-            "name": "nuxtlabs-ui",
+            "name": "ui",
             "description": "Fully styled and customizable components for Nuxt, powered by Headless UI and Tailwind CSS.",
-            "repo": "nuxtlabs/ui",
-            "npm": "@nuxthq/ui",
-            "icon": "nuxtlabs-ui.svg",
-            "github": "https://github.com/nuxtlabs/ui",
-            "website": "https://ui.nuxtlabs.com",
-            "learn_more": "https://ui.nuxtlabs.com",
+            "repo": "nuxt/ui#dev",
+            "npm": "@nuxt/ui",
+            "icon": "nuxt.svg",
+            "github": "https://github.com/nuxt/ui",
+            "website": "https://ui.nuxt.com",
+            "learn_more": "",
             "category": "UI",
-            "type": "3rd-party",
+            "type": "official",
             "maintainers": [
                 {
                     "name": "Benjamin Canac",
                     "github": "benjamincanac",
                     "twitter": "benjamincanac"
+                },
+                {
+                    "name": "Sebastien Chopin",
+                    "github": "Atinux",
+                    "twitter": "Atinux"
+                },
+                {
+                    "name": "Sylvain Marroufin",
+                    "github": "smarroufin",
+                    "twitter": "smarroufin"
                 }
             ],
             "compatibility": {
                 "nuxt": "^3.0.0",
                 "requires": {}
             },
-            "downloads": 2628,
-            "stars": 823,
+            "downloads": 0,
+            "stars": 0,
             "publishedAt": null,
             "createdAt": null,
-            "contributors": [
-                {
-                    "id": 739984,
-                    "username": "benjamincanac",
-                    "contributions": 764
-                },
-                {
-                    "id": 7547335,
-                    "username": "smarroufin",
-                    "contributions": 55
-                },
-                {
-                    "id": 29139614,
-                    "username": "renovate[bot]",
-                    "contributions": 17
-                },
-                {
-                    "id": 904724,
-                    "username": "Atinux",
-                    "contributions": 16
-                },
-                {
-                    "id": 7290030,
-                    "username": "larbish",
-                    "contributions": 6
-                },
-                {
-                    "id": 11247099,
-                    "username": "antfu",
-                    "contributions": 5
-                },
-                {
-                    "id": 28706372,
-                    "username": "danielroe",
-                    "contributions": 4
-                },
-                {
-                    "id": 38922203,
-                    "username": "arashsheyda",
-                    "contributions": 1
-                },
-                {
-                    "id": 32187085,
-                    "username": "13ruceYu",
-                    "contributions": 1
-                },
-                {
-                    "id": 1439623,
-                    "username": "clemcode",
-                    "contributions": 1
-                },
-                {
-                    "id": 6696789,
-                    "username": "Flosciante",
-                    "contributions": 1
-                },
-                {
-                    "id": 66008528,
-                    "username": "okisdev",
-                    "contributions": 1
-                },
-                {
-                    "id": 25272043,
-                    "username": "kevinmarrec",
-                    "contributions": 1
-                },
-                {
-                    "id": 22199326,
-                    "username": "manaust",
-                    "contributions": 1
-                },
-                {
-                    "id": 35036894,
-                    "username": "sumitkolhe",
-                    "contributions": 1
-                },
-                {
-                    "id": 509463,
-                    "username": "ciaasteczkowy",
-                    "contributions": 1
-                },
-                {
-                    "id": 22049682,
-                    "username": "frasza",
-                    "contributions": 1
-                }
-            ],
+            "contributors": [],
             "tags": [
                 "3.x"
             ],
@@ -11466,7 +11436,7 @@
         },
         {
             "name": "optimized-images",
-            "description": "Automatically optimizes images used in Nuxt.js projects (jpeg, png, svg, webp and gif).",
+            "description": "Automatically optimizes images used in Nuxt projects (jpeg, png, svg, webp and gif).",
             "repo": "juliomrqz/nuxt-optimized-images",
             "npm": "@aceforth/nuxt-optimized-images",
             "icon": "",
@@ -11616,7 +11586,7 @@
         },
         {
             "name": "parse",
-            "description": "Parse package for Nuxt.js",
+            "description": "Parse package for Nuxt",
             "repo": "cierrateam/nuxt-parse",
             "npm": "nuxt-parse",
             "icon": "",
@@ -12229,7 +12199,7 @@
         },
         {
             "name": "plausible",
-            "description": "Nuxt 3 module to natively integrate Plausible analytics",
+            "description": "Nuxt module to natively integrate Plausible analytics",
             "repo": "nuxt-modules/plausible",
             "npm": "@nuxtjs/plausible",
             "icon": "plausible.png",
@@ -12266,7 +12236,7 @@
         },
         {
             "name": "plausible",
-            "description": "Nuxt 3 module to natively integrate Plausible analytics",
+            "description": "Nuxt module to natively integrate Plausible analytics",
             "repo": "nuxt-modules/plausible",
             "npm": "@nuxtjs/plausible",
             "icon": "",
@@ -12360,7 +12330,7 @@
         },
         {
             "name": "prismic",
-            "description": "Easily connect your Nuxt.js application to your content hosted on Prismic",
+            "description": "Easily connect your Nuxt application to your content hosted on Prismic",
             "repo": "nuxt-modules/prismic",
             "npm": "@nuxtjs/prismic",
             "icon": "prismic.png",
@@ -12563,7 +12533,7 @@
         },
         {
             "name": "proxy",
-            "description": "The one-liner node.js http-proxy middleware solution for Nuxt.js using http-proxy-middleware",
+            "description": "The one-liner node.js http-proxy middleware solution for Nuxt using http-proxy-middleware",
             "repo": "nuxt-community/proxy-module",
             "npm": "@nuxtjs/proxy",
             "icon": "",
@@ -12679,7 +12649,7 @@
         },
         {
             "name": "purgecss",
-            "description": "Drop superfluous CSS! A neat PurgeCSS wrapper for Nuxt.js",
+            "description": "Drop superfluous CSS! A neat PurgeCSS wrapper for Nuxt",
             "repo": "Developmint/nuxt-purgecss#main",
             "npm": "nuxt-purgecss",
             "icon": "purgecss.png",
@@ -12772,7 +12742,7 @@
         },
         {
             "name": "pwa",
-            "description": "Easily build a Progressive Web App for your Nuxt.js application to improve your app's performance.",
+            "description": "Easily build a Progressive Web App for your Nuxt application to improve your app's performance.",
             "repo": "nuxt-community/pwa-module",
             "npm": "@nuxtjs/pwa",
             "icon": "pwa.png",
@@ -12958,7 +12928,7 @@
         },
         {
             "name": "python",
-            "description": "Write Nuxt.js applications using Python",
+            "description": "Write Nuxt applications using Python",
             "repo": "nuxt-community/python-module",
             "npm": "@nuxtjs/python",
             "icon": "python.png",
@@ -13057,7 +13027,7 @@
         },
         {
             "name": "recaptcha",
-            "description": "Simple and easy Google reCAPTCHA module with Nuxt.js",
+            "description": "Simple and easy Google reCAPTCHA module with Nuxt",
             "repo": "nuxt-community/recaptcha-module",
             "npm": "@nuxtjs/recaptcha",
             "icon": "recaptcha.png",
@@ -13252,7 +13222,7 @@
         },
         {
             "name": "rfg-icon",
-            "description": "Nuxt.js module for creating favicons with RealFaviconGenerator api",
+            "description": "Nuxt module for creating favicons with RealFaviconGenerator api",
             "repo": "pimlie/nuxt-rfg-icon",
             "npm": "nuxt-rfg-icon",
             "icon": "real-favicon-generator.png",
@@ -13294,7 +13264,7 @@
         },
         {
             "name": "robots",
-            "description": "A Nuxt.js module thats inject a middleware to generate a robots.txt file",
+            "description": "A Nuxt module thats inject a middleware to generate a robots.txt file",
             "repo": "nuxt-community/robots-module",
             "npm": "@nuxtjs/robots",
             "icon": "robots.png",
@@ -13390,7 +13360,7 @@
         },
         {
             "name": "rollbar",
-            "description": "Add Rollbar.js to your Nuxt.js app to automatically capture and report errors in your applications.",
+            "description": "Add Rollbar.js to your Nuxt app to automatically capture and report errors in your applications.",
             "repo": "gaelreyrol/nuxt-rollbar-module",
             "npm": "nuxt-rollbar-module",
             "icon": "rollbar.png",
@@ -13437,7 +13407,7 @@
         },
         {
             "name": "router",
-            "description": "Nuxt.js module to use router.js instead of pages/ directory",
+            "description": "Nuxt module to use router.js instead of pages/ directory",
             "repo": "nuxt-community/router-module",
             "npm": "@nuxtjs/router",
             "icon": "vue.png",
@@ -13974,7 +13944,7 @@
         },
         {
             "name": "segment",
-            "description": "Nuxt.js module for Segment Analytics.js",
+            "description": "Nuxt module for Segment Analytics.js",
             "repo": "dansmaculotte/nuxt-segment",
             "npm": "@dansmaculotte/nuxt-segment",
             "icon": "segment.png",
@@ -14046,7 +14016,7 @@
         },
         {
             "name": "sentry",
-            "description": "Sentry module for Nuxt.js to help developers diagnose, fix, and optimize the performance of their code",
+            "description": "Sentry module for Nuxt to help developers diagnose, fix, and optimize the performance of their code",
             "repo": "nuxt-community/sentry-module",
             "npm": "@nuxtjs/sentry",
             "icon": "sentry.png",
@@ -14328,7 +14298,7 @@
         },
         {
             "name": "seomatic-meta",
-            "description": "A Nuxt.js module connecting Nuxt.js to the Craft CMS SEOmatic plugin",
+            "description": "A Nuxt module connecting Nuxt to the Craft CMS SEOmatic plugin",
             "repo": "ben-rogerson/nuxt-seomatic-meta",
             "npm": "nuxt-seomatic-meta",
             "icon": "seomatic.png",
@@ -14521,7 +14491,7 @@
         },
         {
             "name": "shopify",
-            "description": "Easy Shopify Buy client module with Nuxt.js for ecommerce websites.",
+            "description": "Easy Shopify Buy client module with Nuxt for ecommerce websites.",
             "repo": "Gomah/nuxt-shopify",
             "npm": "nuxt-shopify",
             "icon": "shopify.png",
@@ -14703,7 +14673,7 @@
         },
         {
             "name": "sitemap",
-            "description": "Automatically generate or serve dynamic sitemap.xml for Nuxt.js projects",
+            "description": "Automatically generate or serve dynamic sitemap.xml for Nuxt projects",
             "repo": "nuxt-community/sitemap-module#dev",
             "npm": "@nuxtjs/sitemap",
             "icon": "",
@@ -14868,7 +14838,7 @@
         },
         {
             "name": "snipcart",
-            "description": "Snipcart integration module for Nuxt.js",
+            "description": "Snipcart integration module for Nuxt",
             "repo": "nuxt-modules/snipcart",
             "npm": "@nuxtjs/snipcart",
             "icon": "snipcart.png",
@@ -14901,7 +14871,7 @@
         },
         {
             "name": "social-meta",
-            "description": "Nuxt.js module generate meta-tags for social networks - Facebook, Twitter and LinkedIn (and the rest uses OG tags, such as Discord etc.).",
+            "description": "Nuxt module generate meta-tags for social networks - Facebook, Twitter and LinkedIn (and the rest uses OG tags, such as Discord etc.).",
             "repo": "AlekseyPleshkov/nuxt-social-meta",
             "npm": "nuxt-social-meta",
             "icon": "",
@@ -15271,7 +15241,7 @@
         },
         {
             "name": "storage",
-            "description": "Utilities to easily read and write to the browser's storage in a Nuxt.js project",
+            "description": "Utilities to easily read and write to the browser's storage in a Nuxt project",
             "repo": "mazipan/nuxt-storage",
             "npm": "nuxt-storage",
             "icon": "",
@@ -15353,7 +15323,7 @@
         },
         {
             "name": "storefront-ui",
-            "description": "Storefront UI Module for Nuxt.js",
+            "description": "Storefront UI Module for Nuxt",
             "repo": "vuestorefront/storefront-ui#develop/packages/nuxt-module",
             "npm": "@storefront-ui/nuxt",
             "icon": "storefront-ui.svg",
@@ -15572,7 +15542,7 @@
         },
         {
             "name": "storyblok",
-            "description": "Storyblok Nuxt.js module",
+            "description": "Storyblok Nuxt module",
             "repo": "storyblok/storyblok-nuxt#master/lib",
             "npm": "@storyblok/nuxt",
             "icon": "storyblok.png",
@@ -15700,161 +15670,43 @@
         },
         {
             "name": "storybook",
-            "description": "Easily integrate Storybook in your Nuxt.js application to design, build, and organize your UI components in isolation.",
-            "repo": "nuxt-community/storybook",
+            "description": "Easily integrate Storybook in your Nuxt application to design, build, and organize your UI components in isolation.",
+            "repo": "nuxt-modules/storybook",
             "npm": "@nuxtjs/storybook",
             "icon": "storybook.png",
-            "github": "https://github.com/nuxt-community/storybook",
+            "github": "https://github.com/nuxt-modules/storybook",
             "website": "https://storybook.nuxtjs.org",
-            "learn_more": "https://storybook.js.org/",
+            "learn_more": "https://github.com/storybook-vue/storybook-nuxt",
             "category": "Devtools",
             "type": "community",
             "maintainers": [
                 {
-                    "name": "Ahad Birang",
-                    "github": "farnabaz",
-                    "twitter": "a_birang"
-                },
-                {
-                    "name": "Pooya Parsa",
-                    "github": "pi0",
-                    "twitter": "_pi0_"
+                    "name": "Chakir QATAB",
+                    "github": "chakAs3",
+                    "twitter": "ChakirQatab"
                 }
             ],
             "compatibility": {
-                "nuxt": "^2.0.0",
+                "nuxt": "^2.0.0 || ^3.6.5",
                 "requires": {
                     "bridge": "optional"
-                }
+                },
+                "devtools": "^0.7.2",
+                "storybook": "^7.4.0"
             },
-            "downloads": 111432,
-            "stars": 290,
+            "downloads": 77321,
+            "stars": 305,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
-                    "id": 2047945,
-                    "username": "farnabaz",
-                    "contributions": 210
-                },
-                {
-                    "id": 29139614,
-                    "username": "renovate[bot]",
-                    "contributions": 58
-                },
-                {
-                    "id": 25180681,
-                    "username": "renovate-bot",
-                    "contributions": 26
+                    "id": 711292,
+                    "username": "chakAs3",
+                    "contributions": 80
                 },
                 {
                     "id": 904724,
                     "username": "Atinux",
-                    "contributions": 18
-                },
-                {
-                    "id": 5158436,
-                    "username": "pi0",
-                    "contributions": 5
-                },
-                {
-                    "id": 67465398,
-                    "username": "farnabaz-t",
-                    "contributions": 4
-                },
-                {
-                    "id": 739984,
-                    "username": "benjamincanac",
-                    "contributions": 3
-                },
-                {
-                    "id": 161090,
-                    "username": "Decipher",
-                    "contributions": 3
-                },
-                {
-                    "id": 1454807,
-                    "username": "may17",
-                    "contributions": 2
-                },
-                {
-                    "id": 5037600,
-                    "username": "tobiasdiez",
-                    "contributions": 2
-                },
-                {
-                    "id": 25330882,
-                    "username": "lihbr",
-                    "contributions": 2
-                },
-                {
-                    "id": 3118390,
-                    "username": "scscgit",
-                    "contributions": 2
-                },
-                {
-                    "id": 28706372,
-                    "username": "danielroe",
-                    "contributions": 2
-                },
-                {
-                    "id": 22504465,
-                    "username": "adesombergh",
-                    "contributions": 1
-                },
-                {
-                    "id": 2543511,
-                    "username": "GMartigny",
-                    "contributions": 1
-                },
-                {
-                    "id": 655618,
-                    "username": "ingvoo",
-                    "contributions": 1
-                },
-                {
-                    "id": 9429420,
-                    "username": "Geminii",
-                    "contributions": 1
-                },
-                {
-                    "id": 5940343,
-                    "username": "maxma241",
-                    "contributions": 1
-                },
-                {
-                    "id": 121096,
-                    "username": "timbenniks",
-                    "contributions": 1
-                },
-                {
-                    "id": 57425762,
-                    "username": "valernyx",
-                    "contributions": 1
-                },
-                {
-                    "id": 7806034,
-                    "username": "vdiachenko",
-                    "contributions": 1
-                },
-                {
-                    "id": 49480575,
-                    "username": "WinterYukky",
-                    "contributions": 1
-                },
-                {
-                    "id": 47374470,
-                    "username": "harashoo",
-                    "contributions": 1
-                },
-                {
-                    "id": 100932867,
-                    "username": "nx-josepcrespo",
-                    "contributions": 1
-                },
-                {
-                    "id": 65348147,
-                    "username": "romevangrinsven",
                     "contributions": 1
                 }
             ],
@@ -16197,7 +16049,7 @@
         },
         {
             "name": "stylelint",
-            "description": "Stylelint module for Nuxt.js. A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.",
+            "description": "Stylelint module for Nuxt. A mighty, modern linter that helps you avoid errors and enforce conventions in your styles.",
             "repo": "nuxt-community/stylelint-module",
             "npm": "@nuxtjs/stylelint-module",
             "icon": "stylelint.png",
@@ -16463,7 +16315,7 @@
         },
         {
             "name": "svg",
-            "description": "Super simple svg loading module for Nuxt.js",
+            "description": "Super simple svg loading module for Nuxt",
             "repo": "nuxt-community/svg-module",
             "npm": "@nuxtjs/svg",
             "icon": "",
@@ -16632,12 +16484,12 @@
         },
         {
             "name": "svg-sprite",
-            "description": "Optimized and Easy way to use svg files in Nuxt.js",
-            "repo": "nuxt-community/svg-sprite-module",
+            "description": "Optimized and Easy way to use svg files in Nuxt",
+            "repo": "nuxt-modules/svg-sprite",
             "npm": "@nuxtjs/svg-sprite",
             "icon": "",
-            "github": "https://github.com/nuxt-community/svg-sprite-module",
-            "website": "https://github.com/nuxt-community/svg-sprite-module",
+            "github": "https://github.com/nuxt-modules/svg-sprite",
+            "website": "https://github.com/nuxt-modules/svg-sprite",
             "learn_more": "",
             "category": "UI",
             "type": "community",
@@ -16649,102 +16501,17 @@
                 }
             ],
             "compatibility": {
-                "nuxt": "^2.0.0",
+                "nuxt": "^2.0.0 || ^3.0.0",
                 "requires": {}
             },
-            "downloads": 48008,
-            "stars": 250,
+            "downloads": 0,
+            "stars": 0,
             "publishedAt": null,
             "createdAt": null,
-            "contributors": [
-                {
-                    "id": 2047945,
-                    "username": "farnabaz",
-                    "contributions": 212
-                },
-                {
-                    "id": 25180681,
-                    "username": "renovate-bot",
-                    "contributions": 91
-                },
-                {
-                    "id": 29139614,
-                    "username": "renovate[bot]",
-                    "contributions": 31
-                },
-                {
-                    "id": 49699333,
-                    "username": "dependabot[bot]",
-                    "contributions": 10
-                },
-                {
-                    "id": 904724,
-                    "username": "Atinux",
-                    "contributions": 7
-                },
-                {
-                    "id": 44983823,
-                    "username": "andrewvasilchuk",
-                    "contributions": 3
-                },
-                {
-                    "id": 11446010,
-                    "username": "jubeiam",
-                    "contributions": 2
-                },
-                {
-                    "id": 4581398,
-                    "username": "yurks",
-                    "contributions": 2
-                },
-                {
-                    "id": 63285903,
-                    "username": "TroAlexis",
-                    "contributions": 1
-                },
-                {
-                    "id": 5218341,
-                    "username": "haan123",
-                    "contributions": 1
-                },
-                {
-                    "id": 3998654,
-                    "username": "ilya-buligin",
-                    "contributions": 1
-                },
-                {
-                    "id": 5410417,
-                    "username": "lennoximus",
-                    "contributions": 1
-                },
-                {
-                    "id": 9404365,
-                    "username": "obennaci",
-                    "contributions": 1
-                },
-                {
-                    "id": 5158436,
-                    "username": "pi0",
-                    "contributions": 1
-                },
-                {
-                    "id": 5718030,
-                    "username": "robikovacs",
-                    "contributions": 1
-                },
-                {
-                    "id": 23457585,
-                    "username": "Tomaszal",
-                    "contributions": 1
-                },
-                {
-                    "id": 2068895,
-                    "username": "twxia",
-                    "contributions": 1
-                }
-            ],
+            "contributors": [],
             "tags": [
-                "2.x"
+                "2.x",
+                "3.x"
             ],
             "isLayer": false
         },
@@ -16792,7 +16559,7 @@
         },
         {
             "name": "swiper",
-            "description": "Nuxt.js module for Swiper.js - Most modern mobile touch slider with hardware accelerated transitions.",
+            "description": "Nuxt module for Swiper.js - Most modern mobile touch slider with hardware accelerated transitions.",
             "repo": "cpreston321/nuxt-swiper",
             "npm": "nuxt-swiper",
             "icon": "swiper.svg",
@@ -17124,7 +16891,7 @@
         },
         {
             "name": "toast",
-            "description": "Responsive Touch Compatible Toast plugin for Nuxt.js using vue-toasted",
+            "description": "Responsive Touch Compatible Toast plugin for Nuxt using vue-toasted",
             "repo": "nuxt-community/modules#master/packages/toast",
             "npm": "@nuxtjs/toast",
             "icon": "",
@@ -17393,7 +17160,7 @@
         },
         {
             "name": "twa",
-            "description": "Nuxt.js module for generating Trusted Web App from Nuxt.js app",
+            "description": "Nuxt module for generating Trusted Web App from Nuxt app",
             "repo": "tuarrep/nuxt-twa",
             "npm": "nuxt-twa",
             "icon": "",
@@ -18163,7 +17930,7 @@
         },
         {
             "name": "universal-storage",
-            "description": "Universal Storage Utilities for Nuxt.js",
+            "description": "Universal Storage Utilities for Nuxt",
             "repo": "nuxt-community/universal-storage-module",
             "npm": "@nuxtjs/universal-storage",
             "icon": "",
@@ -18592,7 +18359,7 @@
         },
         {
             "name": "user-agent",
-            "description": "Nuxt.js module for handling User-Agent.",
+            "description": "Nuxt module for handling User-Agent.",
             "repo": "fukuiretu/nuxt-user-agent",
             "npm": "nuxt-user-agent",
             "icon": "",
@@ -18804,7 +18571,7 @@
         },
         {
             "name": "vee-validate",
-            "description": "Painless Vue forms for Nuxt.js",
+            "description": "Painless Vue forms for Nuxt",
             "repo": "logaretm/vee-validate#main/packages/nuxt",
             "npm": "@vee-validate/nuxt",
             "icon": "vee-validate.png",
@@ -19169,7 +18936,7 @@
         },
         {
             "name": "vite-pwa-nuxt",
-            "description": "Zero-config PWA Plugin for Nuxt 3",
+            "description": "Zero-config PWA Plugin for Nuxt",
             "repo": "vite-pwa/nuxt",
             "npm": "@vite-pwa/nuxt",
             "icon": "vite-pwa-nuxt.svg",
@@ -19379,7 +19146,7 @@
         },
         {
             "name": "vue-multiselect",
-            "description": "Single / multiple select plugin for Nuxt.js using vue-multiselect.",
+            "description": "Single / multiple select plugin for Nuxt using vue-multiselect.",
             "repo": "spektrummedia/nuxt-vue-multiselect",
             "npm": "nuxt-vue-multiselect",
             "icon": "",
@@ -19572,7 +19339,7 @@
         },
         {
             "name": "vue-warehouse",
-            "description": "A Cross-browser storage for Vue.js and Nuxt.js, with plugins support and easy extensibility based on Store.js",
+            "description": "A Cross-browser storage for Vue.js and Nuxt, with plugins support and easy extensibility based on Store.js",
             "repo": "juliomrqz/vue-warehouse",
             "npm": "vue-warehouse",
             "icon": "",
@@ -19666,7 +19433,7 @@
         },
         {
             "name": "vuestic",
-            "description": "Vuestic UI module for Nuxt 3",
+            "description": "Vuestic UI module for Nuxt",
             "repo": "epicmaxco/vuestic-ui#develop/packages/nuxt",
             "npm": "@vuestic/nuxt",
             "icon": "vuestic.png",
@@ -19697,7 +19464,7 @@
         },
         {
             "name": "vuetify",
-            "description": "Vuetify Module for Nuxt.js to add Material Design components to your application.",
+            "description": "Vuetify Module for Nuxt to add Material Design components to your application.",
             "repo": "nuxt-community/vuetify-module",
             "npm": "@nuxtjs/vuetify",
             "icon": "vuetify.png",
@@ -19800,7 +19567,7 @@
         },
         {
             "name": "vunix",
-            "description": "Comprehensive UI toolkit for Vue.js and Nuxt.js that empowers you to build amazing user interfaces with ease. With Vunix, you can leverage the power of popular utility-first CSS frameworks like Tailwind CSS, Unocss, WindiCss, or use your own custom CSS classes.",
+            "description": "Comprehensive UI toolkit for Vue.js and Nuxt that empowers you to build amazing user interfaces with ease. With Vunix, you can leverage the power of popular utility-first CSS frameworks like Tailwind CSS, Unocss, WindiCss, or use your own custom CSS classes.",
             "repo": "gaetansenn/vunix#main/packages/nuxt",
             "npm": "@vunix/nuxt",
             "icon": "",
@@ -19908,7 +19675,7 @@
         },
         {
             "name": "webpack-optimisations",
-            "description": "Nuxt.js v2 module to automatically make your builds faster.",
+            "description": "Nuxt v2 module to automatically make your builds faster.",
             "repo": "harlan-zw/nuxt-webpack-optimisations#main/packages/nuxt-webpack-optimisations",
             "npm": "nuxt-webpack-optimisations",
             "icon": "build-optimisations.svg",
@@ -20037,7 +19804,7 @@
         },
         {
             "name": "well-known",
-            "description": "A Nuxt.js module to add well-known URIs using middlewares",
+            "description": "A Nuxt module to add well-known URIs using middlewares",
             "repo": "zadigetvoltaire/nuxt-well-known",
             "npm": "@zadigetvoltaire/nuxt-well-known",
             "icon": "well-known.svg",
@@ -20268,7 +20035,7 @@
         },
         {
             "name": "zendesk",
-            "description": "Nuxt.js module for Zendesk",
+            "description": "Nuxt module for Zendesk",
             "repo": "DansMaCulotte/nuxt-zendesk",
             "npm": "@dansmaculotte/nuxt-zendesk",
             "icon": "zendesk.png",
@@ -20299,7 +20066,7 @@
         },
         {
             "name": "wideangle",
-            "description": "Nuxt 3 module to integrate Wide Angle Analytics",
+            "description": "Nuxt module to integrate Wide Angle Analytics",
             "repo": "inputobjects/wideangle-nuxt",
             "npm": "wideangle-nuxt",
             "icon": "wideangle.png",
@@ -20719,7 +20486,7 @@
         },
         {
             "name": "capo",
-            "description": "Capo.js implementation for Nuxt 3",
+            "description": "Capo.js implementation for Nuxt",
             "repo": "danielroe/nuxt-capo",
             "npm": "nuxt-capo",
             "icon": "",
@@ -20921,13 +20688,13 @@
         },
         {
             "name": "vue-email",
-            "description": "Write email templates with vue",
-            "repo": "Dave136/vue-email#main/packages/vue-email",
+            "description": "💌 Write email templates with vue",
+            "repo": "Dave136/vue-email",
             "npm": "vue-email",
             "icon": "vue-email.svg",
             "github": "https://github.com/Dave136/vue-email",
-            "website": "https://vue-email.vercel.app/",
-            "learn_more": "https://vue-email.vercel.app/getting-started/nuxt.html",
+            "website": "https://www.vuemail.net/",
+            "learn_more": "https://vue-email.vercel.app/getting-started",
             "category": "UI",
             "type": "3rd-party",
             "maintainers": [
@@ -20946,7 +20713,8 @@
             ],
             "compatibility": {
                 "nuxt": "^3.0.0",
-                "requires": {}
+                "requires": {},
+                "devtools": "^0.0.0"
             },
             "downloads": 0,
             "stars": 0,
@@ -21040,7 +20808,7 @@
         },
         {
             "name": "vue3-carousel-nuxt",
-            "description": "This module seamlessly integrates the Vue 3 Carousel module of ismail9k into Nuxt.js applications.",
+            "description": "This module seamlessly integrates the Vue 3 Carousel module of ismail9k into Nuxt applications.",
             "repo": "gaetansenn/vue3-carousel-nuxt",
             "npm": "vue3-carousel-nuxt",
             "icon": "",
@@ -21187,7 +20955,7 @@
         },
         {
             "name": "disqus",
-            "description": "Disqus for Nuxt 3",
+            "description": "Disqus Comments Module for Nuxt - Instantly add a comment widget to your app",
             "repo": "modbender/nuxt-disqus",
             "npm": "nuxt-disqus",
             "icon": "disqus.svg",
@@ -21206,15 +20974,15 @@
                 "nuxt": "^3.0.0",
                 "requires": {}
             },
-            "downloads": 81,
-            "stars": 1,
+            "downloads": 154,
+            "stars": 2,
             "publishedAt": null,
             "createdAt": null,
             "contributors": [
                 {
                     "id": 25717245,
                     "username": "modbender",
-                    "contributions": 6
+                    "contributions": 7
                 }
             ],
             "tags": [
@@ -21480,7 +21248,7 @@
         },
         {
             "name": "lucide-icons",
-            "description": "Nuxt 3 module to integrate Lucide icons",
+            "description": "Nuxt module to integrate Lucide icons",
             "repo": "swisnl/nuxt-lucide-icons",
             "npm": "nuxt-lucide-icons",
             "icon": "lucide-icons.svg",
@@ -21526,7 +21294,7 @@
         },
         {
             "name": "nuxt-basic-auth",
-            "description": "Nuxt 3 Module for Basic Authentication",
+            "description": "Nuxt Module for Basic Authentication",
             "repo": "kgierke/nuxt-basic-auth",
             "npm": "@kgierke/nuxt-basic-auth",
             "icon": "",
@@ -21681,7 +21449,7 @@
             "description": "Initialization steps at build time – like Nuxt 2 server init",
             "repo": "johannschopplich/nuxt-prepare",
             "npm": "nuxt-prepare",
-            "icon": "nuxt-prepare.svg",
+            "icon": "prepare.svg",
             "github": "https://github.com/johannschopplich/nuxt-prepare",
             "website": "https://nuxt-prepare.jhnn.dev",
             "learn_more": "",
@@ -21787,6 +21555,358 @@
                 {
                     "id": 29139614,
                     "username": "renovate[bot]",
+                    "contributions": 1
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "nuxt-jsonld",
+            "description": "Manage JSON-LD in Vue component.",
+            "repo": "ymmooot/nuxt-jsonld",
+            "npm": "nuxt-jsonld",
+            "icon": "",
+            "github": "https://github.com/ymmooot/nuxt-jsonld",
+            "website": "https://github.com/ymmooot/nuxt-jsonld",
+            "learn_more": "",
+            "category": "SEO",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "ymmooot",
+                    "github": "ymmooot"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 74284,
+            "stars": 275,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 28696621,
+                    "username": "ymmooot",
+                    "contributions": 723
+                },
+                {
+                    "id": 49699333,
+                    "username": "dependabot[bot]",
+                    "contributions": 292
+                },
+                {
+                    "id": 27856297,
+                    "username": "dependabot-preview[bot]",
+                    "contributions": 260
+                },
+                {
+                    "id": 32174276,
+                    "username": "semantic-release-bot",
+                    "contributions": 21
+                },
+                {
+                    "id": 7464929,
+                    "username": "TeXmeijin",
+                    "contributions": 4
+                },
+                {
+                    "id": 17243595,
+                    "username": "RyoNkmr",
+                    "contributions": 3
+                },
+                {
+                    "id": 28706372,
+                    "username": "danielroe",
+                    "contributions": 1
+                },
+                {
+                    "id": 472923,
+                    "username": "quamsta",
+                    "contributions": 1
+                },
+                {
+                    "id": 837651,
+                    "username": "jmyrland",
+                    "contributions": 1
+                },
+                {
+                    "id": 2091290,
+                    "username": "reinoldus",
+                    "contributions": 1
+                },
+                {
+                    "id": 7361247,
+                    "username": "tjkohli",
+                    "contributions": 1
+                },
+                {
+                    "id": 7507294,
+                    "username": "yamotuki",
+                    "contributions": 1
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "auto-animate",
+            "description": "Automatic animations for your Nuxt app with a single line of code.",
+            "repo": "formkit/auto-animate",
+            "npm": "@formkit/auto-animate",
+            "icon": "auto-animate.svg",
+            "github": "https://github.com/formkit/auto-animate",
+            "website": "https://auto-animate.formkit.com",
+            "learn_more": "https://auto-animate.formkit.com",
+            "category": "Libraries",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Justin Schroeder",
+                    "github": "justin-schroeder",
+                    "twitter": "jpschroeder"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 366991,
+            "stars": 9426,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 1950463,
+                    "username": "justin-schroeder",
+                    "contributions": 179
+                },
+                {
+                    "id": 2946356,
+                    "username": "andrew-boyd",
+                    "contributions": 83
+                },
+                {
+                    "id": 16452789,
+                    "username": "nirtamir2",
+                    "contributions": 13
+                },
+                {
+                    "id": 11545316,
+                    "username": "luan-nk-nguyen",
+                    "contributions": 11
+                },
+                {
+                    "id": 2691730,
+                    "username": "Waterstraal",
+                    "contributions": 8
+                },
+                {
+                    "id": 1720349,
+                    "username": "FlatMapIO",
+                    "contributions": 3
+                },
+                {
+                    "id": 32803395,
+                    "username": "benrandja-akram",
+                    "contributions": 3
+                },
+                {
+                    "id": 11185022,
+                    "username": "AlexVipond",
+                    "contributions": 2
+                },
+                {
+                    "id": 24707417,
+                    "username": "wangjue666",
+                    "contributions": 2
+                },
+                {
+                    "id": 61237195,
+                    "username": "lukaszarpak",
+                    "contributions": 2
+                },
+                {
+                    "id": 3534427,
+                    "username": "Link2Twenty",
+                    "contributions": 1
+                },
+                {
+                    "id": 22795807,
+                    "username": "apenab",
+                    "contributions": 1
+                },
+                {
+                    "id": 260431,
+                    "username": "bengry",
+                    "contributions": 1
+                },
+                {
+                    "id": 7635209,
+                    "username": "danielkellyio",
+                    "contributions": 1
+                },
+                {
+                    "id": 28103674,
+                    "username": "rodakd",
+                    "contributions": 1
+                },
+                {
+                    "id": 124833,
+                    "username": "carusog",
+                    "contributions": 1
+                },
+                {
+                    "id": 2974948,
+                    "username": "jhubbardsf",
+                    "contributions": 1
+                },
+                {
+                    "id": 23322562,
+                    "username": "KamilBeda",
+                    "contributions": 1
+                },
+                {
+                    "id": 44045911,
+                    "username": "kidonng",
+                    "contributions": 1
+                },
+                {
+                    "id": 599538,
+                    "username": "verheyenkoen",
+                    "contributions": 1
+                },
+                {
+                    "id": 83799,
+                    "username": "evoactivity",
+                    "contributions": 1
+                },
+                {
+                    "id": 11494384,
+                    "username": "markflorkowski",
+                    "contributions": 1
+                },
+                {
+                    "id": 2837147,
+                    "username": "MentalGear",
+                    "contributions": 1
+                },
+                {
+                    "id": 24510745,
+                    "username": "maico910",
+                    "contributions": 1
+                },
+                {
+                    "id": 43639707,
+                    "username": "mohamedaleya",
+                    "contributions": 1
+                },
+                {
+                    "id": 107163858,
+                    "username": "sanyamjain04",
+                    "contributions": 1
+                },
+                {
+                    "id": 16858097,
+                    "username": "cszackrison",
+                    "contributions": 1
+                },
+                {
+                    "id": 48163890,
+                    "username": "sebastianwd",
+                    "contributions": 1
+                },
+                {
+                    "id": 24245520,
+                    "username": "ComfyFluffy",
+                    "contributions": 1
+                },
+                {
+                    "id": 46376292,
+                    "username": "banqinghe",
+                    "contributions": 1
+                }
+            ],
+            "tags": [
+                "3.x"
+            ],
+            "isLayer": false
+        },
+        {
+            "name": "maz-ui",
+            "description": "install easily maz-ui library to take advantage of auto-import components, plugins, composables and CSS files.",
+            "repo": "louismazel/maz-ui",
+            "npm": "maz-ui",
+            "icon": "maz-ui.png",
+            "github": "https://github.com/louismazel/maz-ui",
+            "website": "https://louismazel.github.io/maz-ui-3/",
+            "learn_more": "https://louismazel.github.io/maz-ui-3/",
+            "category": "UI",
+            "type": "community",
+            "maintainers": [
+                {
+                    "name": "Loïc Mazuel",
+                    "github": "LouisMazel"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "downloads": 28555,
+            "stars": 312,
+            "publishedAt": null,
+            "createdAt": null,
+            "contributors": [
+                {
+                    "id": 12446546,
+                    "username": "LouisMazel",
+                    "contributions": 916
+                },
+                {
+                    "id": 49699333,
+                    "username": "dependabot[bot]",
+                    "contributions": 6
+                },
+                {
+                    "id": 2184726,
+                    "username": "dnyer11",
+                    "contributions": 1
+                },
+                {
+                    "id": 3728536,
+                    "username": "jorgevrgs",
+                    "contributions": 1
+                },
+                {
+                    "id": 26676061,
+                    "username": "malikdoksoz",
+                    "contributions": 1
+                },
+                {
+                    "id": 26164755,
+                    "username": "oketafred",
+                    "contributions": 1
+                },
+                {
+                    "id": 398400,
+                    "username": "pboos",
+                    "contributions": 1
+                },
+                {
+                    "id": 9120634,
+                    "username": "mkt4ever",
+                    "contributions": 1
+                },
+                {
+                    "id": 106826371,
+                    "username": "selemondev",
                     "contributions": 1
                 }
             ],
