@@ -1,4 +1,5 @@
 import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
+import { handleModuleCommand } from './multiStepCommands';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
@@ -9,6 +10,6 @@ const nuxtGenerate = () => newTerminal('Nuxi: Build', `${runCommand} nuxi genera
 const nuxtCleanUp = () => newTerminal('Nuxi: Cleanup', `${runCommand} nuxi cleanup`, `${projectRootDirectory()}`)
 const nuxtAnalyze = () => newTerminal('Nuxi: Analyze', `${runCommand} nuxi analyze`, `${projectRootDirectory()}`)
 const nuxtInfo = () => newTerminal('Nuxi: Info', `${runCommand} nuxi info`, `${projectRootDirectory()}`)
+const nuxtModule = async () => await handleModuleCommand()
 
-
-export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo }
+export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule }

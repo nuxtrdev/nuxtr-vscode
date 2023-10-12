@@ -43,6 +43,7 @@ const commandList = [
     { command: 'nuxtr.createPageTemplate', function: nuxtrCommands.createPageTemplate },
     { command: 'nuxtr.createLayoutTemplate', function: nuxtrCommands.createLayoutTemplate },
     { command: 'nuxtr.createEmptyFileTemplate', function: nuxtrCommands.createEmptyFileTemplate },
+    { command: 'nuxtr.nuxtModule', function: async () => await nuxtrCommands.nuxtModule() },
     { command: 'nuxtr.createFileFromTemplate', function: (template: string) => nuxtrCommands.createFileFromTemplate(template) },
     { command: 'nuxtr.directUpgradeNuxt', function: async () => await nuxtrCommands.upgradePackage('nuxt') },
     { command: 'nuxtr.managePackageVersion', function: async () => await nuxtrCommands.managePackageVersion('nuxt') },
