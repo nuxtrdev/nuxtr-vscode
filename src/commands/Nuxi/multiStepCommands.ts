@@ -62,8 +62,8 @@ export const handleModuleCommand = async () => {
         window.showErrorMessage('Error fetching Nuxt modules');
     } else {
         const options: QuickPickOptions = {
-            placeHolder: 'Select module(s)',
-            canPickMany: true
+            placeHolder: 'Select module',
+            canPickMany: false
         };
 
         const items = modules
@@ -84,11 +84,9 @@ export const handleModuleCommand = async () => {
 
             let userSelection = null
 
-            Array.isArray(selection) ?
-                userSelection = selection.map((module) => module.label).join(' ')
-                : userSelection = selection.label;
+            userSelection = selection.label;
 
-            if (!userSelection || userSelection.length === 0) {
+            if (!userSelection) {
                 return;
             }
 

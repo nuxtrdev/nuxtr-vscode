@@ -1,7 +1,7 @@
 import { ThemeIcon, QuickPickItem, window } from 'vscode';
 import { capitalize } from 'string-ts';
 import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
-import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo } from './commonCommands';
+import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule } from './commonCommands';
 import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
 import { tryImportNuxi } from '../../nuxi';
 
@@ -100,4 +100,4 @@ const showCLICommands = async () => {
 };
 
 
-export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, showCLICommands }
+export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule, showCLICommands }
