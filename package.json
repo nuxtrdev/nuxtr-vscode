@@ -2,10 +2,10 @@
     "name": "nuxtr-vscode",
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
-    "version": "0.2.0",
-    "packageManager": "pnpm@8.8.0",
+    "version": "0.2.1",
+    "packageManager": "pnpm@8.9.0",
     "engines": {
-        "vscode": "^1.82.0"
+        "vscode": "^1.83.0"
     },
     "categories": [
         "Programming Languages",
@@ -1047,12 +1047,12 @@
         "@types/mocha": "^10.0.2",
         "@types/node": "20.4.1",
         "@types/util.promisify": "^1.0.5",
-        "@types/vscode": "^1.82.0",
-        "@typescript-eslint/eslint-plugin": "^6.7.4",
-        "@typescript-eslint/parser": "^6.7.4",
-        "@vscode/test-electron": "^2.3.4",
-        "eslint": "^8.50.0",
-        "nuxi-edge": "3.9.1-1696342776.a6acb6a",
+        "@types/vscode": "^1.83.0",
+        "@typescript-eslint/eslint-plugin": "^6.7.5",
+        "@typescript-eslint/parser": "^6.7.5",
+        "@vscode/test-electron": "^2.3.5",
+        "eslint": "^8.51.0",
+        "nuxi-edge": "3.9.1-1697039872.a6acb6a",
         "taze": "^0.11.3",
         "terser": "^5.21.0",
         "tsup": "^7.2.0",

@@ -156,6 +156,8 @@ Set your default template with these settings:
 
 ### Support for `srcDir`, `serverDir`, and Monorepo Projects
 
+> **Note:** Monorepo mode is under heavy development.
+
 Nuxtr seamlessly integrates with projects using `srcDir` and `serverDir`, as well as monorepo setups. Set your `srcDir` or `serverDir` directly from your `nuxt.config.ts` file, and Nuxtr will detect and generate files/directories in the correct locations for you.
 
 Example:

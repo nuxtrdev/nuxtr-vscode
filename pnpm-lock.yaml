@@ -50,23 +50,23 @@ devDependencies:
     specifier: ^1.0.5
     version: 1.0.5
   '@types/vscode':
-    specifier: ^1.82.0
+    specifier: ^1.83.0
     version: 1.83.0
   '@typescript-eslint/eslint-plugin':
-    specifier: ^6.7.4
+    specifier: ^6.7.5
     version: 6.7.5(@typescript-eslint/parser@6.7.5)(eslint@8.51.0)(typescript@5.2.2)
   '@typescript-eslint/parser':
-    specifier: ^6.7.4
+    specifier: ^6.7.5
     version: 6.7.5(eslint@8.51.0)(typescript@5.2.2)
   '@vscode/test-electron':
-    specifier: ^2.3.4
+    specifier: ^2.3.5
     version: 2.3.5
   eslint:
-    specifier: ^8.50.0
+    specifier: ^8.51.0
     version: 8.51.0
   nuxi-edge:
-    specifier: 3.9.1-1696342776.a6acb6a
-    version: 3.9.1-1696342776.a6acb6a
+    specifier: 3.9.1-1697039872.a6acb6a
+    version: 3.9.1-1697039872.a6acb6a
   taze:
     specifier: ^0.11.3
     version: 0.11.3
@@ -2686,8 +2686,8 @@ packages:
       set-blocking: 2.0.0
     dev: true
 
-  /nuxi-edge@3.9.1-1696342776.a6acb6a:
-    resolution: {integrity: sha512-DLJ0QL7GiHOmI/UNuSoXFnLdfaqk2er2gsZNvMyvghsbKZpfET7ghLvELofMnOBYxuHsxkDi5/qkLxq3aUsyzA==}
+  /nuxi-edge@3.9.1-1697039872.a6acb6a:
+    resolution: {integrity: sha512-hev63FfsOyWL9+bFgTYJBaHunxS8yQAm7BrQRrWu9NcrI+3z+jyWlCcdoE4as0IAJKYSv807B9ULEbBttoMILQ==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
     optionalDependencies:

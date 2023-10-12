@@ -1,5 +1,39 @@
 ## Changelog
 
+### Version 0.2.0
+### 📦 New
+
+- Vue Files Intellisense for NuxtLink and Static/Public directories.
+- .nuxtrc Intellisense and syntax highlighting
+- .nuxtignore Intellisense and syntax highlighting
+- Controllers to enable/disable Snippets.
+- Nitro Snippets.
+- File creation commands and context menu items for Nitro.
+- Bun Support.
+- Pug Support.
+- Nuxi CLI Integration.
+- Nuxi Module Command.
+
+### ✨ Improvements
+
+- Refactoring context menu items naming.
+- Hiding Commands when Nuxtr isn’t activated.
+- Extension activation time reduction.
+
+### 📖 Documentation
+
+- IntelliSense and Auto Completion.
+- Snippets Configuration.
+- Nitro Snippets.
+
+
+### ❤️ Contributors
+
+- Adham Farrag [@adhamfarrag](https://github.com/adhamfarrag)
+- Pooya Parsa [@pi0](http://github.com/pi0)
+
+<br>
+
 ### Version 0.1.11
 
 🩹 Fixes
