@@ -1,8 +1,8 @@
 ## v0.2.2
 
-[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/0.2.0...v0.2.2)
+🩹 Fixes
 
-## Changelog
+- defaultPackageManager Bun option.
 
 ### Version 0.2.0
 ### 📦 New
