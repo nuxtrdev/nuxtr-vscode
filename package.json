@@ -1,1073 +1,1075 @@
 {
-    "name": "nuxtr-vscode",
-    "displayName": "Nuxtr",
-    "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
-    "version": "0.2.1",
-    "packageManager": "pnpm@8.9.0",
-    "engines": {
-        "vscode": "^1.83.0"
-    },
-    "categories": [
-        "Programming Languages",
-        "Snippets"
+  "name": "nuxtr-vscode",
+  "displayName": "Nuxtr",
+  "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
+  "version": "0.2.2",
+  "packageManager": "pnpm@8.9.0",
+  "engines": {
+    "vscode": "^1.83.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets"
+  ],
+  "repository": "https://github.com/nuxtrdev/nuxtr-vscode",
+  "homepage": "https://nuxtr.com",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "files": [
+    "out"
+  ],
+  "main": "./out/index.js",
+  "icon": "assets/logo.png",
+  "publisher": "Nuxtr",
+  "license": "MIT",
+  "keywords": [
+    "Nuxt",
+    "Vue",
+    "Nuxt Framework",
+    "VSCode",
+    "Nuxtr",
+    "Nuxtr VSCode"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/nuxt/components.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/components.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/nuxt/boilerplates.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/boilerplates.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nitro/imports.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nitro/imports.json"
+      }
     ],
-    "repository": "https://github.com/nuxtrdev/nuxtr-vscode",
-    "homepage": "https://nuxtr.com",
-    "activationEvents": [
-        "onStartupFinished"
-    ],
-    "files": [
-        "out"
-    ],
-    "main": "./out/index.js",
-    "icon": "assets/logo.png",
-    "publisher": "Nuxtr",
-    "license": "MIT",
-    "keywords": [
-        "Nuxt",
-        "Vue",
-        "Nuxt Framework",
-        "VSCode",
-        "Nuxtr",
-        "Nuxtr VSCode"
-    ],
-    "contributes": {
-        "snippets": [
-            {
-                "language": "html",
-                "path": "./snippets/nuxt/components.json"
-            },
-            {
-                "language": "vue",
-                "path": "./snippets/nuxt/components.json"
-            },
-            {
-                "language": "html",
-                "path": "./snippets/nuxt/boilerplates.json"
-            },
-            {
-                "language": "vue",
-                "path": "./snippets/nuxt/boilerplates.json"
-            },
-            {
-                "language": "javascript",
-                "path": "./snippets/nuxt/composables.json"
-            },
-            {
-                "language": "typescript",
-                "path": "./snippets/nuxt/composables.json"
-            },
-            {
-                "language": "javascript",
-                "path": "./snippets/nuxt/utils.json"
-            },
-            {
-                "language": "typescript",
-                "path": "./snippets/nuxt/utils.json"
-            },
-            {
-                "language": "javascript",
-                "path": "./snippets/nitro/imports.json"
-            },
-            {
-                "language": "typescript",
-                "path": "./snippets/nitro/imports.json"
-            }
+    "languages": [
+      {
+        "id": "Log",
+        "aliases": [
+          "log"
         ],
-        "languages": [
-            {
-                "id": "Log",
-                "aliases": [
-                    "log"
-                ],
-                "extensions": [
-                    ".log"
-                ],
-                "configuration": "./log.configuration.json",
-                "mimetypes": [
-                    "log",
-                    "text/log",
-                    "text/x-log",
-                    "text/x-code-output",
-                    "x-code-output"
-                ]
-            },
-            {
-                "id": "nuxtignore",
-                "aliases": [
-                    "nuxtignore"
-                ],
-                "extensions": [
-                    ".nuxtignore"
-                ]
-            },
-            {
-                "id": "nuxtrc",
-                "aliases": [
-                    "nuxtrc"
-                ],
-                "extensions": [
-                    ".nuxtrc"
-                ]
-            }
+        "extensions": [
+          ".log"
         ],
-        "configurationDefaults": {
-            "files.associations": {
-                "*.page-template": "vue",
-                "*.layout-template": "vue",
-                "*.vue": "vue"
-            }
-        },
-        "grammars": [
-            {
-                "language": "Log",
-                "scopeName": "code.log",
-                "path": "./syntaxes/log.tmLanguage.json"
-            },
-            {
-                "language": "nuxtrc",
-                "scopeName": "source.nuxtrc",
-                "path": "./syntaxes/nuxtrc.tmLanguage.json"
-            },
-            {
-                "language": "nuxtignore",
-                "scopeName": "source.nuxtignore",
-                "path": "./syntaxes/nuxtignore.tmLanguage.json"
-            }
-        ],
-        "viewsContainers": {
-            "activitybar": [
-                {
-                    "id": "sidebar-view",
-                    "title": "Nuxtr",
-                    "icon": "./resources/nuxt.svg",
-                    "when": "nuxtr.isNuxtProject"
-                }
-            ]
-        },
-        "views": {
-            "sidebar-view": [
-                {
-                    "type": "webview",
-                    "id": "nuxtrSidebar",
-                    "name": "Sidebar",
-                    "icon": "./resources/nuxt.svg",
-                    "contextualTitle": "Nuxtr",
-                    "when": "nuxtr.isNuxtProject"
-                }
-            ]
-        },
-        "menus": {
-            "commandPalette": [
-                {
-                    "command": "nuxtr.projectStructure",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createPage",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createComponent",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createComposable",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createLayout",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createPlugin",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createUtil",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createMiddleware",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createNitroAPI",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createNitroPlugin",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createNitroUtil",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createNitroMiddleware",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createNitroRoute",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.directCreateUtil",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.openSettings",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.openDocumentation",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.openModules",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtDev",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtBuild",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtGenerate",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtCleanUp",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtInfo",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtModule",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.showCLICommands",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtAnalyze",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.createStore",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.appConfig",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtIgnore",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.nuxtRC",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.installDependencies",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.updateDependencies",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.configureCSS",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.configureLinters",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.configurePug",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.directToggleDevTools",
-                    "when": "nuxtr.isNuxtProject"
-                },
-                {
-                    "command": "nuxtr.managePackageVersion",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createEmptyFileTemplate",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateComponent",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateNitroAPI",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateNitroRoute",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateComposable",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateStore",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateMiddleware",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreatePlugin",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreateLayout",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directCreatePage",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.directUpgradeNuxt",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.sidebarModulesView",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createModuleAction",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createLayer",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.sidebarProjectView",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.addNuxtConfigProperty",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createLayoutTemplate",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createPageTemplate",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.createFileFromTemplate",
-                    "when": "false"
-                },
-                {
-                    "command": "nuxtr.globalState",
-                    "when": "false"
-                }
-            ],
-            "view/title": [
-                {
-                    "command": "nuxtr.openSettings",
-                    "group": "navigation@1",
-                    "when": "view == nuxtrSidebar"
-                },
-                {
-                    "command": "nuxtr.sidebarModulesView",
-                    "group": "navigation@2",
-                    "when": "view == nuxtrSidebar"
-                },
-                {
-                    "command": "nuxtr.sidebarProjectView",
-                    "group": "navigation@3",
-                    "when": "view == nuxtrSidebar"
-                }
-            ],
-            "explorer/context": [
-                {
-                    "command": "nuxtr.directCreateComponent",
-                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(components.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(components.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreatePage",
-                    "when": " (nuxtr.isNuxtProject && resourceFilename =~ /(pages.*)/) || (nuxtr.isNuxtProject && resourceDirname =~ /(pages.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateNitroAPI",
-                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(api.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(api.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateNitroRoute",
-                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(routes.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(routes.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateStore",
-                    "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(store.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(store.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateMiddleware",
-                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(middleware.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(middleware.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateLayout",
-                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(layouts.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(layouts.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreatePlugin",
-                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(plugins.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(plugins.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateUtil",
-                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(utils.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(utils.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.directCreateComposable",
-                    "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(composables.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(composables.*)/ && explorerResourceIsFolder)",
-                    "group": "navigation"
-                },
-                {
-                    "command": "nuxtr.projectStructure",
-                    "when": " nuxtr.isNuxtProject && explorerResourceIsFolder && explorerResourceIsRoot",
-                    "group": "navigation"
-                }
-            ],
-            "editor/context": [
-                {
-                    "command": "nuxtr.createPageTemplate",
-                    "when": " nuxtr.isNuxtProject &&  resourcePath =~ /pages/ ",
-                    "group": "5_cutcopypaste@1"
-                },
-                {
-                    "command": "nuxtr.createLayoutTemplate",
-                    "when": " nuxtr.isNuxtProject &&  resourcePath =~ /layouts/ ",
-                    "group": "5_cutcopypaste@1"
-                }
-            ]
-        },
-        "configuration": [
-            {
-                "title": "General",
-                "properties": {
-                    "nuxtr.openItemsAfterCreation": {
-                        "type": "boolean",
-                        "default": false,
-                        "description": "Open files after creation"
-                    },
-                    "nuxtr.defaultPackageManager": {
-                        "type": "string",
-                        "default": "null",
-                        "enum": [
-                            "null",
-                            "Yarn",
-                            "NPM",
-                            "pnpm"
-                        ],
-                        "description": "Default package manager"
-                    },
-                    "nuxtr.monorepoMode.DirectoryName": {
-                        "type": "string",
-                        "default": null,
-                        "description": "Nuxt project path inside your monorepo"
-                    }
-                }
-            },
-            {
-                "title": "Vue Files",
-                "type": "object",
-                "properties": {
-                    "nuxtr.vueFiles.template.defaultLanguage": {
-                        "type": "string",
-                        "default": "html",
-                        "enum": [
-                            "html",
-                            "pug"
-                        ],
-                        "description": "Default language for script tag"
-                    },
-                    "nuxtr.vueFiles.firstTag": {
-                        "type": "string",
-                        "default": "template",
-                        "enum": [
-                            "template",
-                            "script"
-                        ],
-                        "description": "First tag in Vue files template"
-                    },
-                    "nuxtr.vueFiles.script.type": {
-                        "type": "string",
-                        "default": "setup",
-                        "enum": [
-                            "setup",
-                            "normal"
-                        ],
-                        "description": "Script tag type in Vue files template"
-                    },
-                    "nuxtr.vueFiles.script.defaultLanguage": {
-                        "type": "string",
-                        "default": "ts",
-                        "enum": [
-                            "js",
-                            "ts"
-                        ],
-                        "description": "Default language for script tag"
-                    },
-                    "nuxtr.vueFiles.style.addStyleTag": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Add style tag to Vue files template"
-                    },
-                    "nuxtr.vueFiles.style.alwaysScoped": {
-                        "type": "boolean",
-                        "default": false,
-                        "description": "Always add scoped attribute to style tag"
-                    },
-                    "nuxtr.vueFiles.style.defaultLanguage": {
-                        "type": "string",
-                        "default": "css",
-                        "enum": [
-                            "css",
-                            "scss",
-                            "sass",
-                            "less",
-                            "stylus",
-                            "postcss"
-                        ],
-                        "description": "Default language for style tag"
-                    },
-                    "nuxtr.vueFiles.pages.defaultTemplate": {
-                        "type": "string",
-                        "default": "default.page-template",
-                        "description": "Default page template"
-                    },
-                    "nuxtr.vueFiles.layouts.defaultTemplate": {
-                        "type": "string",
-                        "default": "default.layout-template",
-                        "description": "Default layout template"
-                    }
-                }
-            },
-            {
-                "title": "Intellisense",
-                "properties": {
-                    "nuxtr.intellisense.vueFiles": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Allow intellisense for Vue files"
-                    },
-                    "nuxtr.intellisense.nuxtignore": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Allow .nuxtignore intellisense"
-                    },
-                    "nuxtr.intellisense.nuxtrc": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Allow .nuxtrc intellisense"
-                    }
-                }
-            },
-            {
-                "title": "Snippets",
-                "properties": {
-                    "nuxtr.snippets.nuxt": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Enable / Disable Nuxt Snippets"
-                    },
-                    "nuxtr.snippets.nitro": {
-                        "type": "boolean",
-                        "default": true,
-                        "description": "Enable / Disable Nitro Snippets"
-                    }
-                }
-            }
-        ],
-        "commands": [
-            {
-                "command": "nuxtr.createPage",
-                "title": "Create new Page",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createComponent",
-                "title": "Create new Component",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createComposable",
-                "title": "Create new Composable",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateComposable",
-                "title": "New Composable...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createLayout",
-                "title": "Create new Layout",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateLayout",
-                "title": "New Layout...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createPlugin",
-                "title": "Create new Plugin",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createUtil",
-                "title": "Create new Utility",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroPlugin",
-                "title": "Create new Nitro Plugin",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroUtil",
-                "title": "Create new Nitro Utility",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreatePlugin",
-                "title": "New Plugin...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateUtil",
-                "title": "New Utility...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createMiddleware",
-                "title": "Create new Middleware",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateMiddleware",
-                "title": "New Middleware...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroAPI",
-                "title": "Create new Nitro API",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroMiddleware",
-                "title": "Create new Nitro Middleware",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createNitroRoute",
-                "title": "Create new Nitro Route",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateNitroAPI",
-                "title": "New API...",
-                "shortTitle": "Create new API",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateNitroRoute",
-                "title": "New Route...",
-                "shortTitle": "Create new Route",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.projectStructure",
-                "title": "Nuxt project structure...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.sidebarProjectView",
-                "title": "Focus on Project View",
-                "icon": "$(nuxtr-project)",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.sidebarModulesView",
-                "title": "Focus on Modules View",
-                "icon": "$(nuxtr-module)",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createModuleAction",
-                "title": "Create new action",
-                "icon": "$(nuxtr-module)",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createLayer",
-                "title": "Create new Layer",
-                "icon": "$(nuxtr-module)",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.openSettings",
-                "title": "Settings",
-                "icon": "$(nuxtr-settings)",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.openDocumentation",
-                "title": "Open Documentation",
-                "category": "Nuxt Docs",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.openModules",
-                "title": "Open Modules Directory",
-                "category": "Nuxt Docs",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtDev",
-                "title": "Run Nuxi Dev",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtBuild",
-                "title": "Run Nuxi Build",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtGenerate",
-                "title": "Run Nuxi Generate",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtCleanUp",
-                "title": "Run Nuxi CleanUp",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtInfo",
-                "title": "Run Nuxi Info",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtModule",
-                "title": "Run Nuxi Module",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.showCLICommands",
-                "title": "Nuxi CLI",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtAnalyze",
-                "title": "Run Nuxi Analyze",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createStore",
-                "title": "Create new Store",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateStore",
-                "title": "New Store...",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.appConfig",
-                "title": "Create app.config.ts file",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtIgnore",
-                "title": "Create .nuxtignore file",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.nuxtRC",
-                "title": "Create .nuxtrc file",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.installDependencies",
-                "title": "Install Dependencies",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.updateDependencies",
-                "title": "Update Dependencies",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreateComponent",
-                "title": "New Component...",
-                "shortTitle": "Create Component",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directCreatePage",
-                "title": "New Page...",
-                "category": "Nuxtr",
-                "shortTitle": "Create Page",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directToggleDevTools",
-                "title": "Toggle DevTools",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.directUpgradeNuxt",
-                "title": "Toggle DevTools",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.managePackageVersion",
-                "title": "Manage Package Version",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.configureCSS",
-                "title": "Configure CSS Frameworks",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.configureLinters",
-                "title": "Configure Linters",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.configurePug",
-                "title": "Configure Pug",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createPageTemplate",
-                "title": "Create Vue Page Template",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createLayoutTemplate",
-                "title": "Create Vue Layout Template",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.addNuxtConfigProperty",
-                "title": "Add Nuxt Config Property",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createFileFromTemplate",
-                "title": "Create new Page",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.createEmptyFileTemplate",
-                "title": "Create new Vue Template",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            },
-            {
-                "command": "nuxtr.globalState",
-                "title": "Global State",
-                "category": "Nuxtr",
-                "when": "nuxtr.isNuxtProject"
-            }
-        ],
-        "keybindings": [],
-        "icons": {
-            "nuxt-logo": {
-                "description": "Nuxt Logo",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0086"
-                }
-            },
-            "nuxt-disabled": {
-                "description": "Nuxt Logo disabled",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0087"
-                }
-            },
-            "nuxt-not-found": {
-                "description": "Nuxt DevTools not found",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0088"
-                }
-            },
-            "nuxtr-module": {
-                "description": "Nuxtr Module Icon",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0089"
-                }
-            },
-            "nuxtr-project": {
-                "description": "Nuxtr Project Icon",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0090"
-                }
-            },
-            "nuxtr-settings": {
-                "description": "Nuxtr Settings Icon",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0091"
-                }
-            },
-            "nuxtr-github": {
-                "description": "Nuxtr Github Icon",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0092"
-                }
-            },
-            "nuxtr-npm": {
-                "description": "Nuxtr NPM Icon",
-                "default": {
-                    "fontPath": "assets/icon-font/icons.woff",
-                    "fontCharacter": "\\0093"
-                }
-            }
-        },
-        "iconFonts": [
-            {
-                "id": "icons",
-                "src": [
-                    {
-                        "path": "assets/icon-font/icons.woff",
-                        "format": "woff"
-                    }
-                ]
-            }
+        "configuration": "./log.configuration.json",
+        "mimetypes": [
+          "log",
+          "text/log",
+          "text/x-log",
+          "text/x-code-output",
+          "x-code-output"
         ]
-    },
-    "permissions": [
-        "webview",
-        "http"
+      },
+      {
+        "id": "nuxtignore",
+        "aliases": [
+          "nuxtignore"
+        ],
+        "extensions": [
+          ".nuxtignore"
+        ]
+      },
+      {
+        "id": "nuxtrc",
+        "aliases": [
+          "nuxtrc"
+        ],
+        "extensions": [
+          ".nuxtrc"
+        ]
+      }
     ],
-    "scripts": {
-        "install:all": "pnpm install && cd ui && pnpm install",
-        "build": "tsup",
-        "vscode:prepublish": "pnpm build",
-        "dev": "pnpm build -- --watch",
-        "lint": "eslint ./src --ext .ts --fix",
-        "package": "vsce package --no-dependencies",
-        "publish:release": "vsce publish --no-dependencies",
-        "publish:pre": "vsce publish --pre-release --no-dependencies",
-        "typecheck": "tsc --noEmit"
+    "configurationDefaults": {
+      "files.associations": {
+        "*.page-template": "vue",
+        "*.layout-template": "vue",
+        "*.vue": "vue"
+      }
     },
-    "devDependencies": {
-        "@types/fs-extra": "^11.0.2",
-        "@types/mocha": "^10.0.2",
-        "@types/node": "20.4.1",
-        "@types/util.promisify": "^1.0.5",
-        "@types/vscode": "^1.83.0",
-        "@typescript-eslint/eslint-plugin": "^6.7.5",
-        "@typescript-eslint/parser": "^6.7.5",
-        "@vscode/test-electron": "^2.3.5",
-        "eslint": "^8.51.0",
-        "nuxi-edge": "3.9.1-1697039872.a6acb6a",
-        "taze": "^0.11.3",
-        "terser": "^5.21.0",
-        "tsup": "^7.2.0",
-        "typescript": "^5.2.2"
+    "grammars": [
+      {
+        "language": "Log",
+        "scopeName": "code.log",
+        "path": "./syntaxes/log.tmLanguage.json"
+      },
+      {
+        "language": "nuxtrc",
+        "scopeName": "source.nuxtrc",
+        "path": "./syntaxes/nuxtrc.tmLanguage.json"
+      },
+      {
+        "language": "nuxtignore",
+        "scopeName": "source.nuxtignore",
+        "path": "./syntaxes/nuxtignore.tmLanguage.json"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "sidebar-view",
+          "title": "Nuxtr",
+          "icon": "./resources/nuxt.svg",
+          "when": "nuxtr.isNuxtProject"
+        }
+      ]
     },
-    "dependencies": {
-        "@nuxt/schema": "^3.7.4",
-        "destr": "^2.0.1",
-        "fs-extra": "^11.1.1",
-        "jiti": "^1.20.0",
-        "magicast": "^0.3.0",
-        "ofetch": "^1.3.3",
-        "pathe": "^1.1.1",
-        "pkg-types": "^1.0.3",
-        "string-ts": "^1.2.0",
-        "util": "^0.12.5"
-    }
+    "views": {
+      "sidebar-view": [
+        {
+          "type": "webview",
+          "id": "nuxtrSidebar",
+          "name": "Sidebar",
+          "icon": "./resources/nuxt.svg",
+          "contextualTitle": "Nuxtr",
+          "when": "nuxtr.isNuxtProject"
+        }
+      ]
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "nuxtr.projectStructure",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createPage",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createComponent",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createComposable",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createLayout",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createPlugin",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createUtil",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createMiddleware",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createNitroAPI",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createNitroPlugin",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createNitroUtil",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createNitroMiddleware",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createNitroRoute",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.directCreateUtil",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.openSettings",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.openDocumentation",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.openModules",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtDev",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtBuild",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtGenerate",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtCleanUp",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtInfo",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtModule",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.showCLICommands",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtAnalyze",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.createStore",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.appConfig",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtIgnore",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.nuxtRC",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.installDependencies",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.updateDependencies",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.configureCSS",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.configureLinters",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.configurePug",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.directToggleDevTools",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.managePackageVersion",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createEmptyFileTemplate",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateComponent",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateNitroAPI",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateNitroRoute",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateComposable",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateStore",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateMiddleware",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreatePlugin",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreateLayout",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directCreatePage",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.directUpgradeNuxt",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.sidebarModulesView",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createModuleAction",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createLayer",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.sidebarProjectView",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.addNuxtConfigProperty",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createLayoutTemplate",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createPageTemplate",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.createFileFromTemplate",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.globalState",
+          "when": "false"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "nuxtr.openSettings",
+          "group": "navigation@1",
+          "when": "view == nuxtrSidebar"
+        },
+        {
+          "command": "nuxtr.sidebarModulesView",
+          "group": "navigation@2",
+          "when": "view == nuxtrSidebar"
+        },
+        {
+          "command": "nuxtr.sidebarProjectView",
+          "group": "navigation@3",
+          "when": "view == nuxtrSidebar"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "nuxtr.directCreateComponent",
+          "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(components.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(components.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreatePage",
+          "when": " (nuxtr.isNuxtProject && resourceFilename =~ /(pages.*)/) || (nuxtr.isNuxtProject && resourceDirname =~ /(pages.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateNitroAPI",
+          "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(api.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(api.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateNitroRoute",
+          "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(routes.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(routes.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateStore",
+          "when": "(nuxtr.isNuxtProject && resourceFilename =~ /(store.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(store.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateMiddleware",
+          "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(middleware.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(middleware.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateLayout",
+          "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(layouts.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(layouts.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreatePlugin",
+          "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(plugins.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(plugins.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateUtil",
+          "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(utils.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(utils.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateComposable",
+          "when": "( nuxtr.isNuxtProject && resourceFilename =~ /(composables.*)/) || ( nuxtr.isNuxtProject && resourceDirname =~ /(composables.*)/ && explorerResourceIsFolder)",
+          "group": "navigation"
+        },
+        {
+          "command": "nuxtr.projectStructure",
+          "when": " nuxtr.isNuxtProject && explorerResourceIsFolder && explorerResourceIsRoot",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "nuxtr.createPageTemplate",
+          "when": " nuxtr.isNuxtProject &&  resourcePath =~ /pages/ ",
+          "group": "5_cutcopypaste@1"
+        },
+        {
+          "command": "nuxtr.createLayoutTemplate",
+          "when": " nuxtr.isNuxtProject &&  resourcePath =~ /layouts/ ",
+          "group": "5_cutcopypaste@1"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "General",
+        "properties": {
+          "nuxtr.openItemsAfterCreation": {
+            "type": "boolean",
+            "default": false,
+            "description": "Open files after creation"
+          },
+          "nuxtr.defaultPackageManager": {
+            "type": "string",
+            "default": "null",
+            "enum": [
+              "null",
+              "Yarn",
+              "NPM",
+              "pnpm"
+            ],
+            "description": "Default package manager"
+          },
+          "nuxtr.monorepoMode.DirectoryName": {
+            "type": "string",
+            "default": null,
+            "description": "Nuxt project path inside your monorepo"
+          }
+        }
+      },
+      {
+        "title": "Vue Files",
+        "type": "object",
+        "properties": {
+          "nuxtr.vueFiles.template.defaultLanguage": {
+            "type": "string",
+            "default": "html",
+            "enum": [
+              "html",
+              "pug"
+            ],
+            "description": "Default language for script tag"
+          },
+          "nuxtr.vueFiles.firstTag": {
+            "type": "string",
+            "default": "template",
+            "enum": [
+              "template",
+              "script"
+            ],
+            "description": "First tag in Vue files template"
+          },
+          "nuxtr.vueFiles.script.type": {
+            "type": "string",
+            "default": "setup",
+            "enum": [
+              "setup",
+              "normal"
+            ],
+            "description": "Script tag type in Vue files template"
+          },
+          "nuxtr.vueFiles.script.defaultLanguage": {
+            "type": "string",
+            "default": "ts",
+            "enum": [
+              "js",
+              "ts"
+            ],
+            "description": "Default language for script tag"
+          },
+          "nuxtr.vueFiles.style.addStyleTag": {
+            "type": "boolean",
+            "default": true,
+            "description": "Add style tag to Vue files template"
+          },
+          "nuxtr.vueFiles.style.alwaysScoped": {
+            "type": "boolean",
+            "default": false,
+            "description": "Always add scoped attribute to style tag"
+          },
+          "nuxtr.vueFiles.style.defaultLanguage": {
+            "type": "string",
+            "default": "css",
+            "enum": [
+              "css",
+              "scss",
+              "sass",
+              "less",
+              "stylus",
+              "postcss"
+            ],
+            "description": "Default language for style tag"
+          },
+          "nuxtr.vueFiles.pages.defaultTemplate": {
+            "type": "string",
+            "default": "default.page-template",
+            "description": "Default page template"
+          },
+          "nuxtr.vueFiles.layouts.defaultTemplate": {
+            "type": "string",
+            "default": "default.layout-template",
+            "description": "Default layout template"
+          }
+        }
+      },
+      {
+        "title": "Intellisense",
+        "properties": {
+          "nuxtr.intellisense.vueFiles": {
+            "type": "boolean",
+            "default": true,
+            "description": "Allow intellisense for Vue files"
+          },
+          "nuxtr.intellisense.nuxtignore": {
+            "type": "boolean",
+            "default": true,
+            "description": "Allow .nuxtignore intellisense"
+          },
+          "nuxtr.intellisense.nuxtrc": {
+            "type": "boolean",
+            "default": true,
+            "description": "Allow .nuxtrc intellisense"
+          }
+        }
+      },
+      {
+        "title": "Snippets",
+        "properties": {
+          "nuxtr.snippets.nuxt": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable / Disable Nuxt Snippets"
+          },
+          "nuxtr.snippets.nitro": {
+            "type": "boolean",
+            "default": true,
+            "description": "Enable / Disable Nitro Snippets"
+          }
+        }
+      }
+    ],
+    "commands": [
+      {
+        "command": "nuxtr.createPage",
+        "title": "Create new Page",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createComponent",
+        "title": "Create new Component",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createComposable",
+        "title": "Create new Composable",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateComposable",
+        "title": "New Composable...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createLayout",
+        "title": "Create new Layout",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateLayout",
+        "title": "New Layout...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createPlugin",
+        "title": "Create new Plugin",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createUtil",
+        "title": "Create new Utility",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createNitroPlugin",
+        "title": "Create new Nitro Plugin",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createNitroUtil",
+        "title": "Create new Nitro Utility",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreatePlugin",
+        "title": "New Plugin...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateUtil",
+        "title": "New Utility...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createMiddleware",
+        "title": "Create new Middleware",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateMiddleware",
+        "title": "New Middleware...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createNitroAPI",
+        "title": "Create new Nitro API",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createNitroMiddleware",
+        "title": "Create new Nitro Middleware",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createNitroRoute",
+        "title": "Create new Nitro Route",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateNitroAPI",
+        "title": "New API...",
+        "shortTitle": "Create new API",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateNitroRoute",
+        "title": "New Route...",
+        "shortTitle": "Create new Route",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.projectStructure",
+        "title": "Nuxt project structure...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.sidebarProjectView",
+        "title": "Focus on Project View",
+        "icon": "$(nuxtr-project)",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.sidebarModulesView",
+        "title": "Focus on Modules View",
+        "icon": "$(nuxtr-module)",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createModuleAction",
+        "title": "Create new action",
+        "icon": "$(nuxtr-module)",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createLayer",
+        "title": "Create new Layer",
+        "icon": "$(nuxtr-module)",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.openSettings",
+        "title": "Settings",
+        "icon": "$(nuxtr-settings)",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.openDocumentation",
+        "title": "Open Documentation",
+        "category": "Nuxt Docs",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.openModules",
+        "title": "Open Modules Directory",
+        "category": "Nuxt Docs",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtDev",
+        "title": "Run Nuxi Dev",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtBuild",
+        "title": "Run Nuxi Build",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtGenerate",
+        "title": "Run Nuxi Generate",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtCleanUp",
+        "title": "Run Nuxi CleanUp",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtInfo",
+        "title": "Run Nuxi Info",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtModule",
+        "title": "Run Nuxi Module",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.showCLICommands",
+        "title": "Nuxi CLI",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtAnalyze",
+        "title": "Run Nuxi Analyze",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createStore",
+        "title": "Create new Store",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateStore",
+        "title": "New Store...",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.appConfig",
+        "title": "Create app.config.ts file",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtIgnore",
+        "title": "Create .nuxtignore file",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.nuxtRC",
+        "title": "Create .nuxtrc file",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.installDependencies",
+        "title": "Install Dependencies",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.updateDependencies",
+        "title": "Update Dependencies",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreateComponent",
+        "title": "New Component...",
+        "shortTitle": "Create Component",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directCreatePage",
+        "title": "New Page...",
+        "category": "Nuxtr",
+        "shortTitle": "Create Page",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directToggleDevTools",
+        "title": "Toggle DevTools",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.directUpgradeNuxt",
+        "title": "Toggle DevTools",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.managePackageVersion",
+        "title": "Manage Package Version",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.configureCSS",
+        "title": "Configure CSS Frameworks",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.configureLinters",
+        "title": "Configure Linters",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.configurePug",
+        "title": "Configure Pug",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createPageTemplate",
+        "title": "Create Vue Page Template",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createLayoutTemplate",
+        "title": "Create Vue Layout Template",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.addNuxtConfigProperty",
+        "title": "Add Nuxt Config Property",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createFileFromTemplate",
+        "title": "Create new Page",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.createEmptyFileTemplate",
+        "title": "Create new Vue Template",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      },
+      {
+        "command": "nuxtr.globalState",
+        "title": "Global State",
+        "category": "Nuxtr",
+        "when": "nuxtr.isNuxtProject"
+      }
+    ],
+    "keybindings": [],
+    "icons": {
+      "nuxt-logo": {
+        "description": "Nuxt Logo",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0086"
+        }
+      },
+      "nuxt-disabled": {
+        "description": "Nuxt Logo disabled",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0087"
+        }
+      },
+      "nuxt-not-found": {
+        "description": "Nuxt DevTools not found",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0088"
+        }
+      },
+      "nuxtr-module": {
+        "description": "Nuxtr Module Icon",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0089"
+        }
+      },
+      "nuxtr-project": {
+        "description": "Nuxtr Project Icon",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0090"
+        }
+      },
+      "nuxtr-settings": {
+        "description": "Nuxtr Settings Icon",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0091"
+        }
+      },
+      "nuxtr-github": {
+        "description": "Nuxtr Github Icon",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0092"
+        }
+      },
+      "nuxtr-npm": {
+        "description": "Nuxtr NPM Icon",
+        "default": {
+          "fontPath": "assets/icon-font/icons.woff",
+          "fontCharacter": "\\0093"
+        }
+      }
+    },
+    "iconFonts": [
+      {
+        "id": "icons",
+        "src": [
+          {
+            "path": "assets/icon-font/icons.woff",
+            "format": "woff"
+          }
+        ]
+      }
+    ]
+  },
+  "permissions": [
+    "webview",
+    "http"
+  ],
+  "scripts": {
+    "install:all": "pnpm install && cd ui && pnpm install",
+    "build": "tsup",
+    "vscode:prepublish": "pnpm build",
+    "dev": "pnpm build -- --watch",
+    "lint": "eslint --cache ./src --ext .ts --fix",
+    "package": "vsce package --no-dependencies",
+    "publish:release": "vsce publish --no-dependencies",
+    "release": "pnpm build && changelogen --release --push && pnpm publish",
+    "publish:pre": "vsce publish --pre-release --no-dependencies",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.2",
+    "@types/mocha": "^10.0.2",
+    "@types/node": "20.4.1",
+    "@types/util.promisify": "^1.0.5",
+    "@types/vscode": "^1.83.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.5",
+    "@typescript-eslint/parser": "^6.7.5",
+    "@vscode/test-electron": "^2.3.5",
+    "changelogen": "^0.5.5",
+    "eslint": "^8.51.0",
+    "nuxi-edge": "3.9.1-1697039872.a6acb6a",
+    "taze": "^0.11.3",
+    "terser": "^5.21.0",
+    "tsup": "^7.2.0",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@nuxt/schema": "^3.7.4",
+    "destr": "^2.0.1",
+    "fs-extra": "^11.1.1",
+    "jiti": "^1.20.0",
+    "magicast": "^0.3.0",
+    "ofetch": "^1.3.3",
+    "pathe": "^1.1.1",
+    "pkg-types": "^1.0.3",
+    "string-ts": "^1.2.0",
+    "util": "^0.12.5"
+  }
 }
