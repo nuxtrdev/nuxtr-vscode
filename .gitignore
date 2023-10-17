@@ -12,3 +12,5 @@ ui/.env
 TODOs.md
 
 .env
+
+.eslintcache

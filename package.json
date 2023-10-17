@@ -487,7 +487,8 @@
               "null",
               "Yarn",
               "NPM",
-              "pnpm"
+              "pnpm",
+              "Bun"
             ],
             "description": "Default package manager"
           },
@@ -1039,8 +1040,9 @@
     "lint": "eslint --cache ./src --ext .ts --fix",
     "package": "vsce package --no-dependencies",
     "publish:release": "vsce publish --no-dependencies",
-    "release": "pnpm build && changelogen --release --push && pnpm publish",
     "publish:pre": "vsce publish --pre-release --no-dependencies",
+    "release": "pnpm build && changelogen --release --push && pnpm publish:release",
+    "prerelease": "pnpm build && changelogen --prerelease --push && pnpm publish:pre",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
