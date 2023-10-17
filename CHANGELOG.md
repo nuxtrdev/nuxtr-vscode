@@ -1,3 +1,19 @@
+## v0.2.3
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.2...v0.2.3)
+
+### 🩹 Fixes
+
+- DefaultPackageManager bun option ([59456cd](https://github.com/nuxtrdev/nuxtr-vscode/commit/59456cd))
+
+### 📖 Documentation
+
+- Changelog ([08dc8fe](https://github.com/nuxtrdev/nuxtr-vscode/commit/08dc8fe))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## v0.2.2
 
 🩹 Fixes
