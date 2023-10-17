@@ -1,4 +1,8 @@
-## Changelog
+## v0.2.2
+
+🩹 Fixes
+
+- defaultPackageManager Bun option.
 
 ### Version 0.2.0
 ### 📦 New
