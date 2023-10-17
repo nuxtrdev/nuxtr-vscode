@@ -3,6 +3,7 @@ import { existsSync, readFileSync, readdirSync} from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"
 import { readPackageJSON } from 'pkg-types'
+import { ofetch } from "ofetch";
 import { getConfiguration, projectRootDirectory, runCommand } from './global'
 import { installDependencies } from '../commands/InstallDependencies'
 import pm from '../content/pm'
@@ -348,7 +349,35 @@ export async function managePackageVersion(packageName: string) {
             }
         }
     } else {
-        let checkingVersionCommand = `npm view ${packageName} versions --json`
+        let checkingVersionCommand = async (): Promise<{
+            versions: string[];
+            errorMessage: string;
+        }> => {
+            let versions;
+            let errorMessage;
+            try {
+                const response = await ofetch(
+                    `https://registry.npmjs.org/${packageName}`,
+                    {
+                        headers: {
+                            Accept: "application/json",
+                        },
+                        retry: 3,
+                        retryDelay: 500, // ms
+                        timeout: 10000, // ms
+                    }
+                );
+                const data = await response;
+                versions = Object.keys(data.versions);
+            } catch (error: any) {
+                errorMessage = error.message;
+            }
+
+            return {
+                versions: versions || [],
+                errorMessage,
+            }
+        };
 
         // show progress bar while checking version
         await window.withProgress(
@@ -358,82 +387,94 @@ export async function managePackageVersion(packageName: string) {
                 cancellable: false,
             },
             async () => {
-                return new Promise((resolve, reject) => {
-                    const child = exec(checkingVersionCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
-                        if (error) {
-                            reject(error.message)
-                        } else if (stderr) {
-                            reject(stderr)
-                        } else {
-                            resolve(stdout)
-                            let versions: any = []
-                            let versionOfPackage = dependencies
-                            JSON.parse(stdout)
-                                .reverse()
-                                .forEach((version: any) => {
-                                    versions.push({
-                                        label: version,
-                                        description: versionOfPackage?.find((item: any) => item.name === packageName)?.version === version ? 'current version' : '',
-                                    })
-                                })
+                return new Promise(async (resolve, reject) => {
+                    const checkVersions = await checkingVersionCommand();
 
-                            const options: QuickPickOptions = {
-                                canPickMany: false,
-                                ignoreFocusOut: true,
-                                placeHolder: `Select which ${packageName} version to install`,
-                            }
-                            window.showQuickPick(versions, options).then((version: any) => {
-                                if (version) {
-                                    const installationCommand = `${packageManager.installCommand} ${packageName}@${version.label} --save-dev`
-                                    //  show progress bar while installing package
-                                    window.withProgress(
-                                        {
-                                            location: ProgressLocation.Notification,
-                                            title: `Installing ${packageName}@${version.label}...`,
-                                            cancellable: false,
-                                        },
-                                        async () => {
-                                            return new Promise((resolve, reject) => {
-                                                const child = exec(installationCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
+                    if (checkVersions.errorMessage) {
+                        reject(checkVersions.errorMessage);
+                    } else if (checkVersions.versions.length === 0) {
+                        reject(`No version found for ${packageName}`);
+                    } else {
+                        resolve(checkVersions);
+                    }
+
+                    let versions: any = [];
+                    let versionOfPackage = dependencies;
+
+                    checkVersions.versions.forEach((version: any) => {
+                        versions.push({
+                            label: version,
+                            description:
+                            versionOfPackage?.find(
+                                (item: any) => item.name === packageName
+                            )?.version === version
+                                ? "current version"
+                                : "",
+                        });
+                    });
+
+                    const options: QuickPickOptions = {
+                        canPickMany: false,
+                        ignoreFocusOut: true,
+                        placeHolder: `Select which ${packageName} version to install`,
+                    };
+                    
+                    window
+                        .showQuickPick(versions, options)
+                        .then((version: any) => {
+                            if (version) {
+                                const installationCommand = `${packageManager.installCommand} ${packageName}@${version.label} --save-dev`;
+                                //  show progress bar while installing package
+                                window.withProgress(
+                                    {
+                                        location: ProgressLocation.Notification,
+                                        title: `Installing ${packageName}@${version.label}...`,
+                                        cancellable: false,
+                                    },
+                                    async () => {
+                                        return new Promise((resolve, reject) => {
+                                            const child = exec(
+                                                installationCommand,
+                                                { cwd: projectRootDirectory() },
+                                                (error: any, stdout: any, stderr: any) => {
                                                     if (error) {
-                                                        reject(error.message)
+                                                        reject(error.message);
                                                     } else if (stderr) {
-                                                        reject(stderr)
+                                                        reject(stderr);
                                                     } else {
-                                                        resolve(stdout)
+                                                        resolve(stdout);
                                                     }
-                                                })
+                                                }
+                                            );
 
-                                                child.on('exit', async (code) => {
-                                                    if (code === 0) {
-                                                        window.showInformationMessage(`Successfully installed ${packageName}@${version.label}`)
-                                                    } else {
-                                                        const response = await window.showErrorMessage(
-                                                            `Failed to upgrade ${packageName}@${version.label}. Do you want to install manually?`,
-                                                            'Install Manually'
-                                                        )
+                                            child.on("exit", async (code) => {
+                                                if (code === 0) {
+                                                    window.showInformationMessage(
+                                                        `Successfully installed ${packageName}@${version.label}`
+                                                    );
+                                                } else {
+                                                    const response =
+                                                    await window.showErrorMessage(
+                                                        `Failed to upgrade ${packageName}@${version.label}. Do you want to install manually?`,
+                                                        "Install Manually"
+                                                    );
 
-                                                        if (response === 'Install Manually') {
-                                                            newTerminal(
-                                                                `Nuxtr: Install ${packageName}`,
-                                                                `${packageManager?.installCommand} ${packageName}@${version.label}`
-                                                            )
-                                                        }
+                                                    if (response === "Install Manually") {
+                                                        newTerminal(
+                                                            `Nuxtr: Install ${packageName}`,
+                                                            `${packageManager?.installCommand} ${packageName}@${version.label}`
+                                                        );
                                                     }
-                                                })
-                                            })
-                                        }
-                                    )
-                                }
-                            })
-                        }
-                    })
-
-
+                                                }
+                                            });
+                                        });
+                                    }
+                                );
+                            }
+                        });
                 })
             }
         )
-
     }
 }
 
