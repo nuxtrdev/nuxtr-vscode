@@ -4,12 +4,14 @@ const templateTag = (type: string, language: string) => {
   <div>
     ${type === 'layout' ? '<slot />' : ''}
   </div>
-</template>\n\n`
+</template>\n
+`
     } else {
         return `<template>
   div
     ${type === 'layout' ? 'slot' : ''}
-</template>\n\n`
+</template>\n
+`
     }
 }
 
@@ -17,15 +19,14 @@ function generateStyleTag(lang: string, scoped: boolean) {
     return `
 <style${lang === 'css' ? '' : ` lang="${lang}"`}${scoped ? ' scoped' : ''}>
 
-</style>
+</style>\n
 `
 }
 
 function generateScriptTag(scriptType: string, lang: string) {
     return `<script${lang === 'ts' ? ' lang="ts"' : ''}${scriptType === 'setup' ? ' setup' : ''}>
 
-</script>\n\n
-`
+</script>\n`
 }
 
 export { generateStyleTag, generateScriptTag, templateTag }
