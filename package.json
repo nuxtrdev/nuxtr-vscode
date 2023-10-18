@@ -3,7 +3,7 @@
   "displayName": "Nuxtr",
   "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
   "version": "0.2.3",
-  "packageManager": "pnpm@8.9.0",
+  "packageManager": "pnpm@8.9.2",
   "engines": {
     "vscode": "^1.83.0"
   },
@@ -1051,14 +1051,14 @@
     "@types/node": "20.4.1",
     "@types/util.promisify": "^1.0.5",
     "@types/vscode": "^1.83.0",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "@vscode/test-electron": "^2.3.5",
     "changelogen": "^0.5.5",
     "eslint": "^8.51.0",
-    "nuxi-edge": "3.9.1-1697039872.a6acb6a",
-    "taze": "^0.11.3",
-    "terser": "^5.21.0",
+    "nuxi-edge": "3.9.1-1697113884.a6acb6a",
+    "taze": "^0.11.4",
+    "terser": "^5.22.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
   },
@@ -1071,7 +1071,7 @@
     "ofetch": "^1.3.3",
     "pathe": "^1.1.1",
     "pkg-types": "^1.0.3",
-    "string-ts": "^1.2.0",
+    "string-ts": "^1.3.2",
     "util": "^0.12.5"
   }
 }
