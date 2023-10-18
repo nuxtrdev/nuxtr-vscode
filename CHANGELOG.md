@@ -1,3 +1,27 @@
+## v0.2.4
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.3...v0.2.4)
+
+### 🚀 Enhancements
+
+- Pinia setup template ([3447255](https://github.com/nuxtrdev/nuxtr-vscode/commit/3447255))
+- Pinia setup template ([498c61b](https://github.com/nuxtrdev/nuxtr-vscode/commit/498c61b))
+
+### 🩹 Fixes
+
+- Nuxt devtools toggle message ([6ad6693](https://github.com/nuxtrdev/nuxtr-vscode/commit/6ad6693))
+- Nuxt Devtools toggle message ([a57ef93](https://github.com/nuxtrdev/nuxtr-vscode/commit/a57ef93))
+- Vue templates spacing ([783e4fb](https://github.com/nuxtrdev/nuxtr-vscode/commit/783e4fb))
+- Vue templates spacing ([a05527b](https://github.com/nuxtrdev/nuxtr-vscode/commit/a05527b))
+
+### 📖 Documentation
+
+- Pinia default template ([48169fe](https://github.com/nuxtrdev/nuxtr-vscode/commit/48169fe))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## v0.2.3
 
 [compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.2...v0.2.3)
