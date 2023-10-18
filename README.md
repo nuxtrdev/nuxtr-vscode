@@ -51,7 +51,8 @@ Customize Vue file templates with these settings:
 "nuxtr.vueFiles.script.defaultLanguage": "ts",
 "nuxtr.vueFiles.style.addStyleTag": true,
 "nuxtr.vueFiles.style.alwaysScoped": true,
-"nuxtr.vueFiles.style.defaultLanguage": "scss"
+"nuxtr.vueFiles.style.defaultLanguage": "scss",
+"nuxtr.piniaFiles.defaultTemplate": "options"
 ```
 
 Additionally, you can choose to automatically open the newly created file with:
