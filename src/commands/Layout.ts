@@ -2,7 +2,7 @@ import { window } from 'vscode'
 import { projectSrcDirectory, createFile, createDir } from '../utils'
 
 
-import { generateVueFileTemplate } from '../utils/vueFiles'
+import { generateVueFileTemplate } from '../utils/files'
 
 
 const createLayout = () => {

@@ -54,6 +54,10 @@ export interface NuxtrConfiguration {
         nuxt: boolean;
         nitro: boolean;
     }
+
+    piniaFiles: {
+        defaultTemplate: "options" | "setup";
+    }
 }
 
 interface TSConfigNuxt extends TSConfig {

@@ -2,7 +2,7 @@ import { window } from 'vscode'
 import { mkdirSync, existsSync } from 'node:fs'
 import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory } from '../utils'
 import { appConfigContent } from '../templates'
-import { generateVueFileTemplate } from '../utils/vueFiles'
+import { generateVueFileTemplate } from '../utils/files'
 
 function promptDirectorySelection() {
     let directories = [

@@ -500,7 +500,7 @@
         }
       },
       {
-        "title": "Vue Files",
+        "title": "File Creation",
         "type": "object",
         "properties": {
           "nuxtr.vueFiles.template.defaultLanguage": {
@@ -571,6 +571,15 @@
             "type": "string",
             "default": "default.layout-template",
             "description": "Default layout template"
+          },
+          "nuxtr.piniaFiles.defaultTemplate": {
+            "type": "string",
+            "default": "options",
+            "enum": [
+              "options",
+              "setup"
+            ],
+            "description": "Default language for script tag"
           }
         }
       },
