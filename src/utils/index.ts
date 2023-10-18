@@ -34,7 +34,7 @@ import { logger } from './outputChannel'
 
 import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory } from './vscode';
 
-import { generateVueFileBasicTemplate, generateVueFileTemplate } from './vueFiles'
+import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates } from './files'
 
 import { removePackage, managePackageVersion } from './dependency'
 
@@ -66,6 +66,7 @@ export {
     dependenciesUpdatesHandler,
     generateVueFileBasicTemplate,
     generateVueFileTemplate,
+    generatePiniaTemplates,
     updateDependencies,
     newTerminal,
     getNonce,

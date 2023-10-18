@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, isNuxtTwo, createFile } from '../utils'
-import { piniaContent, vuexContent } from '../templates'
+import { projectSrcDirectory, isNuxtTwo, createFile, generatePiniaTemplates } from '../utils'
+import { vuexContent } from '../templates'
 
 const createStore = () => {
     window
@@ -21,7 +21,7 @@ const createStore = () => {
             } else {
                 createFile({
                     fileName: name,
-                    content: piniaContent(name),
+                    content: generatePiniaTemplates(name),
                     fullPath: filePath,
                 })
             }
@@ -48,7 +48,7 @@ const directCreateStore = (path: string) => {
             } else {
                 createFile({
                     fileName: name,
-                    content: piniaContent(name),
+                    content: generatePiniaTemplates(name),
                     fullPath: filePath,
                 })
             }

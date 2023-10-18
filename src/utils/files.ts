@@ -1,8 +1,9 @@
 import { readFileSync } from 'fs'
-import { getConfiguration, projectSrcDirectory } from '../utils'
-import { generateStyleTag, generateScriptTag, templateTag, } from '../templates'
+import { getConfiguration, projectSrcDirectory } from '.'
+import { generateStyleTag, generateScriptTag, templateTag, piniaOptionsContent, piniaSetupContent } from '../templates'
 
 let vueFilesConfig = getConfiguration().vueFiles
+let piniaConfig = getConfiguration().piniaFiles.defaultTemplate
 
 export function generateVueFileTemplate(type: string, template?: string) {
     const userDefaultTemplate = template || (type === 'page'
@@ -40,4 +41,8 @@ export function generateVueFileBasicTemplate(type: string) {
     if (addStyleTag) { fileTemplate += generateStyleTag(styleLang, isScoped); }
 
     return fileTemplate
+}
+
+export function generatePiniaTemplates(name: string) {
+    return piniaConfig === 'options' ? piniaOptionsContent(name) : piniaSetupContent(name)
 }

@@ -1,4 +1,4 @@
-import { Disposable, window } from 'vscode';
+import { Disposable, window, commands } from 'vscode';
 import { createConfigWatcher, getConfiguration, getProjectDependencies, projectRootDirectory } from '../utils';
 import { existsSync } from 'fs';
 import { toggleSnippets } from '../snippets';
@@ -55,4 +55,15 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
 
         }
     }
+});
+
+
+export const piniaConfigWatcher: Disposable = createConfigWatcher('nuxtr.piniaFiles', async () => {
+    const question = window.showInformationMessage('Pinia Configuration has been modified.', 'Reload Window')
+
+    question.then((answer) => {
+        if (answer === 'Reload Window') {
+            commands.executeCommand('workbench.action.reloadWindow');
+        }
+    })
 });

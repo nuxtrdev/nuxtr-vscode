@@ -10,7 +10,8 @@ import {
     nitroUtilTemplate
 } from './typeScriptFiles'
 import { generateStyleTag, generateScriptTag, templateTag } from './vueFiles'
-import { vuexContent, piniaContent, appConfigContent } from './stores'
+import { vuexContent, piniaOptionsContent, piniaSetupContent } from './stores'
+import { appConfigContent } from './appConfig'
 
 
 export {
@@ -34,6 +35,7 @@ export {
     generateScriptTag,
     templateTag,
     vuexContent,
-    piniaContent,
+    piniaOptionsContent,
+    piniaSetupContent,
     appConfigContent
 }
