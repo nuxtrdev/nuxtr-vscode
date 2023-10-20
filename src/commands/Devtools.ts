@@ -8,6 +8,7 @@ import {
     projectRootDirectory,
     getInstallationCommand,
     runCommand,
+    getNuxtVersion,
 } from "../utils";
 import { updateDevtoolsStatusBar } from "../statusBar";
 
@@ -144,8 +145,16 @@ async function nuxtConfigWatcher() {
 
 async function nuxtDevToolsHandler() {
     const isInstalled = await isDevtoolsInstalled();
+    let isDevtoolsNative = false;
 
-    if (!isInstalled) {
+    let nuxtVersion = getNuxtVersion();
+    if (typeof nuxtVersion === 'string') {
+        isDevtoolsNative = nuxtVersion.startsWith('3.8') ? true : false;
+        console.log('isDevtoolsNative', isDevtoolsNative);
+
+    }
+
+    if (!isInstalled && !isDevtoolsNative) {
         await installDevtools();
         updateDevtoolsStatusBar({
             command: "nuxtr.directUpgradeNuxt",
