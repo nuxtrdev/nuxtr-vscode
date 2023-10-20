@@ -1,3 +1,20 @@
+## v0.2.5
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.4...v0.2.5)
+
+### 🩹 Fixes
+
+- Handle Nuxt devtools shipped native ([2642b99](https://github.com/nuxtrdev/nuxtr-vscode/commit/2642b99))
+- Handle Nuxt Devtools native support ([cacc431](https://github.com/nuxtrdev/nuxtr-vscode/commit/cacc431))
+
+### 🏡 Chore
+
+- **docs:** Fix changelog template ([3ea388c](https://github.com/nuxtrdev/nuxtr-vscode/commit/3ea388c))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## Version 0.2.4
 
 ### 🚀 Enhancements
