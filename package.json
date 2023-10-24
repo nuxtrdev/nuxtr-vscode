@@ -1043,7 +1043,7 @@
   ],
   "scripts": {
     "install:all": "pnpm install && cd ui && pnpm install",
-    "build": "tsup",
+    "build": "tsup && cd ui && pnpm build",
     "vscode:prepublish": "pnpm build",
     "dev": "pnpm build -- --watch",
     "lint": "eslint --cache ./src --ext .ts --fix",
@@ -1055,16 +1055,16 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.2",
-    "@types/mocha": "^10.0.2",
+    "@types/fs-extra": "^11.0.3",
+    "@types/mocha": "^10.0.3",
     "@types/node": "20.4.1",
-    "@types/util.promisify": "^1.0.5",
-    "@types/vscode": "^1.83.0",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
+    "@types/util.promisify": "^1.0.6",
+    "@types/vscode": "^1.83.1",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "@vscode/test-electron": "^2.3.5",
     "changelogen": "^0.5.5",
-    "eslint": "^8.51.0",
+    "eslint": "^8.52.0",
     "nuxi-edge": "3.9.1-1697113884.a6acb6a",
     "taze": "^0.11.4",
     "terser": "^5.22.0",
@@ -1072,7 +1072,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@nuxt/schema": "^3.7.4",
+    "@nuxt/schema": "^3.8.0",
     "destr": "^2.0.1",
     "fs-extra": "^11.1.1",
     "jiti": "^1.20.0",
