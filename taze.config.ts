@@ -6,5 +6,6 @@ export default defineConfig({
     install: true,
     packageMode: {
         'nuxi-edge': 'latest'
-    }
+    },
+    recursive: true,
 })
