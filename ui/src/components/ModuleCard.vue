@@ -24,13 +24,13 @@
             <div class="flex gap-1">
               <IconStar class="h-4 w-4" />
               <span class="text-xs font-normal">
-                {{ formatNumber(module.stars) }}
+                {{ formatNumber(module.stats.stars) }}
               </span>
             </div>
             <div class="flex gap-1">
               <IconDownloads class="h-4 w-4" />
               <span class="text-xs font-normal">
-                {{ formatNumber(module.downloads) }}
+                {{ formatNumber(module.stats.downloads) }}
               </span>
             </div>
           </div>
@@ -63,8 +63,10 @@ import IconStar from "./Icons/Star.vue";
 import IconDownloads from "./Icons/Downloads.vue";
 import { ref } from "vue";
 
+import { Module } from "./../composables/modules";
+
 const props = defineProps<{
-  module: any;
+  module: Module;
   installed?: boolean;
 }>();
 
