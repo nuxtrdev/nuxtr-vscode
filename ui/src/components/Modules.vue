@@ -32,18 +32,18 @@
 </template>
 
 <script setup lang="ts">
-import { useModules } from "./../composables/modules";
+import { useModules, Module } from "./../composables/modules";
 import ModuleCard from "./ModuleCard.vue";
 import ModulesFilter from "./ModulesFilter.vue";
 import { ref, computed } from "vue";
 
 const searchInput = ref<HTMLElement | null>(null);
 
-const modules = useModules();
+const modules: Module[] = useModules();
 
-const nuxtVersions = ref(["3.x", "2.x", "2.x-bridge"]);
+const nuxtVersions = ref(["3.0.0", "2.0.0"]);
 
-const selectedVersion = ref("3.x");
+const selectedVersion = ref("3.0.0");
 const selectedIntegrationType = ref("All");
 const selectedCategory = ref("All");
 const selectedType = ref("All");
@@ -53,7 +53,7 @@ const showFilter = ref(false);
 
 const types = ref(
   modules
-    .map((m: any) => {
+    .map((m: Module) => {
       return m.type.charAt(0).toUpperCase() + m.type.slice(1);
     })
     .filter((v: any, i: any, a: any) => a.indexOf(v) === i)
@@ -63,8 +63,8 @@ types.value.unshift("All");
 // unique categories from modules with tag 3.x
 const categories = computed(() => {
   const categories = modules
-    .filter((m: any) => m.tags.includes(selectedVersion.value))
-    .map((m: any) => m.category)
+    .filter((m: Module) => m.compatibility.nuxt.includes(selectedVersion.value))
+    .map((m: Module) => m.category)
     .filter((v: any, i: any, a: any) => a.indexOf(v) === i)
     .sort();
   categories.unshift("All");
@@ -73,8 +73,8 @@ const categories = computed(() => {
 
 const filteredModules = computed(() => {
   // filter by selected version
-  const filteredByVersion = modules.filter((m: any) =>
-    m.tags.includes(selectedVersion.value),
+  const filteredByVersion = modules.filter((m: Module) =>
+    m.compatibility.nuxt.includes(selectedVersion.value),
   );
 
   // filter by selected category
@@ -95,7 +95,7 @@ const filteredModules = computed(() => {
   );
 
   // filter by search result
-  const filteredBySearch = sortedByDownloads.filter((m: any) =>
+  const filteredBySearch = sortedByDownloads.filter((m: Module) =>
     (m.name + " " + m.description)
       .toLowerCase()
       .includes(searchResult.value.toLowerCase()),
@@ -103,12 +103,12 @@ const filteredModules = computed(() => {
 
   // filter by selectedIntegrationType
   if (selectedIntegrationType.value === "Layers") {
-    const filteredByExtends = filteredBySearch.filter((m: any) =>
+    const filteredByExtends = filteredBySearch.filter((m: Module) =>
       m.isLayer ? true : false,
     );
     return filteredByExtends;
   } else if (selectedIntegrationType.value === "Modules") {
-    const filteredByExtends = filteredBySearch.filter((m: any) =>
+    const filteredByExtends = filteredBySearch.filter((m: Module) =>
       m.isLayer ? false : true,
     );
     return filteredByExtends;
@@ -118,7 +118,7 @@ const filteredModules = computed(() => {
 });
 
 const isModuleInstalled = (module: string) => {
-  if (installedModules.value?.find((m: any) => m.name === module)) {
+  if (installedModules.value?.find((m: Module) => m.name === module)) {
     return true;
   }
   return false;

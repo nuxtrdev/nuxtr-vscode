@@ -68,7 +68,7 @@ const props = defineProps({
   },
   nuxtVersions: {
     type: Array,
-    default: () => ["3.x", "2.x", "2.x-bridge"],
+    default: () => ["3.0.0", "2.0.0"],
   },
   categories: {
     type: Array,
@@ -101,7 +101,7 @@ const emit = defineEmits([
 
 const listOpen = ref(props.open || false);
 const integrationType = ref("All Integrations");
-const selectedVersion = ref("3.x");
+const selectedVersion = ref("3.0.0");
 const selectedType = ref("Type");
 const selectedCategory = ref("Category");
 
