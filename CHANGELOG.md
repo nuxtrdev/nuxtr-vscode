@@ -1,3 +1,30 @@
+## v0.2.6
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.5...v0.2.6)
+
+### 🚀 Enhancements
+
+- Typescript setup script snippet ([a5073ff](https://github.com/nuxtrdev/nuxtr-vscode/commit/a5073ff))
+- Typescript setup script snippet ([e22240e](https://github.com/nuxtrdev/nuxtr-vscode/commit/e22240e))
+
+### 💅 Refactors
+
+- Integrations view & Modules APIs ([9df493f](https://github.com/nuxtrdev/nuxtr-vscode/commit/9df493f))
+- Integrations view & Modules APIs ([924c3f4](https://github.com/nuxtrdev/nuxtr-vscode/commit/924c3f4))
+- Nuxi Module command ([a5a166b](https://github.com/nuxtrdev/nuxtr-vscode/commit/a5a166b))
+- Nuxi Module command <!--- ☝️ PR title should follow conventional commits (https://conventionalcommits.org) ([1d217cd](https://github.com/nuxtrdev/nuxtr-vscode/commit/1d217cd))
+- Nuxi Module command ([f2fe32d](https://github.com/nuxtrdev/nuxtr-vscode/commit/f2fe32d))
+
+### 🏡 Chore
+
+- Monorepo configuration ([fe26eb2](https://github.com/nuxtrdev/nuxtr-vscode/commit/fe26eb2))
+- Monorepo configuration ([d714af4](https://github.com/nuxtrdev/nuxtr-vscode/commit/d714af4))
+- Dependencies security issues ([d11f362](https://github.com/nuxtrdev/nuxtr-vscode/commit/d11f362))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## v0.2.5
 
 [compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.4...v0.2.5)
