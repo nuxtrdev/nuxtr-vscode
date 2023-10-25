@@ -8,7 +8,7 @@ const runCommand = pm ? pm.runCommand : 'npx';
 
 
 const fetchModules = async () => {
-    let res = await ofetch('https://nuxt.com/api/modules');
+    let res = await ofetch('https://api.nuxt.com/modules');
     return res.modules;
 }
 
@@ -67,7 +67,7 @@ export const handleModuleCommand = async () => {
         };
 
         const items = modules
-            .filter(module => isNuxtTwo() ? module.tags.includes('2.x') : module.tags.includes('3.x'))
+            .filter(module => isNuxtTwo() ? module.compatibility.nuxt.includes('2.0.0') : module.compatibility.nuxt.includes('3.0.0'))
             .map((module) => {
                 const item: QuickPickItem = {
                     label: module.name,
