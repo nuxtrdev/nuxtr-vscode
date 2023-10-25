@@ -150,8 +150,6 @@ async function nuxtDevToolsHandler() {
     let nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
         isDevtoolsNative = nuxtVersion.startsWith('3.8') ? true : false;
-        console.log('isDevtoolsNative', isDevtoolsNative);
-
     }
 
     if (!isInstalled && !isDevtoolsNative) {
