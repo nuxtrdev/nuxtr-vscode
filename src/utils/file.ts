@@ -1,5 +1,5 @@
 import { window, workspace, Uri } from 'vscode';
-import { trim } from 'string-ts';
+import { trim, capitalize, replace, split } from 'string-ts';
 import { existsSync, mkdirSync, readdirSync } from 'fs';
 import { join } from 'pathe';
 import { TextEncoder } from 'util';
@@ -166,3 +166,5 @@ export const createVueTemplate = (content: string, type: string) => {
         });
 
 };
+
+export const normalizeName = (name: string, capital?: boolean) =>  split(trim(name), "-").map(capitalize).join('');

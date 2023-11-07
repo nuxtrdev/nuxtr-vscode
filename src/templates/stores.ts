@@ -1,10 +1,10 @@
-import { capitalize } from "string-ts"
+import { normalizeName } from '../utils'
 
 const piniaOptionsContent = (name: string): string => {
     return `import { defineStore } from 'pinia'
 
-export const useMy${capitalize(name)}Store = defineStore({
-  id: 'my${capitalize(name)}Store',
+export const useMy${normalizeName(name)}Store = defineStore({
+  id: 'my${normalizeName(name)}Store',
   state: () => ({ }),
   actions: {}
 })
@@ -13,7 +13,7 @@ export const useMy${capitalize(name)}Store = defineStore({
 const piniaSetupContent = (name: string): string => {
     return `import { defineStore } from 'pinia'
 
-export const use${capitalize(name)}Store = defineStore('${name}', () => {
+export const use${normalizeName(name)}Store = defineStore('${normalizeName(name)}', () => {
   return {}
 })
 `}
