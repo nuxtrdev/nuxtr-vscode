@@ -1,3 +1,17 @@
+## v0.2.7
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.6...v0.2.7)
+
+### 🏡 Chore
+
+- Update nuxt modules ([666e454](https://github.com/nuxtrdev/nuxtr-vscode/commit/666e454))
+- Update dependencies ([23fbd01](https://github.com/nuxtrdev/nuxtr-vscode/commit/23fbd01))
+- Update vscode engine version ([def7e7e](https://github.com/nuxtrdev/nuxtr-vscode/commit/def7e7e))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## v0.2.6
 
 [compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.5...v0.2.6)
