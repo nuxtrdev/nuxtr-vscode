@@ -146,8 +146,8 @@ export const createFile = async (args: { fileName: string; content: string; full
 
 export const createVueTemplate = (content: string, type: string) => {
 
-    if (!existsSync(`${projectSrcDirectory()}/.vscode`)) {
-        mkdirSync(`${projectSrcDirectory()}/.vscode`);
+    if (!existsSync(`${projectRootDirectory()}/.vscode`)) {
+        mkdirSync(`${projectRootDirectory()}/.vscode`);
     }
 
     window
@@ -160,7 +160,7 @@ export const createVueTemplate = (content: string, type: string) => {
                 createFile({
                     fileName: name,
                     content,
-                    fullPath: `${projectSrcDirectory()}/.vscode/${name}.${type}-template`
+                    fullPath: `${projectRootDirectory()}/.vscode/${name}.${type}-template`
                 });
             }
         });
