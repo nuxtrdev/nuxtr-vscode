@@ -6,8 +6,9 @@
                 <Dependencies :dependencies="projectViewData.dependencies" :outdated="projectViewData.outdatedDependencies" />
                 <Snippets :snippets="projectViewData.snippets" />
                 <FileTemplates :templates="projectViewData.fileTemplates" />
+                <Feedback class=" bg-[var(--vscode-sideBar-background)]" :content="projectViewData.feedbackContent" />
             </div>
-            <Feedback class=" bg-[var(--vscode-sideBar-background)] fixed bottom-0" :content="projectViewData.feedbackContent" />
+
         </div>
     </div>
 </template>
