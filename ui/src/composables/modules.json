@@ -1,12 +1,12 @@
 {
     "version": "3",
-    "generatedAt": "2023-11-07T11:06:33.587Z",
+    "generatedAt": "2023-11-14T21:25:17.965Z",
     "stats": {
-        "downloads": 7595780,
-        "stars": 117737,
-        "maintainers": 135,
-        "contributors": 954,
-        "modules": 174
+        "downloads": 8038587,
+        "stars": 119380,
+        "maintainers": 138,
+        "contributors": 970,
+        "modules": 177
     },
     "maintainers": [
         {
@@ -379,6 +379,13 @@
             ]
         },
         {
+            "name": "atinux",
+            "github": "atinux",
+            "modules": [
+                "auth-utils"
+            ]
+        },
+        {
             "name": "JulianMar",
             "github": "JulianMar",
             "twitter": "julian_martin96",
@@ -622,6 +629,14 @@
             "github": "adenvt",
             "modules": [
                 "nupolyon"
+            ]
+        },
+        {
+            "name": "Artem Manchenkov",
+            "github": "manchenkoff",
+            "avatar": "https://avatars.githubusercontent.com/manchenkoff",
+            "modules": [
+                "nuxt-auth-sanctum"
             ]
         },
         {
@@ -1049,6 +1064,14 @@
             ]
         },
         {
+            "name": "Hunter Liu",
+            "github": "hunterliu1003",
+            "twitter": "hunterliu1003",
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
             "name": "三咲智子 Kevin Deng",
             "github": "sxzz",
             "twitter": "sanxiaozhizi",
@@ -1105,9 +1128,10 @@
         {
             "id": 28706372,
             "username": "danielroe",
-            "contributions": 1225,
+            "contributions": 1236,
             "modules": [
                 "algolia",
+                "auth-utils",
                 "calendly",
                 "capo",
                 "color-mode",
@@ -1149,6 +1173,7 @@
                 "vite-pwa-nuxt",
                 "vitest",
                 "vue-email",
+                "vue-final-modal",
                 "vunix",
                 "web-vitals",
                 "windicss"
@@ -1157,9 +1182,10 @@
         {
             "id": 904724,
             "username": "Atinux",
-            "contributions": 1238,
+            "contributions": 1252,
             "modules": [
                 "apollo",
+                "auth-utils",
                 "color-mode",
                 "content",
                 "device",
@@ -1292,7 +1318,7 @@
         {
             "id": 11247099,
             "username": "antfu",
-            "contributions": 3492,
+            "contributions": 3543,
             "modules": [
                 "color-mode",
                 "devtools",
@@ -1356,7 +1382,7 @@
         {
             "id": 6311119,
             "username": "userquin",
-            "contributions": 244,
+            "contributions": 250,
             "modules": [
                 "i18n",
                 "time",
@@ -1816,6 +1842,16 @@
             ]
         },
         {
+            "id": 39984251,
+            "username": "Mini-ghost",
+            "contributions": 60,
+            "modules": [
+                "pinia",
+                "time",
+                "vue-final-modal"
+            ]
+        },
+        {
             "id": 10506522,
             "username": "enkot",
             "contributions": 9,
@@ -1850,6 +1886,15 @@
             "modules": [
                 "algolia",
                 "sanity"
+            ]
+        },
+        {
+            "id": 9392723,
+            "username": "negezor",
+            "contributions": 24,
+            "modules": [
+                "apollo",
+                "vue-final-modal"
             ]
         },
         {
@@ -2330,15 +2375,6 @@
             ]
         },
         {
-            "id": 39984251,
-            "username": "Mini-ghost",
-            "contributions": 7,
-            "modules": [
-                "pinia",
-                "time"
-            ]
-        },
-        {
             "id": 17453452,
             "username": "kirklin",
             "contributions": 9,
@@ -2494,7 +2530,7 @@
         {
             "id": 42139754,
             "username": "zyyv",
-            "contributions": 195,
+            "contributions": 227,
             "modules": [
                 "unocss",
                 "vuetify-nuxt-module"
@@ -2512,7 +2548,7 @@
         {
             "id": 29533304,
             "username": "Dunqing",
-            "contributions": 61,
+            "contributions": 85,
             "modules": [
                 "unocss",
                 "vue-macros"
@@ -2661,14 +2697,6 @@
             "id": 489221,
             "username": "dohomi",
             "contributions": 270,
-            "modules": [
-                "apollo"
-            ]
-        },
-        {
-            "id": 9392723,
-            "username": "negezor",
-            "contributions": 22,
             "modules": [
                 "apollo"
             ]
@@ -2839,6 +2867,38 @@
             "contributions": 20,
             "modules": [
                 "ark-ui"
+            ]
+        },
+        {
+            "id": 50090595,
+            "username": "ahmedrangel",
+            "contributions": 2,
+            "modules": [
+                "auth-utils"
+            ]
+        },
+        {
+            "id": 22255990,
+            "username": "aksharahegde",
+            "contributions": 2,
+            "modules": [
+                "auth-utils"
+            ]
+        },
+        {
+            "id": 8012430,
+            "username": "Azurency",
+            "contributions": 2,
+            "modules": [
+                "auth-utils"
+            ]
+        },
+        {
+            "id": 12988935,
+            "username": "Gerbuuun",
+            "contributions": 2,
+            "modules": [
+                "auth-utils"
             ]
         },
         {
@@ -5087,6 +5147,14 @@
             "contributions": 112,
             "modules": [
                 "nupolyon"
+            ]
+        },
+        {
+            "id": 6690063,
+            "username": "manchenkoff",
+            "contributions": 76,
+            "modules": [
+                "nuxt-auth-sanctum"
             ]
         },
         {
@@ -7588,7 +7656,7 @@
         {
             "id": 379924,
             "username": "chu121su12",
-            "contributions": 610,
+            "contributions": 632,
             "modules": [
                 "unocss"
             ]
@@ -7602,6 +7670,14 @@
             ]
         },
         {
+            "id": 7559478,
+            "username": "jacob-8",
+            "contributions": 40,
+            "modules": [
+                "unocss"
+            ]
+        },
+        {
             "id": 76603360,
             "username": "sudongyuer",
             "contributions": 38,
@@ -7610,9 +7686,9 @@
             ]
         },
         {
-            "id": 7559478,
-            "username": "jacob-8",
-            "contributions": 38,
+            "id": 16945858,
+            "username": "chizukicn",
+            "contributions": 32,
             "modules": [
                 "unocss"
             ]
@@ -7634,8 +7710,8 @@
             ]
         },
         {
-            "id": 16945858,
-            "username": "chizukicn",
+            "id": 57086651,
+            "username": "Simon-He95",
             "contributions": 24,
             "modules": [
                 "unocss"
@@ -7645,6 +7721,14 @@
             "id": 16460309,
             "username": "action-hong",
             "contributions": 22,
+            "modules": [
+                "unocss"
+            ]
+        },
+        {
+            "id": 110549389,
+            "username": "henrikvilhelmberglund",
+            "contributions": 20,
             "modules": [
                 "unocss"
             ]
@@ -7700,7 +7784,7 @@
         {
             "id": 49056869,
             "username": "sapphi-red",
-            "contributions": 12,
+            "contributions": 14,
             "modules": [
                 "unocss"
             ]
@@ -7725,22 +7809,6 @@
             "id": 52692296,
             "username": "zojize",
             "contributions": 12,
-            "modules": [
-                "unocss"
-            ]
-        },
-        {
-            "id": 57086651,
-            "username": "Simon-He95",
-            "contributions": 10,
-            "modules": [
-                "unocss"
-            ]
-        },
-        {
-            "id": 75498398,
-            "username": "agufagit",
-            "contributions": 8,
             "modules": [
                 "unocss"
             ]
@@ -8143,6 +8211,94 @@
             "contributions": 180,
             "modules": [
                 "vue-email"
+            ]
+        },
+        {
+            "id": 15190246,
+            "username": "hunterliu1003",
+            "contributions": 2552,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 22654053,
+            "username": "fatihsolhan",
+            "contributions": 20,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 3253920,
+            "username": "mesqueeb",
+            "contributions": 14,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 474175,
+            "username": "benrolfe",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 26389990,
+            "username": "chemsedd",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 94387,
+            "username": "Offlein",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 8252238,
+            "username": "guillaumebriday",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 7781761,
+            "username": "Roxas92",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 16818271,
+            "username": "Dschungelabenteuer",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 12557018,
+            "username": "netolicak",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
+            ]
+        },
+        {
+            "id": 589744,
+            "username": "ul8",
+            "contributions": 2,
+            "modules": [
+                "vue-final-modal"
             ]
         },
         {
@@ -9145,9 +9301,9 @@
                 }
             },
             "stats": {
-                "downloads": 12364,
-                "stars": 159,
-                "watchers": 159,
+                "downloads": 12835,
+                "stars": 160,
+                "watchers": 160,
                 "forks": 29,
                 "defaultBranch": "main",
                 "publishedAt": 1698653796385,
@@ -9253,7 +9409,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2263,
+                "downloads": 2584,
                 "stars": 89,
                 "watchers": 89,
                 "forks": 6,
@@ -9298,12 +9454,12 @@
                 }
             },
             "stats": {
-                "downloads": 3349,
-                "stars": 28,
-                "watchers": 28,
+                "downloads": 3652,
+                "stars": 29,
+                "watchers": 29,
                 "forks": 2,
                 "defaultBranch": "main",
-                "publishedAt": 1697023839445,
+                "publishedAt": 1699925459984,
                 "createdAt": 1685497851059
             },
             "contributors": [
@@ -9341,7 +9497,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 701,
+                "downloads": 702,
                 "stars": 25,
                 "watchers": 25,
                 "forks": 1,
@@ -9381,7 +9537,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2982,
+                "downloads": 3449,
                 "stars": 174,
                 "watchers": 174,
                 "forks": 8,
@@ -9431,10 +9587,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 90305,
-                "stars": 885,
-                "watchers": 885,
-                "forks": 178,
+                "downloads": 92859,
+                "stars": 888,
+                "watchers": 888,
+                "forks": 179,
                 "defaultBranch": "v5",
                 "publishedAt": 1698936807271,
                 "createdAt": 1501165840691
@@ -9604,10 +9760,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 377,
+                "downloads": 367,
                 "stars": 32,
                 "watchers": 32,
-                "forks": 3,
+                "forks": 4,
                 "defaultBranch": "main",
                 "publishedAt": 1694591254838,
                 "createdAt": 1610928495135
@@ -9642,9 +9798,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 374,
-                "stars": 7,
-                "watchers": 7,
+                "downloads": 398,
+                "stars": 8,
+                "watchers": 8,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1697703037374,
@@ -9681,7 +9837,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 188,
+                "downloads": 187,
                 "stars": 3,
                 "watchers": 3,
                 "forks": 0,
@@ -9694,6 +9850,69 @@
                     "id": 36906371,
                     "username": "iamdin",
                     "contributions": 10
+                }
+            ]
+        },
+        {
+            "name": "auth-utils",
+            "description": "Minimalist Auth module for Nuxt with SSR.",
+            "repo": "atinux/nuxt-auth-utils",
+            "npm": "nuxt-auth-utils",
+            "icon": "",
+            "github": "https://github.com/atinux/nuxt-auth-utils",
+            "website": "https://github.com/atinux/nuxt-auth-utils",
+            "learn_more": "",
+            "category": "Devtools",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "atinux",
+                    "github": "atinux"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "stats": {
+                "downloads": 446,
+                "stars": 199,
+                "watchers": 199,
+                "forks": 16,
+                "defaultBranch": "main",
+                "publishedAt": 1699908749728,
+                "createdAt": 1699356484873
+            },
+            "contributors": [
+                {
+                    "id": 904724,
+                    "username": "Atinux",
+                    "contributions": 14
+                },
+                {
+                    "id": 28706372,
+                    "username": "danielroe",
+                    "contributions": 10
+                },
+                {
+                    "id": 50090595,
+                    "username": "ahmedrangel",
+                    "contributions": 1
+                },
+                {
+                    "id": 22255990,
+                    "username": "aksharahegde",
+                    "contributions": 1
+                },
+                {
+                    "id": 8012430,
+                    "username": "Azurency",
+                    "contributions": 1
+                },
+                {
+                    "id": 12988935,
+                    "username": "Gerbuuun",
+                    "contributions": 1
                 }
             ]
         },
@@ -9720,9 +9939,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3161,
-                "stars": 138,
-                "watchers": 138,
+                "downloads": 3568,
+                "stars": 145,
+                "watchers": 145,
                 "forks": 14,
                 "defaultBranch": "main",
                 "publishedAt": 1697625470821,
@@ -9779,10 +9998,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 417489,
-                "stars": 10247,
-                "watchers": 10247,
-                "forks": 175,
+                "downloads": 435360,
+                "stars": 10363,
+                "watchers": 10363,
+                "forks": 178,
                 "defaultBranch": "master",
                 "publishedAt": 1699301808014,
                 "createdAt": 1652819674320
@@ -9965,12 +10184,12 @@
                 }
             },
             "stats": {
-                "downloads": 12848,
+                "downloads": 13314,
                 "stars": 46,
                 "watchers": 46,
                 "forks": 14,
                 "defaultBranch": "main",
-                "publishedAt": 1693396401321,
+                "publishedAt": 1699443852581,
                 "createdAt": 1569252307360
             },
             "contributors": [
@@ -10019,7 +10238,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1752,
+                "downloads": 1892,
                 "stars": 30,
                 "watchers": 30,
                 "forks": 2,
@@ -10067,7 +10286,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3903,
+                "downloads": 3539,
                 "stars": 69,
                 "watchers": 69,
                 "forks": 2,
@@ -10110,7 +10329,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 927,
+                "downloads": 947,
                 "stars": 11,
                 "watchers": 11,
                 "forks": 2,
@@ -10154,9 +10373,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1732,
-                "stars": 5,
-                "watchers": 5,
+                "downloads": 1766,
+                "stars": 6,
+                "watchers": 6,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1692258897487,
@@ -10197,9 +10416,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1858,
-                "stars": 27,
-                "watchers": 27,
+                "downloads": 1913,
+                "stars": 26,
+                "watchers": 26,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1676049251575,
@@ -10243,10 +10462,10 @@
                 }
             },
             "stats": {
-                "downloads": 194583,
-                "stars": 958,
-                "watchers": 958,
-                "forks": 92,
+                "downloads": 198761,
+                "stars": 962,
+                "watchers": 962,
+                "forks": 93,
                 "defaultBranch": "master",
                 "publishedAt": 1687348172720,
                 "createdAt": 1586963139679
@@ -10402,10 +10621,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2077,
-                "stars": 80,
-                "watchers": 80,
-                "forks": 3,
+                "downloads": 2335,
+                "stars": 82,
+                "watchers": 82,
+                "forks": 4,
                 "defaultBranch": "main",
                 "publishedAt": 1694699748207,
                 "createdAt": 1680531916091
@@ -10451,10 +10670,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 148716,
-                "stars": 2810,
-                "watchers": 2810,
-                "forks": 573,
+                "downloads": 152027,
+                "stars": 2813,
+                "watchers": 2813,
+                "forks": 575,
                 "defaultBranch": "main",
                 "publishedAt": 1698421078912,
                 "createdAt": 1588695113804
@@ -10625,12 +10844,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 14808,
+                "downloads": 16056,
                 "stars": 146,
                 "watchers": 146,
                 "forks": 30,
                 "defaultBranch": "master",
-                "publishedAt": 1698899839405,
+                "publishedAt": 1699456958198,
                 "createdAt": 1649077128707
             },
             "contributors": [
@@ -10799,9 +11018,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 59918,
-                "stars": 31,
-                "watchers": 31,
+                "downloads": 64296,
+                "stars": 33,
+                "watchers": 33,
                 "forks": 6,
                 "defaultBranch": "main",
                 "publishedAt": 1694451888681,
@@ -10839,7 +11058,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 162,
+                "downloads": 173,
                 "stars": 7,
                 "watchers": 7,
                 "forks": 1,
@@ -10883,9 +11102,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 31491,
-                "stars": 74,
-                "watchers": 74,
+                "downloads": 34192,
+                "stars": 75,
+                "watchers": 75,
                 "forks": 9,
                 "defaultBranch": "main",
                 "publishedAt": 1697763852097,
@@ -10937,12 +11156,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 34658,
-                "stars": 275,
-                "watchers": 275,
+                "downloads": 34596,
+                "stars": 278,
+                "watchers": 278,
                 "forks": 15,
                 "defaultBranch": "main",
-                "publishedAt": 1697205506288,
+                "publishedAt": 1699937989162,
                 "createdAt": 1628047530359
             },
             "contributors": [
@@ -10990,10 +11209,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 217938,
-                "stars": 784,
-                "watchers": 784,
-                "forks": 46,
+                "downloads": 225654,
+                "stars": 787,
+                "watchers": 787,
+                "forks": 47,
                 "defaultBranch": "master",
                 "publishedAt": 1694848048104,
                 "createdAt": 1565803511781
@@ -11134,12 +11353,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 663268,
-                "stars": 2373,
-                "watchers": 2373,
-                "forks": 111,
+                "downloads": 767458,
+                "stars": 2384,
+                "watchers": 2384,
+                "forks": 113,
                 "defaultBranch": "main",
-                "publishedAt": 1697643647746,
+                "publishedAt": 1699707275511,
                 "createdAt": 1675895165880
             },
             "contributors": [
@@ -11314,9 +11533,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 4149,
-                "stars": 217,
-                "watchers": 217,
+                "downloads": 4348,
+                "stars": 218,
+                "watchers": 218,
                 "forks": 43,
                 "defaultBranch": "main",
                 "publishedAt": 1697695692441,
@@ -11452,7 +11671,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 450,
+                "downloads": 501,
                 "stars": 3,
                 "watchers": 3,
                 "forks": 0,
@@ -11490,10 +11709,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3338,
-                "stars": 115,
-                "watchers": 115,
-                "forks": 11,
+                "downloads": 4215,
+                "stars": 118,
+                "watchers": 118,
+                "forks": 12,
                 "defaultBranch": "main",
                 "publishedAt": 1689561907219,
                 "createdAt": 1670825070068
@@ -11550,10 +11769,10 @@
                 }
             },
             "stats": {
-                "downloads": 29252,
-                "stars": 80,
-                "watchers": 80,
-                "forks": 11,
+                "downloads": 30026,
+                "stars": 81,
+                "watchers": 81,
+                "forks": 12,
                 "defaultBranch": "main",
                 "publishedAt": 1694526503186,
                 "createdAt": 1672843966105
@@ -11609,10 +11828,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2225,
-                "stars": 83,
-                "watchers": 83,
-                "forks": 1,
+                "downloads": 2476,
+                "stars": 84,
+                "watchers": 84,
+                "forks": 2,
                 "defaultBranch": "main",
                 "publishedAt": 1677314964116,
                 "createdAt": 1549742221007
@@ -11662,9 +11881,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 665043,
-                "stars": 123,
-                "watchers": 123,
+                "downloads": 675171,
+                "stars": 124,
+                "watchers": 124,
                 "forks": 14,
                 "defaultBranch": "main",
                 "publishedAt": 1685026613316,
@@ -11721,9 +11940,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 23628,
-                "stars": 251,
-                "watchers": 251,
+                "downloads": 25120,
+                "stars": 259,
+                "watchers": 259,
                 "forks": 11,
                 "defaultBranch": "main",
                 "publishedAt": 1690058978622,
@@ -11785,12 +12004,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 293,
-                "stars": 84,
-                "watchers": 84,
-                "forks": 4,
+                "downloads": 570,
+                "stars": 87,
+                "watchers": 87,
+                "forks": 5,
                 "defaultBranch": "main",
-                "publishedAt": 1693611952114,
+                "publishedAt": 1699881499855,
                 "createdAt": 1686591628202
             },
             "contributors": [
@@ -11834,12 +12053,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 44494,
-                "stars": 3684,
-                "watchers": 3684,
+                "downloads": 46418,
+                "stars": 3697,
+                "watchers": 3697,
                 "forks": 132,
                 "defaultBranch": "master",
-                "publishedAt": 1698869110871,
+                "publishedAt": 1699570205093,
                 "createdAt": 1643926701651
             },
             "contributors": [
@@ -12016,9 +12235,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 6566,
-                "stars": 170,
-                "watchers": 170,
+                "downloads": 6413,
+                "stars": 171,
+                "watchers": 171,
                 "forks": 56,
                 "defaultBranch": "main",
                 "publishedAt": 1696241020183,
@@ -12126,10 +12345,10 @@
                 }
             },
             "stats": {
-                "downloads": 177648,
-                "stars": 380,
-                "watchers": 380,
-                "forks": 32,
+                "downloads": 187979,
+                "stars": 384,
+                "watchers": 384,
+                "forks": 34,
                 "defaultBranch": "main",
                 "publishedAt": 1689965104273,
                 "createdAt": 1594650964481
@@ -12224,10 +12443,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 10924,
-                "stars": 303,
-                "watchers": 303,
-                "forks": 33,
+                "downloads": 12035,
+                "stars": 304,
+                "watchers": 304,
+                "forks": 34,
                 "defaultBranch": "main",
                 "publishedAt": 1698406432100,
                 "createdAt": 1646756879347
@@ -12312,12 +12531,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 11077,
-                "stars": 177,
-                "watchers": 177,
-                "forks": 14,
+                "downloads": 11420,
+                "stars": 178,
+                "watchers": 178,
+                "forks": 15,
                 "defaultBranch": "master",
-                "publishedAt": 1695896596352,
+                "publishedAt": 1699484355105,
                 "createdAt": 1577412772092
             },
             "contributors": [
@@ -12376,7 +12595,7 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 751,
+                "downloads": 760,
                 "stars": 17,
                 "watchers": 17,
                 "forks": 3,
@@ -12421,10 +12640,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 32125,
-                "stars": 200,
-                "watchers": 200,
-                "forks": 2,
+                "downloads": 33791,
+                "stars": 204,
+                "watchers": 204,
+                "forks": 3,
                 "defaultBranch": "main",
                 "publishedAt": 1694786252119,
                 "createdAt": 1678900615484
@@ -12459,12 +12678,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 430,
+                "downloads": 490,
                 "stars": 57,
                 "watchers": 57,
                 "forks": 2,
                 "defaultBranch": "main",
-                "publishedAt": 1691488413117,
+                "publishedAt": 1699962532744,
                 "createdAt": 1687122961725
             },
             "contributors": [
@@ -12503,7 +12722,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 313,
+                "downloads": 380,
                 "stars": 81,
                 "watchers": 81,
                 "forks": 1,
@@ -12546,9 +12765,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 32172,
-                "stars": 116,
-                "watchers": 116,
+                "downloads": 32748,
+                "stars": 117,
+                "watchers": 117,
                 "forks": 5,
                 "defaultBranch": "main",
                 "publishedAt": 1681830451810,
@@ -12587,7 +12806,7 @@
                 }
             },
             "stats": {
-                "downloads": 36367,
+                "downloads": 38861,
                 "stars": 163,
                 "watchers": 163,
                 "forks": 19,
@@ -12689,10 +12908,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 461412,
-                "stars": 1480,
-                "watchers": 1480,
-                "forks": 431,
+                "downloads": 475183,
+                "stars": 1484,
+                "watchers": 1484,
+                "forks": 435,
                 "defaultBranch": "main",
                 "publishedAt": 1696297912698,
                 "createdAt": 1628007183685
@@ -12867,7 +13086,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 116,
+                "downloads": 166,
                 "stars": 10,
                 "watchers": 10,
                 "forks": 0,
@@ -12906,12 +13125,12 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 115853,
-                "stars": 660,
-                "watchers": 660,
-                "forks": 23,
+                "downloads": 125504,
+                "stars": 666,
+                "watchers": 666,
+                "forks": 24,
                 "defaultBranch": "main",
-                "publishedAt": 1699353189815,
+                "publishedAt": 1699958058959,
                 "createdAt": 1661440920327
             },
             "contributors": [
@@ -12999,9 +13218,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 31543,
-                "stars": 171,
-                "watchers": 171,
+                "downloads": 33067,
+                "stars": 172,
+                "watchers": 172,
                 "forks": 20,
                 "defaultBranch": "main",
                 "publishedAt": 1682080070652,
@@ -13075,10 +13294,10 @@
                 }
             },
             "stats": {
-                "downloads": 277026,
-                "stars": 1100,
-                "watchers": 1100,
-                "forks": 226,
+                "downloads": 289364,
+                "stars": 1109,
+                "watchers": 1109,
+                "forks": 227,
                 "defaultBranch": "main",
                 "publishedAt": 1697721432134,
                 "createdAt": 1601640354767
@@ -13256,7 +13475,7 @@
                 }
             },
             "stats": {
-                "downloads": 1006,
+                "downloads": 1146,
                 "stars": 2,
                 "watchers": 2,
                 "forks": 1,
@@ -13295,10 +13514,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2835,
-                "stars": 305,
-                "watchers": 305,
-                "forks": 29,
+                "downloads": 2889,
+                "stars": 306,
+                "watchers": 306,
+                "forks": 30,
                 "defaultBranch": "main",
                 "publishedAt": 1687782646149,
                 "createdAt": 1666046345352
@@ -13388,7 +13607,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 514,
+                "downloads": 500,
                 "stars": 35,
                 "watchers": 35,
                 "forks": 6,
@@ -13436,9 +13655,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 359,
-                "stars": 30,
-                "watchers": 30,
+                "downloads": 422,
+                "stars": 32,
+                "watchers": 32,
                 "forks": 2,
                 "defaultBranch": "main",
                 "publishedAt": 1698193462420,
@@ -13476,9 +13695,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 949,
-                "stars": 35,
-                "watchers": 35,
+                "downloads": 1209,
+                "stars": 36,
+                "watchers": 36,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1699273570497,
@@ -13522,12 +13741,12 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 28923,
-                "stars": 63,
-                "watchers": 63,
+                "downloads": 31018,
+                "stars": 64,
+                "watchers": 64,
                 "forks": 5,
                 "defaultBranch": "main",
-                "publishedAt": 1696367352963,
+                "publishedAt": 1699676100680,
                 "createdAt": 1671430230256
             },
             "contributors": [
@@ -13585,7 +13804,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 35832,
+                "downloads": 37808,
                 "stars": 92,
                 "watchers": 92,
                 "forks": 8,
@@ -13639,10 +13858,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3494,
+                "downloads": 3473,
                 "stars": 135,
                 "watchers": 135,
-                "forks": 9,
+                "forks": 10,
                 "defaultBranch": "master",
                 "publishedAt": 1690042336650,
                 "createdAt": 1547918077224
@@ -13706,12 +13925,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 188,
+                "downloads": 252,
                 "stars": 4,
                 "watchers": 4,
                 "forks": 0,
                 "defaultBranch": "main",
-                "publishedAt": 1685613741715,
+                "publishedAt": 1699977496402,
                 "createdAt": 1685012559039
             },
             "contributors": [
@@ -13750,10 +13969,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 52032,
-                "stars": 3416,
-                "watchers": 3416,
-                "forks": 48,
+                "downloads": 55661,
+                "stars": 3420,
+                "watchers": 3420,
+                "forks": 49,
                 "defaultBranch": "main",
                 "publishedAt": 1683280254293,
                 "createdAt": 1657968562539
@@ -13833,12 +14052,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 29880,
-                "stars": 329,
-                "watchers": 329,
-                "forks": 48,
+                "downloads": 32880,
+                "stars": 339,
+                "watchers": 339,
+                "forks": 49,
                 "defaultBranch": "master",
-                "publishedAt": 1699312169557,
+                "publishedAt": 1699563109248,
                 "createdAt": 1577304184715
             },
             "contributors": [
@@ -13909,9 +14128,9 @@
                 }
             },
             "stats": {
-                "downloads": 336,
-                "stars": 96,
-                "watchers": 96,
+                "downloads": 369,
+                "stars": 99,
+                "watchers": 99,
                 "forks": 4,
                 "defaultBranch": "main",
                 "publishedAt": 1698224996483,
@@ -13966,7 +14185,7 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 1694,
+                "downloads": 1570,
                 "stars": 82,
                 "watchers": 82,
                 "forks": 10,
@@ -14020,7 +14239,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 272,
+                "downloads": 304,
                 "stars": 9,
                 "watchers": 9,
                 "forks": 0,
@@ -14058,7 +14277,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 284,
+                "downloads": 331,
                 "stars": 1,
                 "watchers": 1,
                 "forks": 1,
@@ -14106,7 +14325,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 500,
+                "downloads": 542,
                 "stars": 1,
                 "watchers": 1,
                 "forks": 1,
@@ -14119,6 +14338,45 @@
                     "id": 95148327,
                     "username": "helltraitor",
                     "contributions": 36
+                }
+            ]
+        },
+        {
+            "name": "nuxt-auth-sanctum",
+            "description": "Nuxt module for Laravel Sanctum authentication",
+            "repo": "manchenkoff/nuxt-auth-sanctum",
+            "npm": "nuxt-auth-sanctum",
+            "icon": "laravel.svg",
+            "github": "https://github.com/manchenkoff/nuxt-auth-sanctum",
+            "website": "https://github.com/manchenkoff/nuxt-auth-sanctum",
+            "learn_more": "",
+            "category": "Security",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Artem Manchenkov",
+                    "github": "manchenkoff",
+                    "avatar": "https://avatars.githubusercontent.com/manchenkoff"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "stats": {
+                "downloads": 332,
+                "stars": 13,
+                "watchers": 13,
+                "forks": 0,
+                "defaultBranch": "main",
+                "publishedAt": 1699917264850,
+                "createdAt": 1695330039982
+            },
+            "contributors": [
+                {
+                    "id": 6690063,
+                    "username": "manchenkoff",
+                    "contributions": 38
                 }
             ]
         },
@@ -14144,7 +14402,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3187,
+                "downloads": 3325,
                 "stars": 3,
                 "watchers": 3,
                 "forks": 1,
@@ -14182,7 +14440,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 724,
+                "downloads": 785,
                 "stars": 2,
                 "watchers": 2,
                 "forks": 0,
@@ -14220,9 +14478,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 218,
-                "stars": 129,
-                "watchers": 129,
+                "downloads": 261,
+                "stars": 127,
+                "watchers": 127,
                 "forks": 15,
                 "defaultBranch": "master",
                 "publishedAt": 1692232625129,
@@ -14272,7 +14530,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 179,
+                "downloads": 194,
                 "stars": 4,
                 "watchers": 4,
                 "forks": 1,
@@ -14310,9 +14568,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 355,
-                "stars": 15,
-                "watchers": 15,
+                "downloads": 350,
+                "stars": 16,
+                "watchers": 16,
                 "forks": 1,
                 "defaultBranch": "main",
                 "publishedAt": 1695998936152,
@@ -14355,7 +14613,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2594,
+                "downloads": 2877,
                 "stars": 42,
                 "watchers": 42,
                 "forks": 4,
@@ -14399,7 +14657,7 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 36101,
+                "downloads": 39703,
                 "stars": 31,
                 "watchers": 31,
                 "forks": 1,
@@ -14444,9 +14702,9 @@
                 }
             },
             "stats": {
-                "downloads": 100,
-                "stars": 130,
-                "watchers": 130,
+                "downloads": 110,
+                "stars": 129,
+                "watchers": 129,
                 "forks": 1,
                 "defaultBranch": "master",
                 "publishedAt": 1684758990399,
@@ -14482,9 +14740,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 73532,
-                "stars": 280,
-                "watchers": 280,
+                "downloads": 75389,
+                "stars": 282,
+                "watchers": 282,
                 "forks": 23,
                 "defaultBranch": "master",
                 "publishedAt": 1692959129494,
@@ -14561,7 +14819,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 304,
+                "downloads": 345,
                 "stars": 19,
                 "watchers": 19,
                 "forks": 1,
@@ -14600,7 +14858,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 180,
+                "downloads": 207,
                 "stars": 2,
                 "watchers": 2,
                 "forks": 0,
@@ -14638,9 +14896,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3701,
-                "stars": 164,
-                "watchers": 164,
+                "downloads": 3849,
+                "stars": 165,
+                "watchers": 165,
                 "forks": 13,
                 "defaultBranch": "master",
                 "publishedAt": 1684520540816,
@@ -14696,12 +14954,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3429,
+                "downloads": 3865,
                 "stars": 55,
                 "watchers": 55,
                 "forks": 6,
                 "defaultBranch": "main",
-                "publishedAt": 1699059387675,
+                "publishedAt": 1699388439038,
                 "createdAt": 1676111744170
             },
             "contributors": [
@@ -14744,7 +15002,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 249,
+                "downloads": 306,
                 "stars": 11,
                 "watchers": 11,
                 "forks": 0,
@@ -14782,7 +15040,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 7158,
+                "downloads": 7538,
                 "stars": 69,
                 "watchers": 69,
                 "forks": 7,
@@ -14836,9 +15094,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 1187,
-                "stars": 37,
-                "watchers": 37,
+                "downloads": 1337,
+                "stars": 40,
+                "watchers": 40,
                 "forks": 2,
                 "defaultBranch": "main",
                 "publishedAt": 1698347099921,
@@ -14890,12 +15148,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 629,
+                "downloads": 950,
                 "stars": 20,
                 "watchers": 20,
                 "forks": 0,
                 "defaultBranch": "main",
-                "publishedAt": 1699279879666,
+                "publishedAt": 1699781566884,
                 "createdAt": 1698100764757
             },
             "contributors": [
@@ -14929,7 +15187,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 5231,
+                "downloads": 5462,
                 "stars": 69,
                 "watchers": 69,
                 "forks": 6,
@@ -14972,7 +15230,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 419,
+                "downloads": 382,
                 "stars": 8,
                 "watchers": 8,
                 "forks": 0,
@@ -15010,9 +15268,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 15953,
-                "stars": 73,
-                "watchers": 73,
+                "downloads": 17506,
+                "stars": 75,
+                "watchers": 75,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1694162590261,
@@ -15057,7 +15315,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 334,
+                "downloads": 310,
                 "stars": 21,
                 "watchers": 21,
                 "forks": 2,
@@ -15095,12 +15353,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 42,
-                "stars": 12,
-                "watchers": 12,
-                "forks": 0,
+                "downloads": 350,
+                "stars": 23,
+                "watchers": 23,
+                "forks": 1,
                 "defaultBranch": "main",
-                "publishedAt": 1699003103049,
+                "publishedAt": 1699875236160,
                 "createdAt": 1698937923497
             },
             "contributors": [
@@ -15139,7 +15397,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1029,
+                "downloads": 1103,
                 "stars": 37,
                 "watchers": 37,
                 "forks": 6,
@@ -15182,12 +15440,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 35439,
-                "stars": 93,
-                "watchers": 93,
-                "forks": 6,
+                "downloads": 36602,
+                "stars": 94,
+                "watchers": 94,
+                "forks": 7,
                 "defaultBranch": "main",
-                "publishedAt": 1697753326416,
+                "publishedAt": 1699734915464,
                 "createdAt": 1653351575125
             },
             "contributors": [
@@ -15232,7 +15490,7 @@
                 }
             },
             "stats": {
-                "downloads": 14086,
+                "downloads": 15480,
                 "stars": 83,
                 "watchers": 83,
                 "forks": 5,
@@ -15280,9 +15538,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3431,
-                "stars": 38,
-                "watchers": 38,
+                "downloads": 3500,
+                "stars": 39,
+                "watchers": 39,
                 "forks": 4,
                 "defaultBranch": "main",
                 "publishedAt": 1699294310464,
@@ -15318,9 +15576,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 8954,
-                "stars": 68,
-                "watchers": 68,
+                "downloads": 9367,
+                "stars": 70,
+                "watchers": 70,
                 "forks": 5,
                 "defaultBranch": "main",
                 "publishedAt": 1689025416771,
@@ -15361,7 +15619,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3846,
+                "downloads": 4104,
                 "stars": 26,
                 "watchers": 26,
                 "forks": 0,
@@ -15402,9 +15660,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 32176,
-                "stars": 268,
-                "watchers": 268,
+                "downloads": 34607,
+                "stars": 269,
+                "watchers": 269,
                 "forks": 14,
                 "defaultBranch": "main",
                 "publishedAt": 1699276932565,
@@ -15471,7 +15729,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 881,
+                "downloads": 1008,
                 "stars": 19,
                 "watchers": 19,
                 "forks": 0,
@@ -15512,7 +15770,7 @@
                 }
             },
             "stats": {
-                "downloads": 18069,
+                "downloads": 19249,
                 "stars": 269,
                 "watchers": 269,
                 "forks": 6,
@@ -15567,7 +15825,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1247,
+                "downloads": 1610,
                 "stars": 59,
                 "watchers": 59,
                 "forks": 2,
@@ -15607,10 +15865,10 @@
                 }
             },
             "stats": {
-                "downloads": 2513,
-                "stars": 340,
-                "watchers": 340,
-                "forks": 30,
+                "downloads": 2571,
+                "stars": 346,
+                "watchers": 346,
+                "forks": 31,
                 "defaultBranch": "main",
                 "publishedAt": 1694954819192,
                 "createdAt": 1643652784312
@@ -15697,10 +15955,10 @@
                 }
             },
             "stats": {
-                "downloads": 110662,
-                "stars": 1450,
-                "watchers": 1450,
-                "forks": 84,
+                "downloads": 117629,
+                "stars": 1470,
+                "watchers": 1470,
+                "forks": 86,
                 "defaultBranch": "main",
                 "publishedAt": 1698356334168,
                 "createdAt": 1669424217567
@@ -15842,10 +16100,10 @@
                 }
             },
             "stats": {
-                "downloads": 632783,
-                "stars": 11526,
-                "watchers": 11526,
-                "forks": 900,
+                "downloads": 670834,
+                "stars": 11558,
+                "watchers": 11558,
+                "forks": 913,
                 "defaultBranch": "v2",
                 "publishedAt": 1697449929435,
                 "createdAt": 1629381795526
@@ -16007,9 +16265,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3421,
-                "stars": 62,
-                "watchers": 62,
+                "downloads": 3176,
+                "stars": 63,
+                "watchers": 63,
                 "forks": 2,
                 "defaultBranch": "main",
                 "publishedAt": 1693572115313,
@@ -16046,12 +16304,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 4100,
-                "stars": 20,
-                "watchers": 20,
-                "forks": 0,
+                "downloads": 6773,
+                "stars": 24,
+                "watchers": 24,
+                "forks": 2,
                 "defaultBranch": "main",
-                "publishedAt": 1698318669289,
+                "publishedAt": 1699558388487,
                 "createdAt": 1697064950799
             },
             "contributors": [
@@ -16090,9 +16348,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 20117,
-                "stars": 225,
-                "watchers": 225,
+                "downloads": 20286,
+                "stars": 226,
+                "watchers": 226,
                 "forks": 42,
                 "defaultBranch": "master",
                 "publishedAt": 1698158233829,
@@ -16213,10 +16471,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3466,
+                "downloads": 3561,
                 "stars": 32,
                 "watchers": 32,
-                "forks": 5,
+                "forks": 6,
                 "defaultBranch": "main",
                 "publishedAt": 1693925074632,
                 "createdAt": 1673358599822
@@ -16261,9 +16519,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 82246,
-                "stars": 455,
-                "watchers": 455,
+                "downloads": 81716,
+                "stars": 454,
+                "watchers": 454,
                 "forks": 19,
                 "defaultBranch": "main",
                 "publishedAt": 1664557553816,
@@ -16350,9 +16608,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 8589,
-                "stars": 99,
-                "watchers": 99,
+                "downloads": 9257,
+                "stars": 100,
+                "watchers": 100,
                 "forks": 3,
                 "defaultBranch": "main",
                 "publishedAt": 1696355497015,
@@ -16403,7 +16661,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1482,
+                "downloads": 1306,
                 "stars": 14,
                 "watchers": 14,
                 "forks": 1,
@@ -16454,12 +16712,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 18551,
-                "stars": 1438,
-                "watchers": 1438,
-                "forks": 55,
+                "downloads": 23859,
+                "stars": 1469,
+                "watchers": 1469,
+                "forks": 58,
                 "defaultBranch": "main",
-                "publishedAt": 1699017155443,
+                "publishedAt": 1699889086286,
                 "createdAt": 1687528329215
             },
             "contributors": [
@@ -16624,9 +16882,9 @@
                 }
             },
             "stats": {
-                "downloads": 203379,
-                "stars": 351,
-                "watchers": 351,
+                "downloads": 209079,
+                "stars": 353,
+                "watchers": 353,
                 "forks": 25,
                 "defaultBranch": "main",
                 "publishedAt": 1668802794342,
@@ -16710,9 +16968,9 @@
                 }
             },
             "stats": {
-                "downloads": 7880,
-                "stars": 172,
-                "watchers": 172,
+                "downloads": 10170,
+                "stars": 174,
+                "watchers": 174,
                 "forks": 26,
                 "defaultBranch": "main",
                 "publishedAt": 1691074381607,
@@ -16845,12 +17103,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 51398,
-                "stars": 99,
-                "watchers": 99,
+                "downloads": 56323,
+                "stars": 103,
+                "watchers": 103,
                 "forks": 10,
                 "defaultBranch": "main",
-                "publishedAt": 1698998537779,
+                "publishedAt": 1699723538751,
                 "createdAt": 1650803134712
             },
             "contributors": [
@@ -16919,10 +17177,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 55155,
-                "stars": 569,
-                "watchers": 569,
-                "forks": 33,
+                "downloads": 59146,
+                "stars": 570,
+                "watchers": 570,
+                "forks": 35,
                 "defaultBranch": "main",
                 "publishedAt": 1698861298707,
                 "createdAt": 1665235892091
@@ -17039,10 +17297,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 10121,
-                "stars": 55,
-                "watchers": 55,
-                "forks": 4,
+                "downloads": 11504,
+                "stars": 58,
+                "watchers": 58,
+                "forks": 5,
                 "defaultBranch": "main",
                 "publishedAt": 1698995892006,
                 "createdAt": 1684079533112
@@ -17092,9 +17350,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 14169,
-                "stars": 633,
-                "watchers": 633,
+                "downloads": 14430,
+                "stars": 646,
+                "watchers": 646,
                 "forks": 26,
                 "defaultBranch": "main",
                 "publishedAt": 1694335772057,
@@ -17156,9 +17414,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 259,
-                "stars": 94,
-                "watchers": 94,
+                "downloads": 422,
+                "stars": 95,
+                "watchers": 95,
                 "forks": 1,
                 "defaultBranch": "main",
                 "publishedAt": 1691528792888,
@@ -17195,9 +17453,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 9527,
-                "stars": 187,
-                "watchers": 187,
+                "downloads": 11819,
+                "stars": 188,
+                "watchers": 188,
                 "forks": 17,
                 "defaultBranch": "main",
                 "publishedAt": 1676035742052,
@@ -17274,12 +17532,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 45188,
-                "stars": 867,
-                "watchers": 867,
-                "forks": 82,
+                "downloads": 46494,
+                "stars": 878,
+                "watchers": 878,
+                "forks": 84,
                 "defaultBranch": "main",
-                "publishedAt": 1698069716834,
+                "publishedAt": 1699889381119,
                 "createdAt": 1667141213796
             },
             "contributors": [
@@ -17454,9 +17712,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 46593,
-                "stars": 70,
-                "watchers": 70,
+                "downloads": 49710,
+                "stars": 72,
+                "watchers": 72,
                 "forks": 2,
                 "defaultBranch": "main",
                 "publishedAt": 1698653196310,
@@ -17494,12 +17752,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 102887,
-                "stars": 166,
-                "watchers": 166,
+                "downloads": 108642,
+                "stars": 170,
+                "watchers": 170,
                 "forks": 16,
                 "defaultBranch": "main",
-                "publishedAt": 1698193123835,
+                "publishedAt": 1699854017704,
                 "createdAt": 1670908660527
             },
             "contributors": [
@@ -17547,10 +17805,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3966,
+                "downloads": 4075,
                 "stars": 10,
                 "watchers": 10,
-                "forks": 2,
+                "forks": 3,
                 "defaultBranch": "master",
                 "publishedAt": 1697887059788,
                 "createdAt": 1678704849792
@@ -17591,10 +17849,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 201,
-                "stars": 44,
-                "watchers": 44,
-                "forks": 7,
+                "downloads": 251,
+                "stars": 45,
+                "watchers": 45,
+                "forks": 9,
                 "defaultBranch": "main",
                 "publishedAt": 1675642829647,
                 "createdAt": 1602761200952
@@ -17624,12 +17882,12 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 31863,
-                "stars": 244,
-                "watchers": 244,
+                "downloads": 32901,
+                "stars": 245,
+                "watchers": 245,
                 "forks": 40,
                 "defaultBranch": "main",
-                "publishedAt": 1699267007471,
+                "publishedAt": 1699873686765,
                 "createdAt": 1637262530769
             },
             "contributors": [
@@ -17751,9 +18009,9 @@
                 "devtools": "^0.7.2"
             },
             "stats": {
-                "downloads": 70599,
-                "stars": 336,
-                "watchers": 336,
+                "downloads": 72790,
+                "stars": 337,
+                "watchers": 337,
                 "forks": 61,
                 "defaultBranch": "main",
                 "publishedAt": 1696397149076,
@@ -17803,9 +18061,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 20123,
-                "stars": 548,
-                "watchers": 548,
+                "downloads": 19306,
+                "stars": 551,
+                "watchers": 551,
                 "forks": 72,
                 "defaultBranch": "dev",
                 "publishedAt": 1685609375606,
@@ -17975,9 +18233,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1032,
-                "stars": 43,
-                "watchers": 43,
+                "downloads": 1029,
+                "stars": 44,
+                "watchers": 44,
                 "forks": 4,
                 "defaultBranch": "main",
                 "publishedAt": 1691415361443,
@@ -18041,12 +18299,12 @@
                 }
             },
             "stats": {
-                "downloads": 24600,
+                "downloads": 25276,
                 "stars": 17,
                 "watchers": 1,
                 "forks": 0,
                 "defaultBranch": "dev",
-                "publishedAt": 1698678689993,
+                "publishedAt": 1699636459649,
                 "createdAt": 1659100428664
             },
             "contributors": [
@@ -18109,7 +18367,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 211845,
+                "downloads": 215040,
                 "stars": 53,
                 "watchers": 53,
                 "forks": 5,
@@ -18168,9 +18426,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 173,
-                "stars": 411,
-                "watchers": 411,
+                "downloads": 189,
+                "stars": 409,
+                "watchers": 409,
                 "forks": 7,
                 "defaultBranch": "master",
                 "publishedAt": 1687098008242,
@@ -18232,9 +18490,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 21631,
-                "stars": 465,
-                "watchers": 465,
+                "downloads": 22245,
+                "stars": 467,
+                "watchers": 467,
                 "forks": 93,
                 "defaultBranch": "main",
                 "publishedAt": 1696578752779,
@@ -18391,7 +18649,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 45591,
+                "downloads": 45996,
                 "stars": 264,
                 "watchers": 264,
                 "forks": 34,
@@ -18499,7 +18757,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 56563,
+                "downloads": 60537,
                 "stars": 148,
                 "watchers": 148,
                 "forks": 6,
@@ -18558,10 +18816,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3054,
-                "stars": 148,
-                "watchers": 148,
-                "forks": 12,
+                "downloads": 3693,
+                "stars": 149,
+                "watchers": 149,
+                "forks": 13,
                 "defaultBranch": "main",
                 "publishedAt": 1685414745869,
                 "createdAt": 1591964566350
@@ -18627,10 +18885,10 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 508768,
-                "stars": 1472,
-                "watchers": 1472,
-                "forks": 170,
+                "downloads": 539343,
+                "stars": 1481,
+                "watchers": 1481,
+                "forks": 172,
                 "defaultBranch": "main",
                 "publishedAt": 1699006549137,
                 "createdAt": 1554372868524
@@ -18805,9 +19063,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 3168,
-                "stars": 184,
-                "watchers": 184,
+                "downloads": 3172,
+                "stars": 186,
+                "watchers": 186,
                 "forks": 11,
                 "defaultBranch": "main",
                 "publishedAt": 1690059329793,
@@ -18874,9 +19132,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 2570,
-                "stars": 120,
-                "watchers": 120,
+                "downloads": 2545,
+                "stars": 124,
+                "watchers": 124,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1697739175412,
@@ -18930,7 +19188,7 @@
                 }
             },
             "stats": {
-                "downloads": 5101,
+                "downloads": 5561,
                 "stars": 162,
                 "watchers": 162,
                 "forks": 8,
@@ -19013,9 +19271,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 493,
-                "stars": 2,
-                "watchers": 2,
+                "downloads": 394,
+                "stars": 3,
+                "watchers": 3,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1697154704775,
@@ -19062,12 +19320,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 9726,
-                "stars": 46,
-                "watchers": 46,
-                "forks": 1,
+                "downloads": 9303,
+                "stars": 48,
+                "watchers": 48,
+                "forks": 2,
                 "defaultBranch": "main",
-                "publishedAt": 1699031516100,
+                "publishedAt": 1699639577911,
                 "createdAt": 1627416306074
             },
             "contributors": [
@@ -19115,12 +19373,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 30247,
-                "stars": 270,
-                "watchers": 270,
-                "forks": 8,
+                "downloads": 37776,
+                "stars": 272,
+                "watchers": 272,
+                "forks": 9,
                 "defaultBranch": "master",
-                "publishedAt": 1697814646094,
+                "publishedAt": 1699527493450,
                 "createdAt": 1578496039434
             },
             "contributors": [
@@ -19189,10 +19447,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 36527,
-                "stars": 2229,
-                "watchers": 2229,
-                "forks": 243,
+                "downloads": 42039,
+                "stars": 2287,
+                "watchers": 2287,
+                "forks": 252,
                 "defaultBranch": "dev",
                 "publishedAt": 1698744255731,
                 "createdAt": 1639059438669
@@ -19369,9 +19627,9 @@
                 }
             },
             "stats": {
-                "downloads": 1938,
-                "stars": 63,
-                "watchers": 63,
+                "downloads": 1869,
+                "stars": 64,
+                "watchers": 64,
                 "forks": 6,
                 "defaultBranch": "main",
                 "publishedAt": 1697788523372,
@@ -19432,10 +19690,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 10121,
-                "stars": 55,
-                "watchers": 55,
-                "forks": 4,
+                "downloads": 11504,
+                "stars": 58,
+                "watchers": 58,
+                "forks": 5,
                 "defaultBranch": "main",
                 "publishedAt": 1698995892006,
                 "createdAt": 1684079533112
@@ -19485,9 +19743,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1790,
-                "stars": 359,
-                "watchers": 359,
+                "downloads": 1763,
+                "stars": 361,
+                "watchers": 361,
                 "forks": 5,
                 "defaultBranch": "main",
                 "publishedAt": 1699277334316,
@@ -19537,9 +19795,9 @@
                 }
             },
             "stats": {
-                "downloads": 1849,
-                "stars": 3203,
-                "watchers": 3203,
+                "downloads": 2130,
+                "stars": 3218,
+                "watchers": 3218,
                 "forks": 75,
                 "defaultBranch": "main",
                 "publishedAt": 1689937088478,
@@ -19635,29 +19893,34 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 74663,
-                "stars": 13877,
-                "watchers": 13877,
-                "forks": 669,
+                "downloads": 81850,
+                "stars": 13946,
+                "watchers": 13946,
+                "forks": 676,
                 "defaultBranch": "main",
-                "publishedAt": 1699027151570,
+                "publishedAt": 1699958609268,
                 "createdAt": 1635906586465
             },
             "contributors": [
                 {
                     "id": 11247099,
                     "username": "antfu",
-                    "contributions": 1321
+                    "contributions": 1372
                 },
                 {
                     "id": 379924,
                     "username": "chu121su12",
-                    "contributions": 305
+                    "contributions": 316
                 },
                 {
                     "id": 42139754,
                     "username": "zyyv",
-                    "contributions": 97
+                    "contributions": 113
+                },
+                {
+                    "id": 6311119,
+                    "username": "userquin",
+                    "contributions": 78
                 },
                 {
                     "id": 19991745,
@@ -19665,14 +19928,9 @@
                     "contributions": 77
                 },
                 {
-                    "id": 6311119,
-                    "username": "userquin",
-                    "contributions": 72
-                },
-                {
                     "id": 29533304,
                     "username": "Dunqing",
-                    "contributions": 30
+                    "contributions": 42
                 },
                 {
                     "id": 16288797,
@@ -19680,14 +19938,19 @@
                     "contributions": 29
                 },
                 {
+                    "id": 7559478,
+                    "username": "jacob-8",
+                    "contributions": 20
+                },
+                {
                     "id": 76603360,
                     "username": "sudongyuer",
                     "contributions": 19
                 },
                 {
-                    "id": 7559478,
-                    "username": "jacob-8",
-                    "contributions": 19
+                    "id": 16945858,
+                    "username": "chizukicn",
+                    "contributions": 16
                 },
                 {
                     "id": 31278178,
@@ -19700,14 +19963,19 @@
                     "contributions": 13
                 },
                 {
-                    "id": 16945858,
-                    "username": "chizukicn",
+                    "id": 57086651,
+                    "username": "Simon-He95",
                     "contributions": 12
                 },
                 {
                     "id": 16460309,
                     "username": "action-hong",
                     "contributions": 11
+                },
+                {
+                    "id": 110549389,
+                    "username": "henrikvilhelmberglund",
+                    "contributions": 10
                 },
                 {
                     "id": 27850750,
@@ -19750,13 +20018,13 @@
                     "contributions": 7
                 },
                 {
-                    "id": 10506522,
-                    "username": "enkot",
-                    "contributions": 6
-                },
-                {
                     "id": 49056869,
                     "username": "sapphi-red",
+                    "contributions": 7
+                },
+                {
+                    "id": 10506522,
+                    "username": "enkot",
                     "contributions": 6
                 },
                 {
@@ -19783,16 +20051,6 @@
                     "id": 17453452,
                     "username": "kirklin",
                     "contributions": 5
-                },
-                {
-                    "id": 57086651,
-                    "username": "Simon-He95",
-                    "contributions": 5
-                },
-                {
-                    "id": 75498398,
-                    "username": "agufagit",
-                    "contributions": 4
                 }
             ]
         },
@@ -19819,7 +20077,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 152,
+                "downloads": 169,
                 "stars": 14,
                 "watchers": 14,
                 "forks": 0,
@@ -19859,9 +20117,9 @@
                 }
             },
             "stats": {
-                "downloads": 1525,
-                "stars": 73,
-                "watchers": 73,
+                "downloads": 1716,
+                "stars": 75,
+                "watchers": 75,
                 "forks": 9,
                 "defaultBranch": "main",
                 "publishedAt": 1693821582027,
@@ -19914,12 +20172,12 @@
                 }
             },
             "stats": {
-                "downloads": 2277,
-                "stars": 60,
-                "watchers": 60,
-                "forks": 6,
+                "downloads": 2537,
+                "stars": 61,
+                "watchers": 61,
+                "forks": 7,
                 "defaultBranch": "main",
-                "publishedAt": 1694408383781,
+                "publishedAt": 1699542727487,
                 "createdAt": 1676248078860
             },
             "contributors": [
@@ -19959,12 +20217,12 @@
                 }
             },
             "stats": {
-                "downloads": 130,
+                "downloads": 129,
                 "stars": 24,
                 "watchers": 24,
                 "forks": 3,
                 "defaultBranch": "main",
-                "publishedAt": 1681897457902,
+                "publishedAt": 1699949071298,
                 "createdAt": 1681440461054
             },
             "contributors": [
@@ -20002,7 +20260,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1884,
+                "downloads": 2106,
                 "stars": 2,
                 "watchers": 2,
                 "forks": 0,
@@ -20040,10 +20298,10 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 36663,
-                "stars": 10233,
-                "watchers": 10233,
-                "forks": 1214,
+                "downloads": 39318,
+                "stars": 10244,
+                "watchers": 10244,
+                "forks": 1217,
                 "defaultBranch": "main",
                 "publishedAt": 1699219613761,
                 "createdAt": 1681696516339
@@ -20223,9 +20481,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 838,
-                "stars": 17,
-                "watchers": 17,
+                "downloads": 778,
+                "stars": 16,
+                "watchers": 16,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1684672014763,
@@ -20262,7 +20520,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 518,
+                "downloads": 536,
                 "stars": 34,
                 "watchers": 34,
                 "forks": 0,
@@ -20306,12 +20564,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 46822,
-                "stars": 301,
-                "watchers": 301,
+                "downloads": 50344,
+                "stars": 306,
+                "watchers": 306,
                 "forks": 10,
                 "defaultBranch": "main",
-                "publishedAt": 1694220627989,
+                "publishedAt": 1699882240239,
                 "createdAt": 1674848377084
             },
             "contributors": [
@@ -20359,9 +20617,9 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 116026,
-                "stars": 353,
-                "watchers": 353,
+                "downloads": 121992,
+                "stars": 355,
+                "watchers": 355,
                 "forks": 39,
                 "defaultBranch": "main",
                 "publishedAt": 1699284867519,
@@ -20501,10 +20759,10 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 2501,
-                "stars": 392,
-                "watchers": 392,
-                "forks": 19,
+                "downloads": 2859,
+                "stars": 401,
+                "watchers": 401,
+                "forks": 22,
                 "defaultBranch": "main",
                 "publishedAt": 1697492060009,
                 "createdAt": 1675791416987
@@ -20528,6 +20786,110 @@
                 {
                     "id": 6619884,
                     "username": "cpreston321",
+                    "contributions": 1
+                }
+            ]
+        },
+        {
+            "name": "vue-final-modal",
+            "description": "The most powerful yet most light-weight modal library for Vue 3.",
+            "repo": "vue-final/vue-final-modal",
+            "npm": "@vue-final-modal/nuxt",
+            "icon": "vue-final-modal.svg",
+            "github": "https://github.com/vue-final/vue-final-modal",
+            "website": "https://vue-final-modal.org/",
+            "learn_more": "https://vue-final-modal.org/",
+            "category": "UI",
+            "type": "3rd-party",
+            "maintainers": [
+                {
+                    "name": "Hunter Liu",
+                    "github": "hunterliu1003",
+                    "twitter": "hunterliu1003"
+                }
+            ],
+            "compatibility": {
+                "nuxt": "^3.0.0",
+                "requires": {}
+            },
+            "stats": {
+                "downloads": 2406,
+                "stars": 735,
+                "watchers": 735,
+                "forks": 87,
+                "defaultBranch": "master",
+                "publishedAt": 1699447112858,
+                "createdAt": 1667472888799
+            },
+            "contributors": [
+                {
+                    "id": 15190246,
+                    "username": "hunterliu1003",
+                    "contributions": 1276
+                },
+                {
+                    "id": 39984251,
+                    "username": "Mini-ghost",
+                    "contributions": 53
+                },
+                {
+                    "id": 22654053,
+                    "username": "fatihsolhan",
+                    "contributions": 10
+                },
+                {
+                    "id": 3253920,
+                    "username": "mesqueeb",
+                    "contributions": 7
+                },
+                {
+                    "id": 9392723,
+                    "username": "negezor",
+                    "contributions": 2
+                },
+                {
+                    "id": 474175,
+                    "username": "benrolfe",
+                    "contributions": 1
+                },
+                {
+                    "id": 26389990,
+                    "username": "chemsedd",
+                    "contributions": 1
+                },
+                {
+                    "id": 94387,
+                    "username": "Offlein",
+                    "contributions": 1
+                },
+                {
+                    "id": 28706372,
+                    "username": "danielroe",
+                    "contributions": 1
+                },
+                {
+                    "id": 8252238,
+                    "username": "guillaumebriday",
+                    "contributions": 1
+                },
+                {
+                    "id": 7781761,
+                    "username": "Roxas92",
+                    "contributions": 1
+                },
+                {
+                    "id": 16818271,
+                    "username": "Dschungelabenteuer",
+                    "contributions": 1
+                },
+                {
+                    "id": 12557018,
+                    "username": "netolicak",
+                    "contributions": 1
+                },
+                {
+                    "id": 589744,
+                    "username": "ul8",
                     "contributions": 1
                 }
             ]
@@ -20558,10 +20920,10 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 11381,
-                "stars": 1353,
-                "watchers": 1353,
-                "forks": 85,
+                "downloads": 11059,
+                "stars": 1362,
+                "watchers": 1362,
+                "forks": 87,
                 "defaultBranch": "main",
                 "publishedAt": 1698816076370,
                 "createdAt": 1669188314539
@@ -20727,9 +21089,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1666,
-                "stars": 40,
-                "watchers": 40,
+                "downloads": 1724,
+                "stars": 41,
+                "watchers": 41,
                 "forks": 0,
                 "defaultBranch": "main",
                 "publishedAt": 1695127139179,
@@ -20768,9 +21130,9 @@
                 }
             },
             "stats": {
-                "downloads": 7576,
-                "stars": 126,
-                "watchers": 126,
+                "downloads": 7635,
+                "stars": 130,
+                "watchers": 130,
                 "forks": 2,
                 "defaultBranch": "master",
                 "publishedAt": 1673956665281,
@@ -20812,9 +21174,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 7860,
-                "stars": 7,
-                "watchers": 7,
+                "downloads": 9343,
+                "stars": 8,
+                "watchers": 8,
                 "forks": 1,
                 "defaultBranch": "master",
                 "publishedAt": 1689781071179,
@@ -20850,12 +21212,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 5743,
-                "stars": 3721,
-                "watchers": 3721,
-                "forks": 328,
+                "downloads": 6057,
+                "stars": 3727,
+                "watchers": 3727,
+                "forks": 332,
                 "defaultBranch": "main",
-                "publishedAt": 1696281605156,
+                "publishedAt": 1699431486018,
                 "createdAt": 1666861126782
             },
             "contributors": [
@@ -21024,12 +21386,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 198,
-                "stars": 0,
-                "watchers": 0,
+                "downloads": 295,
+                "stars": 1,
+                "watchers": 1,
                 "forks": 0,
                 "defaultBranch": "main",
-                "publishedAt": 1698042969298,
+                "publishedAt": 1699962027161,
                 "createdAt": 1694014710154
             },
             "contributors": [
@@ -21063,12 +21425,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 230,
-                "stars": 5,
-                "watchers": 5,
+                "downloads": 477,
+                "stars": 6,
+                "watchers": 6,
                 "forks": 0,
                 "defaultBranch": "main",
-                "publishedAt": 1698042098837,
+                "publishedAt": 1699959236218,
                 "createdAt": 1694008131902
             },
             "contributors": [
@@ -21101,12 +21463,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 1724,
-                "stars": 3111,
-                "watchers": 3111,
-                "forks": 289,
+                "downloads": 1831,
+                "stars": 3114,
+                "watchers": 3114,
+                "forks": 297,
                 "defaultBranch": "develop",
-                "publishedAt": 1694478378036,
+                "publishedAt": 1699849745232,
                 "createdAt": 1651784645557
             },
             "contributors": [
@@ -21279,12 +21641,12 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 6828,
-                "stars": 104,
-                "watchers": 104,
-                "forks": 8,
+                "downloads": 7958,
+                "stars": 109,
+                "watchers": 109,
+                "forks": 10,
                 "defaultBranch": "main",
-                "publishedAt": 1699275312668,
+                "publishedAt": 1699792515500,
                 "createdAt": 1688217260181
             },
             "contributors": [
@@ -21336,12 +21698,12 @@
                 "devtools": "^0.0.0"
             },
             "stats": {
-                "downloads": 340342,
-                "stars": 17239,
-                "watchers": 17239,
-                "forks": 2153,
+                "downloads": 363019,
+                "stars": 17294,
+                "watchers": 17294,
+                "forks": 2164,
                 "defaultBranch": "main",
-                "publishedAt": 1696687855317,
+                "publishedAt": 1699870252902,
                 "createdAt": 1637813677538
             },
             "contributors": [
@@ -21515,9 +21877,9 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 92,
-                "stars": 57,
-                "watchers": 57,
+                "downloads": 113,
+                "stars": 58,
+                "watchers": 58,
                 "forks": 3,
                 "defaultBranch": "main",
                 "publishedAt": 1680272814211,
@@ -21580,9 +21942,9 @@
                 }
             },
             "stats": {
-                "downloads": 44853,
-                "stars": 342,
-                "watchers": 342,
+                "downloads": 47099,
+                "stars": 343,
+                "watchers": 343,
                 "forks": 21,
                 "defaultBranch": "main",
                 "publishedAt": 1684342194642,
@@ -21673,7 +22035,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 180,
+                "downloads": 199,
                 "stars": 16,
                 "watchers": 16,
                 "forks": 1,
@@ -21720,7 +22082,7 @@
                 "requires": {}
             },
             "stats": {
-                "downloads": 83,
+                "downloads": 104,
                 "stars": 0,
                 "watchers": 0,
                 "forks": 1,
@@ -21766,9 +22128,9 @@
                 }
             },
             "stats": {
-                "downloads": 18717,
-                "stars": 334,
-                "watchers": 334,
+                "downloads": 19446,
+                "stars": 333,
+                "watchers": 333,
                 "forks": 25,
                 "defaultBranch": "main",
                 "publishedAt": 1681300829021,
@@ -21882,7 +22244,7 @@
                 }
             },
             "stats": {
-                "downloads": 834,
+                "downloads": 985,
                 "stars": 53,
                 "watchers": 53,
                 "forks": 1,

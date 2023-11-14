@@ -3,7 +3,7 @@
   "displayName": "Nuxtr",
   "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
   "version": "0.2.7",
-  "packageManager": "pnpm@8.10.2",
+  "packageManager": "pnpm@8.10.5",
   "engines": {
     "vscode": "^1.84.0"
   },
@@ -1056,13 +1056,13 @@
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.3",
-    "@types/mocha": "^10.0.3",
+    "@types/fs-extra": "^11.0.4",
+    "@types/mocha": "^10.0.4",
     "@types/node": "20.4.1",
-    "@types/util.promisify": "^1.0.6",
-    "@types/vscode": "^1.84.0",
-    "@typescript-eslint/eslint-plugin": "^6.10.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@types/util.promisify": "^1.0.7",
+    "@types/vscode": "^1.84.1",
+    "@typescript-eslint/eslint-plugin": "^6.11.0",
+    "@typescript-eslint/parser": "^6.11.0",
     "@vscode/test-electron": "^2.3.6",
     "changelogen": "^0.5.5",
     "eslint": "^8.53.0",
@@ -1077,11 +1077,11 @@
     "destr": "^2.0.2",
     "fs-extra": "^11.1.1",
     "jiti": "^1.21.0",
-    "magicast": "^0.3.0",
+    "magicast": "^0.3.2",
     "ofetch": "^1.3.3",
     "pathe": "^1.1.1",
     "pkg-types": "^1.0.3",
-    "string-ts": "^1.3.2",
+    "string-ts": "^1.3.3",
     "util": "^0.12.5"
   },
   "pnpm": {
