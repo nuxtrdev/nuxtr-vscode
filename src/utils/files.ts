@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs'
-import { getConfiguration, projectSrcDirectory } from '.'
+import { getConfiguration, projectRootDirectory, projectSrcDirectory } from '.'
 import { generateStyleTag, generateScriptTag, templateTag, piniaOptionsContent, piniaSetupContent } from '../templates'
 
 let vueFilesConfig = getConfiguration().vueFiles
@@ -10,7 +10,7 @@ export function generateVueFileTemplate(type: string, template?: string) {
         ? vueFilesConfig.pages.defaultTemplate
         : vueFilesConfig.layouts.defaultTemplate);
 
-    const templatePath = `${projectSrcDirectory()}/.vscode/${userDefaultTemplate}`;
+    const templatePath = `${projectRootDirectory()}/.vscode/${userDefaultTemplate}`;
     try {
         return readFileSync(templatePath).toString();
     } catch (error) {

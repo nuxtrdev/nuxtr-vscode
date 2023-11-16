@@ -1,7 +1,7 @@
 import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
 
-import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate } from '../utils'
+import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate, projectRootDirectory } from '../utils'
 
 
 function createPageTemplate() {
@@ -103,7 +103,7 @@ const createFileTemplate = (type: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${projectSrcDirectory()}/.vscode/${name}.${type}-template`
+            let filePath = `${projectRootDirectory()}/.vscode/${name}.${type}-template`
 
             createFile({
                 fileName: `${name}.${type}-template`,
