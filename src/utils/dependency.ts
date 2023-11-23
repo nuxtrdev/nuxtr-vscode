@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync} from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"
 import { readPackageJSON } from 'pkg-types'
-import { getConfiguration, projectRootDirectory, runCommand } from './global'
+import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global'
 import { installDependencies } from '../commands/InstallDependencies'
 import pm from '../content/pm'
 import { newTerminal } from '.'
@@ -156,7 +156,7 @@ export const detectPackageManagerByName = () => {
 export const getInstallationCommand = async (packageName: string, devFlag: boolean) => {
     const packageManager = detectPackageManagerByName()
 
-    const defaultPackageManager = getConfiguration().defaultPackageManager
+    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
 
     const installationCommand: any = {
         Yarn: `yarn add ${packageName} ${devFlag ? '-D' : ''}`,
@@ -232,7 +232,7 @@ export const dependenciesUpdatesHandler = async (updatesStatusBar: StatusBarItem
 export const updateDependencies = async () => {
     const packageManager = detectPackageManagerByName()
 
-    const defaultPackageManager = getConfiguration().defaultPackageManager
+    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
 
     const outdatedDependenciesList: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
 
@@ -290,7 +290,7 @@ export const updateDependencies = async () => {
 
 export async function upgradePackage(packageName: string): Promise<void> {
     const packageManager = detectPackageManagerByName()
-    const defaultPackageManager = getConfiguration().defaultPackageManager
+    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
     const options: QuickPickOptions = {
         canPickMany: false,
         ignoreFocusOut: true,
@@ -321,7 +321,7 @@ export async function upgradePackage(packageName: string): Promise<void> {
 
 export async function managePackageVersion(packageName: string) {
     const packageManager = detectPackageManagerByName()
-    const defaultPackageManager = getConfiguration().defaultPackageManager
+    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
 
     const dependencies = await getProjectDependencies()
 

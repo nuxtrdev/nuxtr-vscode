@@ -2,9 +2,9 @@ import { languages, ExtensionContext } from 'vscode';
 import { NuxtIgnoreCompletionProvider } from './completionProviders/nuxtIgnore';
 import { CustomCompletionProvider } from './completionProviders/nuxtRC'
 import { PublicDirCompletionProvider, NuxtPagesCompletionProvider } from './completionProviders/vueFiles';
-import { languageSelector, patternSelector, getConfiguration } from '../utils';
+import { languageSelector, patternSelector, nuxtrConfiguration } from '../utils';
 
-const intelliSenseConfig = getConfiguration().intellisense;
+const intelliSenseConfig = nuxtrConfiguration().intellisense;
 
 
 export function activateIntellisense(context: ExtensionContext) {

@@ -1,9 +1,11 @@
 import { readFileSync } from 'fs'
-import { getConfiguration, projectRootDirectory, projectSrcDirectory } from '.'
+import { nuxtrConfiguration, projectRootDirectory, vscodeConfiguration } from '.';
 import { generateStyleTag, generateScriptTag, templateTag, piniaOptionsContent, piniaSetupContent } from '../templates'
 
-let vueFilesConfig = getConfiguration().vueFiles
-let piniaConfig = getConfiguration().piniaFiles.defaultTemplate
+let vueFilesConfig = nuxtrConfiguration().vueFiles
+let piniaConfig = nuxtrConfiguration().piniaFiles.defaultTemplate
+let eolConfiguration = vscodeConfiguration().files.eol
+let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
 export function generateVueFileTemplate(type: string, template?: string) {
     const userDefaultTemplate = template || (type === 'page'
@@ -18,6 +20,10 @@ export function generateVueFileTemplate(type: string, template?: string) {
     }
 }
 
+export function normalizeLFToCRLF(text: string) {
+    return text.replace(/\n/g, '\r\n');
+}
+
 export function generateVueFileBasicTemplate(type: string) {
     let fileTemplate = ``
     let templateLang = vueFilesConfig.template.defaultLanguage
@@ -30,16 +36,23 @@ export function generateVueFileBasicTemplate(type: string) {
 
     let scriptTag = generateScriptTag(scriptType, lang)
 
+    let eol = eolConfiguration === '\n' ? `\n\n` : `\n\n`;
+
     if (firstTag === 'template') {
         fileTemplate = templateTag(type, templateLang);
+        fileTemplate += eol;
         fileTemplate += scriptTag;
+        fileTemplate += eol;
     } else {
         fileTemplate = scriptTag;
+        fileTemplate += eol;
         fileTemplate += templateTag(type, templateLang);
+        fileTemplate += eol;
     }
 
     if (addStyleTag) { fileTemplate += generateStyleTag(styleLang, isScoped); }
 
+    // eolConfiguration !== '\n' ? normalizeLFToCRLF(fileTemplate) :
     return fileTemplate
 }
 
