@@ -1,8 +1,8 @@
-import { extensions } from 'vscode';
+import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind, Position, TextDocument, Range, DocumentHighlight, DocumentHighlightKind } from 'vscode';
 import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
-import { getConfiguration } from '../utils';
+import { getConfiguration, languageSelector, generateVueFileBasicTemplate } from '../utils';
 
 export enum SnippetSource {
     nuxt = 'Nuxt',
@@ -48,3 +48,51 @@ export const toggleSnippets = async () => {
     await manageSnippetState(SnippetSource.nuxt, snippetsConfigurations.nuxt);
     await manageSnippetState(SnippetSource.nitro, snippetsConfigurations.nitro);
 }
+
+
+export const vuePageTemplate = languages.registerCompletionItemProvider(
+    { language: 'vue' },
+    {
+        provideCompletionItems(document: TextDocument, position: Position) {
+            const completionItem = new CompletionItem('vueBasePage', CompletionItemKind.Snippet);
+            completionItem.detail = 'Generate a Vue file template';
+
+            const template = generateVueFileBasicTemplate('page');
+
+            // Create a MarkdownString for documentation with code highlighting
+            const documentation = new MarkdownString();
+            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxt configuration.\n\n`);
+            documentation.appendCodeblock(template, 'vue'); // Specify 'vue' as the language for code block highlighting
+
+            completionItem.documentation = documentation;
+            completionItem.kind = CompletionItemKind.Snippet;
+            completionItem.insertText = template;
+
+            return [completionItem];
+        }
+    }
+);
+
+
+export const vueBaseTemplate = languages.registerCompletionItemProvider(
+    { language: 'vue' },
+    {
+        provideCompletionItems(document: TextDocument, position: Position) {
+            const completionItem = new CompletionItem('vueBaseLayout', CompletionItemKind.Snippet);
+            completionItem.detail = 'Generate a Vue file template';
+
+            const template = generateVueFileBasicTemplate('layout');
+
+            // Create a MarkdownString for documentation with code highlighting
+            const documentation = new MarkdownString();
+            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxt configuration.\n\n`);
+            documentation.appendCodeblock(template, 'vue'); // Specify 'vue' as the language for code block highlighting
+
+            completionItem.documentation = documentation;
+            completionItem.kind = CompletionItemKind.Snippet;
+            completionItem.insertText = template;
+
+            return [completionItem];
+        }
+    }
+);
