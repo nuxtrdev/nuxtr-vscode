@@ -2,11 +2,7 @@ import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKi
 import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
-<<<<<<< HEAD
-import { nuxtrConfiguration } from '../utils';
-=======
-import { getConfiguration, languageSelector, generateVueFileBasicTemplate } from '../utils';
->>>>>>> origin/main
+import { nuxtrConfiguration, languageSelector, generateVueFileBasicTemplate } from '../utils';
 
 export enum SnippetSource {
     nuxt = 'Nuxt',
