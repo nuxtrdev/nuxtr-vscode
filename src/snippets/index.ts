@@ -54,14 +54,14 @@ export const vuePageTemplate = languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
         provideCompletionItems(document: TextDocument, position: Position) {
-            const completionItem = new CompletionItem('vueBasePage', CompletionItemKind.Snippet);
-            completionItem.detail = 'Generate a Vue file template';
+            const completionItem = new CompletionItem('vueBaseFile', CompletionItemKind.Snippet);
+            completionItem.detail = 'Generate a Vue page/component template';
 
             const template = generateVueFileBasicTemplate('page');
 
             // Create a MarkdownString for documentation with code highlighting
             const documentation = new MarkdownString();
-            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxt configuration.\n\n`);
+            documentation.appendMarkdown(`Generate a Vue page/component template according to your Nuxtr configuration.\n\n`);
             documentation.appendCodeblock(template, 'vue'); // Specify 'vue' as the language for code block highlighting
 
             completionItem.documentation = documentation;
@@ -85,7 +85,7 @@ export const vueBaseTemplate = languages.registerCompletionItemProvider(
 
             // Create a MarkdownString for documentation with code highlighting
             const documentation = new MarkdownString();
-            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxt configuration.\n\n`);
+            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxtr configuration.\n\n`);
             documentation.appendCodeblock(template, 'vue'); // Specify 'vue' as the language for code block highlighting
 
             completionItem.documentation = documentation;
