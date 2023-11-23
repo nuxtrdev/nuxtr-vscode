@@ -20,7 +20,7 @@ export const getUri = (webview: Webview, extensionUri: Uri, pathList: string[]) 
 };
 
 export const projectRootDirectory = (): string => {
-    const configuration = getConfiguration().monorepoMode.DirectoryName;
+    const configuration = nuxtrConfiguration().monorepoMode.DirectoryName;
     const workspaceFolder = workspace.workspaceFolders?.[0]?.uri.fsPath;
 
     if (!workspaceFolder) {
@@ -45,11 +45,14 @@ export const openExternalLink = (url: string) => {
     env.openExternal(Uri.parse(url));
 };
 
-export const getConfiguration = (): NuxtrConfiguration => {
+export const nuxtrConfiguration = (): NuxtrConfiguration => {
     const configuration: WorkspaceConfiguration = workspace.getConfiguration('nuxtr');
     return configuration as unknown as NuxtrConfiguration;
 };
 
+export const vscodeConfiguration = (): WorkspaceConfiguration => {
+    return workspace.getConfiguration();
+}
 
 export const newTerminal = (terminalName: string, command: string, cwd?: string) => {
     let existingTerminal = window.terminals.find(terminal => terminal.name === terminalName);

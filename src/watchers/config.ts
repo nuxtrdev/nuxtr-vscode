@@ -1,5 +1,5 @@
 import { Disposable, window, commands } from 'vscode';
-import { createConfigWatcher, getConfiguration, getProjectDependencies, projectRootDirectory } from '../utils';
+import { createConfigWatcher, nuxtrConfiguration, getProjectDependencies, projectRootDirectory } from '../utils';
 import { existsSync } from 'fs';
 import { toggleSnippets } from '../snippets';
 import { TSConfigNuxt } from '../types';
@@ -18,7 +18,7 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
 
     const dependencies = await getProjectDependencies();
 
-    if (getConfiguration().vueFiles.template.defaultLanguage === 'pug') {
+    if (nuxtrConfiguration().vueFiles.template.defaultLanguage === 'pug') {
         const pugDependency = dependencies.find(dep => dep.name === 'pug');
 
         if (!pugDependency) {

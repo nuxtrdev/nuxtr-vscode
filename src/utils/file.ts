@@ -6,7 +6,10 @@ import { TextEncoder } from 'util';
 
 import { getCommandType } from './commands';
 
-import { getConfiguration, projectSrcDirectory, projectRootDirectory } from './global';
+import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeConfiguration, normalizeLFToCRLF } from '.';
+
+let eolConfiguration = vscodeConfiguration().files.eol
+let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
 export const createDirectoryAndFile = (componentName: any, commandType: string, content: string) => {
 
@@ -125,11 +128,12 @@ export const createFile = async (args: { fileName: string; content: string; full
         return;
     }
 
-    // Create the file and write its contents
-    await workspace.fs.writeFile(parentDirectory, new TextEncoder().encode(args.content));
+    let fileContent = eolConfiguration !== '\n' ? normalizeLFToCRLF(args.content) : args.content
+
+    await workspace.fs.writeFile(parentDirectory, new TextEncoder().encode(fileContent));
 
     // Open the file
-    if (getConfiguration().openItemsAfterCreation) {
+    if (nuxtrConfiguration().openItemsAfterCreation) {
         workspace.openTextDocument(parentDirectory).then((doc) => {
             window.showTextDocument(doc);
         });

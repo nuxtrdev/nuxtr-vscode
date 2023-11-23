@@ -1,4 +1,15 @@
-import { getNonce, getUri, projectRootDirectory, openExternalLink, getConfiguration, newTerminal, runCommand, projectSrcDirectory, tryImport } from './global'
+import {
+    getNonce,
+    getUri,
+    projectRootDirectory,
+    openExternalLink,
+    nuxtrConfiguration,
+    vscodeConfiguration,
+    newTerminal,
+    runCommand,
+    projectSrcDirectory,
+    tryImport
+} from './global'
 
 import {
     addNuxtModule,
@@ -34,7 +45,7 @@ import { logger } from './outputChannel'
 
 import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory } from './vscode';
 
-import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates } from './files'
+import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates, normalizeLFToCRLF } from './files'
 
 import { removePackage, managePackageVersion } from './dependency'
 
@@ -56,7 +67,8 @@ export {
     projectRootDirectory,
     createSubFolders,
     showSubFolderQuickPick,
-    getConfiguration,
+    nuxtrConfiguration,
+    vscodeConfiguration,
     createFile,
     createVueTemplate,
     areDependenciesInstalled,
@@ -67,6 +79,7 @@ export {
     generateVueFileBasicTemplate,
     generateVueFileTemplate,
     generatePiniaTemplates,
+    normalizeLFToCRLF,
     updateDependencies,
     newTerminal,
     getNonce,

@@ -2,7 +2,7 @@ import { extensions } from 'vscode';
 import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
-import { getConfiguration } from '../utils';
+import { nuxtrConfiguration } from '../utils';
 
 export enum SnippetSource {
     nuxt = 'Nuxt',
@@ -10,7 +10,7 @@ export enum SnippetSource {
 }
 
 const homeDir = os.homedir()
-const snippetsConfigurations = getConfiguration().snippets
+const snippetsConfigurations = nuxtrConfiguration().snippets
 
 const snippetsDir = 'snippets'
 const disabledSnippetsDir = 'disabled_snippets'

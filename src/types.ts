@@ -60,13 +60,13 @@ export interface NuxtrConfiguration {
     }
 }
 
-interface TSConfigNuxt extends TSConfig {
+export interface TSConfigNuxt extends TSConfig {
     vueCompilerOptions?: {
         plugins?: string[] | undefined;
     }
 }
 
-type nuxtModule = {
+export type nuxtModule = {
     name: string;
     description: string;
     repo: string;
