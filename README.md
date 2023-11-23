@@ -118,6 +118,8 @@ While using the CLI directly from your terminal is perfectly viable, Nuxtr's int
 
 **Nuxt Snippets**: Enhance your development speed with Nuxt snippets. Simply type `nuxt` for components, `use` for Composables, or begin typing Nuxt utilities and select your desired snippet from the list.
 
+Starting 0.2.10, you can inject a dynamic snippet based on your Nuxtr Vue files configuration with `vueBaseFile` or `vueBaseLayout`.
+
 Nuxt Snippets are enabled by default. You can toggle them on or off using this setting:
 
 ```JSON
