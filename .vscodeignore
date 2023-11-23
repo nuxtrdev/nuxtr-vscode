@@ -1,5 +1,9 @@
 .vscode/**
 .github/**
+.env.example
+.eslintcache
+.eslintignore
+
 .vscode-test/**
 src/**
 .gitignore
