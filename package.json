@@ -2,7 +2,7 @@
     "name": "nuxtr-vscode",
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
-    "version": "0.2.9",
+    "version": "0.2.10",
     "packageManager": "pnpm@8.10.5",
     "engines": {
         "vscode": "^1.84.0"
