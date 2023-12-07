@@ -6,6 +6,7 @@ import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
+import { areDependenciesInstalled } from './utils/newDependency'
 
 const commandList = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -86,6 +87,8 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate intellisense
     activateIntellisense(context)
+
+    await areDependenciesInstalled()
 
     // activate codelens
     codelens.activateCodelenses(context)

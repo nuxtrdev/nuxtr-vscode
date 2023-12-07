@@ -27,6 +27,7 @@ export default defineConfig({
         "pkg-types",
         "string-ts",
         "util",
+        "nypm"
     ]
 
 })

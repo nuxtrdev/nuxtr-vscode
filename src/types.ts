@@ -80,3 +80,12 @@ export type nuxtModule = {
     };
     tags: string[];
 };
+
+export type Dependency = {
+    name: string;
+    version: string;
+};
+
+export type OutdatedDependency = Dependency & {
+    latest: string;
+};

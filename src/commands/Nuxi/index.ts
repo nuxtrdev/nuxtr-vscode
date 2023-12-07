@@ -40,10 +40,7 @@ const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.inclu
 
 const showCLICommands = async () => {
     const nuxi = await tryImportNuxi()
-    if (!nuxi) {
-        console.log('nuxi not found')
-        return
-    }
+    if (!nuxi) { return }
     const commands = Object.keys(nuxi.main.subCommands);
 
     const options = {
