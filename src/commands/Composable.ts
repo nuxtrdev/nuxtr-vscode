@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir } from '../utils'
+import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, normalizeFileExtension } from '../utils'
 import { composableTemplate } from '../templates'
 
 const createComposable = () => {
@@ -37,7 +37,7 @@ const directCreateComposable = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.ts`
+            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,

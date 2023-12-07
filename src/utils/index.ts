@@ -37,7 +37,7 @@ import {
     updateDependencies
 } from './dependency'
 
-import { createDirectoryAndFile, createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate, normalizeName } from './file'
+import { createDirectoryAndFile, createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate, normalizeName, normalizeFileExtension } from './file'
 
 import { getCommandType } from './commands'
 
@@ -102,5 +102,6 @@ export {
     managePackageVersion,
     createConfigWatcher,
     isNuxiInstalled,
-    normalizeName
+    normalizeName,
+    normalizeFileExtension
 }

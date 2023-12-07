@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { createSubFolders, showSubFolderQuickPick, createFile, projectSrcDirectory, createDir } from '../utils'
+import { createSubFolders, showSubFolderQuickPick, createFile, projectSrcDirectory, createDir, normalizeFileExtension } from '../utils'
 
 import { generateVueFileTemplate } from '../utils/files'
 
@@ -36,7 +36,7 @@ function directCreatePage(path: string) {
         .then((name) => {
             if (!name) {return}
 
-            let filePath = `${path}/${name}.vue`
+            let filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

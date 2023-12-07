@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir } from '../utils'
+import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir, normalizeFileExtension } from '../utils'
 import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
 
 let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
@@ -148,7 +148,7 @@ const directCreateNitroAPI = (path: string) => {
             createDir('server')
             createDir('server/api')
 
-            let filePath = `${path}/${name}.ts`
+            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
             createFile({
                 fileName: `${name}.ts`,
                 content: nitroDefaultTemplate,
@@ -169,7 +169,7 @@ const directCreateNitroRoute = (path: string) => {
             createDir('server')
             createDir('server/routes')
 
-            let filePath = `${path}/${name}.ts`
+            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,
