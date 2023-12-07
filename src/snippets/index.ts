@@ -54,7 +54,7 @@ export const vuePageTemplate = languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
         provideCompletionItems(document: TextDocument, position: Position) {
-            const completionItem = new CompletionItem('vueBaseFile', CompletionItemKind.Snippet);
+            const completionItem = new CompletionItem('vueBase', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue page/component template';
 
             const template = generateVueFileBasicTemplate('page');
