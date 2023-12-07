@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createFile, createDir } from '../utils'
+import { projectSrcDirectory, createFile, createDir, normalizeFileExtension } from '../utils'
 
 
 import { generateVueFileTemplate } from '../utils/files'
@@ -18,7 +18,7 @@ const createLayout = () => {
 
             createDir('layouts')
 
-            let filePath = `${projectSrcDirectory()}/layouts/${name}.vue`
+            let filePath = `${projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,
@@ -37,7 +37,7 @@ const directCreateLayout = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.vue`
+            let filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

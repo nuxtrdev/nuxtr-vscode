@@ -1,5 +1,5 @@
 import { window, workspace, Uri } from 'vscode';
-import { trim, capitalize, replace, split } from 'string-ts';
+import { trim, capitalize, replace, split, endsWith } from 'string-ts';
 import { existsSync, mkdirSync, readdirSync } from 'fs';
 import { join } from 'pathe';
 import { TextEncoder } from 'util';
@@ -36,7 +36,7 @@ export const createDirectoryAndFile = (componentName: any, commandType: string, 
                         createFile({
                             fileName: componentName,
                             content,
-                            fullPath: `${projectSrcDirectory()}/${type.path}/${name}/${componentName}${type.extension}`,
+                            fullPath: `${projectSrcDirectory()}/${type.path}/${name}/${normalizeFileExtension(componentName, type.extension)}${type.extension}`,
                         });
                     } else {
                         window.showWarningMessage(
@@ -88,7 +88,9 @@ export const showSubFolderQuickPick = (args: {
     content: any
 }) => {
 
+
     const { type } = getCommandType(args.commandType);
+
 
     window
         .showQuickPick(args.subFolders, { placeHolder: 'Select a subfolder' })
@@ -98,7 +100,7 @@ export const showSubFolderQuickPick = (args: {
             }
             switch (selection) {
                 case `Main ${type.name.toLocaleLowerCase()} folder`:
-                    const path = `${args.name}${type.extension}`;
+                    const path = `${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
                     createFile({
                         fileName: args.name,
                         content: args.content,
@@ -106,10 +108,11 @@ export const showSubFolderQuickPick = (args: {
                     });
                     break;
                 case 'Create new folder...':
-                    createDirectoryAndFile(args.name, type.name, args.content);
+                    createDirectoryAndFile(normalizeFileExtension(args.name, type.extension), type.name, args.content);
                     break;
                 default:
-                    const fileNameAndPath = `${selection}/${args.name}${type.extension}`;
+                    const fileNameAndPath = `${selection}/${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
+
                     createFile({
                         fileName: args.name,
                         content: args.content,
@@ -171,4 +174,6 @@ export const createVueTemplate = (content: string, type: string) => {
 
 };
 
-export const normalizeName = (name: string, capital?: boolean) =>  split(trim(name), "-").map(capitalize).join('');
+export const normalizeName = (name: string, capital?: boolean) => split(trim(split(name, '.')[0]), "-").map(capitalize).join('');
+
+export const normalizeFileExtension = (name: string, extension: string) => endsWith(name, extension) ? replace(name, extension, '') : name

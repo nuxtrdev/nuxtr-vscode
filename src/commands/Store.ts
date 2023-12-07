@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, isNuxtTwo, createFile, generatePiniaTemplates } from '../utils'
+import { projectSrcDirectory, isNuxtTwo, createFile, generatePiniaTemplates, normalizeFileExtension } from '../utils'
 import { vuexContent } from '../templates'
 
 const createStore = () => {
@@ -37,7 +37,7 @@ const directCreateStore = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
+            let filePath = `${path}/${normalizeFileExtension(name, isNuxtTwo() ? '.js' : '.ts' )}.${isNuxtTwo() ? 'js' : 'ts'}`
 
             if (isNuxtTwo()) {
                 createFile({
