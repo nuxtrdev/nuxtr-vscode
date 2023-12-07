@@ -965,6 +965,11 @@
                 "title": "Global State",
                 "category": "Nuxtr",
                 "when": "nuxtr.isNuxtProject"
+            },
+            {
+                "command": "nuxtr.createProject",
+                "title": "Create new Nuxt Project",
+                "category": "Nuxtr"
             }
         ],
         "keybindings": [],
@@ -1076,6 +1081,7 @@
         "@nuxt/schema": "^3.8.2",
         "destr": "^2.0.2",
         "fs-extra": "^11.2.0",
+        "giget": "^1.1.3",
         "jiti": "^1.21.0",
         "magicast": "^0.3.2",
         "ofetch": "^1.3.3",

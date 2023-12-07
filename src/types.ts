@@ -80,3 +80,11 @@ export type nuxtModule = {
     };
     tags: string[];
 };
+
+export type ProjectTemplate = {
+    name: string;
+    repo: string;
+    branch: string;
+    docs: string;
+    description: string;
+};

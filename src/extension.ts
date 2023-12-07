@@ -21,6 +21,7 @@ const commandList = [
     { command: 'nuxtr.createNitroRoute', function: nuxtrCommands.createNitroRoute },
     { command: 'nuxtr.createStore', function: nuxtrCommands.createStore },
     { command: 'nuxtr.createUtil', function: nuxtrCommands.createUtil },
+    { command: 'nuxtr.createProject', function: async () => await nuxtrCommands.createProject() },
     { command: 'nuxtr.projectStructure', function: nuxtrCommands.projectStructure },
     { command: 'nuxtr.openDocumentation', function: nuxtrCommands.openDocumentation },
     { command: 'nuxtr.openModules', function: nuxtrCommands.openModules },
