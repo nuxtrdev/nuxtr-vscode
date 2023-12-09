@@ -43,7 +43,7 @@ import { getCommandType } from './commands'
 
 import { logger } from './outputChannel'
 
-import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory, openFolder } from './vscode';
+import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory, openFolder, quickOpenButtons } from './vscode';
 
 import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates, normalizeLFToCRLF } from './files'
 
@@ -104,5 +104,6 @@ export {
     isNuxiInstalled,
     normalizeName,
     normalizeFileExtension,
-    openFolder
+    openFolder,
+    quickOpenButtons
 }

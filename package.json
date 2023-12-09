@@ -1065,7 +1065,7 @@
         "@types/mocha": "^10.0.6",
         "@types/node": "20.4.1",
         "@types/util.promisify": "^1.0.8",
-        "@types/vscode": "^1.84.2",
+        "@types/vscode": "^1.85.0",
         "@typescript-eslint/eslint-plugin": "^6.13.2",
         "@typescript-eslint/parser": "^6.13.2",
         "@vscode/test-electron": "^2.3.8",
@@ -1073,7 +1073,7 @@
         "eslint": "^8.55.0",
         "nuxi-edge": "3.9.1-1697113884.a6acb6a",
         "taze": "^0.11.4",
-        "terser": "^5.25.0",
+        "terser": "^5.26.0",
         "tsup": "^7.3.0",
         "typescript": "^5.3.3"
     },

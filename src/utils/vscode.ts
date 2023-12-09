@@ -1,4 +1,4 @@
-import { DocumentSelector, workspace, Uri, FileType, commands, window } from 'vscode';
+import { DocumentSelector, workspace, Uri, FileType, commands, window, QuickInputButton, ThemeIcon } from 'vscode';
 
 export const languageSelector = (language: string): DocumentSelector => ({ scheme: 'file', language, } as const);
 
@@ -40,4 +40,21 @@ export async function openFolder(path: Uri, folderName: string, newWindow: boole
     } catch (error) {
         window.showErrorMessage(`Failed to open Nuxt ${folderName} template`)
     }
+}
+
+
+const github: QuickInputButton = {
+    iconPath: new ThemeIcon("github"),
+    tooltip: "Template Github Repo",
+};
+
+const docs: QuickInputButton = {
+    iconPath: new ThemeIcon("book"),
+    tooltip: "Template Docs/Reference",
+};
+
+
+export const quickOpenButtons = {
+    github,
+    docs,
 }

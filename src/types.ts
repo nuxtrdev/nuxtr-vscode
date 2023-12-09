@@ -81,7 +81,7 @@ export type nuxtModule = {
     tags: string[];
 };
 
-export type ProjectTemplate = {
+export type NuxtOfficialTemplate = {
     name: string;
     repo: string;
     branch: string;
