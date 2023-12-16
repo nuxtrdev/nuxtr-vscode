@@ -34,6 +34,7 @@ const fetchUserTemplates = async (): Promise<UserProjectTemplate[]> => {
             name: item.name,
             repoURL: item.repoURL,
             description: item.description,
+            branch: item.branch,
         } as UserProjectTemplate));
         return userTemplates;
     } catch (error) {
@@ -60,8 +61,13 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
         window.showErrorMessage(`Failed to parse ${template.name} repo URL`);
         return;
     } else {
+
         const { provider, owner, repo } = parsedURL;
-        let normalizedURL = `${owner}/${repo}${template.branch ? `#${template.branch}` : ''}`;
+
+        let normalizedURL = `${owner}/${repo}${template.branch !== undefined ? `#${template.branch}` : ''}`;
+
+        console.log('template', template);
+        console.log('normalizedURL', normalizedURL);
 
         try {
             await downloadTemplate(normalizedURL, {
@@ -75,8 +81,6 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
             window.showErrorMessage(`Failed to fetch ${template.name} template`);
         }
     }
-
-
 };
 
 

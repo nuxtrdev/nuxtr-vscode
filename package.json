@@ -515,6 +515,10 @@
                                 "repoURL": {
                                     "type": "string",
                                     "description": "Repo URL of the template."
+                                },
+                                "branch": {
+                                    "type": "string",
+                                    "description": "Branch of the template."
                                 }
                             },
                             "required": [
