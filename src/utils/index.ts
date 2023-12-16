@@ -105,5 +105,5 @@ export {
     normalizeName,
     normalizeFileExtension,
     openFolder,
-    quickOpenButtons
+    quickOpenButtons,
 }

@@ -3,7 +3,7 @@
     "displayName": "Nuxtr",
     "description": "An extension for Nuxt.js offering commands and tools to make your experience more pleasant.",
     "version": "0.2.10",
-    "packageManager": "pnpm@8.11.0",
+    "packageManager": "pnpm@8.12.1",
     "engines": {
         "vscode": "^1.84.0"
     },
@@ -497,6 +497,32 @@
                         "type": "string",
                         "default": null,
                         "description": "Nuxt project path inside your monorepo"
+                    },
+                    "nuxtr.projectTemplates": {
+                        "type": "array",
+                        "default": [],
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "description": "Template Name."
+                                },
+                                "description": {
+                                    "type": "string",
+                                    "description": "Description template."
+                                },
+                                "repoURL": {
+                                    "type": "string",
+                                    "description": "Repo URL of the template."
+                                }
+                            },
+                            "required": [
+                                "name",
+                                "description",
+                                "repoURL"
+                            ]
+                        }
                     }
                 }
             },
@@ -1066,11 +1092,11 @@
         "@types/node": "20.4.1",
         "@types/util.promisify": "^1.0.8",
         "@types/vscode": "^1.85.0",
-        "@typescript-eslint/eslint-plugin": "^6.13.2",
-        "@typescript-eslint/parser": "^6.13.2",
+        "@typescript-eslint/eslint-plugin": "^6.14.0",
+        "@typescript-eslint/parser": "^6.14.0",
         "@vscode/test-electron": "^2.3.8",
         "changelogen": "^0.5.5",
-        "eslint": "^8.55.0",
+        "eslint": "^8.56.0",
         "nuxi-edge": "3.9.1-1697113884.a6acb6a",
         "taze": "^0.11.4",
         "terser": "^5.26.0",

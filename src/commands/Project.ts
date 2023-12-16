@@ -1,20 +1,46 @@
-import { window, QuickPick, QuickPickItem, QuickInputButton, OpenDialogOptions, Uri } from 'vscode';
+import { window, QuickPick, QuickPickItem, QuickInputButton, OpenDialogOptions, Uri, ThemeIcon } from 'vscode';
 import { downloadTemplate } from 'giget';
 import { ofetch } from 'ofetch';
-import { NuxtOfficialTemplate } from '../types';
-import { openExternalLink, openFolder, quickOpenButtons } from '../utils';
+import { NuxtOfficialTemplate, UserProjectTemplate } from '../types';
+import { openExternalLink, openFolder, quickOpenButtons, nuxtrConfiguration } from '../utils';
+
+export const parseRepoURL = (repoURL: string) => {
+    const matchResult = repoURL.match(/\/\/([^\/]+)\/([^\/]+)\/(.+)$/);
+
+    if (matchResult) {
+        const [, fullProvider, owner, fullRepo] = matchResult;
+        const provider = fullProvider.split('.')[0];
+        const repo = fullRepo.replace('.git', '').split('/')[0].split('#')[0];
+        return { provider, owner, repo };
+    }
+
+    return null;
+};
 
 
-const fetchOfficialTemplates = async () => {
+const fetchOfficialTemplates = async (): Promise<NuxtOfficialTemplate[]> => {
     try {
         const res = await ofetch('https://nuxt.new/data/starters.json');
         return res as NuxtOfficialTemplate[];
     } catch (error) {
         window.showErrorMessage(`Failed to fetch Nuxt templates`);
+        return [];
     }
 };
 
-
+const fetchUserTemplates = async (): Promise<UserProjectTemplate[]> => {
+    try {
+        const userTemplates = nuxtrConfiguration().projectTemplates.map((item) => ({
+            name: item.name,
+            repoURL: item.repoURL,
+            description: item.description,
+        } as UserProjectTemplate));
+        return userTemplates;
+    } catch (error) {
+        window.showErrorMessage(`Failed to fetch user templates`);
+        return [];
+    }
+};
 const fetchTemplate = async (repo: NuxtOfficialTemplate, path: string, projectName: string) => {
     try {
         await downloadTemplate(`${repo.branch}`, {
@@ -23,70 +49,111 @@ const fetchTemplate = async (repo: NuxtOfficialTemplate, path: string, projectNa
             dir: projectName,
         });
     } catch (error) {
-        console.log('error', error);
-        window.showErrorMessage(`Failed to fetch Nuxt ${repo.name} template`);
+        window.showErrorMessage(`Failed to fetch ${repo.name} template`);
     }
 };
 
-const createProjectPrompt = async (templates: NuxtOfficialTemplate[]) => {
+const fetchUserTemplate = async (template: UserProjectTemplate, path: string, projectName: string) => {
+    const url = template.repoURL;
+    const parsedURL = parseRepoURL(url);
+    if (!parsedURL) {
+        window.showErrorMessage(`Failed to parse ${template.name} repo URL`);
+        return;
+    } else {
+        const { provider, owner, repo } = parsedURL;
+        let normalizedURL = `${owner}/${repo}${template.branch ? `#${template.branch}` : ''}`;
+
+        try {
+            await downloadTemplate(normalizedURL, {
+                cwd: path,
+                force: true,
+                dir: projectName,
+                provider: provider,
+            })
+        } catch (error) {
+            console.log('error', error);
+            window.showErrorMessage(`Failed to fetch ${template.name} template`);
+        }
+    }
+
+
+};
+
+
+const createProjectPrompt = async (officialTemplates: NuxtOfficialTemplate[], userTemplates: UserProjectTemplate[]) => {
     const picker: QuickPick<QuickPickItem> = window.createQuickPick();
 
     picker.canSelectMany = false;
     picker.ignoreFocusOut = true;
     picker.matchOnDescription = true;
-    picker.placeholder = "Select a Nuxt template";
+    picker.placeholder = "Select a Nuxt starter";
 
-    const items: QuickPickItem[] = templates.map((item) => ({
+    const officialItems: QuickPickItem[] = officialTemplates.map((item) => ({
         label: item.name,
         description: item.description,
         buttons: [quickOpenButtons.github, quickOpenButtons.docs],
         package: item,
+        iconPath: new ThemeIcon("nuxt-logo"),
     } as QuickPickItem));
 
+    const userItems: QuickPickItem[] = userTemplates.map((item) => ({
+        label: item.name,
+        description: item.description,
+        // Hide buttons for user templates
+        buttons: [],
+        package: item,
+        iconPath: new ThemeIcon("account"),
+    } as QuickPickItem));
 
-    picker.items = items;
+    picker.items = [...officialItems, ...userItems];
 
-    picker.onDidChangeSelection((selection) => handleSelection(templates, selection.slice(), picker));
+    picker.onDidChangeSelection((selection) => handleSelection([...officialTemplates, ...userTemplates], selection.slice(), picker));
     picker.onDidTriggerItemButton((e) => handleItemButton(e as any));
     picker.onDidChangeSelection((item: any) => picker.dispose());
     picker.show();
 };
 
-const handleSelection = async (templates: NuxtOfficialTemplate[], selection: QuickPickItem[], picker: QuickPick<QuickPickItem>) => {
+
+const handleSelection = async (templates: (NuxtOfficialTemplate | UserProjectTemplate)[], selection: QuickPickItem[], picker: QuickPick<QuickPickItem>) => {
     if (selection[0]) {
-        const repo = templates.find((item) => item.name === selection[0].label);
-        if (repo) {
-            try {
-                const proName = await window.showInputBox({
-                    placeHolder: 'Project Name',
-                    prompt: 'Enter a project name',
-                });
+        const selectedTemplate = templates.find((item) => item.name === selection[0].label);
 
-                if (proName) {
-                    const options: OpenDialogOptions = {
-                        canSelectMany: false,
-                        openLabel: 'Select',
-                        canSelectFiles: false,
-                        canSelectFolders: true,
-                    };
+        if (selectedTemplate) {
+            const proName = await window.showInputBox({
+                placeHolder: 'Project Name',
+                prompt: 'Enter a project name',
+            });
 
-                    window.showOpenDialog(options).then(async (fileUri) => handleFileUri(fileUri, repo, proName));
-                }
-            } catch (error) {
-                window.showErrorMessage(`Failed to fetch Nuxt ${repo.name} template`);
+            if (proName) {
+                const options: OpenDialogOptions = {
+                    canSelectMany: false,
+                    openLabel: 'Select',
+                    canSelectFiles: false,
+                    canSelectFolders: true,
+                };
+
+                window.showOpenDialog(options).then(async (fileUri) => handleFileUri(fileUri, selectedTemplate, proName));
             }
         }
     }
 };
 
-const handleFileUri = async (fileUri: Uri[] | undefined, repo: NuxtOfficialTemplate, proName: string) => {
+const handleFileUri = async (fileUri: Uri[] | undefined, template: (NuxtOfficialTemplate | UserProjectTemplate), proName: string) => {
     if (fileUri && fileUri[0]) {
         try {
-            await fetchTemplate(repo, fileUri[0].fsPath, proName);
-            const result = await window.showInformationMessage(`Project created`, 'Open in current window', 'Open in new window');
-            const projectPath = `${fileUri[0].fsPath}/${proName}`
-            const projectURI = Uri.file(projectPath)
+            if ('repo' in template) {
+                // It's a NuxtOfficialTemplate
+                const repo = template as NuxtOfficialTemplate;
+                await fetchTemplate(repo, fileUri[0].fsPath, proName);
+            } else {
+                // It's a UserProjectTemplate
+                const userTemplate = template as UserProjectTemplate;
+                await fetchUserTemplate(userTemplate, fileUri[0].fsPath, proName);
+            }
 
+            const result = await window.showInformationMessage(`Project created`, 'Open in current window', 'Open in new window');
+            const projectPath = `${fileUri[0].fsPath}/${proName}`;
+            const projectURI = Uri.file(projectPath);
 
             if (result === 'Open in current window') {
                 openFolder(projectURI, proName, false);
@@ -96,33 +163,42 @@ const handleFileUri = async (fileUri: Uri[] | undefined, repo: NuxtOfficialTempl
                 openFolder(projectURI, proName, true);
             }
         } catch (error) {
-            window.showInformationMessage(`Failed to create Nuxt ${proName} template`);
+            window.showInformationMessage(`Failed to create ${proName} project.`);
         }
     }
 };
 
-const handleItemButton = async (e: { item: QuickPickItem & { package: NuxtOfficialTemplate }; button: QuickInputButton }) => {
+const handleItemButton = async (e: { item: QuickPickItem & { package: NuxtOfficialTemplate | UserProjectTemplate }; button: QuickInputButton }) => {
     const selectedItem = e.item;
-    if (e.button === quickOpenButtons.github) {
-        openExternalLink(`https://github.com/${selectedItem.package.repo}/tree/${selectedItem.package.branch}`);
-    }
 
-    if (e.button === quickOpenButtons.docs) {
-        openExternalLink(selectedItem.package.docs);
+    if ('repo' in selectedItem.package) {
+        const repo = selectedItem.package as NuxtOfficialTemplate;
+
+        if (e.button === quickOpenButtons.github) {
+            openExternalLink(`https://github.com/${repo.repo}/tree/${repo.branch}`);
+        }
+
+        if (e.button === quickOpenButtons.docs) {
+            openExternalLink(repo.docs);
+        }
+    } else {
+        if (e.button === quickOpenButtons.github || e.button === quickOpenButtons.docs) {
+            // For now, you can leave this block empty or add custom behavior
+        }
     }
 };
-
 
 export async function createProject() {
     try {
-        const templates = await fetchOfficialTemplates() as NuxtOfficialTemplate[];
+        const nuxtTemplates = await fetchOfficialTemplates() as NuxtOfficialTemplate[];
+        const userTemplates = await fetchUserTemplates() as UserProjectTemplate[];
 
-        if (!templates) {
+        if (!nuxtTemplates) {
             return;
         } else {
-            await createProjectPrompt(templates);
+            await createProjectPrompt(nuxtTemplates, userTemplates);
         }
     } catch (error) {
-        window.showErrorMessage(`Failed to fetch Nuxt templates`);
+        window.showErrorMessage(`Failed to fetch Nuxt starters`);
     }
 }
