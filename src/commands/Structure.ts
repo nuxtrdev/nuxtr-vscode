@@ -77,4 +77,12 @@ const nuxtRC = () => {
     })
 }
 
-export { projectStructure, appConfig, nuxtIgnore, nuxtRC }
+const errorLayout = () => {
+    createFile({
+        fileName: 'error.vue',
+        content: generateVueFileTemplate('page'),
+        fullPath: `${projectSrcDirectory()}/error.vue`,
+    })
+}
+
+export { projectStructure, appConfig, nuxtIgnore, nuxtRC, errorLayout }
