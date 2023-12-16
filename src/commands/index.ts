@@ -5,7 +5,7 @@ import { createLayout, directCreateLayout } from './Layout'
 import { createPlugin, directCreatePlugin } from './Plugin'
 import { createMiddleware, directCreateMiddleware } from './Middleware'
 import { createNitroAPI, directCreateNitroAPI, createNitroRoute, directCreateNitroRoute, createNitroPlugin, createNitroMiddleware, createNitroUtil } from './Nitro'
-import { projectStructure, appConfig, nuxtIgnore, nuxtRC } from './Structure'
+import { projectStructure, appConfig, nuxtIgnore, nuxtRC, errorLayout } from './Structure'
 import { openDocumentation, openModules } from './externalLinks'
 import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule, showCLICommands } from './Nuxi'
 import { createStore, directCreateStore } from './Store'
@@ -58,6 +58,7 @@ const commands = {
     appConfig,
     nuxtIgnore,
     nuxtRC,
+    errorLayout,
     installDependencies,
     upgradePackage,
     managePackageVersion,
