@@ -1,3 +1,32 @@
+## v0.2.12
+
+[compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/0.2.10...v0.2.12)
+
+### 🚀 Enhancements
+
+- Handle file creation extensions ([b06bff8](https://github.com/nuxtrdev/nuxtr-vscode/commit/b06bff8))
+- Custom project starters ([05abdbe](https://github.com/nuxtrdev/nuxtr-vscode/commit/05abdbe))
+- Auto add default layout when creating layouts dir ([cf156f2](https://github.com/nuxtrdev/nuxtr-vscode/commit/cf156f2))
+- Error.vue creation command ([701518e](https://github.com/nuxtrdev/nuxtr-vscode/commit/701518e))
+- Project creation command ([8ad697f](https://github.com/nuxtrdev/nuxtr-vscode/commit/8ad697f))
+
+### 🩹 Fixes
+
+- Rename vueBaseFile to vueBase ([19bbc65](https://github.com/nuxtrdev/nuxtr-vscode/commit/19bbc65))
+- **docs:** Project creation section. ([b41509a](https://github.com/nuxtrdev/nuxtr-vscode/commit/b41509a))
+- User template branch ([83f5878](https://github.com/nuxtrdev/nuxtr-vscode/commit/83f5878))
+
+### 🏡 Chore
+
+- **release:** V 0.2.10 ([4b16aa4](https://github.com/nuxtrdev/nuxtr-vscode/commit/4b16aa4))
+- Update dependencies ([66560ec](https://github.com/nuxtrdev/nuxtr-vscode/commit/66560ec))
+- Refactor implementation ([26c0769](https://github.com/nuxtrdev/nuxtr-vscode/commit/26c0769))
+- **release:** V 0.2.11 ([965407d](https://github.com/nuxtrdev/nuxtr-vscode/commit/965407d))
+
+### ❤️ Contributors
+
+- Adham Farrag <adham.farrag@hotmail.com>
+
 ## v0.2.7
 
 [compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/v0.2.6...v0.2.7)
