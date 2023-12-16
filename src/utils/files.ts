@@ -7,7 +7,7 @@ let piniaConfig = nuxtrConfiguration().piniaFiles.defaultTemplate
 let eolConfiguration = vscodeConfiguration().files.eol
 let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
-export function generateVueFileTemplate(type: string, template?: string) {
+export function generateVueFileTemplate(type: 'page' | 'layout', template?: string) {
     const userDefaultTemplate = template || (type === 'page'
         ? vueFilesConfig.pages.defaultTemplate
         : vueFilesConfig.layouts.defaultTemplate);

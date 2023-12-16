@@ -899,6 +899,12 @@
                 "when": "nuxtr.isNuxtProject"
             },
             {
+                "command": "nuxtr.errorLayout",
+                "title": "Create error.vue Layout",
+                "category": "Nuxtr",
+                "when": "nuxtr.isNuxtProject"
+            },
+            {
                 "command": "nuxtr.installDependencies",
                 "title": "Install Dependencies",
                 "category": "Nuxtr",

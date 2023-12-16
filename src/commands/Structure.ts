@@ -1,19 +1,10 @@
 import { window } from 'vscode'
 import { mkdirSync, existsSync } from 'node:fs'
-import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory } from '../utils'
+import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory, generateVueFileTemplate } from '../utils'
 import { appConfigContent } from '../templates'
-import { generateVueFileTemplate } from '../utils/files'
 
 function promptDirectorySelection() {
-    let directories = [
-        'components',
-        'pages',
-        'assets',
-        'plugins',
-        'layouts',
-        'middleware',
-        'modules',
-    ]
+    let directories = ['components', 'pages', 'assets', 'plugins', 'layouts', 'middleware', 'modules',]
 
     let nuxtTwoDirectories = ['static', 'store',]
 
@@ -23,6 +14,8 @@ function promptDirectorySelection() {
         ? (directories = [...directories, ...nuxtTwoDirectories])
         : (directories = [...directories, ...nuxtThreeDirectories])
 
+    directories.sort()
+
     window
         .showQuickPick(directories, {
             canPickMany: true,
@@ -31,16 +24,24 @@ function promptDirectorySelection() {
         .then((selectedDirs) => {
             if (selectedDirs !== undefined && selectedDirs.length > 0) {
                 selectedDirs.forEach((dir) => {
-                    let path = `${projectSrcDirectory()}/${dir}`
-                    if (!existsSync(path)) {
-                        mkdirSync(path)
+                    let dirPath = `${projectSrcDirectory()}/${dir}`
+                    if (!existsSync(dirPath)) {
+                        mkdirSync(dirPath)
                     }
 
                     if (dir === 'pages') {
                         createFile({
                             fileName: `index.vue`,
                             content: generateVueFileTemplate('page'),
-                            fullPath: `${path}/index.vue`,
+                            fullPath: `${dirPath}/index.vue`,
+                        })
+                    }
+
+                    if (dir === 'layouts') {
+                        createFile({
+                            fileName: `default.vue`,
+                            content: generateVueFileTemplate('layout'),
+                            fullPath: `${dirPath}/default.vue`,
                         })
                     }
                 })
@@ -76,4 +77,12 @@ const nuxtRC = () => {
     })
 }
 
-export { projectStructure, appConfig, nuxtIgnore, nuxtRC }
+const errorLayout = () => {
+    createFile({
+        fileName: 'error.vue',
+        content: generateVueFileTemplate('page'),
+        fullPath: `${projectSrcDirectory()}/error.vue`,
+    })
+}
+
+export { projectStructure, appConfig, nuxtIgnore, nuxtRC, errorLayout }
