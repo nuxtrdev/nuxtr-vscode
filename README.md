@@ -21,6 +21,7 @@
 
 ### What does Nuxtr do?
 
+- [Project Creation](#project-creation)
 - [Directory and File Creation](#directory-and-file-creation)
 - [Dependencies management](#dependencies-management)
 - [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
@@ -34,6 +35,23 @@
 - [Install \& Configure CSS frameworks and Linters](#install--configure-css-frameworks-and-linters)
 
 <br>
+<br>
+
+### Project Creation
+
+Using `Nuxtr: Create Nuxt project` command, you can create a new Nuxt project with a few steps. You can choose a project starter from [Nuxt Startes](https://nuxt.new) or you can add your own project started:
+
+```JSON
+"nuxtr.projectTemplates": [
+    {
+        "name": "Vitesse",
+        "description": " Vitesse for Nuxt 3 🏔💚⚡️ ",
+        "repoURL": "https://github.com/antfu/vitesse-nuxt3",
+        "branch": "main", // Optional
+    },
+],
+```
+
 <br>
 
 ### Directory and File Creation
@@ -87,7 +105,7 @@ Additionally, you can choose to automatically open the newly created file with:
 
 ### IntelliSense and Auto Completion
 
-Nuxtr VSCode offers robust IntelliSense capabilities tailored for Vue files. This includes dynamic path completion for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) within the pages directory, and seamless handling of media resources from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public), depending on your Nuxt version. Additionally, enjoy IntelliSense support for critical configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](https://nuxt.com/docs/guide/directory-structure/nuxtrc), ensuring precise guidance and efficient coding.
+Nuxtr offers robust IntelliSense capabilities tailored for Vue files. This includes dynamic path completion for [NuxtLinks](https://nuxt.com/docs/api/components/nuxt-link#internal-routing) within the pages directory, and seamless handling of media resources from the [public or static directories](https://nuxt.com/docs/guide/directory-structure/public), depending on your Nuxt version. Additionally, enjoy IntelliSense support for critical configuration files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore) and [`.nuxtrc`](https://nuxt.com/docs/guide/directory-structure/nuxtrc), ensuring precise guidance and efficient coding.
 
 You can enable/disable IntelliSense from the settings:
 
@@ -242,7 +260,7 @@ If you have any idea, feel free to [open a discussion](https://github.com/orgs/n
 
 ### Acknowledgements
 
-Nuxtr VSCode relies on the following projects/repositories:
+Nuxtr relies on the following projects/repositories:
 
 - [Nuxt Modules](https://github.com/nuxt/modules)
 - [Nuxt Assets](https://github.com/nuxt/assets)

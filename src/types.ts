@@ -58,6 +58,8 @@ export interface NuxtrConfiguration {
     piniaFiles: {
         defaultTemplate: "options" | "setup";
     }
+
+    projectTemplates: UserProjectTemplate[];
 }
 
 export interface TSConfigNuxt extends TSConfig {
@@ -80,3 +82,19 @@ export type nuxtModule = {
     };
     tags: string[];
 };
+
+export type NuxtOfficialTemplate = {
+    name: string;
+    repo: string;
+    branch: string;
+    docs: string;
+    description: string;
+};
+
+
+export type UserProjectTemplate = {
+    name: string;
+    description: string;
+    repoURL: string;
+    branch?: string;
+}

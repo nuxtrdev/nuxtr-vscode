@@ -18,6 +18,7 @@ import { configurePug } from './Templates'
 import { createPageTemplate, createLayoutTemplate, createFileFromTemplate, createEmptyFileTemplate } from './FileTemplates'
 import { nuxtConfigWatcher, directToggleDevTools } from './Devtools'
 import { createUtil, directCreateUtil } from './Util'
+import { createProject } from './Project'
 
 
 const commands = {
@@ -42,6 +43,7 @@ const commands = {
     createUtil,
     createNitroUtil,
     directCreateUtil,
+    createProject,
     projectStructure,
     openDocumentation,
     openModules,
