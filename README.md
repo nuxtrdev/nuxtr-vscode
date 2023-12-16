@@ -21,6 +21,7 @@
 
 ### What does Nuxtr do?
 
+- [Project Creation](#project-creation)
 - [Directory and File Creation](#directory-and-file-creation)
 - [Dependencies management](#dependencies-management)
 - [IntelliSense and Auto Completion](#intellisense-and-auto-completion)
