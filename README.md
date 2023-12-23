@@ -63,7 +63,7 @@ To initiate any creation action, simply prepend it with the prefix **`Nuxtr: Cre
 Customize Vue file templates with these settings:
 
 ```JSON
-"vueFiles.template.defaultLanguage": "html",
+"nuxtr.vueFiles.template.defaultLanguage": "html",
 "nuxtr.vueFiles.firstTag": "template",
 "nuxtr.vueFiles.script.type": "setup",
 "nuxtr.vueFiles.script.defaultLanguage": "ts",
