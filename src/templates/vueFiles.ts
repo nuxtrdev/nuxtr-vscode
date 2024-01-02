@@ -6,7 +6,7 @@ const templateTag = (type: string, language: string) => {
   </div>
 </template>`
     } else {
-        return `<template>
+        return `<template lang="pug">
   div
     ${type === 'layout' ? 'slot' : ''}
 </template>`
