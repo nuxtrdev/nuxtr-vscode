@@ -6,7 +6,7 @@ import { TextEncoder } from 'util';
 
 import { getCommandType } from './commands';
 
-import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeConfiguration, normalizeLFToCRLF } from '.';
+import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeConfiguration } from '.';
 
 let eolConfiguration = vscodeConfiguration().files.eol
 let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
@@ -131,9 +131,7 @@ export const createFile = async (args: { fileName: string; content: string; full
         return;
     }
 
-    let fileContent = eolConfiguration !== '\n' ? normalizeLFToCRLF(args.content) : args.content
-
-    await workspace.fs.writeFile(parentDirectory, new TextEncoder().encode(fileContent));
+    await workspace.fs.writeFile(parentDirectory, new TextEncoder().encode(args.content));
 
     // Open the file
     if (nuxtrConfiguration().openItemsAfterCreation) {

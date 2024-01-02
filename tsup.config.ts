@@ -27,7 +27,8 @@ export default defineConfig({
         "pkg-types",
         "string-ts",
         "util",
-        "giget"
+        "giget",
+        "semver"
     ]
 
 })
