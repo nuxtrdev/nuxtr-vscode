@@ -3,6 +3,7 @@ import { readFileSync, writeFileSync } from "fs";
 import { trimEnd } from "string-ts";
 import { join } from "pathe";
 import { parseModule } from "magicast";
+import semver from 'semver'
 import {
     findNuxtConfig,
     projectRootDirectory,
@@ -32,9 +33,9 @@ const updateNuxtFile = async () => {
 async function readConfigFile() {
     await updateNuxtFile();
     let config =
-    mod.exports.default.$type === "function-call"
-        ? mod.exports.default.$args[0]
-        : mod.exports.default;
+        mod.exports.default.$type === "function-call"
+            ? mod.exports.default.$args[0]
+            : mod.exports.default;
 
     return config;
 }
@@ -47,7 +48,7 @@ async function directToggleDevTools() {
         if (!config.devtools && !config.$development?.devtools) {
             config.devtools = { enabled: false };
             window.showInformationMessage(
-                `Nuxt Devtools ${config.devtools.enabled ?  "disabled": "enabled" }.`
+                `Nuxt Devtools ${config.devtools.enabled ? "disabled" : "enabled"}.`
             );
         }
 
@@ -57,7 +58,7 @@ async function directToggleDevTools() {
             config.devtools.enabled = !isEnabled;
 
             window.showInformationMessage(
-                `Nuxt Devtools ${isEnabled ? "disabled": "enabled"}.`
+                `Nuxt Devtools ${isEnabled ? "disabled" : "enabled"}.`
             );
         } else if (config.$development?.devtools) {
             isEnabled = config.$development.devtools.enabled;
@@ -83,9 +84,9 @@ async function isDevtoolsInstalled(): Promise<boolean> {
 
     return (
         (packageJson.dependencies &&
-      packageJson.dependencies["@nuxt/devtools"] !== undefined) ||
-    (packageJson.devDependencies &&
-      packageJson.devDependencies["@nuxt/devtools"] !== undefined)
+            packageJson.dependencies["@nuxt/devtools"] !== undefined) ||
+        (packageJson.devDependencies &&
+            packageJson.devDependencies["@nuxt/devtools"] !== undefined)
     );
 }
 
@@ -117,7 +118,7 @@ async function nuxtConfigWatcher() {
     if (config.$development) {
         if (
             config.$development.devtools &&
-      typeof config.$development.devtools === "object"
+            typeof config.$development.devtools === "object"
         ) {
             devtoolsEnabled = config.$development.devtools.enabled;
         }
@@ -149,7 +150,9 @@ async function nuxtDevToolsHandler() {
 
     let nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
-        isDevtoolsNative = nuxtVersion.startsWith('3.8') ? true : false;
+        console.log('nuxtVersion semver', semver.gte(nuxtVersion, '3.8.0'));
+        isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
+
     }
 
     if (!isInstalled && !isDevtoolsNative) {
