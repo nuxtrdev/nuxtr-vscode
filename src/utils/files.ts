@@ -42,15 +42,16 @@ export function generateVueFileBasicTemplate(type: string) {
         fileTemplate = templateTag(type, templateLang);
         fileTemplate += eol;
         fileTemplate += scriptTag;
-        fileTemplate += eol;
     } else {
         fileTemplate = scriptTag;
         fileTemplate += eol;
         fileTemplate += templateTag(type, templateLang);
-        fileTemplate += eol;
     }
 
-    if (addStyleTag) { fileTemplate += generateStyleTag(styleLang, isScoped); }
+    if (addStyleTag) {
+        fileTemplate += eol;
+        fileTemplate += generateStyleTag(styleLang, isScoped);
+    }
 
     // eolConfiguration !== '\n' ? normalizeLFToCRLF(fileTemplate) :
     return fileTemplate
