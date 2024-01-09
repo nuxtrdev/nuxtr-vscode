@@ -254,7 +254,7 @@ More coming soon.
 ### Contributing
 
 We always welcome new ideas! 💚 <br>
-If you have any idea, feel free to [open a discussion](https://github.com/orgs/nuxtrdev/discussions/new?category=ideas) first and let's talk about it!
+If you have any idea, feel free to [open a discussion](https://github.com/nuxtrdev/nuxtr-vscode/discussions/new/choose) first and let's talk about it!
 
 <br>
 
