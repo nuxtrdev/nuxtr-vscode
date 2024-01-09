@@ -1,7 +1,7 @@
 import { hasServerDir } from "../utils";
 const serverDir = hasServerDir();
 
-const getCommandType = (commandType: string) => {
+export const getCommandType = (commandType: string) => {
     let type = {
         name: '',
         path: '',
@@ -112,6 +112,3 @@ const getCommandType = (commandType: string) => {
     return { type };
 
 };
-
-
-export { getCommandType };

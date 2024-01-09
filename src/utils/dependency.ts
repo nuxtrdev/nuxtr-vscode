@@ -1,5 +1,5 @@
 import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, ExtensionContext, ProgressLocation, } from 'vscode'
-import { existsSync, readFileSync, readdirSync} from 'fs'
+import { existsSync, readFileSync, readdirSync } from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"
 import { readPackageJSON } from 'pkg-types'
@@ -17,7 +17,7 @@ const items: QuickPickItem[] = pm.map((item) => {
 
 interface Dependency { name: string; version: string; }
 
-export const getProjectDependencies = async ():  Promise<Dependency[]>  => {
+export const getProjectDependencies = async (): Promise<Dependency[]> => {
     const dependencies: Dependency[] = [];
 
     let packageJsonPath = `${projectRootDirectory()}/package.json`
@@ -95,7 +95,7 @@ export const getProjectScripts = () => {
     }
 }
 
-export const areDependenciesInstalled = () => {
+const areDependenciesInstalled = () => {
     let packageJsonPath = `${projectRootDirectory()}/package.json`
     let nodeModulesPath = `${projectRootDirectory()}/node_modules`
     if (!existsSync(packageJsonPath)) {

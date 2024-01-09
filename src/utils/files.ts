@@ -20,7 +20,7 @@ export function generateVueFileTemplate(type: 'page' | 'layout', template?: stri
     }
 }
 
-export function normalizeLFToCRLF(text: string) {
+function normalizeLFToCRLF(text: string) {
     return text.replace(/\n/g, '\r\n');
 }
 

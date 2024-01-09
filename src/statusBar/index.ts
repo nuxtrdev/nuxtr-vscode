@@ -6,12 +6,12 @@ export const statusBars: NuxtrStatusBars = {
     devToolsStatusBar: window.createStatusBarItem(StatusBarAlignment.Right, 100),
     updatesStatusBar: window.createStatusBarItem(StatusBarAlignment.Right, 200),
 };
-export interface NuxtrStatusBars {
+interface NuxtrStatusBars {
     devToolsStatusBar: StatusBarItem;
     updatesStatusBar: StatusBarItem;
 }
 
-export interface DevtoolsStatusBar {
+interface DevtoolsStatusBar {
     command: string;
     tooltip: string;
     text: string;

@@ -11,7 +11,7 @@ import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeCo
 let eolConfiguration = vscodeConfiguration().files.eol
 let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
-export const createDirectoryAndFile = (componentName: any, commandType: string, content: string) => {
+const createDirectoryAndFile = (componentName: any, commandType: string, content: string) => {
 
     const { type } = getCommandType(commandType);
 

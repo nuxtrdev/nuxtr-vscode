@@ -16,20 +16,14 @@ import {
     removeNuxtModule,
     getNuxtVersion,
     isNuxtTwo,
-    hasSrcDir,
-    fetchNuxtAlias,
     hasServerDir,
-    updateNuxtConfig,
     findNuxtConfig,
     isNuxtProject,
-    scanNuxtDirectories,
-    isNuxiInstalled
 } from './nuxt'
 
 import {
     getProjectDependencies,
     getProjectScripts,
-    areDependenciesInstalled,
     detectPackageManagerByName,
     getInstallationCommand,
     getOutdatedPackages,
@@ -37,15 +31,13 @@ import {
     updateDependencies
 } from './dependency'
 
-import { createDirectoryAndFile, createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate, normalizeName, normalizeFileExtension } from './file'
-
-import { getCommandType } from './commands'
+import { createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate, normalizeName, normalizeFileExtension } from './file'
 
 import { logger } from './outputChannel'
 
-import { languageSelector, patternSelector, pathExists, isDirectory, readDirectory, openFolder, quickOpenButtons } from './vscode';
+import { languageSelector, patternSelector, isDirectory, openFolder, quickOpenButtons } from './vscode';
 
-import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates, normalizeLFToCRLF } from './files'
+import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTemplates } from './files'
 
 import { removePackage, managePackageVersion } from './dependency'
 
@@ -58,11 +50,7 @@ export {
     tryImport,
     getNuxtVersion,
     isNuxtTwo,
-    hasSrcDir,
     hasServerDir,
-    fetchNuxtAlias,
-    updateNuxtConfig,
-    createDirectoryAndFile,
     projectSrcDirectory,
     projectRootDirectory,
     createSubFolders,
@@ -71,7 +59,6 @@ export {
     vscodeConfiguration,
     createFile,
     createVueTemplate,
-    areDependenciesInstalled,
     detectPackageManagerByName,
     getInstallationCommand,
     getOutdatedPackages,
@@ -79,7 +66,6 @@ export {
     generateVueFileBasicTemplate,
     generateVueFileTemplate,
     generatePiniaTemplates,
-    normalizeLFToCRLF,
     updateDependencies,
     newTerminal,
     getNonce,
@@ -91,17 +77,12 @@ export {
     createDir,
     findNuxtConfig,
     isNuxtProject,
-    getCommandType,
-    scanNuxtDirectories,
     languageSelector,
     patternSelector,
-    pathExists,
     isDirectory,
-    readDirectory,
     removePackage,
     managePackageVersion,
     createConfigWatcher,
-    isNuxiInstalled,
     normalizeName,
     normalizeFileExtension,
     openFolder,

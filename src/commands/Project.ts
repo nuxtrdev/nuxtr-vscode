@@ -4,8 +4,8 @@ import { ofetch } from 'ofetch';
 import { NuxtOfficialTemplate, UserProjectTemplate } from '../types';
 import { openExternalLink, openFolder, quickOpenButtons, nuxtrConfiguration } from '../utils';
 
-export const parseRepoURL = (repoURL: string) => {
-    const matchResult = repoURL.match(/\/\/([^\/]+)\/([^\/]+)\/(.+)$/);
+const parseRepoURL = (repoURL: string) => {
+    const matchResult = repoURL.match(/\/\/([^/]+)\/([^/]+)\/(.+)$/);
 
     if (matchResult) {
         const [, fullProvider, owner, fullRepo] = matchResult;
