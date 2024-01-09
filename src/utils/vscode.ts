@@ -4,7 +4,7 @@ export const languageSelector = (language: string): DocumentSelector => ({ schem
 
 export const patternSelector = (pattern: string): DocumentSelector => ({ scheme: 'file', pattern, } as const);
 
-export async function pathExists(localPath: string): Promise<boolean> {
+async function pathExists(localPath: string): Promise<boolean> {
     try {
         await workspace.fs.stat(Uri.file(localPath));
         return true;
@@ -22,7 +22,7 @@ export async function isDirectory(filePath: string): Promise<boolean> {
     }
 }
 
-export async function readDirectory(filePath: string) {
+async function readDirectory(filePath: string) {
     try {
         return await workspace.fs.readDirectory(Uri.file(filePath));
     } catch (e) {

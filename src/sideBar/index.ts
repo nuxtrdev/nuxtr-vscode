@@ -234,7 +234,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                 cancellable: false,
             },
             async () => {
-                return new Promise(async (resolve, reject) => {
+                return new Promise((resolve, reject) => {
                     const child = exec(
                         command,
                         { cwd: projectRootDirectory() },

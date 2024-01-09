@@ -150,9 +150,7 @@ async function nuxtDevToolsHandler() {
 
     let nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
-        console.log('nuxtVersion semver', semver.gte(nuxtVersion, '3.8.0'));
         isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
-
     }
 
     if (!isInstalled && !isDevtoolsNative) {
@@ -191,8 +189,6 @@ async function nuxtDevToolsHandler() {
 }
 
 export {
-    readConfigFile,
-    installDevtools,
     directToggleDevTools,
     nuxtConfigWatcher,
     nuxtDevToolsHandler,

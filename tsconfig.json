@@ -20,5 +20,6 @@
         "ui",
         "taze.config.ts",
         "tsup.config.ts",
+        "knip.ts"
     ],
 }

@@ -1,7 +1,5 @@
 import { window } from 'vscode'
-import {
-    projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir,
-    normalizeFileExtension} from '../utils'
+import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir, normalizeFileExtension} from '../utils'
 import { nuxtMiddlewareTemplate, nitroDefaultTemplate } from '../templates'
 
 const createMiddleware = () => {

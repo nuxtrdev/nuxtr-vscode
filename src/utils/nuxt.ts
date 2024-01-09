@@ -18,7 +18,7 @@ export const findNuxtConfig = (): string | undefined => {
     }
 };
 
-export const isLayer = async (module: any) => {
+const isLayer = async (module: any) => {
     let modulePath = `${projectRootDirectory()}/node_modules/${module.npm}`;
 
     if (existsSync(modulePath)) {
@@ -143,7 +143,7 @@ export const hasSrcDir = (): string => {
 };
 
 
-export const fetchNuxtAlias = async () => {
+const fetchNuxtAlias = async () => {
     const path = `${projectRootDirectory()}/.nuxt/tsconfig.json`;
 
     if (!existsSync(path)) {
@@ -185,7 +185,7 @@ export const isNuxtTwo = (): boolean | undefined => {
     }
 };
 
-export const updateNuxtConfig = (update: (config: any) => void) => {
+const updateNuxtConfig = (update: (config: any) => void) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
         const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
@@ -208,7 +208,7 @@ export const updateNuxtConfig = (update: (config: any) => void) => {
 };
 
 
-export const scanNuxtDirectories = async () => {
+const scanNuxtDirectories = async () => {
     let projectSrcDir = `${projectSrcDirectory()}`;
     let nuxtDirectories = ['layouts', 'pages', 'components', 'composables', 'middleware'];
     let existingDirectories: string[] = [];
@@ -230,7 +230,7 @@ export const scanNuxtDirectories = async () => {
     return existingDirectories;
 }
 
-export async function scanFilesAndSubdirectories(directoryPath: string): Promise<string[]> {
+async function scanFilesAndSubdirectories(directoryPath: string): Promise<string[]> {
     return new Promise((resolve, reject) => {
         readdir(directoryPath, { withFileTypes: true }, (err, files) => {
             if (err) {
@@ -260,7 +260,7 @@ export async function scanFilesAndSubdirectories(directoryPath: string): Promise
     });
 }
 
-export function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
+function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
     const parsedTsconfigPaths: TsconfigPaths = {};
 
     for (const key in tsconfigPaths) {
@@ -286,7 +286,7 @@ export function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
     return parsedTsconfigPaths;
 }
 
-export function isNuxiInstalled(): Promise<boolean> {
+function isNuxiInstalled(): Promise<boolean> {
     return new Promise((resolve) => {
         exec('nuxi --version', (error, stdout) => {
             if (error) {

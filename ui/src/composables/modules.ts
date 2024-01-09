@@ -1,6 +1,5 @@
 import content from "./modules.json";
 const layers = ["seo-kit", "umami"];
-import { ofetch } from "ofetch";
 
 export interface Module {
     name: string;

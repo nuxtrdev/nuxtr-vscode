@@ -1,10 +1,10 @@
-import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind, Position, TextDocument, Range, DocumentHighlight, DocumentHighlightKind } from 'vscode';
+import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind, Position, TextDocument, } from 'vscode';
 import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
-import { nuxtrConfiguration, languageSelector, generateVueFileBasicTemplate } from '../utils';
+import { nuxtrConfiguration, generateVueFileBasicTemplate } from '../utils';
 
-export enum SnippetSource {
+enum SnippetSource {
     nuxt = 'Nuxt',
     nitro = 'Nitro',
 }
@@ -50,7 +50,7 @@ export const toggleSnippets = async () => {
 }
 
 
-export const vuePageTemplate = languages.registerCompletionItemProvider(
+const vuePageTemplate = languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
         provideCompletionItems(document: TextDocument, position: Position) {
@@ -74,7 +74,7 @@ export const vuePageTemplate = languages.registerCompletionItemProvider(
 );
 
 
-export const vueBaseTemplate = languages.registerCompletionItemProvider(
+const vueBaseTemplate = languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
         provideCompletionItems(document: TextDocument, position: Position) {

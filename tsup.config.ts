@@ -13,9 +13,7 @@ export default defineConfig({
     minify: 'terser',
     platform: 'node',
     sourcemap: false,
-    external: [
-        'vscode',
-    ],
+    external: ['vscode'],
     noExternal: [
         "@nuxt/schema",
         "destr",
@@ -26,7 +24,6 @@ export default defineConfig({
         "pathe",
         "pkg-types",
         "string-ts",
-        "util",
         "giget",
         "semver"
     ]
