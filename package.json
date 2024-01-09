@@ -301,6 +301,10 @@
                     "when": "nuxtr.isNuxtProject"
                 },
                 {
+                  "command": "nuxtr.errorLayout",
+                  "when": "nuxtr.isNuxtProject"
+                },
+                {
                     "command": "nuxtr.managePackageVersion",
                     "when": "false"
                 },
