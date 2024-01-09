@@ -37,6 +37,7 @@ export const defineWrappedResponseHandler = <T extends EventHandlerRequest, D> (
 ): EventHandler<T, D> =>
     defineEventHandler<T>(async (event) => {
       try {
+        const response = await handler(event)
         return { response }
       } catch (err) {
       // Error handling
