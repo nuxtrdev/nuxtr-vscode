@@ -8,7 +8,7 @@ export default defineConfig({
     dts: false,
     splitting: true,
     clean: true,
-    minify: false,
+    minify: 'terser',
     platform: 'node',
     sourcemap: false,
     external: ['vscode'],
