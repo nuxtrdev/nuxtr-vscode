@@ -3,20 +3,20 @@ import { createSubFolders, showSubFolderQuickPick, createFile, projectSrcDirecto
 
 import { generateVueFileTemplate } from '../utils/files'
 
-const createPage = () => {
+const createPage = async () => {
     window
         .showInputBox({
             prompt: 'What is your page name?',
             placeHolder: 'page name',
         })
-        .then((name) => {
+        .then(async(name) => {
             if (!name) {return}
 
-            let pagesDir = `${projectSrcDirectory()}/pages`
+            let pagesDir = `${await projectSrcDirectory()}/pages`
 
-            createDir('pages')
+            await createDir('pages')
 
-            let subFolders = createSubFolders(pagesDir, 'pages')
+            let subFolders = await createSubFolders(pagesDir, 'pages')
 
             showSubFolderQuickPick({
                 name,

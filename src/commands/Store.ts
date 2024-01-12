@@ -8,18 +8,18 @@ const createStore = () => {
             prompt: 'What is your store name?',
             placeHolder: 'store name',
         })
-        .then((name: any) => {
+        .then(async (name: any) => {
             if (!name) { return }
 
-            const filePath = `${projectSrcDirectory()}/${isNuxtTwo() ? 'store' : 'stores'}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
+            const filePath = `${await projectSrcDirectory()}/${isNuxtTwo() ? 'store' : 'stores'}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
             if (isNuxtTwo()) {
-                createFile({
+                await  createFile({
                     fileName: name,
                     content: vuexContent,
                     fullPath: filePath,
                 })
             } else {
-                createFile({
+                await createFile({
                     fileName: name,
                     content: generatePiniaTemplates(name),
                     fullPath: filePath,
@@ -34,19 +34,19 @@ const directCreateStore = (path: string) => {
             prompt: 'What is your store name?',
             placeHolder: 'store name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (!name) { return }
 
             let filePath = `${path}/${normalizeFileExtension(name, isNuxtTwo() ? '.js' : '.ts' )}.${isNuxtTwo() ? 'js' : 'ts'}`
 
             if (isNuxtTwo()) {
-                createFile({
+                await createFile({
                     fileName: name,
                     content: vuexContent,
                     fullPath: filePath,
                 })
             } else {
-                createFile({
+                await createFile({
                     fileName: name,
                     content: generatePiniaTemplates(name),
                     fullPath: filePath,

@@ -63,11 +63,7 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
     } else {
 
         const { provider, owner, repo } = parsedURL;
-
         let normalizedURL = `${owner}/${repo}${template.branch !== undefined ? `#${template.branch}` : ''}`;
-
-        console.log('template', template);
-        console.log('normalizedURL', normalizedURL);
 
         try {
             await downloadTemplate(normalizedURL, {
@@ -77,7 +73,6 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
                 provider: provider,
             })
         } catch (error) {
-            console.log('error', error);
             window.showErrorMessage(`Failed to fetch ${template.name} template`);
         }
     }

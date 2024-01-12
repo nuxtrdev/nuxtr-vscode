@@ -7,7 +7,7 @@ import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
 
-const commandList = [
+const extensionCommands = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
     { command: 'nuxtr.createComponent', function: nuxtrCommands.createComponent },
     { command: 'nuxtr.createComposable', function: nuxtrCommands.createComposable },
@@ -21,7 +21,6 @@ const commandList = [
     { command: 'nuxtr.createNitroRoute', function: nuxtrCommands.createNitroRoute },
     { command: 'nuxtr.createStore', function: nuxtrCommands.createStore },
     { command: 'nuxtr.createUtil', function: nuxtrCommands.createUtil },
-    { command: 'nuxtr.createProject', function: async () => await nuxtrCommands.createProject() },
     { command: 'nuxtr.projectStructure', function: nuxtrCommands.projectStructure },
     { command: 'nuxtr.openDocumentation', function: nuxtrCommands.openDocumentation },
     { command: 'nuxtr.openModules', function: nuxtrCommands.openModules },
@@ -61,6 +60,11 @@ const commandList = [
     { command: 'nuxtr.directCreateUtil', function: (filePath: Uri) => nuxtrCommands.directCreateUtil(filePath.path) },
 ];
 
+export const publicCommands = [
+    { command: 'nuxtr.createProject', function: async () => await nuxtrCommands.createProject() },
+];
+
+
 // categorize commands and functions
 export async function activateExtension(context: ExtensionContext) {
     // initial output channel logger
@@ -92,7 +96,11 @@ export async function activateExtension(context: ExtensionContext) {
     // activate codelens
     codelens.activateCodelenses(context)
 
-    commandList.forEach(({ command, function: commandFunction }) => {
+    extensionCommands.forEach(({ command, function: commandFunction }) => {
+        context.subscriptions.push(commands.registerCommand(command, commandFunction));
+    });
+
+    publicCommands.forEach(({ command, function: commandFunction }) => {
         context.subscriptions.push(commands.registerCommand(command, commandFunction));
     });
 

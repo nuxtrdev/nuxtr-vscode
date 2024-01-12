@@ -8,15 +8,15 @@ const createComposable = () => {
             prompt: 'What is your composable name?',
             placeHolder: 'composable name',
         })
-        .then((name) => {
+        .then(async(name) => {
 
             if (!name) { return }
 
-            let composablesDir = `${projectSrcDirectory()}/composables`
+            let composablesDir = `${await projectSrcDirectory()}/composables`
 
             createDir('composables')
 
-            let subFolders = createSubFolders(composablesDir, 'composables')
+            let subFolders = await createSubFolders(composablesDir, 'composables')
 
             showSubFolderQuickPick({
                 name,

@@ -35,9 +35,9 @@ export const projectRootDirectory = (): string => {
 };
 
 
-export const projectSrcDirectory = (): string => {
+export const projectSrcDirectory = async (): Promise<string> => {
     const projectRootDir = projectRootDirectory();
-    const srcDir = hasSrcDir();
+    const srcDir = await hasSrcDir();
     return srcDir === '/' ? projectRootDir : projectRootDir + srcDir;
 };
 

@@ -8,14 +8,14 @@ const createUtil = () => {
             prompt: 'What is your utility name?',
             placeHolder: 'utility name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (!name) { return }
 
-            let utilsDir = `${projectSrcDirectory()}/utils`
+            let utilsDir = `${await projectSrcDirectory()}/utils`
 
-            createDir('utils')
+            await createDir('utils')
 
-            let subFolders = createSubFolders(utilsDir, 'nuxtUtil')
+            let subFolders = await createSubFolders(utilsDir, 'nuxtUtil')
 
             showSubFolderQuickPick({
                 name,
@@ -28,8 +28,8 @@ const createUtil = () => {
 }
 
 
-const directCreateUtil = (path: string) => {
-    const serverDir = hasServerDir()
+const directCreateUtil = async (path: string) => {
+    const serverDir = await hasServerDir()
 
     window
         .showInputBox({

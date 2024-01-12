@@ -1,12 +1,17 @@
 import { ExtensionContext, commands } from 'vscode';
-import nuxtrCommands from './commands'
-import { activateExtension } from './extension'
-
-const creationCommand = { command: 'nuxtr.createProject', function: async () => await nuxtrCommands.createProject() }
+import { activateExtension, publicCommands } from './extension'
+import { isNuxtProject } from './utils';
 
 export async function activate(context: ExtensionContext) {
-    const nuxtProject = true
+    const isNuxt = await isNuxtProject();
 
-    commands.executeCommand('setContext', 'nuxtr.isNuxtProject', nuxtProject)
-    activateExtension(context)
+    commands.executeCommand('setContext', 'nuxtr.isNuxtProject', isNuxt);
+
+    if (isNuxt) {
+        await activateExtension(context);
+    } else {
+        publicCommands.forEach(({ command, function: commandFunction }) => {
+            context.subscriptions.push(commands.registerCommand(command, commandFunction));
+        });
+    }
 }

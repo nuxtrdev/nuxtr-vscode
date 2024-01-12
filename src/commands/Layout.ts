@@ -11,14 +11,14 @@ const createLayout = () => {
             prompt: 'What is your layout name?',
             placeHolder: 'Layout name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (!name) { return }
 
-            let layoutDir = `${projectSrcDirectory()}/layouts`
+            let layoutDir = `${await projectSrcDirectory()}/layouts`
 
             createDir('layouts')
 
-            let filePath = `${projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
+            let filePath = `${await projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,
