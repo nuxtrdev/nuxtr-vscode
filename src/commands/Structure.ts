@@ -10,9 +10,7 @@ function promptDirectorySelection() {
 
     let nuxtThreeDirectories = ['public', 'composables', 'server', 'utils', 'stores']
 
-    isNuxtTwo()
-        ? (directories = [...directories, ...nuxtTwoDirectories])
-        : (directories = [...directories, ...nuxtThreeDirectories])
+    isNuxtTwo() ? (directories = [...directories, ...nuxtTwoDirectories]) : (directories = [...directories, ...nuxtThreeDirectories])
 
     directories.sort()
 
@@ -23,14 +21,14 @@ function promptDirectorySelection() {
         })
         .then((selectedDirs) => {
             if (selectedDirs !== undefined && selectedDirs.length > 0) {
-                selectedDirs.forEach((dir) => {
-                    let dirPath = `${projectSrcDirectory()}/${dir}`
+                selectedDirs.forEach(async (dir) => {
+                    let dirPath = `${await projectSrcDirectory()}/${dir}`
                     if (!existsSync(dirPath)) {
                         mkdirSync(dirPath)
                     }
 
                     if (dir === 'pages') {
-                        createFile({
+                        await createFile({
                             fileName: `index.vue`,
                             content: generateVueFileTemplate('page'),
                             fullPath: `${dirPath}/index.vue`,
@@ -38,7 +36,7 @@ function promptDirectorySelection() {
                     }
 
                     if (dir === 'layouts') {
-                        createFile({
+                        await createFile({
                             fileName: `default.vue`,
                             content: generateVueFileTemplate('layout'),
                             fullPath: `${dirPath}/default.vue`,
@@ -77,11 +75,13 @@ const nuxtRC = () => {
     })
 }
 
-const errorLayout = () => {
-    createFile({
+const errorLayout = async () => {
+    const filePath = `${await projectSrcDirectory()}/error.vue`
+
+    await createFile({
         fileName: 'error.vue',
         content: generateVueFileTemplate('page'),
-        fullPath: `${projectSrcDirectory()}/error.vue`,
+        fullPath: filePath,
     })
 }
 

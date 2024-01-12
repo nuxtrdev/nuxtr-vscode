@@ -1,13 +1,12 @@
-import { window } from 'vscode';
+import { window, workspace, Uri } from 'vscode';
 import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
 import { join } from 'pathe';
 import { parseModule } from 'magicast';
 import { readTSConfig } from 'pkg-types'
 import { trimEnd } from 'string-ts';
-import { exec } from 'child_process'
 import { projectRootDirectory, projectSrcDirectory } from '.';
-type TsconfigPaths = Record<string, string[]>;
-
+import { pathExistsSync } from 'fs-extra';
+import { TsconfigPaths } from '../types';
 
 export const findNuxtConfig = (): string | undefined => {
     const names = ['nuxt.config.ts', 'nuxt.config.js'];
@@ -23,8 +22,9 @@ const isLayer = async (module: any) => {
 
     if (existsSync(modulePath)) {
         let nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
+        const result = await workspace.fs.stat(Uri.file(nuxtConfigPath))
 
-        if (existsSync(nuxtConfigPath)) {
+        if (result !== undefined) {
             return true;
         } else {
             return false;
@@ -109,7 +109,15 @@ export const removeNuxtModule = async (module: any) => {
 };
 
 export const isNuxtProject = async () => {
-    return (await findNuxtConfig()) ? true : false;
+    const names = ['nuxt.config.ts', 'nuxt.config.js'];
+
+    for (const name of names) {
+        const path = `${projectRootDirectory()}/${name}`;
+        const result = pathExistsSync(path);
+        if (result) { return true } else { continue }
+    }
+
+    return false;
 };
 
 export const getNuxtVersion = (): string | undefined => {
@@ -129,7 +137,11 @@ export const getNuxtVersion = (): string | undefined => {
     }
 };
 
-export const hasSrcDir = (): string => {
+export const hasSrcDir = async (): Promise<string> => {
+    const isNuxt = await isNuxtProject();
+    if (!isNuxt) {
+        return '/'
+    }
     const nuxtConfigPath = findNuxtConfig();
     const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
 
@@ -165,7 +177,11 @@ const fetchNuxtAlias = async () => {
 };
 
 
-export const hasServerDir = (): string => {
+export const hasServerDir = async (): Promise<string> => {
+    const isNuxt = await isNuxtProject();
+    if (!isNuxt) {
+        return 'server'
+    }
     const nuxtConfigPath = findNuxtConfig();
     const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
 
@@ -284,18 +300,4 @@ function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
     }
 
     return parsedTsconfigPaths;
-}
-
-function isNuxiInstalled(): Promise<boolean> {
-    return new Promise((resolve) => {
-        exec('nuxi --version', (error, stdout) => {
-            if (error) {
-                console.error(`Error: ${error}`);
-                resolve(false);
-            } else {
-                const versionPattern = /^\s*\d+\.\d+\.\d+\s*$/;
-                resolve(versionPattern.test(stdout.toString()));
-            }
-        });
-    });
 }

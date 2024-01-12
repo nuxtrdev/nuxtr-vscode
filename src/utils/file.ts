@@ -11,9 +11,9 @@ import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeCo
 let eolConfiguration = vscodeConfiguration().files.eol
 let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
-const createDirectoryAndFile = (componentName: any, commandType: string, content: string) => {
+const createDirectoryAndFile = async (componentName: any, commandType: string, content: string) => {
 
-    const { type } = getCommandType(commandType);
+    const { type } = await getCommandType(commandType);
 
     window
         .showInputBox({
@@ -48,15 +48,16 @@ const createDirectoryAndFile = (componentName: any, commandType: string, content
         });
 };
 
-export const createDir = (dir: string) => {
-    if (`${projectSrcDirectory()}` !== `${projectRootDirectory()}`) {
-        if (!existsSync(`${projectSrcDirectory()}`)) {
-            mkdirSync(`${projectSrcDirectory()}`);
+export const createDir = async (dir: string) => {
+    if (`${await projectSrcDirectory()}` !== `${projectRootDirectory()}`) {
+        if (!existsSync(`${await projectSrcDirectory()}`)) {
+            mkdirSync(`${await projectSrcDirectory()}`);
         }
     }
 
     let dirParts = dir.split('/');
-    let currentPath = `${projectSrcDirectory()}`
+    let currentPath = `${await projectSrcDirectory()}`
+
 
     for (let part of dirParts) {
         currentPath = `${currentPath}/${part}`;
@@ -67,13 +68,14 @@ export const createDir = (dir: string) => {
     }
 };
 
-export const createSubFolders = (dir: string, commandType: string) => {
+export const createSubFolders = async (dir: string, commandType: string) => {
     let subFolders =
         readdirSync(dir, { withFileTypes: true })
             .filter((dirent) => dirent.isDirectory())
             .map((dirent) => dirent.name);
 
-    const { type } = getCommandType(commandType);
+    const { type } = await getCommandType(commandType);
+
 
     subFolders.unshift('Create new folder...');
     subFolders.push(`Main ${type.name.toLocaleLowerCase()} folder`);
@@ -81,30 +83,30 @@ export const createSubFolders = (dir: string, commandType: string) => {
     return subFolders;
 };
 
-export const showSubFolderQuickPick = (args: {
+export const showSubFolderQuickPick = async (args: {
     subFolders?: any
     name: string
     commandType: string
     content: any
 }) => {
-
-
-    const { type } = getCommandType(args.commandType);
-
+    const { type } = await getCommandType(args.commandType);
 
     window
         .showQuickPick(args.subFolders, { placeHolder: 'Select a subfolder' })
-        .then((selection) => {
+        .then(async(selection) => {
             if (selection === undefined) {
                 return;
             }
+
             switch (selection) {
                 case `Main ${type.name.toLocaleLowerCase()} folder`:
                     const path = `${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
+                    const fullPath = `${await projectSrcDirectory()}/${type.path}/${path}`;
+
                     createFile({
                         fileName: args.name,
                         content: args.content,
-                        fullPath: `${projectSrcDirectory()}/${type.path}/${path}`,
+                        fullPath: fullPath
                     });
                     break;
                 case 'Create new folder...':
@@ -113,10 +115,10 @@ export const showSubFolderQuickPick = (args: {
                 default:
                     const fileNameAndPath = `${selection}/${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
 
-                    createFile({
+                    await createFile({
                         fileName: args.name,
                         content: args.content,
-                        fullPath: `${projectSrcDirectory()}/${type.path}/${fileNameAndPath}`,
+                        fullPath: `${await projectSrcDirectory()}/${type.path}/${fileNameAndPath}`,
                     });
                     break;
             }

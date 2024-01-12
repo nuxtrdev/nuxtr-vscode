@@ -1,4 +1,4 @@
-import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, ExtensionContext, ProgressLocation, } from 'vscode'
+import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, ExtensionContext, ProgressLocation } from 'vscode'
 import { existsSync, readFileSync, readdirSync } from 'fs'
 import { exec } from 'child_process'
 import { destr } from "destr"

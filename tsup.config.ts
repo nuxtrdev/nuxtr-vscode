@@ -1,16 +1,14 @@
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
-    entry: [
-        'src/index.ts',
-    ],
+    entry: [ 'src/index.ts', ],
     outDir: "out",
     format: ['cjs'],
     shims: false,
     dts: false,
     splitting: true,
     clean: true,
-    minify: 'terser',
+    minify: false,
     platform: 'node',
     sourcemap: false,
     external: ['vscode'],
@@ -27,5 +25,4 @@ export default defineConfig({
         "giget",
         "semver"
     ]
-
 })

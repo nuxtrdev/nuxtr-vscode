@@ -8,15 +8,15 @@ const createMiddleware = () => {
             prompt: 'What is your middleware name?',
             placeHolder: 'middleware name',
         })
-        .then((name) => {
+        .then(async (name) => {
 
             if (!name) { return }
 
-            let middlewareDir = `${projectSrcDirectory()}/middleware`
+            let middlewareDir = `${await projectSrcDirectory()}/middleware`
 
-            createDir('middleware')
+            await createDir('middleware')
 
-            let subFolders = createSubFolders(middlewareDir, 'middleware')
+            let subFolders = await createSubFolders(middlewareDir, 'middleware')
 
             showSubFolderQuickPick({
                 name,
@@ -29,8 +29,8 @@ const createMiddleware = () => {
         })
 }
 
-const directCreateMiddleware = (path: string) => {
-    const serverDir = hasServerDir()
+const directCreateMiddleware = async (path: string) => {
+    const serverDir = await hasServerDir()
 
     window
         .showInputBox({

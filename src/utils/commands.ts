@@ -1,7 +1,6 @@
 import { hasServerDir } from "../utils";
-const serverDir = hasServerDir();
 
-export const getCommandType = (commandType: string) => {
+export const getCommandType = async (commandType: string) => {
     let type = {
         name: '',
         path: '',
@@ -60,28 +59,28 @@ export const getCommandType = (commandType: string) => {
         case 'api':
             type = {
                 name: 'APIs',
-                path: `${serverDir}/api`,
+                path: `${await hasServerDir()}/api`,
                 extension: '.ts',
             };
             break;
         case 'route':
             type = {
                 name: 'Routes',
-                path: `${serverDir}/routes`,
+                path: `${await hasServerDir()}/routes`,
                 extension: '.ts',
             };
             break;
         case 'nitroPlugin':
             type = {
                 name: 'Plugins',
-                path: `${serverDir}/plugins`,
+                path: `${await hasServerDir()}/plugins`,
                 extension: '.ts',
             };
             break;
         case 'nitroMiddleware':
             type = {
                 name: 'Middleware',
-                path: `${serverDir}/middleware`,
+                path: `${await hasServerDir()}/middleware`,
                 extension: '.ts',
             };
             break;
@@ -95,7 +94,7 @@ export const getCommandType = (commandType: string) => {
         case 'nitroUtil':
             type = {
                 name: 'Utility',
-                path: `${serverDir}/utils`,
+                path: `${await hasServerDir()}/utils`,
                 extension: '.ts',
             };
             break;

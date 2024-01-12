@@ -7,14 +7,14 @@ const createComponent = () => {
             prompt: 'What is your component name?',
             placeHolder: 'component name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (!name) { return }
 
-            let componentsDir = `${projectSrcDirectory()}/components`
+            let componentsDir = `${await projectSrcDirectory()}/components`
 
-            createDir('components')
+            await createDir('components')
 
-            let subFolders = createSubFolders(componentsDir, 'components')
+            let subFolders = await createSubFolders(componentsDir, 'components')
 
             showSubFolderQuickPick({
                 name,

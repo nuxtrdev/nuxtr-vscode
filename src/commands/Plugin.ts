@@ -8,14 +8,14 @@ const createPlugin = () => {
             prompt: 'What is your plugin name?',
             placeHolder: 'plugin name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (!name) { return }
 
-            let pluginsDir = `${projectSrcDirectory()}/plugins`
+            let pluginsDir = `${await projectSrcDirectory()}/plugins`
 
-            createDir('plugins')
+            await createDir('plugins')
 
-            let subFolders = createSubFolders(pluginsDir, 'plugins')
+            let subFolders = await createSubFolders(pluginsDir, 'plugins')
 
             showSubFolderQuickPick({
                 name,
@@ -28,8 +28,8 @@ const createPlugin = () => {
 }
 
 
-const directCreatePlugin = (path: string) => {
-    const serverDir = hasServerDir()
+const directCreatePlugin = async (path: string) => {
+    const serverDir = await hasServerDir()
 
     window
         .showInputBox({
