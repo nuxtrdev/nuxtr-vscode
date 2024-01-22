@@ -44,13 +44,14 @@ const createFileFromTemplate = (template?: string) => {
                 prompt: `What is your page name?`,
                 placeHolder: `Page name`,
             })
-            .then((name) => {
+            .then(async (name) => {
                 if (!name) { return }
 
-                let pagesDir = `${projectSrcDirectory()}/pages`
+                const srcDir = `${await projectSrcDirectory()}`
+                let pagesDir = `${srcDir}/pages`
 
 
-                if (projectSrcDirectory() !== undefined) {
+                if (srcDir !== undefined) {
                     if (!existsSync(pagesDir)) {
                         mkdirSync(pagesDir)
                     }
@@ -71,18 +72,18 @@ const createFileFromTemplate = (template?: string) => {
                 prompt: 'What is your layout name?',
                 placeHolder: 'Layout name',
             })
-            .then((name) => {
+            .then(async (name) => {
                 if (!name) { return }
+                const srcDir = `${await projectSrcDirectory()}`
+                let layoutDir = `${srcDir}/layouts`
 
-                let layoutDir = `${projectSrcDirectory()}/layouts`
-
-                if (projectSrcDirectory() !== undefined) {
+                if (srcDir !== undefined) {
                     if (!existsSync(layoutDir)) {
                         mkdirSync(layoutDir)
                     }
                 }
 
-                let filePath = `${projectSrcDirectory()}/layouts/${name}.vue`
+                let filePath = `${srcDir}/layouts/${name}.vue`
 
                 createFile({
                     fileName: `${name}.vue`,

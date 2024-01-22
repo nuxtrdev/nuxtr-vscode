@@ -1,7 +1,7 @@
 import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind, Position, TextDocument, } from 'vscode';
-import * as os from 'os';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
+import { homedir } from 'os';
 import { nuxtrConfiguration, generateVueFileBasicTemplate } from '../utils';
 
 enum SnippetSource {
@@ -9,7 +9,7 @@ enum SnippetSource {
     nitro = 'Nitro',
 }
 
-const homeDir = os.homedir()
+const homeDir = homedir()
 const snippetsConfigurations = nuxtrConfiguration().snippets
 
 const snippetsDir = 'snippets'

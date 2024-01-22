@@ -70,7 +70,7 @@ const configureTailwind = () => {
                     }
 
                     if (selections.includes(TailwindOptions.createTailwindCSSFile)) {
-                        const filePath = `${projectSrcDirectory()}/assets/css/tailwind.css`
+                        const filePath = `${await projectSrcDirectory()}/assets/css/tailwind.css`
 
                         await createFile({
                             fileName: `tailwind.css`,
@@ -83,7 +83,7 @@ const configureTailwind = () => {
                         await createFile({
                             fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
                             content: tailwindCSSConfig,
-                            fullPath: `${projectSrcDirectory()}/tailwind.config.js`,
+                            fullPath: `${await projectSrcDirectory()}/tailwind.config.js`,
                         })
                     }
 
@@ -103,7 +103,7 @@ const configureTailwind = () => {
 
 const configureWindi = async () => {
     try {
-        const filePath = `${projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : 'ts'}`
+        const filePath = `${await projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : 'ts'}`
 
         const windiOptions = Object.values(WindiOptions)
 
@@ -151,7 +151,7 @@ const configureWindi = async () => {
 
 const configureUno = async () => {
     try {
-        const filePath = `${projectSrcDirectory()}/uno.config.ts`
+        const filePath = `${await projectSrcDirectory()}/uno.config.ts`
 
         const unoCSSOptions = Object.values(UnoCSSOptions)
 
@@ -199,7 +199,7 @@ const configureUno = async () => {
 
 const configureVuetify = async () => {
     try {
-        const filePath = `${projectSrcDirectory()}/vuetify.options.js`
+        const filePath = `${await projectSrcDirectory()}/vuetify.options.js`
 
         const vuetifyOptions = Object.values(VuetifyOptions)
 

@@ -7,5 +7,5 @@ export default defineConfig({
     packageMode: {
         'nuxi-edge': 'latest'
     },
-    recursive: true,
+    recursive: true
 })

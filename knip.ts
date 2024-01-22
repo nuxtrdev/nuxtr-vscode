@@ -7,9 +7,7 @@ const config: KnipConfig = {
             ignoreDependencies: ['taze', 'terser'],
             ignoreBinaries: ['vsce'],
             ignore: ['taze.config.ts'],
-            tsup: {
-                config: 'tsup.config.ts'
-            },
+            tsup: { config: 'tsup.config.ts' },
         },
     },
     ignoreWorkspaces: ['ui']

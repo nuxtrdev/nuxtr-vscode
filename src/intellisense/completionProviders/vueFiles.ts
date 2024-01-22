@@ -1,6 +1,6 @@
 import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
 import { readdirSync, statSync } from 'fs';
-import { sep, join} from 'pathe';
+import { sep, join } from 'pathe';
 
 import { isNuxtTwo, projectSrcDirectory, isDirectory } from '../../utils';
 
@@ -11,7 +11,7 @@ const DIR_SEPARATOR = sep;
 
 async function provider(dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
-    const fullPath = join(`${projectSrcDirectory()}`, dirPath);
+    const fullPath = join(`${await projectSrcDirectory()}`, dirPath);
     let isDir = await isDirectory(fullPath);
 
     if (isDir) {

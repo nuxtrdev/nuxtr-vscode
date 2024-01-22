@@ -2,9 +2,6 @@ import { window } from 'vscode'
 import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir, normalizeFileExtension } from '../utils'
 import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
 
-let serverDir = `${projectSrcDirectory()}/${hasServerDir()}/`
-
-
 const createNitroAPI = () => {
     window
         .showInputBox({

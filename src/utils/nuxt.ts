@@ -22,7 +22,9 @@ const isLayer = async (module: any) => {
 
     if (existsSync(modulePath)) {
         let nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
-        const result = await workspace.fs.stat(Uri.file(nuxtConfigPath))
+        const result = pathExistsSync(nuxtConfigPath)
+        console.log('result', result);
+
 
         if (result !== undefined) {
             return true;
@@ -225,7 +227,7 @@ const updateNuxtConfig = (update: (config: any) => void) => {
 
 
 const scanNuxtDirectories = async () => {
-    let projectSrcDir = `${projectSrcDirectory()}`;
+    let projectSrcDir = `${await projectSrcDirectory()}`;
     let nuxtDirectories = ['layouts', 'pages', 'components', 'composables', 'middleware'];
     let existingDirectories: string[] = [];
 

@@ -20,7 +20,7 @@ const createDirectoryAndFile = async (componentName: any, commandType: string, c
             prompt: 'What is your directory name?',
             placeHolder: 'Directory name',
         })
-        .then((name) => {
+        .then(async (name) => {
             if (name !== undefined && trim(name) !== '') {
 
                 let workspaceFolder = workspace.workspaceFolders?.[0];
@@ -36,7 +36,7 @@ const createDirectoryAndFile = async (componentName: any, commandType: string, c
                         createFile({
                             fileName: componentName,
                             content,
-                            fullPath: `${projectSrcDirectory()}/${type.path}/${name}/${normalizeFileExtension(componentName, type.extension)}${type.extension}`,
+                            fullPath: `${await projectSrcDirectory()}/${type.path}/${name}/${normalizeFileExtension(componentName, type.extension)}${type.extension}`,
                         });
                     } else {
                         window.showWarningMessage(
