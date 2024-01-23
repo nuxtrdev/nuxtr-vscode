@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSConfig, vuetifyConfigFile } from '../templates'
-import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand } from '../utils'
+import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, vuetifyConfigFile } from '../templates'
+import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand, projectRootDirectory } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 
@@ -80,10 +80,11 @@ const configureTailwind = () => {
                     }
 
                     if (selections.includes(TailwindOptions.createConfigFile)) {
+
                         await createFile({
                             fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
-                            content: tailwindCSSConfig,
-                            fullPath: `${await projectSrcDirectory()}/tailwind.config.js`,
+                            content: isNuxtTwo() ? tailwindCSSJSConfig : tailwindCSSTSConfig,
+                            fullPath: `${projectRootDirectory()}/tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
                         })
                     }
 
