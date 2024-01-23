@@ -1,11 +1,11 @@
-import { window, ExtensionContext, commands, Uri } from 'vscode';
+import { window, ExtensionContext, commands, Uri, extensions } from 'vscode';
 import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
 import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
-import { filesWatcher } from './watchers'
+import { filesWatcher, checkTakeOverMode } from './watchers'
 
 const extensionCommands = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -95,6 +95,9 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate codelens
     codelens.activateCodelenses(context)
+
+    // checkTakeOverMode
+    checkTakeOverMode()
 
     extensionCommands.forEach(({ command, function: commandFunction }) => {
         context.subscriptions.push(commands.registerCommand(command, commandFunction));
