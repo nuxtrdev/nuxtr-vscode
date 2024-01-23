@@ -1,5 +1,5 @@
 import { eslintConfig, stylelintConfig, stylelintIgnore, eslintIgnore } from './linters'
-import { unoCSSConfig, windiCSSConfig, tailwindCSSConfig, tailwindCSSFile, vuetifyConfigFile } from './css'
+import { unoCSSConfig, windiCSSConfig, tailwindCSSJSConfig, tailwindCSSTSConfig, tailwindCSSFile, vuetifyConfigFile } from './css'
 import {
     nitroDefaultTemplate,
     nuxtMiddlewareTemplate,
@@ -17,7 +17,8 @@ import { appConfigContent } from './appConfig'
 export {
     unoCSSConfig,
     windiCSSConfig,
-    tailwindCSSConfig,
+    tailwindCSSJSConfig,
+    tailwindCSSTSConfig,
     tailwindCSSFile,
     vuetifyConfigFile,
     eslintConfig,

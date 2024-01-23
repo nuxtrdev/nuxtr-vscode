@@ -12,13 +12,25 @@ export default defineConfig({
 })
 `
 
-const tailwindCSSConfig = `/** @type {import('tailwindcss').Config} */
+const tailwindCSSJSConfig = `/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [],
   theme: {
     extend: {},
   },
   plugins: [],
+}
+`
+
+const tailwindCSSTSConfig = `import type { Config } from 'tailwindcss'
+
+export default <Partial<Config>> {
+  content: [],
+  theme: {
+    extend: {
+    }
+  },
+  plugins: []
 }
 `
 
@@ -39,7 +51,8 @@ export default {
 export {
     unoCSSConfig,
     windiCSSConfig,
-    tailwindCSSConfig,
+    tailwindCSSJSConfig,
+    tailwindCSSTSConfig,
     tailwindCSSFile,
     vuetifyConfigFile
 }
