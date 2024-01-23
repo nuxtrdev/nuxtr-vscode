@@ -1,4 +1,7 @@
-{
+
+import type { Snippet } from "../../types";
+
+const nitroSnippets: Record<string, Snippet> = {
     "defineNitroPlugin": {
         "prefix": "defineNitroPlugin",
         "description": "Define Nitro Plugins",
@@ -42,3 +45,5 @@
         "description": "defineRenderHandler"
     }
 }
+
+export default nitroSnippets

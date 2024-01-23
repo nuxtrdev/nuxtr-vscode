@@ -6,6 +6,7 @@ import codelens from './codelens'
 import { statusBars, activateStatusBarIcons } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers'
+import { activateSnippets } from './snippets'
 
 const extensionCommands = [
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
@@ -92,6 +93,9 @@ export async function activateExtension(context: ExtensionContext) {
 
     // activate intellisense
     activateIntellisense(context)
+
+    // activate snippets
+    await activateSnippets()
 
     // activate codelens
     codelens.activateCodelenses(context)

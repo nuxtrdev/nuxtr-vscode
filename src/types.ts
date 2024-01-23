@@ -100,3 +100,11 @@ export type UserProjectTemplate = {
     repoURL: string;
     branch?: string;
 }
+
+export type Snippet = {
+    prefix: string;
+    body: string[];
+    description: string;
+    docs?: string;
+    isFileTemplate?: boolean;
+};
