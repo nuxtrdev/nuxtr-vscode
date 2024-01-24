@@ -23,14 +23,7 @@ const isLayer = async (module: any) => {
     if (existsSync(modulePath)) {
         let nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
         const result = pathExistsSync(nuxtConfigPath)
-        console.log('result', result);
-
-
-        if (result !== undefined) {
-            return true;
-        } else {
-            return false;
-        }
+        return result ? true : false;
     }
 };
 
@@ -174,7 +167,7 @@ const fetchNuxtAlias = async () => {
         }
 
     } catch (error) {
-        console.error('Error fetching Nuxt alias:', error);
+        throw new Error('Error fetching Nuxt alias: ' + error);
     }
 };
 
@@ -241,7 +234,7 @@ const scanNuxtDirectories = async () => {
                 }
             }
         } catch (error) {
-            console.error('Error scanning Nuxt directories:', error);
+            throw new Error('Error scanning Nuxt directories: ' + error);
         }
 
     }
