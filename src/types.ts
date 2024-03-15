@@ -100,3 +100,12 @@ export type UserProjectTemplate = {
     repoURL: string;
     branch?: string;
 }
+
+export type Dependency = {
+    name: string;
+    version: string;
+};
+
+export type OutdatedDependency = Dependency & {
+    latest: string;
+};

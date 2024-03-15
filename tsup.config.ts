@@ -23,6 +23,7 @@ export default defineConfig({
         "pkg-types",
         "string-ts",
         "giget",
-        "semver"
+        "semver",
+        "nypm"
     ]
 })
