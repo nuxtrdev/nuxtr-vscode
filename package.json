@@ -297,7 +297,7 @@
         },
         {
           "command": "nuxtr.directToggleDevTools",
-          "when": "nuxtr.isNuxtProject"
+          "when": "nuxtr.isNuxtProject && !nuxtr.isNuxtTwo"
         },
         {
           "command": "nuxtr.errorLayout",
@@ -937,7 +937,7 @@
         "command": "nuxtr.directToggleDevTools",
         "title": "Toggle DevTools",
         "category": "Nuxtr",
-        "when": "nuxtr.isNuxtProject"
+        "when": "nuxtr.isNuxtProject && !nuxtr.isNuxtTwo"
       },
       {
         "command": "nuxtr.directUpgradeNuxt",

@@ -45,3 +45,7 @@ export function updateDevtoolsStatusBar(statusBar: DevtoolsStatusBar) {
     statusBars.devToolsStatusBar.text = statusBar.text;
     statusBars.devToolsStatusBar.color = statusBar.color;
 }
+
+export function hideDevtoolsStatusBar() {
+    statusBars.devToolsStatusBar.hide()
+}
