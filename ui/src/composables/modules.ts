@@ -48,7 +48,7 @@ export interface Contributor {
 
 
 export function useModules() {
-    const modules = content.modules as Module[];
+    const modules = content.modules as unknown as Module[];
     modules.forEach((module: Module) => {
         if (layers.includes(module.name)) {
             module.isLayer = true;
