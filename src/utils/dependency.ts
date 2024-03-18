@@ -237,10 +237,14 @@ export const updateDependencies = async () => {
     const outdatedDependenciesList: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
 
     const updateCommand: any = {
-        Yarn: `yarn add`,
         NPM: `npm install`,
-        pnpm: `pnpm install`
+        Yarn: `yarn add`,
+        pnpm: `pnpm add`,
+        Bun: `bun add`,
     }
+
+    console.log('packageManager', packageManager);
+
 
     const command = packageManager ? updateCommand[packageManager.name] : updateCommand[defaultPackageManager] !== null ? updateCommand[defaultPackageManager] : updateCommand['NPM']
 
