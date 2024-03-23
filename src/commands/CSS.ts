@@ -58,8 +58,8 @@ const configureTailwind = () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(TailwindOptions.installModule)) {
                         const moduleName = '@nuxtjs/tailwindcss'
-                        const tailwindCommand = await getInstallationCommand('tailwindcss', true)
-                        const moduleCommand = await getInstallationCommand(moduleName, true)
+                        const tailwindCommand = await getInstallationCommand('tailwindcss')
+                        const moduleCommand = await getInstallationCommand(moduleName)
 
                         if (!isNuxtTwo()) {
                             await runCommand({
@@ -127,7 +127,7 @@ const configureWindi = async () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(WindiOptions.installModule)) {
                         const moduleName = 'nuxt-windicss'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,
@@ -175,7 +175,7 @@ const configureUno = async () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(UnoCSSOptions.installModule)) {
                         const moduleName = '@unocss/nuxt'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,
@@ -223,7 +223,7 @@ const configureVuetify = async () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(VuetifyOptions.installModule)) {
                         const moduleName = '@nuxtjs/vuetify'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,

@@ -98,7 +98,7 @@ async function installDevtools() {
         "Close"
     );
     if (response === "Install") {
-        const command = await getInstallationCommand(moduleName, true);
+        const command = await getInstallationCommand(moduleName);
 
         await runCommand({
             command,

@@ -46,7 +46,7 @@ const configureEslint = () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(EslintOptions.installModule)) {
                         const moduleName = '@nuxtjs/eslint-config-typescript eslint'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,
@@ -101,7 +101,7 @@ const configureStylelint = () => {
                 if (selections.includes(StylelintOptions.installModule)) {
 
                     const moduleName = 'stylelint @nuxtjs/stylelint-module stylelint-config-recommended-vue'
-                    const command = await getInstallationCommand(moduleName, true)
+                    const command = await getInstallationCommand(moduleName)
 
                     await runCommand({
                         command,

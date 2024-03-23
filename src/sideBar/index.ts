@@ -224,8 +224,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     private async installModule(module: any) {
         const command = await getInstallationCommand(
-            module.npm,
-            module['dependency-type'] === 'dev' ? true : false
+            module.npm
         )
         await vscode.window.withProgress(
             {
