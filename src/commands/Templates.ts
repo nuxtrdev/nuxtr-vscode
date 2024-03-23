@@ -24,7 +24,7 @@ export const configurePug = (options: string[] = defaultOptions) => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(PugConfigurationSteps.installPug)) {
                         const moduleName = 'pug'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,
@@ -36,7 +36,7 @@ export const configurePug = (options: string[] = defaultOptions) => {
 
                     if (selections.includes(PugConfigurationSteps.installLanguagePlugin)) {
                         const moduleName = '@vue/language-plugin-pug'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const command = await getInstallationCommand(moduleName)
 
                         await runCommand({
                             command,

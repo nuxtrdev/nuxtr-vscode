@@ -153,16 +153,16 @@ export const detectPackageManagerByName = () => {
     return undefined
 }
 
-export const getInstallationCommand = async (packageName: string, devFlag: boolean) => {
+export const getInstallationCommand = async (packageName: string) => {
     const packageManager = detectPackageManagerByName()
 
     const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
 
     const installationCommand: any = {
-        Yarn: `yarn add ${packageName} ${devFlag ? '-D' : ''}`,
-        NPM: `npm install ${packageName} ${devFlag ? '-D' : ''}`,
-        pnpm: `pnpm add ${packageName} ${devFlag ? '-D' : ''}`,
-        Bun: `bun install ${packageName} ${devFlag ? '-D' : ''}`,
+        Yarn: `yarn add ${packageName} -D`,
+        NPM: `npm install ${packageName} -D`,
+        pnpm: `pnpm add ${packageName} -D`,
+        Bun: `bun install ${packageName} -D`,
     }
 
     if (packageManager) {
