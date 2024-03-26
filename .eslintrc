@@ -30,6 +30,7 @@
     "out",
     "dist",
     "**/*.d.ts",
-    "ui/**"
+    "ui/**",
+    "node_modules/**"
   ]
 }

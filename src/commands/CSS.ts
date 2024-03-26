@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSConfig, vuetifyConfigFile } from '../templates'
-import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand } from '../utils'
+import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, vuetifyConfigFile } from '../templates'
+import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand, projectRootDirectory } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 
@@ -58,13 +58,23 @@ const configureTailwind = () => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(TailwindOptions.installModule)) {
                         const moduleName = '@nuxtjs/tailwindcss'
-                        const command = await getInstallationCommand(moduleName, true)
+                        const tailwindCommand = await getInstallationCommand('tailwindcss', true)
+                        const moduleCommand = await getInstallationCommand(moduleName, true)
+
+                        if (!isNuxtTwo()) {
+                            await runCommand({
+                                command: tailwindCommand,
+                                message: 'Installing TailwindCSS',
+                                successMessage: 'TailwindCSS installed successfully',
+                                errorMessage: 'TailwindCSS installation failed',
+                            })
+                        }
 
                         await runCommand({
-                            command,
-                            message: 'Installing TailwindCSS',
-                            successMessage: 'TailwindCSS installed successfully',
-                            errorMessage: 'TailwindCSS installation failed',
+                            command: moduleCommand,
+                            message: 'Installing TailwindCSS Module',
+                            successMessage: 'TailwindCSS Module installed successfully',
+                            errorMessage: 'TailwindCSS Module installation failed',
                         })
                         await addNuxtModule({ npm: moduleName })
                     }
@@ -80,10 +90,11 @@ const configureTailwind = () => {
                     }
 
                     if (selections.includes(TailwindOptions.createConfigFile)) {
+
                         await createFile({
                             fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
-                            content: tailwindCSSConfig,
-                            fullPath: `${await projectSrcDirectory()}/tailwind.config.js`,
+                            content: isNuxtTwo() ? tailwindCSSJSConfig : tailwindCSSTSConfig,
+                            fullPath: `${projectRootDirectory()}/tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
                         })
                     }
 

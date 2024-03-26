@@ -10,8 +10,9 @@ import {
     getInstallationCommand,
     runCommand,
     getNuxtVersion,
+    isNuxtTwo,
 } from "../utils";
-import { updateDevtoolsStatusBar } from "../statusBar";
+import { updateDevtoolsStatusBar, hideDevtoolsStatusBar } from "../statusBar";
 
 let mod: any;
 let nuxtConfigFile: string;
@@ -146,6 +147,7 @@ async function nuxtConfigWatcher() {
 
 async function nuxtDevToolsHandler() {
     const isInstalled = await isDevtoolsInstalled();
+    const nuxtTwo = isNuxtTwo();
     let isDevtoolsNative = false;
 
     let nuxtVersion = getNuxtVersion();
@@ -153,7 +155,15 @@ async function nuxtDevToolsHandler() {
         isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
     }
 
-    if (!isInstalled && !isDevtoolsNative) {
+    if (nuxtTwo) {
+        updateDevtoolsStatusBar({
+            command: '',
+            tooltip: "Nuxt Devtools: Not supported for Nuxt 2",
+            text: "$(nuxt-disabled)",
+            color: new ThemeColor("activityBar.inactiveForeground"),
+        });
+        hideDevtoolsStatusBar()
+    } else if (!isInstalled && !isDevtoolsNative) {
         await installDevtools();
         updateDevtoolsStatusBar({
             command: "nuxtr.directUpgradeNuxt",

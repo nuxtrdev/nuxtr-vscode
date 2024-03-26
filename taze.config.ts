@@ -7,5 +7,8 @@ export default defineConfig({
     packageMode: {
         'nuxi-edge': 'latest'
     },
+    exclude: [
+        '@types/vscode'
+    ],
     recursive: true
 })
