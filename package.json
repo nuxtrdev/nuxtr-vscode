@@ -3,7 +3,7 @@
   "displayName": "Nuxtr",
   "description": "An extension for Nuxt offering commands and tools to make your experience more pleasant.",
   "version": "0.2.16",
-  "packageManager": "pnpm@8.15.5",
+  "packageManager": "pnpm@9.0.6",
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -1110,22 +1110,22 @@
     "eslint": "^8.57.0",
     "eslint-plugin-oxlint": "^0.1.0",
     "knip": "^3.13.2",
-    "nuxi-edge": "3.9.1-1697113884.a6acb6a",
+    "nuxi-nightly": "3.11.2-1712838256.8df35eb",
     "taze": "^0.11.4",
-    "terser": "^5.29.2",
+    "terser": "^5.31.0",
     "tsup": "^7.3.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@nuxt/schema": "^3.11.0",
+    "@nuxt/schema": "^3.11.2",
     "destr": "^2.0.3",
     "fs-extra": "^11.2.0",
-    "giget": "^1.2.1",
+    "giget": "^1.2.3",
     "jiti": "^1.21.0",
-    "magicast": "^0.3.3",
-    "ofetch": "^1.3.3",
+    "magicast": "^0.3.4",
+    "ofetch": "^1.3.4",
     "pathe": "^1.1.2",
-    "pkg-types": "^1.0.3",
+    "pkg-types": "^1.1.0",
     "semver": "^7.6.0",
     "string-ts": "^1.3.3"
   },
