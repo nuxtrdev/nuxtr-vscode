@@ -78,6 +78,7 @@ export const runCommand = async (args: {
     message: string
     successMessage: string
     errorMessage: string
+    docsURL?: string
     // logger boolean default false
     logger?: boolean
 }) => {
@@ -107,7 +108,15 @@ export const runCommand = async (args: {
 
                 child.on('exit', async (code) => {
                     if (code === 0) {
-                        window.showInformationMessage(args.successMessage);
+                        if (!args.docsURL) {
+                            window.showInformationMessage(args.successMessage);
+                        } else {
+                            const response = await window.showInformationMessage(args.successMessage, 'Open documentation');
+                            if (response === 'Open documentation') {
+                                openExternalLink(args.docsURL);
+                            }
+                        }
+
                     } else {
                         window.showErrorMessage(args.errorMessage);
                     }

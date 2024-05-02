@@ -489,3 +489,8 @@ export async function removePackage(packageName: string): Promise<void> {
         }
     )
 }
+
+export async function isDependencyInstalled(packageName: string): Promise<boolean> {
+    const dependencies = await getProjectDependencies()
+    return dependencies.some((dependency) => dependency.name === packageName)
+}

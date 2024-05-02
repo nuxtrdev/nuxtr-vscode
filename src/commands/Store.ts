@@ -1,6 +1,40 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, isNuxtTwo, createFile, generatePiniaTemplates, normalizeFileExtension } from '../utils'
+import {
+    projectSrcDirectory,
+    isNuxtTwo,
+    createFile,
+    generatePiniaTemplates,
+    normalizeFileExtension,
+    isModuleConfigured,
+    getInstallationCommand,
+    runCommand,
+    addNuxtModule,
+    isDependencyInstalled
+} from '../utils'
 import { vuexContent } from '../templates'
+
+async function detectPiniaModule() {
+    const moduleName = '@pinia/nuxt'
+    const isConfigured = await isModuleConfigured(moduleName)
+    const installationCommand = await getInstallationCommand(moduleName, true)
+    const isInstalled = await isDependencyInstalled(moduleName)
+
+
+    if (!isInstalled ) {
+        await runCommand({
+            command: installationCommand,
+            message: 'Installing @pinia/nuxt module',
+            successMessage: 'Pinia module installed successfully',
+            errorMessage: 'Pinia module installation failed',
+            docsURL: 'https://pinia.vuejs.org/'
+        })
+    }
+
+    if (!isConfigured) {
+        await addNuxtModule(moduleName)
+    }
+
+}
 
 const createStore = () => {
     window
@@ -25,6 +59,8 @@ const createStore = () => {
                     fullPath: filePath,
                 })
             }
+
+            await detectPiniaModule()
         })
 }
 
@@ -53,6 +89,7 @@ const directCreateStore = (path: string) => {
                 })
             }
 
+            await detectPiniaModule()
         })
 }
 

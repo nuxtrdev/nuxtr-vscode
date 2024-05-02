@@ -19,6 +19,7 @@ import {
     hasServerDir,
     findNuxtConfig,
     isNuxtProject,
+    isModuleConfigured
 } from './nuxt'
 
 import {
@@ -28,7 +29,8 @@ import {
     getInstallationCommand,
     getOutdatedPackages,
     dependenciesUpdatesHandler,
-    updateDependencies
+    updateDependencies,
+    isDependencyInstalled
 } from './dependency'
 
 import { createFile, createSubFolders, showSubFolderQuickPick, createDir, createVueTemplate, normalizeName, normalizeFileExtension } from './file'
@@ -87,4 +89,6 @@ export {
     normalizeFileExtension,
     openFolder,
     quickOpenButtons,
+    isModuleConfigured,
+    isDependencyInstalled
 }
