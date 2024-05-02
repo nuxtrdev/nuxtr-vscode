@@ -1,4 +1,4 @@
-import { window, workspace, Uri } from 'vscode';
+import { window } from 'vscode';
 import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
 import { join } from 'pathe';
 import { parseModule } from 'magicast';
@@ -28,7 +28,30 @@ const isLayer = async (module: any) => {
 };
 
 
-export const addNuxtModule = async (module: any) => {
+export const isModuleConfigured = async (module: string) => {
+    const nuxtConfigPath = findNuxtConfig();
+    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+
+    const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
+
+    const config =
+        mod.exports.default.$type === 'function-call'
+            ? mod.exports.default.$args[0]
+            : mod.exports.default;
+
+    let layer = await isLayer(module);
+
+    if (layer) {
+        config.extends ||= [];
+        return config.extends.includes(module);
+    } else {
+        config.modules ||= [];
+        return config.modules.includes(module);
+    }
+}
+
+
+export const addNuxtModule = async (module: string) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
         const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
@@ -43,13 +66,13 @@ export const addNuxtModule = async (module: any) => {
 
         if (layer) {
             config.extends ||= [];
-            if (!config.extends.includes(module.npm)) {
-                config.extends.push(module.npm);
+            if (!config.extends.includes(module)) {
+                config.extends.push(module);
             }
         } else {
             config.modules ||= [];
-            if (!config.modules.includes(module.npm)) {
-                config.modules.push(module.npm);
+            if (!config.modules.includes(module)) {
+                config.modules.push(module);
             }
         }
 
@@ -57,7 +80,7 @@ export const addNuxtModule = async (module: any) => {
         writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
     } catch (error) {
         window.showErrorMessage(
-            `${module.npm} failed to install, please install it manually, ${error}`
+            `${module} failed to install, please install it manually, ${error}`
         );
     }
 };
