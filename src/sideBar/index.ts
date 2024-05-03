@@ -13,7 +13,7 @@ import {
     getProjectScripts,
     newTerminal,
     detectPackageManagerByName,
-    addNuxtModule,
+    updateNuxtConfig,
     removeNuxtModule,
     getInstallationCommand,
     getOutdatedPackages,
@@ -269,7 +269,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
 
     private async addNuxtModule(module: any) {
-        await addNuxtModule(module)
+        await updateNuxtConfig('add-module', module)
             .then(async () => {
                 this.postMessage({
                     command: 'moduleInstalled',

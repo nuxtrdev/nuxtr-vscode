@@ -8,7 +8,7 @@ import {
     isModuleConfigured,
     getInstallationCommand,
     runCommand,
-    addNuxtModule,
+    updateNuxtConfig,
     isDependencyInstalled
 } from '../utils'
 import { vuexContent } from '../templates'
@@ -31,7 +31,7 @@ async function detectPiniaModule() {
     }
 
     if (!isConfigured) {
-        await addNuxtModule(moduleName)
+        await updateNuxtConfig('add-module', moduleName)
     }
 
 }
