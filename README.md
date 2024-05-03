@@ -1,7 +1,7 @@
 <br />
 
 <div align="center">
-    <img src=".github/media/logo.png" alt="Logo" width="80" height="80">
+    <img src="https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/logo.png" alt="Logo" width="80" height="80">
     <h3 align="center">Nuxtr VSCode</h3>
     <p align="center">An extension offering commands and tools <br /> to make your experience with Nuxt more pleasant!</p>
     <div align="center">
@@ -79,7 +79,7 @@ Additionally, you can choose to automatically open the newly created file with:
 "nuxtr.openItemsAfterCreation": true
 ```
 
-![Nuxt Project Creation](./.github/media/file_creation.gif)
+![Nuxt Project Creation](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/file_creation.gif)
 
 <br>
 <br>
@@ -98,7 +98,7 @@ Additionally, you can choose to automatically open the newly created file with:
 
 <br>
 
-![Nuxt Dependencies](./.github/media/dependencies.gif)
+![Nuxt Dependencies](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/dependencies.gif)
 
 <br>
 <br>
@@ -115,7 +115,7 @@ You can enable/disable IntelliSense from the settings:
  "nuxtr.intellisense.nuxtignore": true,
 ```
 
-![IntelliSense](./.github/media/intellisense.gif)
+![IntelliSense](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/intellisense.gif)
 
 <br>
 <br>
@@ -127,7 +127,7 @@ The Nuxt CLI, also known as [Nuxi](https://github.com/nuxt/cli), is an essential
 While using the CLI directly from your terminal is perfectly viable, Nuxtr's integration enhances your development experience, especially when working with multiple terminals. It introduces a structured approach to your terminal environment, categorizing commands based on their scope. This not only streamlines your workflow but also simplifies the process of adding modules, eliminating the need to recall or search for exact names.
 
 
-![Nuxi CLI](./.github/media/nuxi.gif)
+![Nuxi CLI](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/nuxi.gif)
 
 <br>
 <br>
@@ -170,7 +170,7 @@ Set your default template with these settings:
 "nuxtr.vueFiles.layouts.defaultTemplate": "default.layout-template"
 ```
 
-![File Templates](./.github/media/file_templates.gif)
+![File Templates](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/file_templates.gif)
 
 <br>
 <br>
@@ -201,7 +201,7 @@ For monorepo configurations, specify the directory name containing your Nuxt pro
 
 Access main scripts directly from the command palette for swift execution. Should you require a custom command, you can conveniently locate it in the sidebar. With the exception of nuxt dev, all other commands operate in the background, and you can monitor the output in the VSCode output channel.
 
-![Nuxt Scripts](./.github/media/scripts.png)
+![Nuxt Scripts](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/scripts.png)
 
 <br>
 <br>
@@ -212,7 +212,7 @@ Access main scripts directly from the command palette for swift execution. Shoul
 
  Nuxtr offers a toggle directly in your VSCode statusbar. Manual toggling from nuxt.config.ts is also detected and state is synced.
 
-![Nuxt Devtools](./.github/media/devtools.gif)
+![Nuxt Devtools](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/devtools.gif)
 
 <br>
 <br>
@@ -226,7 +226,7 @@ Search and Install Nuxt modules with a typical searching/filters experience as [
 
 Starting from v0.1.0, you can filter integration types (modules/layers) from the sidebar.
 
-![Nuxt Modules](./.github/media/modules.gif)
+![Nuxt Modules](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/modules.gif)
 
 <br>
 <br>
@@ -247,7 +247,7 @@ Same for linters:
 
 More coming soon.
 
-![Nuxt Modules](./.github/media/css_frameworks.gif)
+![Nuxt Modules](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/css_frameworks.gif)
 
 <br>
 
@@ -270,4 +270,4 @@ Nuxtr relies on the following projects/repositories:
 
 ### License
 
-[MIT](https://github.com/nuxtrdev/nuxtr-vscode/blob/main/LICENSE) License © 2023 with 💚
+[MIT](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/LICENSE) License © 2023 with 💚
