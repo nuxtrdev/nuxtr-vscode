@@ -3,6 +3,7 @@ import unjs from 'eslint-config-unjs';
 export default unjs({
     rules: {
         '@typescript-eslint/naming-convention': 'off',
+        "@typescript-eslint/no-duplicate-enum-values": 'off',
         '@typescript-eslint/semi': 0,
         'curly': ['error', 'all'],
         'eqeqeq': 'warn',

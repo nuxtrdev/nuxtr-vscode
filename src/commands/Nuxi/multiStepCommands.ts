@@ -30,7 +30,7 @@ export const handleAddCommand = (): void => {
         return item;
     });
 
-    const template = window.showQuickPick(items, options).then((selection) => {
+    window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
         }
@@ -114,7 +114,7 @@ export const handleDevtoolsCommand = async () => {
         return item;
     });
 
-    const state = window.showQuickPick(items, options).then((selection) => {
+    window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
         }

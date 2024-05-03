@@ -57,6 +57,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
             const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
@@ -128,6 +129,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
             const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);

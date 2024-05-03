@@ -106,14 +106,14 @@ const createProjectPrompt = async (officialTemplates: NuxtOfficialTemplate[], us
 
     picker.items = [...officialItems, ...userItems];
 
-    picker.onDidChangeSelection((selection) => handleSelection([...officialTemplates, ...userTemplates], [...selection], picker));
+    picker.onDidChangeSelection((selection) => handleSelection([...officialTemplates, ...userTemplates], [...selection]));
     picker.onDidTriggerItemButton((e) => handleItemButton(e as any));
-    picker.onDidChangeSelection((item: any) => picker.dispose());
+    picker.onDidChangeSelection(() => picker.dispose());
     picker.show();
 };
 
 
-const handleSelection = async (templates: (NuxtOfficialTemplate | UserProjectTemplate)[], selection: QuickPickItem[], picker: QuickPick<QuickPickItem>) => {
+const handleSelection = async (templates: (NuxtOfficialTemplate | UserProjectTemplate)[], selection: QuickPickItem[]) => {
     if (selection[0]) {
         const selectedTemplate = templates.find((item) => item.name === selection[0].label);
 

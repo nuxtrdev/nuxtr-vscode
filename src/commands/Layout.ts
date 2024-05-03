@@ -14,8 +14,6 @@ const createLayout = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            const layoutDir = `${await projectSrcDirectory()}/layouts`
-
             createDir('layouts')
 
             const filePath = `${await projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
