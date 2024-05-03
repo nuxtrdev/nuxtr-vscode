@@ -8,7 +8,7 @@ As part of our roadmap we're exploring the options of building separate extensio
 
 ## Repo
 
-Nuxtr VSCode contains a typical [VSCode extension structure](https://code.visualstudio.com/api/get-started/extension-anatomy) with [./ui ](./ui) directory that contains the sidebar UI logic.
+Nuxtr VSCode contains a typical [VSCode extension structure](https://code.visualstudio.com/api/get-started/extension-anatomy) with [sidebar](./src/sideBar/) logic written using Vue 3 + TypeScript project and imported using [WebViews](https://code.visualstudio.com/api/extension-guides/webview).
 
 We're using PNPM, so make sure you have it installed. Here's a [quick guide](https://pnpm.io/installation) on how to install it.
 
