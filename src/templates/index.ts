@@ -1,4 +1,4 @@
-import { eslintConfig, stylelintConfig, stylelintIgnore, eslintIgnore } from './linters'
+import { eslintConfig, stylelintConfig, stylelintIgnore } from './linters'
 import { unoCSSConfig, windiCSSConfig, tailwindCSSJSConfig, tailwindCSSTSConfig, tailwindCSSFile, vuetifyConfigFile } from './css'
 import {
     nitroDefaultTemplate,
@@ -24,7 +24,6 @@ export {
     eslintConfig,
     stylelintConfig,
     stylelintIgnore,
-    eslintIgnore,
     nitroDefaultTemplate,
     nuxtMiddlewareTemplate,
     composableTemplate,

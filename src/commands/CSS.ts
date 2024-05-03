@@ -1,6 +1,6 @@
 import { window } from 'vscode'
 import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, vuetifyConfigFile } from '../templates'
-import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, addNuxtModule, getInstallationCommand, projectRootDirectory } from '../utils'
+import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, updateNuxtConfig, getInstallationCommand, projectRootDirectory } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 
@@ -76,7 +76,7 @@ const configureTailwind = () => {
                             successMessage: 'TailwindCSS Module installed successfully',
                             errorMessage: 'TailwindCSS Module installation failed',
                         })
-                        await addNuxtModule(moduleName)
+                        await updateNuxtConfig('add-module', moduleName)
                     }
 
                     if (selections.includes(TailwindOptions.createTailwindCSSFile)) {
@@ -136,7 +136,7 @@ const configureWindi = async () => {
                             errorMessage: 'WindiCSS installation failed',
                         })
 
-                        await addNuxtModule(moduleName)
+                        await updateNuxtConfig('add-module', moduleName)
                     }
 
                     if (selections.includes(WindiOptions.createConfigFile)) {
@@ -184,7 +184,7 @@ const configureUno = async () => {
                             errorMessage: 'UnoCSS installation failed',
                         })
 
-                        await addNuxtModule(moduleName)
+                        await updateNuxtConfig('add-module', moduleName)
                     }
 
                     if (selections.includes(UnoCSSOptions.createConfigFile)) {
@@ -232,7 +232,7 @@ const configureVuetify = async () => {
                             errorMessage: 'Vuetify installation failed',
                         })
 
-                        await addNuxtModule(moduleName)
+                        await updateNuxtConfig('add-module', moduleName)
                     }
 
                     if (selections.includes(VuetifyOptions.createConfigFile)) {

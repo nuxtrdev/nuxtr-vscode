@@ -1,14 +1,8 @@
-import { window } from 'vscode'
+import { window, workspace, ConfigurationTarget } from 'vscode'
 import { writeFileSync } from 'node:fs'
-import { createFile, projectRootDirectory, runCommand, getInstallationCommand } from '../utils'
-import { eslintConfig, eslintIgnore, stylelintConfig, stylelintIgnore } from '../templates'
+import { createFile, projectRootDirectory, runCommand, getInstallationCommand, injectPkgJSONScript, openExternalLink, updateNuxtConfig} from '../utils'
+import { eslintConfig, stylelintConfig, stylelintIgnore } from '../templates'
 const frameworks = ['Eslint', 'Stylelint']
-
-enum EslintOptions {
-    installModule = 'Install Eslint module',
-    addScriptToPackageJSON = 'Add lint script to package.json',
-    createESLintAndIgnoreFiles = 'Create .eslintrc & .eslintignore files',
-}
 
 enum StylelintOptions {
     installModule = 'Install Stylelint & Stylelint module',
@@ -33,59 +27,66 @@ function configureLinters() {
         })
 }
 
-const configureEslint = () => {
-    try {
-        const eslintOptions = Object.values(EslintOptions)
+const configureEslint = async () => {
+    const packages = { eslint: 'eslint', module: '@nuxt/eslint', }
+    const eslintCommand = await getInstallationCommand(packages.eslint, true)
+    const moduleCommand = await getInstallationCommand(packages.module, true)
+    const devServerCheckerCommand = await getInstallationCommand('vite-plugin-eslint2', true)
 
-        window
-            .showQuickPick(eslintOptions, {
-                canPickMany: true,
-                placeHolder: 'Select files to create',
-            })
-            .then(async (selections) => {
-                if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes(EslintOptions.installModule)) {
-                        const moduleName = '@nuxtjs/eslint-config-typescript eslint'
-                        const command = await getInstallationCommand(moduleName, true)
+    await runCommand({
+        command: eslintCommand,
+        message: `Installing Eslint`,
+        successMessage: 'Eslint installed successfully',
+        errorMessage: 'Eslint installation failed',
+    })
 
-                        await runCommand({
-                            command,
-                            message: 'Installing Eslint module',
-                            successMessage: 'Eslint installed successfully',
-                            errorMessage: 'Eslint installation failed',
-                        })
-                    }
+    await runCommand({
+        command: moduleCommand,
+        message: `Installing ${packages.module} module`,
+        successMessage: `${packages.module} installed successfully`,
+        errorMessage: `${packages.module} installation failed`,
+        docsURL: 'https://eslint.nuxt.com'
+    })
 
-                    if (selections.includes(EslintOptions.addScriptToPackageJSON)) {
-                        const packageJsonPath = `${projectRootDirectory()}/package.json`
-                        const packageJson = require(packageJsonPath)
+    await updateNuxtConfig('add-module', '@nuxt/eslint')
 
-                        packageJson.scripts.lint = 'eslint --ext .js,.vue,.ts,.tsx --ignore-path .gitignore .'
 
-                        writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
-                    }
+    const scriptName = 'lint'
+    const script = 'eslint  .'
+    await injectPkgJSONScript(scriptName, script)
 
-                    if (selections.includes(EslintOptions.createESLintAndIgnoreFiles)) {
-                        const eslintPath = `${projectRootDirectory()}/.eslintrc`
-                        const eslintIgnorePath = `${projectRootDirectory()}/.eslintignore`
+    await createFile({
+        fileName: `eslint.config.mjs`,
+        content: eslintConfig,
+        fullPath: `${projectRootDirectory()}/eslint.config.mjs`
+    })
 
-                        await createFile({
-                            fileName: `.eslintignore`,
-                            content: eslintIgnore,
-                            fullPath: eslintIgnorePath,
-                        })
+    const config = workspace.getConfiguration('eslint')
+    config.update('experimental.useFlatConfig', true, ConfigurationTarget.Workspace)
+    window.showInformationMessage('Eslint useFlagConfig enabled successfully')
 
-                        await createFile({
-                            fileName: `.eslintrc`,
-                            content: eslintConfig,
-                            fullPath: eslintPath,
-                        })
-                    }
-                }
-            })
-    } catch (error) {
-        console.error(error)
+
+    const devServerChecker = await window.showInformationMessage(
+        'Eslint configured successfully, do you want to configure Dev Server Checker?',
+        'Yes',
+        'Learn More'
+    )
+
+    if (devServerChecker === 'Yes') {
+        await runCommand({
+            command: devServerCheckerCommand,
+            message: `Installing vite-plugin-eslint2 module`,
+            successMessage: `vite-plugin-eslint2 installed successfully`,
+            errorMessage: `vite-plugin-eslint2 installation failed`,
+        })
+
+        await updateNuxtConfig('inject-eslint-devChcker')
     }
+
+    if (devServerChecker === 'Learn More') {
+        openExternalLink('https://eslint.nuxt.com/packages/module#dev-server-checker')
+    }
+
 }
 
 const configureStylelint = () => {

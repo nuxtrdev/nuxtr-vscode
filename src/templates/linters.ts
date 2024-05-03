@@ -1,6 +1,9 @@
-const eslintConfig = `{
-    "extends": ["@nuxtjs/eslint-config-typescript"]
-}
+const eslintConfig = `// @ts-check
+import withNuxt from './.nuxt/eslint.config.mjs'
+
+export default withNuxt(
+  // Your custom configs here
+)
 `
 
 const stylelintConfig = `{
@@ -10,12 +13,5 @@ const stylelintConfig = `{
 
 const stylelintIgnore = `node_modules`
 
-const eslintIgnore = `dist
-node_modules
-schema
-**/*.tmpl.*
-sw.js
-`
 
-
-export { eslintConfig, stylelintConfig, stylelintIgnore, eslintIgnore }
+export { eslintConfig, stylelintConfig, stylelintIgnore }

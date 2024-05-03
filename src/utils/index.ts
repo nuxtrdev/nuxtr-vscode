@@ -12,14 +12,14 @@ import {
 } from './global'
 
 import {
-    addNuxtModule,
     removeNuxtModule,
     getNuxtVersion,
     isNuxtTwo,
     hasServerDir,
     findNuxtConfig,
     isNuxtProject,
-    isModuleConfigured
+    isModuleConfigured,
+    updateNuxtConfig,
 } from './nuxt'
 
 import {
@@ -44,6 +44,8 @@ import { generateVueFileBasicTemplate, generateVueFileTemplate, generatePiniaTem
 import { removePackage, managePackageVersion } from './dependency'
 
 import { createConfigWatcher } from './watchers'
+
+import { injectPkgJSONScript } from './pkgJSON'
 
 export {
     openExternalLink,
@@ -72,7 +74,6 @@ export {
     newTerminal,
     getNonce,
     getUri,
-    addNuxtModule,
     removeNuxtModule,
     runCommand,
     logger,
@@ -90,5 +91,7 @@ export {
     openFolder,
     quickOpenButtons,
     isModuleConfigured,
-    isDependencyInstalled
+    isDependencyInstalled,
+    injectPkgJSONScript,
+    updateNuxtConfig,
 }

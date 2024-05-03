@@ -51,40 +51,6 @@ export const isModuleConfigured = async (module: string) => {
 }
 
 
-export const addNuxtModule = async (module: string) => {
-    try {
-        const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
-
-        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-        const config =
-            mod.exports.default.$type === 'function-call'
-                ? mod.exports.default.$args[0]
-                : mod.exports.default;
-
-        let layer = await isLayer(module);
-
-        if (layer) {
-            config.extends ||= [];
-            if (!config.extends.includes(module)) {
-                config.extends.push(module);
-            }
-        } else {
-            config.modules ||= [];
-            if (!config.modules.includes(module)) {
-                config.modules.push(module);
-            }
-        }
-
-        const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
-    } catch (error) {
-        window.showErrorMessage(
-            `${module} failed to install, please install it manually, ${error}`
-        );
-    }
-};
-
 export const removeNuxtModule = async (module: any) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
@@ -219,28 +185,6 @@ export const isNuxtTwo = (): boolean | undefined => {
     }
 };
 
-const updateNuxtConfig = (update: (config: any) => void) => {
-    try {
-        const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
-
-        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-        const config =
-            mod.exports.default.$type === 'function-call'
-                ? mod.exports.default.$args[0]
-                : mod.exports.default;
-
-        update(config);
-
-        const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
-    } catch (error) {
-        window.showErrorMessage(
-            `Failed to update nuxt config, please update it manually, ${error}`
-        );
-    }
-};
-
 
 const scanNuxtDirectories = async () => {
     let projectSrcDir = `${await projectSrcDirectory()}`;
@@ -319,3 +263,77 @@ function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
 
     return parsedTsconfigPaths;
 }
+
+
+export const getNuxtConfig = async (action: 'inject-eslint-devChcker', input?: string) => {
+    try {
+        const nuxtConfigPath = findNuxtConfig();
+        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+
+        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
+        const config =
+            mod.exports.default.$type === 'function-call'
+                ? mod.exports.default.$args[0]
+                : mod.exports.default;
+
+        if (action === 'inject-eslint-devChcker') {
+            config.eslint ||= {};
+            config.eslint.checker = true;
+        }
+
+
+        const generated = mod.generate().code;
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
+
+
+    } catch (error) {
+        window.showErrorMessage(
+            `Failed to update nuxt config.`
+        );
+    }
+};
+
+
+export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
+    try {
+        const nuxtConfigPath = findNuxtConfig();
+        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+
+        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
+        const config =
+            mod.exports.default.$type === 'function-call'
+                ? mod.exports.default.$args[0]
+                : mod.exports.default;
+
+        if (action === 'inject-eslint-devChcker') {
+            config.eslint ||= {};
+            config.eslint.checker = true;
+        }
+
+        if (action === 'add-module') {
+            let layer = await isLayer(input);
+
+            if (layer) {
+                config.extends ||= [];
+                if (!config.extends.includes(input)) {
+                    config.extends.push(input);
+                }
+            } else {
+                config.modules ||= [];
+                if (!config.modules.includes(input)) {
+                    config.modules.push(input);
+                }
+            }
+        }
+
+
+        const generated = mod.generate().code;
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
+
+
+    } catch (error) {
+        window.showErrorMessage(
+            `Failed to update nuxt config.`
+        );
+    }
+};
