@@ -1,5 +1,5 @@
 import { window, ThemeColor } from "vscode";
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import { trimEnd } from "string-ts";
 import { join } from "pathe";
 import { parseModule } from "magicast";
@@ -20,20 +20,20 @@ const moduleName = "@nuxt/devtools";
 const nuxtConfigPath = findNuxtConfig();
 
 if (nuxtConfigPath) {
-    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf-8");
+    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf8");
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 } else {
     // window.showErrorMessage('Nuxt config file not found.')
 }
 
 const updateNuxtFile = async () => {
-    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf-8");
+    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf8");
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 };
 
 async function readConfigFile() {
     await updateNuxtFile();
-    let config =
+    const config =
         mod.exports.default.$type === "function-call"
             ? mod.exports.default.$args[0]
             : mod.exports.default;
@@ -72,7 +72,7 @@ async function directToggleDevTools() {
         }
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf-8");
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf8");
         return;
     } catch (error) {
         window.showErrorMessage(`Error toggling Nuxt Devtools: ${error}`);
@@ -107,7 +107,7 @@ async function installDevtools() {
             errorMessage: "Nuxt Devtools installation failed",
         }).then(async () => {
             const generated = mod.generate().code;
-            writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf-8");
+            writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf8");
         });
     }
 }
@@ -150,7 +150,7 @@ async function nuxtDevToolsHandler() {
     const nuxtTwo = isNuxtTwo();
     let isDevtoolsNative = false;
 
-    let nuxtVersion = getNuxtVersion();
+    const nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
         isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
     }

@@ -22,7 +22,7 @@ const fetchOfficialTemplates = async (): Promise<NuxtOfficialTemplate[]> => {
     try {
         const res = await ofetch('https://nuxt.new/data/starters.json');
         return res as NuxtOfficialTemplate[];
-    } catch (error) {
+    } catch {
         window.showErrorMessage(`Failed to fetch Nuxt templates`);
         return [];
     }
@@ -37,7 +37,7 @@ const fetchUserTemplates = async (): Promise<UserProjectTemplate[]> => {
             branch: item.branch,
         } as UserProjectTemplate));
         return userTemplates;
-    } catch (error) {
+    } catch {
         window.showErrorMessage(`Failed to fetch user templates`);
         return [];
     }
@@ -49,7 +49,7 @@ const fetchTemplate = async (repo: NuxtOfficialTemplate, path: string, projectNa
             registry: "https://raw.githubusercontent.com/nuxt/starter/templates/templates",
             dir: projectName,
         });
-    } catch (error) {
+    } catch {
         window.showErrorMessage(`Failed to fetch ${repo.name} template`);
     }
 };
@@ -57,13 +57,10 @@ const fetchTemplate = async (repo: NuxtOfficialTemplate, path: string, projectNa
 const fetchUserTemplate = async (template: UserProjectTemplate, path: string, projectName: string) => {
     const url = template.repoURL;
     const parsedURL = parseRepoURL(url);
-    if (!parsedURL) {
-        window.showErrorMessage(`Failed to parse ${template.name} repo URL`);
-        return;
-    } else {
+    if (parsedURL) {
 
         const { provider, owner, repo } = parsedURL;
-        let normalizedURL = `${owner}/${repo}${template.branch !== undefined ? `#${template.branch}` : ''}`;
+        const normalizedURL = `${owner}/${repo}${template.branch === undefined ? '' : `#${template.branch}`}`;
 
         try {
             await downloadTemplate(normalizedURL, {
@@ -72,9 +69,12 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
                 dir: projectName,
                 provider: provider,
             })
-        } catch (error) {
+        } catch {
             window.showErrorMessage(`Failed to fetch ${template.name} template`);
         }
+    } else {
+        window.showErrorMessage(`Failed to parse ${template.name} repo URL`);
+        return;
     }
 };
 
@@ -106,7 +106,7 @@ const createProjectPrompt = async (officialTemplates: NuxtOfficialTemplate[], us
 
     picker.items = [...officialItems, ...userItems];
 
-    picker.onDidChangeSelection((selection) => handleSelection([...officialTemplates, ...userTemplates], selection.slice(), picker));
+    picker.onDidChangeSelection((selection) => handleSelection([...officialTemplates, ...userTemplates], [...selection], picker));
     picker.onDidTriggerItemButton((e) => handleItemButton(e as any));
     picker.onDidChangeSelection((item: any) => picker.dispose());
     picker.show();
@@ -161,7 +161,7 @@ const handleFileUri = async (fileUri: Uri[] | undefined, template: (NuxtOfficial
             if (result === 'Open in new window') {
                 openFolder(projectURI, proName, true);
             }
-        } catch (error) {
+        } catch {
             window.showInformationMessage(`Failed to create ${proName} project.`);
         }
     }
@@ -192,12 +192,12 @@ export async function createProject() {
         const nuxtTemplates = await fetchOfficialTemplates() as NuxtOfficialTemplate[];
         const userTemplates = await fetchUserTemplates() as UserProjectTemplate[];
 
-        if (!nuxtTemplates) {
-            return;
-        } else {
+        if (nuxtTemplates) {
             await createProjectPrompt(nuxtTemplates, userTemplates);
+        } else {
+            return;
         }
-    } catch (error) {
+    } catch {
         window.showErrorMessage(`Failed to fetch Nuxt starters`);
     }
 }

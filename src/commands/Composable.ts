@@ -12,11 +12,11 @@ const createComposable = () => {
 
             if (!name) { return }
 
-            let composablesDir = `${await projectSrcDirectory()}/composables`
+            const composablesDir = `${await projectSrcDirectory()}/composables`
 
             createDir('composables')
 
-            let subFolders = await createSubFolders(composablesDir, 'composables')
+            const subFolders = await createSubFolders(composablesDir, 'composables')
 
             showSubFolderQuickPick({
                 name,
@@ -37,7 +37,7 @@ const directCreateComposable = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,

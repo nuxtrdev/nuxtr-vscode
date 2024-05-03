@@ -16,7 +16,7 @@
         <div class="flex items-center justify-between">
           <div class="flex items-center">
             <h3 class="text-base font-bold" v-text="module.name" />
-            <div v-if="module.type == 'official'" class="ml-2">
+            <div v-if="module.type === 'official'" class="ml-2">
               <IconNuxt />
             </div>
           </div>
@@ -55,7 +55,7 @@
 </template>
 
 <script setup lang="ts">
-import { vscode } from "./../utilities/vscode";
+import { vscode } from "../utilities/vscode";
 
 import Placeholder from "./Icons/Placeholder.vue";
 import IconNuxt from "./Icons/Nuxt.vue";
@@ -63,7 +63,7 @@ import IconStar from "./Icons/Star.vue";
 import IconDownloads from "./Icons/Downloads.vue";
 import { ref } from "vue";
 
-import { Module } from "./../composables/modules";
+import { Module } from "../composables/modules";
 
 const props = defineProps<{
   module: Module;
@@ -97,7 +97,7 @@ window.addEventListener("message", (event: any) => {
       if (message.cmd !== props.module.npm) {
         break;
       }
-      if (message.installed == true) {
+      if (message.installed === true) {
         buttonText.value = "Installed";
       } else {
         buttonText.value = "Install";

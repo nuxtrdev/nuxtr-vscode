@@ -1,6 +1,6 @@
 import { env, Uri, Webview, workspace, window, ProgressLocation, ThemeIcon } from 'vscode';
 import type { WorkspaceConfiguration } from 'vscode';
-import { exec } from 'child_process';
+import { exec } from 'node:child_process';
 import { hasSrcDir } from './nuxt';
 import { installDependencies } from '../commands/InstallDependencies'
 import { logger } from './outputChannel';
@@ -55,7 +55,7 @@ export const vscodeConfiguration = (): WorkspaceConfiguration => {
 }
 
 export const newTerminal = (terminalName: string, command: string, cwd?: string) => {
-    let existingTerminal = window.terminals.find(terminal => terminal.name === terminalName);
+    const existingTerminal = window.terminals.find(terminal => terminal.name === terminalName);
 
     if (existingTerminal) {
         existingTerminal.show();
@@ -93,7 +93,7 @@ export const runCommand = async (args: {
                 const child = exec(
                     args.command,
                     { cwd: projectRootDirectory() },
-                    (error: any, stdout: any, stderr: any) => {
+                    (error: any, stdout: any) => {
                         if (error) {
                             reject(error.message);
                         } else {
@@ -108,13 +108,13 @@ export const runCommand = async (args: {
 
                 child.on('exit', async (code) => {
                     if (code === 0) {
-                        if (!args.docsURL) {
-                            window.showInformationMessage(args.successMessage);
-                        } else {
+                        if (args.docsURL) {
                             const response = await window.showInformationMessage(args.successMessage, 'Open documentation');
                             if (response === 'Open documentation') {
                                 openExternalLink(args.docsURL);
                             }
+                        } else {
+                            window.showInformationMessage(args.successMessage);
                         }
 
                     } else {
@@ -132,7 +132,7 @@ const _jiti = require("jiti")(projectRootDirectory(), { esmResolve: true, intero
 export async function tryImport (path: string): Promise<undefined | unknown> {
     try {
         return _jiti(path)
-    } catch (error) {
+    } catch {
         const response = await window.showErrorMessage(
             'Dependencies are not installed. Install dependencies first?',
             'Install',

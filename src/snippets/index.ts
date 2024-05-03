@@ -1,7 +1,8 @@
-import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind, Position, TextDocument, } from 'vscode';
+import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind } from 'vscode';
 import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
-import { homedir } from 'os';
+import { homedir } from 'node:os';
+
 import { nuxtrConfiguration, generateVueFileBasicTemplate } from '../utils';
 
 enum SnippetSource {
@@ -16,7 +17,7 @@ const snippetsDir = 'snippets'
 const disabledSnippetsDir = 'disabled_snippets'
 const extensionName = 'nuxtr.nuxtr-vscode'
 const nuxtrVersion = extensions.getExtension(extensionName)?.packageJSON.version
-let extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`)
+const extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`)
 
 async function manageSnippetState(snippetSource: string, snippetConfig: boolean) {
     const snippetSourceDir = join(extensionDir, snippetsDir, snippetSource);
@@ -26,20 +27,20 @@ async function manageSnippetState(snippetSource: string, snippetConfig: boolean)
         mkdirSync(disabledSnippetSourceDir, { recursive: true });
     }
 
-    if (!snippetConfig) {
-        const files = readdirSync(disabledSnippetSourceDir);
-        for (const file of files) {
-            await move(join(disabledSnippetSourceDir, file), join(snippetSourceDir, file));
-        }
-
-        removeSync(disabledSnippetSourceDir);
-    } else {
+    if (snippetConfig) {
         const files = readdirSync(snippetSourceDir);
         for (const file of files) {
             await move(join(snippetSourceDir, file), join(disabledSnippetSourceDir, file));
         }
 
         removeSync(snippetSourceDir);
+    } else {
+        const files = readdirSync(disabledSnippetSourceDir);
+        for (const file of files) {
+            await move(join(disabledSnippetSourceDir, file), join(snippetSourceDir, file));
+        }
+
+        removeSync(disabledSnippetSourceDir);
     }
 }
 
@@ -49,11 +50,10 @@ export const toggleSnippets = async () => {
     await manageSnippetState(SnippetSource.nitro, snippetsConfigurations.nitro);
 }
 
-
-const vuePageTemplate = languages.registerCompletionItemProvider(
+languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems(document: TextDocument, position: Position) {
+        provideCompletionItems() {
             const completionItem = new CompletionItem('vueBase', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue page/component template';
 
@@ -74,10 +74,10 @@ const vuePageTemplate = languages.registerCompletionItemProvider(
 );
 
 
-const vueBaseTemplate = languages.registerCompletionItemProvider(
+languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems(document: TextDocument, position: Position) {
+        provideCompletionItems() {
             const completionItem = new CompletionItem('vueBaseLayout', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue file template';
 

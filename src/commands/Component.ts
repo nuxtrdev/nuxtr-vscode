@@ -10,11 +10,11 @@ const createComponent = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            let componentsDir = `${await projectSrcDirectory()}/components`
+            const componentsDir = `${await projectSrcDirectory()}/components`
 
             await createDir('components')
 
-            let subFolders = await createSubFolders(componentsDir, 'components')
+            const subFolders = await createSubFolders(componentsDir, 'components')
 
             showSubFolderQuickPick({
                 name,
@@ -34,7 +34,7 @@ const directCreateComponent = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.vue`
+            const filePath = `${path}/${name}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

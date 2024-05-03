@@ -15,8 +15,8 @@ export async function activate(context: ExtensionContext) {
 
         await activateExtension(context);
     } else {
-        publicCommands.forEach(({ command, function: commandFunction }) => {
+        for (const { command, function: commandFunction } of publicCommands) {
             context.subscriptions.push(commands.registerCommand(command, commandFunction));
-        });
+        }
     }
 }

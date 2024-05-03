@@ -12,11 +12,11 @@ const createMiddleware = () => {
 
             if (!name) { return }
 
-            let middlewareDir = `${await projectSrcDirectory()}/middleware`
+            const middlewareDir = `${await projectSrcDirectory()}/middleware`
 
             await createDir('middleware')
 
-            let subFolders = await createSubFolders(middlewareDir, 'middleware')
+            const subFolders = await createSubFolders(middlewareDir, 'middleware')
 
             showSubFolderQuickPick({
                 name,
@@ -40,7 +40,7 @@ const directCreateMiddleware = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,

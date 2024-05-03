@@ -12,11 +12,11 @@ const createPage = async () => {
         .then(async(name) => {
             if (!name) {return}
 
-            let pagesDir = `${await projectSrcDirectory()}/pages`
+            const pagesDir = `${await projectSrcDirectory()}/pages`
 
             await createDir('pages')
 
-            let subFolders = await createSubFolders(pagesDir, 'pages')
+            const subFolders = await createSubFolders(pagesDir, 'pages')
 
             showSubFolderQuickPick({
                 name,
@@ -36,7 +36,7 @@ function directCreatePage(path: string) {
         .then((name) => {
             if (!name) {return}
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
+            const filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

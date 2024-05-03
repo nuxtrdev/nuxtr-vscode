@@ -14,11 +14,11 @@ const createLayout = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            let layoutDir = `${await projectSrcDirectory()}/layouts`
+            const layoutDir = `${await projectSrcDirectory()}/layouts`
 
             createDir('layouts')
 
-            let filePath = `${await projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
+            const filePath = `${await projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,
@@ -37,7 +37,7 @@ const directCreateLayout = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
+            const filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

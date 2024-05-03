@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import { capitalize } from 'string-ts'
-import { existsSync, readFileSync, unlinkSync, readdirSync } from 'fs'
-import { exec } from 'child_process'
+import { existsSync, readFileSync, unlinkSync, readdirSync } from 'node:fs'
+import { exec } from 'node:child_process'
 import { destr } from "destr"
 
 import {
@@ -27,7 +27,7 @@ const nonce = getNonce()
 export class ModulesView implements vscode.WebviewViewProvider {
     _view?: vscode.WebviewView
 
-    constructor(private readonly _extensionUri: vscode.Uri) { }
+    constructor(private readonly _extensionUri: vscode.Uri) {}
 
     public resolveWebviewView(webviewView: vscode.WebviewView) {
         this._view = webviewView
@@ -45,7 +45,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
             this.goToProjectView()
         }
 
-        webviewView.onDidChangeVisibility((e) => {
+        webviewView.onDidChangeVisibility(() => {
             if (webviewView.visible) {
                 this.goToProjectView()
             }
@@ -124,7 +124,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         const packageManager = detectPackageManagerByName()
 
         switch (packageManager?.name) {
-            case 'Yarn':
+            case 'Yarn': {
                 if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `yarn ${script}`,
@@ -138,7 +138,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                     newTerminal(`Project: ${command}`, `yarn ${script}`, `${projectRootDirectory()}`)
                 }
                 break
-            case 'NPM':
+            }
+            case 'NPM': {
                 if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `npm run ${script}`,
@@ -152,7 +153,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                     newTerminal(`Project: ${command}`, `npm run ${script}`, `${projectRootDirectory()}`)
                 }
                 break
-            case 'pnpm':
+            }
+            case 'pnpm': {
                 if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `pnpm ${script}`,
@@ -166,7 +168,8 @@ export class ModulesView implements vscode.WebviewViewProvider {
                     newTerminal(`Project: ${command}`, `pnpm ${script}`, `${projectRootDirectory()}`)
                 }
                 break
-            case 'Bun':
+            }
+            case 'Bun': {
                 if (script.includes('build') || script.includes('generate')) {
                     runCommand({
                         command: `bun --bun run ${script}`,
@@ -180,8 +183,10 @@ export class ModulesView implements vscode.WebviewViewProvider {
                     newTerminal(`Project: ${command}`, `bun ${script}`, `${projectRootDirectory()}`)
                 }
                 break
-            default:
+            }
+            default: {
                 vscode.window.showErrorMessage('Nuxtr: No package manager found')
+            }
         }
     }
 
@@ -200,9 +205,9 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
 
     private _getHtmlForWebview(webview: vscode.Webview) {
-        const stylesUri = getUri(webview, this._extensionUri, ['ui', 'build', 'assets', 'index.css'])
+        const stylesUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.css'])
         // The JS file from the Vue build output
-        const scriptUri = getUri(webview, this._extensionUri, ['ui', 'build', 'assets', 'index.js'])
+        const scriptUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.js'])
 
         return /*html*/ `
       <!DOCTYPE html>
@@ -370,41 +375,49 @@ export class ModulesView implements vscode.WebviewViewProvider {
         webview.onDidReceiveMessage(async (message: any) => {
             const { command, module, script } = message
             switch (command) {
-                case 'installModule':
+                case 'installModule': {
                     this.installModule(module)
                     break
-                case 'runAction':
+                }
+                case 'runAction': {
                     this.runAction(script)
                     break
-                case 'upgradeModule':
+                }
+                case 'upgradeModule': {
                     this.upgradeModule(module)
                     break
-                case 'removeModule':
+                }
+                case 'removeModule': {
                     this.removeModule(module)
                     break
-                case 'editSnippet':
+                }
+                case 'editSnippet': {
                     this.editSnippet(message.data)
                     break
-                case 'deleteSnippet':
+                }
+                case 'deleteSnippet': {
                     this.deleteSnippet(message.data)
                     break
-                case 'configureNewSnippet':
+                }
+                case 'configureNewSnippet': {
                     vscode.commands.executeCommand('workbench.action.openSnippets')
                     break
-                case 'editTemplate':
+                }
+                case 'editTemplate': {
                     this.editTemplate(message.data)
                     break
-                case 'deleteTemplate':
+                }
+                case 'deleteTemplate': {
                     this.deleteTemplate(message.data)
                     break
-                case 'createFileFromTemplate':
+                }
+                case 'createFileFromTemplate': {
                     vscode.commands.executeCommand('nuxtr.createFileFromTemplate', message.data)
                     break
-                case 'createEmptyFileTemplate':
+                }
+                case 'createEmptyFileTemplate': {
                     vscode.commands.executeCommand('nuxtr.createEmptyFileTemplate')
-
-                default:
-                    break
+                }
             }
         })
     }

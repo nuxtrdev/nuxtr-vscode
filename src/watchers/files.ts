@@ -1,4 +1,4 @@
-import { ExtensionContext, StatusBarItem, Uri, workspace, commands } from 'vscode'
+import { ExtensionContext, StatusBarItem, workspace, commands } from 'vscode'
 import { projectRootDirectory, findNuxtConfig } from '../utils';
 import { nuxtConfigWatcher } from '../commands/Devtools';
 class FileWatchers {
@@ -19,7 +19,7 @@ class FileWatchers {
 
     public packageJsonFileWatcher = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/package.json`)
-        .onDidCreate(async (uri: Uri) => {
+        .onDidCreate(async () => {
             this.sidebarProvider.updateModules()
             await this.sidebarProvider.getDependencies()
 
@@ -37,7 +37,7 @@ class FileWatchers {
 
     public packageJsonFileChangedWatcher = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/package.json`)
-        .onDidChange(async (uri: Uri) => {
+        .onDidChange(async () => {
             this.sidebarProvider.updateModules()
             await this.sidebarProvider.getDependencies()
 
@@ -56,13 +56,13 @@ class FileWatchers {
 
     public dotvscodeFileWatcher = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/.vscode/**/*`)
-        .onDidCreate((uri: Uri) => {
+        .onDidCreate(() => {
             this.sidebarProvider.getDependencies()
         })
 
     public dotvscodeFileWatcherOnDelete = workspace
         .createFileSystemWatcher(`${projectRootDirectory()}/.vscode/**/*`)
-        .onDidDelete((uri: Uri) => {
+        .onDidDelete(() => {
             this.sidebarProvider.getDependencies()
         })
 

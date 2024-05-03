@@ -94,15 +94,15 @@ export async function activateExtension(context: ExtensionContext) {
     activateIntellisense(context)
 
     // activate codelens
-    codelens.activateCodelenses(context)
+    codelens.activateCodelenses()
 
-    extensionCommands.forEach(({ command, function: commandFunction }) => {
+    for (const { command, function: commandFunction } of extensionCommands) {
         context.subscriptions.push(commands.registerCommand(command, commandFunction));
-    });
+    }
 
-    publicCommands.forEach(({ command, function: commandFunction }) => {
+    for (const { command, function: commandFunction } of publicCommands) {
         context.subscriptions.push(commands.registerCommand(command, commandFunction));
-    });
+    }
 
     context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', () => sidebarProvider.updateModules()))
 

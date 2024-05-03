@@ -1,6 +1,6 @@
 import { Disposable, window, commands } from 'vscode';
 import { createConfigWatcher, nuxtrConfiguration, getProjectDependencies, projectRootDirectory } from '../utils';
-import { existsSync } from 'fs';
+import { existsSync } from 'node:fs';
 import { toggleSnippets } from '../snippets';
 import { TSConfigNuxt } from '../types';
 import { readTSConfig } from 'pkg-types'
@@ -10,7 +10,7 @@ import { PugConfigurationSteps } from '../commands/Templates'
 
 export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
     await toggleSnippets()
-    return Promise.resolve();
+    return;
 });
 
 export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles.template.defaultLanguage', async () => {
@@ -32,7 +32,7 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
         }
 
         const path = `${projectRootDirectory()}/tsconfig.json`;
-        let tsconfig: TSConfigNuxt = await readTSConfig(path);
+        const tsconfig: TSConfigNuxt = await readTSConfig(path);
 
         if (!existsSync(path)) {
             return;

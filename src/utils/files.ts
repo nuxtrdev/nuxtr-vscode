@@ -1,11 +1,10 @@
-import { readFileSync } from 'fs'
+import { readFileSync } from 'node:fs'
 import { nuxtrConfiguration, projectRootDirectory, vscodeConfiguration } from '.';
 import { generateStyleTag, generateScriptTag, templateTag, piniaOptionsContent, piniaSetupContent } from '../templates'
 
-let vueFilesConfig = nuxtrConfiguration().vueFiles
-let piniaConfig = nuxtrConfiguration().piniaFiles.defaultTemplate
-let eolConfiguration = vscodeConfiguration().files.eol
-let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
+const vueFilesConfig = nuxtrConfiguration().vueFiles
+const piniaConfig = nuxtrConfiguration().piniaFiles.defaultTemplate
+const eolConfiguration = vscodeConfiguration().files.eol
 
 export function generateVueFileTemplate(type: 'page' | 'layout', template?: string) {
     const userDefaultTemplate = template || (type === 'page'
@@ -15,28 +14,24 @@ export function generateVueFileTemplate(type: 'page' | 'layout', template?: stri
     const templatePath = `${projectRootDirectory()}/.vscode/${userDefaultTemplate}`;
     try {
         return readFileSync(templatePath).toString();
-    } catch (error) {
+    } catch {
         return generateVueFileBasicTemplate(type);
     }
 }
 
-function normalizeLFToCRLF(text: string) {
-    return text.replace(/\n/g, '\r\n');
-}
-
 export function generateVueFileBasicTemplate(type: string) {
     let fileTemplate = ``
-    let templateLang = vueFilesConfig.template.defaultLanguage
-    let firstTag = vueFilesConfig.firstTag
-    let scriptType = vueFilesConfig.script.type
-    let addStyleTag = vueFilesConfig.style.addStyleTag
-    let styleLang = vueFilesConfig.style.defaultLanguage
-    let isScoped = vueFilesConfig.style.alwaysScoped
-    let lang = vueFilesConfig.script.defaultLanguage
+    const templateLang = vueFilesConfig.template.defaultLanguage
+    const firstTag = vueFilesConfig.firstTag
+    const scriptType = vueFilesConfig.script.type
+    const addStyleTag = vueFilesConfig.style.addStyleTag
+    const styleLang = vueFilesConfig.style.defaultLanguage
+    const isScoped = vueFilesConfig.style.alwaysScoped
+    const lang = vueFilesConfig.script.defaultLanguage
 
-    let scriptTag = generateScriptTag(scriptType, lang)
+    const scriptTag = generateScriptTag(scriptType, lang)
 
-    let eol = eolConfiguration === '\n' ? `\n\n` : `\n\n`;
+    const eol = eolConfiguration === '\n' ? `\n\n` : `\n\n`;
 
     if (firstTag === 'template') {
         fileTemplate = templateTag(type, templateLang);

@@ -11,11 +11,11 @@ const createPlugin = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            let pluginsDir = `${await projectSrcDirectory()}/plugins`
+            const pluginsDir = `${await projectSrcDirectory()}/plugins`
 
             await createDir('plugins')
 
-            let subFolders = await createSubFolders(pluginsDir, 'plugins')
+            const subFolders = await createSubFolders(pluginsDir, 'plugins')
 
             showSubFolderQuickPick({
                 name,
@@ -39,7 +39,7 @@ const directCreatePlugin = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
 
             createFile({

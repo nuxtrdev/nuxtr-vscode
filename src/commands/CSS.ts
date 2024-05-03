@@ -32,14 +32,28 @@ function configureCSS() {
             placeHolder: 'Select CSS Framework',
         })
         .then((selection) => {
-            if (selection === 'TailwindCSS') {
-                configureTailwind()
-            } else if (selection === 'WindiCSS') {
-                configureWindi()
-            } else if (selection === 'UnoCSS') {
-                configureUno()
-            } else if (selection === 'Vuetify') {
-                configureVuetify()
+            switch (selection) {
+                case 'TailwindCSS': {
+                    configureTailwind()
+            
+                    break;
+                }
+                case 'WindiCSS': {
+                    configureWindi()
+            
+                    break;
+                }
+                case 'UnoCSS': {
+                    configureUno()
+            
+                    break;
+                }
+                case 'Vuetify': {
+                    configureVuetify()
+            
+                    break;
+                }
+            // No default
             }
         })
 }

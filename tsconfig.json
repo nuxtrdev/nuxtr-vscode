@@ -1,25 +1,26 @@
 {
-    "compilerOptions": {
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "esModuleInterop": true,
-        "target": "es2020",
-        "isolatedModules": true,
-        "moduleDetection": "force",
-        "rootDir": "src",
-        "outDir": "out",
-        "strict": true,
-        "skipLibCheck": true,
-        "resolveJsonModule": true,
-        "incremental": true,
-        "sourceMap": true
-    },
-    "exclude": [
-        "node_modules",
-        ".vscode-test",
-        "ui",
-        "taze.config.ts",
-        "tsup.config.ts",
-        "knip.ts"
-    ],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2020",
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "rootDir": "src",
+    "outDir": "out",
+    "strict": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "incremental": true,
+    "sourceMap": true
+  },
+  "exclude": [
+    "node_modules",
+    ".vscode-test",
+    "src/sideBar/src",
+    "src/sideBar/build",
+    "taze.config.ts",
+    "tsup.config.ts",
+    "knip.ts"
+  ],
 }

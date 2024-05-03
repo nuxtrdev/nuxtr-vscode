@@ -1,15 +1,13 @@
 import { window, workspace, Uri } from 'vscode';
 import { trim, capitalize, replace, split, endsWith } from 'string-ts';
-import { existsSync, mkdirSync, readdirSync } from 'fs';
+import { existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { join } from 'pathe';
-import { TextEncoder } from 'util';
+import { TextEncoder } from 'node:util';
 
 import { getCommandType } from './commands';
 
-import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory, vscodeConfiguration } from '.';
+import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory } from '.';
 
-let eolConfiguration = vscodeConfiguration().files.eol
-let eol = eolConfiguration === 'auto' ? '\n' : eolConfiguration
 
 const createDirectoryAndFile = async (componentName: any, commandType: string, content: string) => {
 
@@ -23,14 +21,18 @@ const createDirectoryAndFile = async (componentName: any, commandType: string, c
         .then(async (name) => {
             if (name !== undefined && trim(name) !== '') {
 
-                let workspaceFolder = workspace.workspaceFolders?.[0];
-                let cwd = workspaceFolder?.uri.fsPath;
+                const workspaceFolder = workspace.workspaceFolders?.[0];
+                const cwd = workspaceFolder?.uri.fsPath;
 
                 if (cwd !== undefined) {
-                    let dir = join(cwd, `${type.path}`);
-                    let directoryPath = join(dir, name);
+                    const dir = join(cwd, `${type.path}`);
+                    const directoryPath = join(dir, name);
 
-                    if (!existsSync(directoryPath)) {
+                    if (existsSync(directoryPath)) {
+                        window.showWarningMessage(
+                            `Directory ${name} already exists in ./${type.path}/${name}`
+                        );
+                    } else {
                         mkdirSync(directoryPath);
 
                         createFile({
@@ -38,10 +40,6 @@ const createDirectoryAndFile = async (componentName: any, commandType: string, c
                             content,
                             fullPath: `${await projectSrcDirectory()}/${type.path}/${name}/${normalizeFileExtension(componentName, type.extension)}${type.extension}`,
                         });
-                    } else {
-                        window.showWarningMessage(
-                            `Directory ${name} already exists in ./${type.path}/${name}`
-                        );
                     }
                 }
             }
@@ -49,17 +47,15 @@ const createDirectoryAndFile = async (componentName: any, commandType: string, c
 };
 
 export const createDir = async (dir: string) => {
-    if (`${await projectSrcDirectory()}` !== `${projectRootDirectory()}`) {
-        if (!existsSync(`${await projectSrcDirectory()}`)) {
-            mkdirSync(`${await projectSrcDirectory()}`);
-        }
+    if (`${await projectSrcDirectory()}` !== `${projectRootDirectory()}` && !existsSync(`${await projectSrcDirectory()}`)) {
+        mkdirSync(`${await projectSrcDirectory()}`);
     }
 
-    let dirParts = dir.split('/');
+    const dirParts = dir.split('/');
     let currentPath = `${await projectSrcDirectory()}`
 
 
-    for (let part of dirParts) {
+    for (const part of dirParts) {
         currentPath = `${currentPath}/${part}`;
 
         if (!existsSync(currentPath)) {
@@ -69,7 +65,7 @@ export const createDir = async (dir: string) => {
 };
 
 export const createSubFolders = async (dir: string, commandType: string) => {
-    let subFolders =
+    const subFolders =
         readdirSync(dir, { withFileTypes: true })
             .filter((dirent) => dirent.isDirectory())
             .map((dirent) => dirent.name);
@@ -99,7 +95,7 @@ export const showSubFolderQuickPick = async (args: {
             }
 
             switch (selection) {
-                case `Main ${type.name.toLocaleLowerCase()} folder`:
+                case `Main ${type.name.toLocaleLowerCase()} folder`: {
                     const path = `${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
                     const fullPath = `${await projectSrcDirectory()}/${type.path}/${path}`;
 
@@ -109,10 +105,12 @@ export const showSubFolderQuickPick = async (args: {
                         fullPath: fullPath
                     });
                     break;
-                case 'Create new folder...':
+                }
+                case 'Create new folder...': {
                     createDirectoryAndFile(normalizeFileExtension(args.name, type.extension), type.name, args.content);
                     break;
-                default:
+                }
+                default: {
                     const fileNameAndPath = `${selection}/${normalizeFileExtension(args.name, type.extension)}${type.extension}`;
 
                     await createFile({
@@ -121,12 +119,13 @@ export const showSubFolderQuickPick = async (args: {
                         fullPath: `${await projectSrcDirectory()}/${type.path}/${fileNameAndPath}`,
                     });
                     break;
+                }
             }
         });
 };
 
 export const createFile = async (args: { fileName: string; content: string; fullPath: string }) => {
-    let parentDirectory = Uri.file(args.fullPath);
+    const parentDirectory = Uri.file(args.fullPath);
 
     if (existsSync(parentDirectory.fsPath)) {
         window.showErrorMessage(`File ${args.fileName} already exists`);
@@ -174,6 +173,6 @@ export const createVueTemplate = (content: string, type: string) => {
 
 };
 
-export const normalizeName = (name: string, capital?: boolean) => split(trim(split(name, '.')[0]), "-").map(capitalize).join('');
+export const normalizeName = (name: string) => split(trim(split(name, '.')[0]), "-").map((value) => capitalize(value)).join('');
 
 export const normalizeFileExtension = (name: string, extension: string) => endsWith(name, extension) ? replace(name, extension, '') : name

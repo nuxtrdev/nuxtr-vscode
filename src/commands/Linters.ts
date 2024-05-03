@@ -119,7 +119,7 @@ const configureStylelint = () => {
 
                     packageJson.scripts.stylelint = 'stylelint --fix --allow-empty-input --ignore-path .gitignore .'
 
-                    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
+                    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8')
                 }
 
                 if (selections.includes(StylelintOptions.createStyleLintAndIgnoreFiles)) {

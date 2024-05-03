@@ -1,8 +1,8 @@
 <template>
   <div class="flex w-full flex-col font-inter">
-    <Modules />
+    <Project />
   </div>
 </template>
 <script setup lang="ts">
-import Modules from "./../components/Modules.vue";
+import Project from "../components/Project.vue";
 </script>

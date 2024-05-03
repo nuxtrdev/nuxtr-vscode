@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { existsSync } from 'fs'
+import { existsSync } from 'node:fs'
 import { projectRootDirectory, runCommand, getInstallationCommand } from '../utils'
 import type { TSConfigNuxt } from '../types'
 import { writeTSConfig, readTSConfig } from 'pkg-types'
@@ -53,7 +53,7 @@ export const configurePug = (options: string[] = defaultOptions) => {
                             return;
                         }
 
-                        let tsconfig: TSConfigNuxt = await readTSConfig(path);
+                        const tsconfig: TSConfigNuxt = await readTSConfig(path);
                         tsconfig.vueCompilerOptions = {
                             plugins: [
                                 '@vue/language-plugin-pug'
