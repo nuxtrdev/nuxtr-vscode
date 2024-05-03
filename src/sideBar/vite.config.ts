@@ -5,7 +5,8 @@ export default defineConfig({
     plugins: [vue()],
     build: {
         outDir: "build",
-        minify: true,
+        cssMinify: 'esbuild',
+        minify: 'terser',
         rollupOptions: {
             output: {
                 entryFileNames: `assets/[name].js`,
