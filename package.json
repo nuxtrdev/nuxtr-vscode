@@ -560,7 +560,7 @@
             "default": "setup",
             "enum": [
               "setup",
-              "normal"
+              "options"
             ],
             "description": "Script tag type in Vue files template"
           },
