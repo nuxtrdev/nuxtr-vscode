@@ -8,10 +8,7 @@ import nuxtrCommands from '../commands'
 import { PugConfigurationSteps } from '../commands/Templates'
 
 
-export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
-    await toggleSnippets()
-    return;
-});
+export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => await toggleSnippets() );
 
 export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles.template.defaultLanguage', async () => {
     const options: string[] = [];

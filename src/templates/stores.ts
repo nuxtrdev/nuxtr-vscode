@@ -1,8 +1,8 @@
 import { normalizeName } from '../utils'
 
 const piniaOptionsContent = (name: string): string => {
-    return `export const useMy${normalizeName(name)}Store = defineStore({
-  id: 'my${normalizeName(name)}Store',
+    return `export const use${normalizeName(name)}Store = defineStore({
+  id: '${normalizeName(name)}Store',
   state: () => ({ }),
   actions: {}
 })
