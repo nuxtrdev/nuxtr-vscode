@@ -4,7 +4,7 @@ export default unjs({
     rules: {
         '@typescript-eslint/naming-convention': 'off',
         "@typescript-eslint/no-duplicate-enum-values": 'off',
-        '@typescript-eslint/semi': 0,
+        '@typescript-eslint/semi': 'off',
         'curly': ['error', 'all'],
         'eqeqeq': 'warn',
         'no-throw-literal': 'warn',
