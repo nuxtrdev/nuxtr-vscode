@@ -608,7 +608,7 @@
           },
           "nuxtr.piniaFiles.defaultTemplate": {
             "type": "string",
-            "default": "options",
+            "default": "setup",
             "enum": [
               "options",
               "setup"
