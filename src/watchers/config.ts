@@ -7,8 +7,18 @@ import { readTSConfig } from 'pkg-types'
 import nuxtrCommands from '../commands'
 import { PugConfigurationSteps } from '../commands/Templates'
 
+const reloatWindowProps = () => {
+    window.showInformationMessage('Configuration has been modified.', 'Reload Window').then((answer) => {
+        if (answer === 'Reload Window') {
+            commands.executeCommand('workbench.action.reloadWindow');
+        }
+    });
+}
 
-export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => await toggleSnippets() );
+export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
+    await toggleSnippets()
+    reloatWindowProps();
+});
 
 export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles.template.defaultLanguage', async () => {
     const options: string[] = [];
@@ -54,13 +64,17 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
     }
 });
 
-
 export const piniaConfigWatcher: Disposable = createConfigWatcher('nuxtr.piniaFiles',  (): Promise<void> => {
-    window.showInformationMessage('Pinia Configuration has been modified.', 'Reload Window').then((answer) => {
-        if (answer === 'Reload Window') {
-            commands.executeCommand('workbench.action.reloadWindow');
-        }
-    });
-
+    reloatWindowProps();
     return Promise.resolve();
 });
+
+export const vueConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles', (): Promise<void> => {
+    reloatWindowProps();
+    return Promise.resolve();
+});
+
+export const intellisenseConfigWatcher: Disposable = createConfigWatcher('nuxtr.intellisense', (): Promise<void> => {
+    reloatWindowProps();
+    return Promise.resolve();
+})
