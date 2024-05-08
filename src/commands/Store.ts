@@ -11,11 +11,12 @@ import {
     runCommand,
     updateNuxtConfig
 } from '../utils'
+
 import { vuexContent } from '../templates'
 
 async function detectPiniaModule() {
     const moduleName = '@pinia/nuxt'
-    const isConfigured = await isModuleConfigured(moduleName)
+    const isConfigured = isModuleConfigured(moduleName)
     const installationCommand = await getInstallationCommand(moduleName, true)
     const isInstalled = await isDependencyInstalled(moduleName)
 

@@ -88,7 +88,7 @@ export const runCommand = async (args: {
             title: args.message,
             cancellable: false,
         },
-        async () => {
+        () => {
             return new Promise((resolve, reject) => {
                 const child = exec(
                     args.command,

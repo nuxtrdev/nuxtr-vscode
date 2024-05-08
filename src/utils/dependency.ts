@@ -281,7 +281,7 @@ export const updateDependencies = async () => {
     return
 }
 
-export async function upgradePackage(packageName: string): Promise<void> {
+export function upgradePackage(packageName: string) {
     const packageManager = detectPackageManagerByName()
     const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
     const options: QuickPickOptions = {
@@ -332,7 +332,7 @@ export async function managePackageVersion(packageName: string) {
                 title: `Finding ${packageName} versions...`,
                 cancellable: false,
             },
-            async () => {
+            () => {
                 return new Promise((resolve, reject) => {
                     exec(checkingVersionCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
                         if (error) {
@@ -367,7 +367,7 @@ export async function managePackageVersion(packageName: string) {
                                             title: `Installing ${packageName}@${version.label}...`,
                                             cancellable: false,
                                         },
-                                        async () => {
+                                        () => {
                                             return new Promise((resolve, reject) => {
                                                 const child = exec(installationCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
                                                     if (error) {
@@ -434,7 +434,7 @@ export async function removePackage(packageName: string): Promise<void> {
             title: `Uninstalling ${packageName}...`,
             cancellable: false,
         },
-        async () => {
+        () => {
             return new Promise((resolve, reject) => {
                 const command = `${packageManager?.uninstallCommand} ${packageName}`
                 const child = exec(

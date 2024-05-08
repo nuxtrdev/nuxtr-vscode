@@ -25,7 +25,7 @@ const isLayer = (module: any) => {
 };
 
 
-export const isModuleConfigured = async (module: string) => {
+export const isModuleConfigured = (module: string) => {
     const nuxtConfigPath = findNuxtConfig();
     const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
@@ -48,7 +48,7 @@ export const isModuleConfigured = async (module: string) => {
 }
 
 
-export const removeNuxtModule = async (module: any) => {
+export const removeNuxtModule = (module: any) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
         const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
