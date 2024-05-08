@@ -16,6 +16,13 @@ export default unjs({
         'unicorn/prefer-event-target': 'off',
         'unicorn/no-null': 'off',
         'unicorn/no-array-for-each': 'off',
+        'dot-notation': 'error',
+        'no-lonely-if': 'error',
+        'no-useless-rename': 'error',
+        'object-shorthand': 'error',
+        'prefer-const': ['error', { destructuring: 'any', ignoreReadBeforeAssign: false }],
+        'require-await': 'error',
+        'sort-imports': ['error', { ignoreDeclarationSort: true }],
     },
     ignores: [
         'out',

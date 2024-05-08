@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, vuetifyConfigFile } from '../templates'
-import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, updateNuxtConfig, getInstallationCommand, projectRootDirectory } from '../utils'
+import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile, windiCSSConfig } from '../templates'
+import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 

@@ -1,15 +1,15 @@
 import { window } from 'vscode'
 import {
-    projectSrcDirectory,
-    isNuxtTwo,
     createFile,
     generatePiniaTemplates,
-    normalizeFileExtension,
-    isModuleConfigured,
     getInstallationCommand,
+    isDependencyInstalled,
+    isModuleConfigured,
+    isNuxtTwo,
+    normalizeFileExtension,
+    projectSrcDirectory,
     runCommand,
-    updateNuxtConfig,
-    isDependencyInstalled
+    updateNuxtConfig
 } from '../utils'
 import { vuexContent } from '../templates'
 

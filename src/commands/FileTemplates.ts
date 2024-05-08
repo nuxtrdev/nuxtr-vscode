@@ -1,7 +1,7 @@
 import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
 
-import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate, projectRootDirectory } from '../utils'
+import { createFile, createSubFolders, createVueTemplate, generateVueFileBasicTemplate, generateVueFileTemplate, projectRootDirectory, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
 
 function createPageTemplate() {
@@ -59,7 +59,7 @@ const createFileFromTemplate = (template?: string) => {
 
                 showSubFolderQuickPick({
                     name,
-                    subFolders: subFolders,
+                    subFolders,
                     commandType: 'pages',
                     content: generateVueFileTemplate(`page`, template),
                 })

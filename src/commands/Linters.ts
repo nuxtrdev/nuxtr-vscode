@@ -1,6 +1,6 @@
-import { window, workspace, ConfigurationTarget } from 'vscode'
+import { ConfigurationTarget, window, workspace } from 'vscode'
 import { writeFileSync } from 'node:fs'
-import { createFile, projectRootDirectory, runCommand, getInstallationCommand, injectPkgJSONScript, openExternalLink, updateNuxtConfig} from '../utils'
+import { createFile, getInstallationCommand, injectPkgJSONScript, openExternalLink, projectRootDirectory, runCommand, updateNuxtConfig} from '../utils'
 import { eslintConfig, stylelintConfig, stylelintIgnore } from '../templates'
 const frameworks = ['Eslint', 'Stylelint']
 

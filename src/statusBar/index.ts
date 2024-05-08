@@ -1,4 +1,4 @@
-import { StatusBarItem, ExtensionContext, StatusBarAlignment, window, commands, ThemeColor } from 'vscode'
+import { ExtensionContext, StatusBarAlignment, StatusBarItem, ThemeColor, commands, window } from 'vscode'
 import { directToggleDevTools, nuxtDevToolsHandler } from '../commands/Devtools'
 import { dependenciesUpdatesHandler } from '../utils'
 

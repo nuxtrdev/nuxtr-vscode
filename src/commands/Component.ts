@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, generateVueFileBasicTemplate, } from '../utils';
+import { createDir, createFile, createSubFolders, generateVueFileBasicTemplate, projectSrcDirectory, showSubFolderQuickPick, } from '../utils';
 
 const createComponent = () => {
     window
@@ -18,7 +18,7 @@ const createComponent = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'components',
                 content: generateVueFileBasicTemplate('component'),
             })

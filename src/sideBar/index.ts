@@ -1,25 +1,25 @@
 import * as vscode from 'vscode'
 import { capitalize } from 'string-ts'
-import { existsSync, readFileSync, unlinkSync, readdirSync } from 'node:fs'
+import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
 import { exec } from 'node:child_process'
 import { destr } from "destr"
 
 import {
-    getNonce,
-    getUri,
-    getProjectDependencies,
-    projectRootDirectory,
-    openExternalLink,
-    getProjectScripts,
-    newTerminal,
     detectPackageManagerByName,
-    updateNuxtConfig,
-    removeNuxtModule,
     getInstallationCommand,
+    getNonce,
     getOutdatedPackages,
-    runCommand,
+    getProjectDependencies,
+    getProjectScripts,
+    getUri,
     managePackageVersion,
+    newTerminal,
+    openExternalLink,
+    projectRootDirectory,
+    removeNuxtModule,
     removePackage,
+    runCommand,
+    updateNuxtConfig,
 } from '../utils'
 
 
@@ -67,7 +67,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
             : 'undefined'
         const feedbackContent = {
             vscode_version: vscodeVersion,
-            extension_version: extension_version,
+            extension_version,
             vscode_theme_id: vscode.workspace.getConfiguration().get('workbench.colorTheme'),
         }
 
@@ -86,11 +86,11 @@ export class ModulesView implements vscode.WebviewViewProvider {
         this.postMessage({
             command: 'projectViewData',
             data: {
-                dependencies: dependencies,
-                scripts: scripts,
-                feedbackContent: feedbackContent,
-                snippets: snippets,
-                fileTemplates: fileTemplates
+                dependencies,
+                scripts,
+                feedbackContent,
+                snippets,
+                fileTemplates
             },
         })
 
@@ -238,7 +238,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                 title: `Installing ${module.npm}...`,
                 cancellable: false,
             },
-            async () => {
+            () => {
                 return new Promise((resolve, reject) => {
                     const child = exec(
                         command,
@@ -254,7 +254,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
                         }
                     )
 
-                    child.on('exit', async (code) => {
+                    child.on('exit', (code) => {
                         if (code === 0) {
                             this.addNuxtModule(module)
                         } else {
@@ -275,29 +275,20 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     private async addNuxtModule(module: any) {
         await updateNuxtConfig('add-module', module)
-            .then(async () => {
-                this.postMessage({
-                    command: 'moduleInstalled',
-                    installed: true,
-                    cmd: module.npm,
-                })
-                await vscode.window
-                    .showInformationMessage(
-                        `${module.npm} is installed successfully and added to Nuxt config`,
-                        'Open documentation'
-                    )
-                    .then(async (value) => {
-                        if (value === 'Open documentation') {
-                            openExternalLink(module.website)
-                        }
-                    })
-            })
-            .catch(() => {
-                this.postMessage({
-                    command: 'moduleInstalled',
-                    installed: false,
-                    cmd: module.npm,
-                })
+        this.postMessage({
+            command: 'moduleInstalled',
+            installed: true,
+            cmd: module.npm,
+        })
+        await vscode.window
+            .showInformationMessage(
+                `${module.npm} is installed successfully and added to Nuxt config`,
+                'Open documentation'
+            )
+            .then((value) => {
+                if (value === 'Open documentation') {
+                    openExternalLink(module.website)
+                }
             })
     }
 
@@ -372,7 +363,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     }
 
     private _setWebviewMessageListener(webview: vscode.Webview) {
-        webview.onDidReceiveMessage(async (message: any) => {
+        webview.onDidReceiveMessage((message: any) => {
             const { command, module, script } = message
             switch (command) {
                 case 'installModule': {

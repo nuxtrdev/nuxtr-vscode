@@ -1,8 +1,8 @@
-import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
+import { CompletionItem, CompletionItemKind, CompletionItemProvider, Position, ProviderResult, TextDocument } from 'vscode';
 import { readdirSync, statSync } from 'node:fs';
-import { sep, join } from 'pathe';
+import { join, sep } from 'pathe';
 
-import { isNuxtTwo, projectSrcDirectory, isDirectory } from '../../utils';
+import { isDirectory, isNuxtTwo, projectSrcDirectory } from '../../utils';
 
 let publicDir = isNuxtTwo() ? 'static' : 'public';
 let pagesDir = 'pages';

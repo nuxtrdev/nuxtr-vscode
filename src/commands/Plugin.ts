@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir, normalizeFileExtension } from '../utils'
-import { nuxtPluginTemplate, nitroPluginTemplate } from '../templates'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { nitroPluginTemplate, nuxtPluginTemplate } from '../templates'
 
 const createPlugin = () => {
     window
@@ -19,7 +19,7 @@ const createPlugin = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'plugins',
                 content: nuxtPluginTemplate
             })

@@ -1,9 +1,9 @@
-import { extensions, MarkdownString, languages, CompletionItem, CompletionItemKind } from 'vscode';
-import { existsSync, move, mkdirSync, readdirSync, removeSync } from 'fs-extra';
+import { CompletionItem, CompletionItemKind, MarkdownString, extensions, languages } from 'vscode';
+import { existsSync, mkdirSync, move, readdirSync, removeSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
 import { homedir } from 'node:os';
 
-import { nuxtrConfiguration, generateVueFileBasicTemplate } from '../utils';
+import { generateVueFileBasicTemplate, nuxtrConfiguration } from '../utils';
 
 enum SnippetSource {
     nuxt = 'Nuxt',

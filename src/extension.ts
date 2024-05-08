@@ -1,9 +1,9 @@
-import { window, ExtensionContext, commands, Uri } from 'vscode';
+import { ExtensionContext, Uri, commands, window } from 'vscode';
 import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
 import { logger, updateDependencies } from './utils';
 import codelens from './codelens'
-import { statusBars, activateStatusBarIcons } from './statusBar'
+import { activateStatusBarIcons, statusBars } from './statusBar'
 import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers';
 
@@ -66,7 +66,7 @@ export const publicCommands = [
 
 
 // categorize commands and functions
-export async function activateExtension(context: ExtensionContext) {
+export function activateExtension(context: ExtensionContext) {
     // initial output channel logger
     logger.log('Nuxtr is active')
 

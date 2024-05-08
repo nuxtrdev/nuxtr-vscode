@@ -1,8 +1,8 @@
-import { ThemeIcon, QuickPickItem, window } from 'vscode';
+import { QuickPickItem, ThemeIcon, window } from 'vscode';
 import { capitalize } from 'string-ts';
-import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
+import { detectPackageManagerByName, newTerminal, projectRootDirectory } from '../../utils';
 
-import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
+import { handleAddCommand, handleDevtoolsCommand, handleModuleCommand } from './multiStepCommands';
 import { tryImportNuxi } from '../../nuxi';
 
 const pm = detectPackageManagerByName();
@@ -90,7 +90,7 @@ const showCLICommands = async () => {
             }
 
             if (command.toLowerCase() === 'devtools') {
-                await handleDevtoolsCommand()
+                handleDevtoolsCommand()
             }
 
         } else {

@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, normalizeFileExtension } from '../utils'
+import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 import { composableTemplate } from '../templates'
 
 const createComposable = () => {
@@ -20,7 +20,7 @@ const createComposable = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'composables',
                 content: composableTemplate(name),
             })

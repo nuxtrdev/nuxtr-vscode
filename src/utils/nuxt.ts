@@ -1,5 +1,5 @@
 import { window } from 'vscode';
-import { writeFileSync, readFileSync, existsSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseModule } from 'magicast';
 import { trimEnd } from 'string-ts';
 import { projectRootDirectory } from '.';
@@ -14,7 +14,7 @@ export const findNuxtConfig = (): string | undefined => {
     }
 };
 
-const isLayer = async (module: any) => {
+const isLayer = (module: any) => {
     const modulePath = `${projectRootDirectory()}/node_modules/${module.npm}`;
 
     if (existsSync(modulePath)) {
@@ -36,7 +36,7 @@ export const isModuleConfigured = async (module: string) => {
             ? mod.exports.default.$args[0]
             : mod.exports.default;
 
-    const layer = await isLayer(module);
+    const layer = isLayer(module);
 
     if (layer) {
         config.extends ||= [];
@@ -59,7 +59,7 @@ export const removeNuxtModule = async (module: any) => {
                 ? mod.exports.default.$args[0]
                 : mod.exports.default;
 
-        const layer = await isLayer(module);
+        const layer = isLayer(module);
 
         if (layer) {
             config.extends ||= [];
@@ -89,7 +89,7 @@ export const removeNuxtModule = async (module: any) => {
     }
 };
 
-export const isNuxtProject = async () => {
+export const isNuxtProject = () => {
     const names = ['nuxt.config.ts', 'nuxt.config.js'];
 
     for (const name of names) {
@@ -110,7 +110,7 @@ export const getNuxtVersion = (): string | undefined => {
             ...packageJson.devDependencies,
         };
         if ('nuxt' in dependencies) {
-            const nuxtVersion = dependencies['nuxt'];
+            const nuxtVersion = dependencies.nuxt;
             return nuxtVersion.replace('^', '');
         }
     } else {
@@ -161,7 +161,7 @@ export const isNuxtTwo = (): boolean | undefined => {
 };
 
 
-export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
+export const updateNuxtConfig = (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
         const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
@@ -178,7 +178,7 @@ export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-
         }
 
         if (action === 'add-module') {
-            const layer = await isLayer(input);
+            const layer = isLayer(input);
 
             if (layer) {
                 config.extends ||= [];

@@ -1,4 +1,4 @@
-import { CodeLens, workspace, EventEmitter, Event, TextDocument, Position, CodeLensProvider } from 'vscode';
+import { CodeLens, CodeLensProvider, Event, EventEmitter, Position, TextDocument, workspace } from 'vscode';
 
 export class LayersCodeLensProvider implements CodeLensProvider {
 

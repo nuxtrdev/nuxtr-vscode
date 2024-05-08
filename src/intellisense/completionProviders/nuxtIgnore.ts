@@ -1,6 +1,6 @@
 import * as vscode from 'vscode';
 import { existsSync, readdirSync } from 'node:fs';
-import { dirname, join, sep, extname } from 'pathe';
+import { dirname, extname, join, sep } from 'pathe';
 
 const EXTENSIONS = new Set(['.vue', '.js', '.ts']);
 const DIR_SEPARATOR = sep;

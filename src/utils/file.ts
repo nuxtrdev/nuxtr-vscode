@@ -1,12 +1,12 @@
-import { window, workspace, Uri } from 'vscode';
-import { trim, capitalize, replace, split, endsWith } from 'string-ts';
+import { Uri, window, workspace } from 'vscode';
+import { capitalize, endsWith, replace, split, trim } from 'string-ts';
 import { existsSync, mkdirSync, readdirSync } from 'node:fs';
 import { join } from 'pathe';
 import { TextEncoder } from 'node:util';
 
 import { getCommandType } from './commands';
 
-import { nuxtrConfiguration, projectSrcDirectory, projectRootDirectory } from '.';
+import { nuxtrConfiguration, projectRootDirectory, projectSrcDirectory } from '.';
 
 
 const createDirectoryAndFile = async (componentName: any, commandType: string, content: string) => {
@@ -102,7 +102,7 @@ export const showSubFolderQuickPick = async (args: {
                     createFile({
                         fileName: args.name,
                         content: args.content,
-                        fullPath: fullPath
+                        fullPath
                     });
                     break;
                 }

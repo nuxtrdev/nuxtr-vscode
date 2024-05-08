@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir, normalizeFileExtension } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
 
 const createNitroAPI = () => {
@@ -21,7 +21,7 @@ const createNitroAPI = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'api',
                 content: nitroDefaultTemplate
             });
@@ -47,7 +47,7 @@ const createNitroRoute = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'route',
                 content: nitroDefaultTemplate
             });
@@ -73,7 +73,7 @@ const createNitroPlugin = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroPlugin',
                 content: nitroPluginTemplate
             });
@@ -99,7 +99,7 @@ const createNitroUtil = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroUtil',
                 content: nitroUtilTemplate
             });
@@ -125,7 +125,7 @@ const createNitroMiddleware = () => {
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroMiddleware',
                 content: nitroDefaultTemplate
             });

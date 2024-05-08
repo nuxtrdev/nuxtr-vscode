@@ -1,4 +1,4 @@
-import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
+import { detectPackageManagerByName, newTerminal, projectRootDirectory } from '../../utils';
 import { handleModuleCommand } from './multiStepCommands';
 
 const pm = detectPackageManagerByName();

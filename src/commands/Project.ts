@@ -1,8 +1,8 @@
-import { window, QuickPick, QuickPickItem, QuickInputButton, OpenDialogOptions, Uri, ThemeIcon } from 'vscode';
+import { OpenDialogOptions, QuickInputButton, QuickPick, QuickPickItem, ThemeIcon, Uri, window } from 'vscode';
 import { downloadTemplate } from 'giget';
 import { ofetch } from 'ofetch';
 import { NuxtOfficialTemplate, UserProjectTemplate } from '../types';
-import { openExternalLink, openFolder, quickOpenButtons, nuxtrConfiguration } from '../utils';
+import { nuxtrConfiguration, openExternalLink, openFolder, quickOpenButtons } from '../utils';
 
 const parseRepoURL = (repoURL: string) => {
     const matchResult = repoURL.match(/\/\/([^/]+)\/([^/]+)\/(.+)$/);
@@ -28,7 +28,7 @@ const fetchOfficialTemplates = async (): Promise<NuxtOfficialTemplate[]> => {
     }
 };
 
-const fetchUserTemplates = async (): Promise<UserProjectTemplate[]> => {
+const fetchUserTemplates = (): UserProjectTemplate[] => {
     try {
         const userTemplates = nuxtrConfiguration().projectTemplates.map((item) => ({
             name: item.name,
@@ -67,7 +67,7 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
                 cwd: path,
                 force: true,
                 dir: projectName,
-                provider: provider,
+                provider,
             })
         } catch {
             window.showErrorMessage(`Failed to fetch ${template.name} template`);
@@ -79,7 +79,7 @@ const fetchUserTemplate = async (template: UserProjectTemplate, path: string, pr
 };
 
 
-const createProjectPrompt = async (officialTemplates: NuxtOfficialTemplate[], userTemplates: UserProjectTemplate[]) => {
+const createProjectPrompt = (officialTemplates: NuxtOfficialTemplate[], userTemplates: UserProjectTemplate[]) => {
     const picker: QuickPick<QuickPickItem> = window.createQuickPick();
 
     picker.canSelectMany = false;
@@ -131,7 +131,7 @@ const handleSelection = async (templates: (NuxtOfficialTemplate | UserProjectTem
                     canSelectFolders: true,
                 };
 
-                window.showOpenDialog(options).then(async (fileUri) => handleFileUri(fileUri, selectedTemplate, proName));
+                window.showOpenDialog(options).then((fileUri) => handleFileUri(fileUri, selectedTemplate, proName));
             }
         }
     }
@@ -167,7 +167,7 @@ const handleFileUri = async (fileUri: Uri[] | undefined, template: (NuxtOfficial
     }
 };
 
-const handleItemButton = async (e: { item: QuickPickItem & { package: NuxtOfficialTemplate | UserProjectTemplate }; button: QuickInputButton }) => {
+const handleItemButton = (e: { item: QuickPickItem & { package: NuxtOfficialTemplate | UserProjectTemplate }; button: QuickInputButton }) => {
     const selectedItem = e.item;
 
     if ('repo' in selectedItem.package) {
@@ -180,10 +180,8 @@ const handleItemButton = async (e: { item: QuickPickItem & { package: NuxtOffici
         if (e.button === quickOpenButtons.docs) {
             openExternalLink(repo.docs);
         }
-    } else {
-        if (e.button === quickOpenButtons.github || e.button === quickOpenButtons.docs) {
-            // For now, you can leave this block empty or add custom behavior
-        }
+    } else if (e.button === quickOpenButtons.github || e.button === quickOpenButtons.docs) {
+        // For now, you can leave this block empty or add custom behavior
     }
 };
 

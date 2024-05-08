@@ -1,4 +1,4 @@
-import { env, Uri, Webview, workspace, window, ProgressLocation, ThemeIcon } from 'vscode';
+import { ProgressLocation, ThemeIcon, Uri, Webview, env, window, workspace } from 'vscode';
 import type { WorkspaceConfiguration } from 'vscode';
 import { exec } from 'node:child_process';
 import { hasSrcDir } from './nuxt';
@@ -63,7 +63,7 @@ export const newTerminal = (terminalName: string, command: string, cwd?: string)
     } else {
         const terminal = window.createTerminal({
             name: terminalName,
-            cwd: cwd,
+            cwd,
             iconPath: new ThemeIcon('nuxt-logo'),
         });
 

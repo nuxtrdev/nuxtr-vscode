@@ -1,6 +1,6 @@
-import { QuickPickItem, window, QuickPickOptions } from 'vscode';
+import { QuickPickItem, QuickPickOptions, window } from 'vscode';
 import { ofetch } from 'ofetch'
-import { newTerminal, detectPackageManagerByName, projectRootDirectory, isNuxtTwo } from '../../utils';
+import { detectPackageManagerByName, isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
 import type { nuxtModule } from '../../types';
 
 
@@ -98,7 +98,7 @@ export const handleModuleCommand = async () => {
     }
 };
 
-export const handleDevtoolsCommand = async () => {
+export const handleDevtoolsCommand = () => {
     const options: QuickPickOptions = {
         placeHolder: 'Select state',
         canPickMany: false

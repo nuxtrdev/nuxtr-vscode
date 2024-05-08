@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { nuxtrConfiguration, projectRootDirectory, vscodeConfiguration } from '.';
-import { generateStyleTag, generateScriptTag, templateTag, piniaOptionsContent, piniaSetupContent } from '../templates'
+import { generateScriptTag, generateStyleTag, piniaOptionsContent, piniaSetupContent, templateTag } from '../templates'
 
 const vueFilesConfig = nuxtrConfiguration().vueFiles
 const piniaConfig = nuxtrConfiguration().piniaFiles.defaultTemplate

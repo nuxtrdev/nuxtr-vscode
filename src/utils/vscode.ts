@@ -1,4 +1,4 @@
-import { DocumentSelector, workspace, Uri, FileType, commands, window, QuickInputButton, ThemeIcon } from 'vscode';
+import { DocumentSelector, FileType, QuickInputButton, ThemeIcon, Uri, commands, window, workspace } from 'vscode';
 
 export const languageSelector = (language: string): DocumentSelector => ({ scheme: 'file', language, } as const);
 

@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { mkdirSync, existsSync } from 'node:fs'
-import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory, generateVueFileTemplate } from '../utils'
+import { existsSync, mkdirSync } from 'node:fs'
+import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
 import { appConfigContent } from '../templates'
 
 function promptDirectorySelection() {

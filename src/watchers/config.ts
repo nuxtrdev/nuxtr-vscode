@@ -1,5 +1,5 @@
-import { Disposable, window, commands } from 'vscode';
-import { createConfigWatcher, nuxtrConfiguration, getProjectDependencies, projectRootDirectory } from '../utils';
+import { Disposable, commands, window } from 'vscode';
+import { createConfigWatcher, getProjectDependencies, nuxtrConfiguration, projectRootDirectory } from '../utils';
 import { existsSync } from 'node:fs';
 import { toggleSnippets } from '../snippets';
 import { TSConfigNuxt } from '../types';
@@ -55,12 +55,12 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
 });
 
 
-export const piniaConfigWatcher: Disposable = createConfigWatcher('nuxtr.piniaFiles', async () => {
-    const question = window.showInformationMessage('Pinia Configuration has been modified.', 'Reload Window')
-
-    question.then((answer) => {
+export const piniaConfigWatcher: Disposable = createConfigWatcher('nuxtr.piniaFiles',  (): Promise<void> => {
+    window.showInformationMessage('Pinia Configuration has been modified.', 'Reload Window').then((answer) => {
         if (answer === 'Reload Window') {
             commands.executeCommand('workbench.action.reloadWindow');
         }
-    })
+    });
+
+    return Promise.resolve();
 });

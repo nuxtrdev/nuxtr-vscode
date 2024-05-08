@@ -1,4 +1,4 @@
-import { window, ThemeColor } from "vscode";
+import { ThemeColor, window } from "vscode";
 import { readFileSync, writeFileSync } from "node:fs";
 import { trimEnd } from "string-ts";
 import { join } from "pathe";
@@ -6,13 +6,13 @@ import { parseModule } from "magicast";
 import semver from 'semver'
 import {
     findNuxtConfig,
-    projectRootDirectory,
     getInstallationCommand,
-    runCommand,
     getNuxtVersion,
     isNuxtTwo,
+    projectRootDirectory,
+    runCommand,
 } from "../utils";
-import { updateDevtoolsStatusBar, hideDevtoolsStatusBar } from "../statusBar";
+import { hideDevtoolsStatusBar, updateDevtoolsStatusBar } from "../statusBar";
 
 let mod: any;
 let nuxtConfigFile: string;
@@ -26,7 +26,7 @@ if (nuxtConfigPath) {
     // window.showErrorMessage('Nuxt config file not found.')
 }
 
-const updateNuxtFile = async () => {
+const updateNuxtFile = () => {
     nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf8");
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 };
@@ -79,7 +79,7 @@ async function directToggleDevTools() {
     }
 }
 
-async function isDevtoolsInstalled(): Promise<boolean> {
+function isDevtoolsInstalled(): Promise<boolean> {
     const packageJsonPath = join(`${projectRootDirectory()}/package.json`);
     const packageJson = require(packageJsonPath);
 
@@ -105,7 +105,7 @@ async function installDevtools() {
             message: "Installing Nuxt Devtools",
             successMessage: "Nuxt Devtools installed successfully",
             errorMessage: "Nuxt Devtools installation failed",
-        }).then(async () => {
+        }).then(() => {
             const generated = mod.generate().code;
             writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf8");
         });
@@ -146,7 +146,7 @@ async function nuxtConfigWatcher() {
 }
 
 async function nuxtDevToolsHandler() {
-    const isInstalled = await isDevtoolsInstalled();
+    const isInstalled = isDevtoolsInstalled();
     const nuxtTwo = isNuxtTwo();
     let isDevtoolsNative = false;
 

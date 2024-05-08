@@ -1,11 +1,11 @@
 import {
     CodeLens,
-    workspace,
-    EventEmitter,
-    Event,
-    TextDocument,
-    Position,
     CodeLensProvider,
+    Event,
+    EventEmitter,
+    Position,
+    TextDocument,
+    workspace,
 } from 'vscode';
 
 export class ModulesCodelensProvider implements CodeLensProvider {

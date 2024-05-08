@@ -1,4 +1,4 @@
-import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, ProgressLocation } from 'vscode';
+import { ProgressLocation, QuickPickItem, QuickPickOptions, StatusBarItem, commands, window } from 'vscode';
 import { existsSync, readFileSync, readdirSync } from 'node:fs'
 import { exec } from 'node:child_process'
 import { destr } from "destr"
@@ -235,7 +235,7 @@ export const updateDependencies = async () => {
     console.log('packageManager', packageManager);
 
 
-    const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand['NPM'] : updateCommand[defaultPackageManager])
+    const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand.NPM : updateCommand[defaultPackageManager])
 
     const items: QuickPickItem[] = outdatedDependenciesList.map((item: any) => {
         return {
@@ -293,22 +293,20 @@ export async function upgradePackage(packageName: string): Promise<void> {
     if (packageManager) {
         const command = `${packageManager.installCommand} ${packageName} --save-dev`
         exec(command, { cwd: projectRootDirectory() })
-    } else {
-        if (defaultPackageManager) {
-            const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-            if (command) {
-                exec(command, { cwd: projectRootDirectory() })
-            }
-        } else {
-            window.showQuickPick(items, options).then((name) => {
-                if (name) {
-                    const command = pm.find((item) => item.name === name.label)?.installCommand
-                    if (command) {
-                        exec(command, { cwd: projectRootDirectory() })
-                    }
-                }
-            })
+    } else if (defaultPackageManager) {
+        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
+        if (command) {
+            exec(command, { cwd: projectRootDirectory() })
         }
+    } else {
+        window.showQuickPick(items, options).then((name) => {
+            if (name) {
+                const command = pm.find((item) => item.name === name.label)?.installCommand
+                if (command) {
+                    exec(command, { cwd: projectRootDirectory() })
+                }
+            }
+        })
     }
 }
 
@@ -409,22 +407,20 @@ export async function managePackageVersion(packageName: string) {
             }
         )
 
-    } else {
-        if (defaultPackageManager) {
-            const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-            if (command) {
-                exec(command, { cwd: projectRootDirectory() })
-            }
-        } else {
-            window.showQuickPick(items, options).then((name) => {
-                if (name) {
-                    const command = pm.find((item) => item.name === name.label)?.installCommand
-                    if (command) {
-                        exec(command, { cwd: projectRootDirectory() })
-                    }
-                }
-            })
+    } else if (defaultPackageManager) {
+        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
+        if (command) {
+            exec(command, { cwd: projectRootDirectory() })
         }
+    } else {
+        window.showQuickPick(items, options).then((name) => {
+            if (name) {
+                const command = pm.find((item) => item.name === name.label)?.installCommand
+                if (command) {
+                    exec(command, { cwd: projectRootDirectory() })
+                }
+            }
+        })
     }
 }
 
