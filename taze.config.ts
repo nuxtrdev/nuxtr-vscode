@@ -5,7 +5,7 @@ export default defineConfig({
     write: true,
     install: true,
     packageMode: {
-        'nuxi-edge': 'latest'
+        'nuxi-nightly': 'latest'
     },
     exclude: [
         '@types/vscode'

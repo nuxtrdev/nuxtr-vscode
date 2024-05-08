@@ -1,6 +1,6 @@
-import { QuickPickItem, QuickPickOptions, window, commands, StatusBarItem, ExtensionContext, ProgressLocation } from 'vscode'
-import { existsSync, readFileSync, readdirSync } from 'fs'
-import { exec } from 'child_process'
+import { ProgressLocation, QuickPickItem, QuickPickOptions, StatusBarItem, commands, window } from 'vscode';
+import { existsSync, readFileSync, readdirSync } from 'node:fs'
+import { exec } from 'node:child_process'
 import { destr } from "destr"
 import { readPackageJSON } from 'pkg-types'
 import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global'
@@ -20,11 +20,9 @@ interface Dependency { name: string; version: string; }
 export const getProjectDependencies = async (): Promise<Dependency[]> => {
     const dependencies: Dependency[] = [];
 
-    let packageJsonPath = `${projectRootDirectory()}/package.json`
+    const packageJsonPath = `${projectRootDirectory()}/package.json`
 
-    if (!existsSync(packageJsonPath)) {
-        return dependencies
-    } else {
+    if (existsSync(packageJsonPath)) {
 
         const packageJSON = await readPackageJSON(packageJsonPath)
 
@@ -48,6 +46,8 @@ export const getProjectDependencies = async (): Promise<Dependency[]> => {
         }
 
         return dependencies
+    } else {
+        return dependencies
     }
 }
 
@@ -57,21 +57,21 @@ export const getOutdatedPackages = async () => {
     let checkingVersionCommand: string = ''
 
 
-    let pm = packageManager && packageManager.name === 'pnpm' ? 'pnpm' : 'npm'
+    const pm = packageManager && packageManager.name === 'pnpm' ? 'pnpm' : 'npm'
     checkingVersionCommand = `${pm} outdated --json`
 
 
     const child = exec(
         checkingVersionCommand,
         { cwd: projectRootDirectory() },
-        (error: any, stdout: any, stderr: any) => {
+        (error: any, stdout: any) => {
             const outdatedDependencies = destr(stdout)
             return outdatedDependencies
         }
     )
 
     // use await here to wait for the result of the exec function
-    const result = await new Promise((resolve, reject) => {
+    const result = await new Promise((resolve) => {
         child.stdout?.on('data', (data) => {
             resolve(data)
         })
@@ -82,30 +82,19 @@ export const getOutdatedPackages = async () => {
 }
 
 export const getProjectScripts = () => {
-    let packageJsonPath = `${projectRootDirectory()}/package.json`
+    const packageJsonPath = `${projectRootDirectory()}/package.json`
 
-    if (!existsSync(packageJsonPath)) {
-        return
-    } else {
-        let packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
-        let scripts = {
+    if (existsSync(packageJsonPath)) {
+        const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
+        const scripts = {
             ...packageJson.scripts,
         }
         return scripts
+    } else {
+        return
     }
 }
 
-const areDependenciesInstalled = () => {
-    let packageJsonPath = `${projectRootDirectory()}/package.json`
-    let nodeModulesPath = `${projectRootDirectory()}/node_modules`
-    if (!existsSync(packageJsonPath)) {
-        return
-    } else if (!existsSync(nodeModulesPath)) {
-        return false
-    } else {
-        return true
-    }
-}
 
 export const detectPackageManagerByName = () => {
     const projectDirectory = readdirSync(`${projectRootDirectory()}`)
@@ -199,7 +188,7 @@ export const getInstallationCommand = async (packageName: string, devFlag: boole
 }
 
 
-export const dependenciesUpdatesHandler = async (updatesStatusBar: StatusBarItem, context: ExtensionContext) => {
+export const dependenciesUpdatesHandler = async (updatesStatusBar: StatusBarItem) => {
     let outdatedDependencies: any = await getOutdatedPackages()
 
     outdatedDependencies = destr(outdatedDependencies)
@@ -246,7 +235,7 @@ export const updateDependencies = async () => {
     console.log('packageManager', packageManager);
 
 
-    const command = packageManager ? updateCommand[packageManager.name] : updateCommand[defaultPackageManager] !== null ? updateCommand[defaultPackageManager] : updateCommand['NPM']
+    const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand.NPM : updateCommand[defaultPackageManager])
 
     const items: QuickPickItem[] = outdatedDependenciesList.map((item: any) => {
         return {
@@ -292,7 +281,7 @@ export const updateDependencies = async () => {
     return
 }
 
-export async function upgradePackage(packageName: string): Promise<void> {
+export function upgradePackage(packageName: string) {
     const packageManager = detectPackageManagerByName()
     const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
     const options: QuickPickOptions = {
@@ -301,25 +290,23 @@ export async function upgradePackage(packageName: string): Promise<void> {
         placeHolder: 'No package manager detected. Chose one!',
     }
 
-    if (!packageManager) {
-        if (!defaultPackageManager) {
-            window.showQuickPick(items, options).then((name) => {
-                if (name) {
-                    const command = pm.find((item) => item.name === name.label)?.installCommand
-                    if (command) {
-                        exec(command, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => { })
-                    }
-                }
-            })
-        } else {
-            const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-            if (command) {
-                exec(command, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => { })
-            }
+    if (packageManager) {
+        const command = `${packageManager.installCommand} ${packageName} --save-dev`
+        exec(command, { cwd: projectRootDirectory() })
+    } else if (defaultPackageManager) {
+        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
+        if (command) {
+            exec(command, { cwd: projectRootDirectory() })
         }
     } else {
-        const command = `${packageManager.installCommand} ${packageName} --save-dev`
-        exec(command, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => { })
+        window.showQuickPick(items, options).then((name) => {
+            if (name) {
+                const command = pm.find((item) => item.name === name.label)?.installCommand
+                if (command) {
+                    exec(command, { cwd: projectRootDirectory() })
+                }
+            }
+        })
     }
 }
 
@@ -335,24 +322,8 @@ export async function managePackageVersion(packageName: string) {
         placeHolder: 'No package manager detected. Chose one!',
     }
 
-    if (!packageManager) {
-        if (!defaultPackageManager) {
-            window.showQuickPick(items, options).then((name) => {
-                if (name) {
-                    const command = pm.find((item) => item.name === name.label)?.installCommand
-                    if (command) {
-                        exec(command, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => { })
-                    }
-                }
-            })
-        } else {
-            const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-            if (command) {
-                exec(command, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => { })
-            }
-        }
-    } else {
-        let checkingVersionCommand = `npm view ${packageName} versions --json`
+    if (packageManager) {
+        const checkingVersionCommand = `npm view ${packageName} versions --json`
 
         // show progress bar while checking version
         await window.withProgress(
@@ -361,17 +332,17 @@ export async function managePackageVersion(packageName: string) {
                 title: `Finding ${packageName} versions...`,
                 cancellable: false,
             },
-            async () => {
+            () => {
                 return new Promise((resolve, reject) => {
-                    const child = exec(checkingVersionCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
+                    exec(checkingVersionCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
                         if (error) {
                             reject(error.message)
                         } else if (stderr) {
                             reject(stderr)
                         } else {
                             resolve(stdout)
-                            let versions: any = []
-                            let versionOfPackage = dependencies
+                            const versions: any = []
+                            const versionOfPackage = dependencies
                             JSON.parse(stdout)
                                 .reverse()
                                 .forEach((version: any) => {
@@ -396,7 +367,7 @@ export async function managePackageVersion(packageName: string) {
                                             title: `Installing ${packageName}@${version.label}...`,
                                             cancellable: false,
                                         },
-                                        async () => {
+                                        () => {
                                             return new Promise((resolve, reject) => {
                                                 const child = exec(installationCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
                                                     if (error) {
@@ -432,12 +403,24 @@ export async function managePackageVersion(packageName: string) {
                             })
                         }
                     })
-
-
                 })
             }
         )
 
+    } else if (defaultPackageManager) {
+        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
+        if (command) {
+            exec(command, { cwd: projectRootDirectory() })
+        }
+    } else {
+        window.showQuickPick(items, options).then((name) => {
+            if (name) {
+                const command = pm.find((item) => item.name === name.label)?.installCommand
+                if (command) {
+                    exec(command, { cwd: projectRootDirectory() })
+                }
+            }
+        })
     }
 }
 
@@ -451,7 +434,7 @@ export async function removePackage(packageName: string): Promise<void> {
             title: `Uninstalling ${packageName}...`,
             cancellable: false,
         },
-        async () => {
+        () => {
             return new Promise((resolve, reject) => {
                 const command = `${packageManager?.uninstallCommand} ${packageName}`
                 const child = exec(

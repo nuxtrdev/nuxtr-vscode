@@ -1,8 +1,8 @@
-import { languages, ExtensionContext } from 'vscode';
+import { ExtensionContext, languages } from 'vscode';
 import { NuxtIgnoreCompletionProvider } from './completionProviders/nuxtIgnore';
 import { CustomCompletionProvider } from './completionProviders/nuxtRC'
-import { PublicDirCompletionProvider, NuxtPagesCompletionProvider } from './completionProviders/vueFiles';
-import { languageSelector, patternSelector, nuxtrConfiguration } from '../utils';
+import { NuxtPagesCompletionProvider, PublicDirCompletionProvider } from './completionProviders/vueFiles';
+import { languageSelector, nuxtrConfiguration, patternSelector } from '../utils';
 
 const intelliSenseConfig = nuxtrConfiguration().intellisense;
 

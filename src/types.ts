@@ -1,7 +1,5 @@
 import { TSConfig } from 'pkg-types'
 
-export type TsconfigPaths = Record<string, string[]>;
-
 export interface ConfigurationProperty {
     title?: string;
     description?: string;
@@ -26,7 +24,7 @@ export interface NuxtrConfiguration {
         }
         firstTag: "template" | "script";
         script: {
-            type: "setup" | "normal";
+            type: "setup" | "options";
             defaultLanguage: "js" | "ts";
         };
         style: {

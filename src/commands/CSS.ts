@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { unoCSSConfig, windiCSSConfig, tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, vuetifyConfigFile } from '../templates'
-import { isNuxtTwo, createFile, projectSrcDirectory, runCommand, openExternalLink, updateNuxtConfig, getInstallationCommand, projectRootDirectory } from '../utils'
+import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile, windiCSSConfig } from '../templates'
+import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig } from '../utils'
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 
@@ -32,14 +32,28 @@ function configureCSS() {
             placeHolder: 'Select CSS Framework',
         })
         .then((selection) => {
-            if (selection === 'TailwindCSS') {
-                configureTailwind()
-            } else if (selection === 'WindiCSS') {
-                configureWindi()
-            } else if (selection === 'UnoCSS') {
-                configureUno()
-            } else if (selection === 'Vuetify') {
-                configureVuetify()
+            switch (selection) {
+                case 'TailwindCSS': {
+                    configureTailwind()
+            
+                    break;
+                }
+                case 'WindiCSS': {
+                    configureWindi()
+            
+                    break;
+                }
+                case 'UnoCSS': {
+                    configureUno()
+            
+                    break;
+                }
+                case 'Vuetify': {
+                    configureVuetify()
+            
+                    break;
+                }
+            // No default
             }
         })
 }

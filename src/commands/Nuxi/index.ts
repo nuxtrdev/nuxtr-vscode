@@ -1,8 +1,8 @@
-import { ThemeIcon, QuickPickItem, window } from 'vscode';
+import { QuickPickItem, ThemeIcon, window } from 'vscode';
 import { capitalize } from 'string-ts';
-import { newTerminal, projectRootDirectory, detectPackageManagerByName } from '../../utils';
-import { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule } from './commonCommands';
-import { handleModuleCommand, handleAddCommand, handleDevtoolsCommand } from './multiStepCommands';
+import { detectPackageManagerByName, newTerminal, projectRootDirectory } from '../../utils';
+
+import { handleAddCommand, handleDevtoolsCommand, handleModuleCommand } from './multiStepCommands';
 import { tryImportNuxi } from '../../nuxi';
 
 const pm = detectPackageManagerByName();
@@ -29,14 +29,14 @@ enum CLICommandDescription {
     upgrade = "Upgrade nuxt"
 }
 
-const directlyExecutableCommands = [ 'dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'typecheck', 'preview', 'prepare', 'upgrade', 'start', 'test' ];
-const indirectlyExecutableCommands = ['module', 'add', 'devtools'];
-const unsupportedCommands = ['init'];
-const moduleCommands = ['build-module']
-const internalCommands = ['_dev']
+const directlyExecutableCommands = new Set([ 'dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'typecheck', 'preview', 'prepare', 'upgrade', 'start', 'test' ]);
+const indirectlyExecutableCommands = new Set(['module', 'add', 'devtools']);
+const unsupportedCommands = new Set(['init']);
+const moduleCommands = new Set(['build-module'])
+const internalCommands = new Set(['_dev'])
 
-const shouldDirectlyRun = (command: any) => directlyExecutableCommands.includes(command);
-const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.includes(command);
+const shouldDirectlyRun = (command: any) => directlyExecutableCommands.has(command);
+const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.has(command);
 
 const showCLICommands = async () => {
     const nuxi = await tryImportNuxi()
@@ -56,9 +56,9 @@ const showCLICommands = async () => {
 
     const items =
         commands
-            .filter((command) => !moduleCommands.includes(command))
-            .filter((command) => !internalCommands.includes(command))
-            .filter((command) => !unsupportedCommands.includes(command))
+            .filter((command) => !moduleCommands.has(command))
+            .filter((command) => !internalCommands.has(command))
+            .filter((command) => !unsupportedCommands.has(command))
             .map((command) => {
                 const description: CLICommandDescription = CLICommandDescription;
                 const item: QuickPickItem = {
@@ -90,7 +90,7 @@ const showCLICommands = async () => {
             }
 
             if (command.toLowerCase() === 'devtools') {
-                await handleDevtoolsCommand()
+                handleDevtoolsCommand()
             }
 
         } else {
@@ -100,4 +100,6 @@ const showCLICommands = async () => {
 };
 
 
-export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule, showCLICommands }
+export {        showCLICommands }
+
+export {nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule} from './commonCommands';

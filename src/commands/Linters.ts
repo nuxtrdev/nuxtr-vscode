@@ -1,6 +1,6 @@
-import { window, workspace, ConfigurationTarget } from 'vscode'
+import { ConfigurationTarget, window, workspace } from 'vscode'
 import { writeFileSync } from 'node:fs'
-import { createFile, projectRootDirectory, runCommand, getInstallationCommand, injectPkgJSONScript, openExternalLink, updateNuxtConfig} from '../utils'
+import { createFile, getInstallationCommand, injectPkgJSONScript, openExternalLink, projectRootDirectory, runCommand, updateNuxtConfig} from '../utils'
 import { eslintConfig, stylelintConfig, stylelintIgnore } from '../templates'
 const frameworks = ['Eslint', 'Stylelint']
 
@@ -119,7 +119,7 @@ const configureStylelint = () => {
 
                     packageJson.scripts.stylelint = 'stylelint --fix --allow-empty-input --ignore-path .gitignore .'
 
-                    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8')
+                    writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf8')
                 }
 
                 if (selections.includes(StylelintOptions.createStyleLintAndIgnoreFiles)) {

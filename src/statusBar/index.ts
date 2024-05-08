@@ -1,4 +1,4 @@
-import { StatusBarItem, ExtensionContext, StatusBarAlignment, window, commands, ThemeColor } from 'vscode'
+import { ExtensionContext, StatusBarAlignment, StatusBarItem, ThemeColor, commands, window } from 'vscode'
 import { directToggleDevTools, nuxtDevToolsHandler } from '../commands/Devtools'
 import { dependenciesUpdatesHandler } from '../utils'
 
@@ -28,12 +28,12 @@ export function activateStatusBarIcons(context: ExtensionContext): NuxtrStatusBa
     statusBars.updatesStatusBar.name = 'Nuxtr';
     statusBars.updatesStatusBar.text = '$(loading~spin)';
     statusBars.updatesStatusBar.show();
-    dependenciesUpdatesHandler(statusBars.updatesStatusBar, context);
+    dependenciesUpdatesHandler(statusBars.updatesStatusBar);
 
     // directToggleDevTools
     context.subscriptions.push(
         commands.registerCommand('nuxtr.directToggleDevTools', async () => {
-            let command = await directToggleDevTools();
+            await directToggleDevTools();
         })
     );
     return statusBars;

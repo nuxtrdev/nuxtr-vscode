@@ -6,28 +6,9 @@
 
 .vscode-test/**
 src/**
-.gitignore
-.yarnrc
+!src/sideBar/build/**
 vsc-extension-quickstart.md
 **/tsconfig.json
-**/.eslintrc.json
+**/eslint.config.mjs
 **/*.map
 **/*.ts
-
-
-# Ignore all webview-ui files except the build directory
-ui/src/**
-ui/public/**
-ui/scripts/**
-ui/index.html
-ui/README.md
-ui/package.json
-ui/package-lock.json
-ui/node_modules/**
-ui/.env
-ui/tsconfig.node.json
-ui/tailwind.config.cjs
-ui/postcss.config.cjs
-ui/.gitignore
-ui/.vscode
-ui/.prettierrc

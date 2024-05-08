@@ -1,18 +1,18 @@
-import { window, ThemeColor } from "vscode";
-import { readFileSync, writeFileSync } from "fs";
+import { ThemeColor, window } from "vscode";
+import { readFileSync, writeFileSync } from "node:fs";
 import { trimEnd } from "string-ts";
 import { join } from "pathe";
 import { parseModule } from "magicast";
 import semver from 'semver'
 import {
     findNuxtConfig,
-    projectRootDirectory,
     getInstallationCommand,
-    runCommand,
     getNuxtVersion,
     isNuxtTwo,
+    projectRootDirectory,
+    runCommand,
 } from "../utils";
-import { updateDevtoolsStatusBar, hideDevtoolsStatusBar } from "../statusBar";
+import { hideDevtoolsStatusBar, updateDevtoolsStatusBar } from "../statusBar";
 
 let mod: any;
 let nuxtConfigFile: string;
@@ -20,20 +20,20 @@ const moduleName = "@nuxt/devtools";
 const nuxtConfigPath = findNuxtConfig();
 
 if (nuxtConfigPath) {
-    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf-8");
+    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf8");
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 } else {
     // window.showErrorMessage('Nuxt config file not found.')
 }
 
-const updateNuxtFile = async () => {
-    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf-8");
+const updateNuxtFile = () => {
+    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, "utf8");
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 };
 
 async function readConfigFile() {
     await updateNuxtFile();
-    let config =
+    const config =
         mod.exports.default.$type === "function-call"
             ? mod.exports.default.$args[0]
             : mod.exports.default;
@@ -72,14 +72,14 @@ async function directToggleDevTools() {
         }
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf-8");
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf8");
         return;
     } catch (error) {
         window.showErrorMessage(`Error toggling Nuxt Devtools: ${error}`);
     }
 }
 
-async function isDevtoolsInstalled(): Promise<boolean> {
+function isDevtoolsInstalled(): Promise<boolean> {
     const packageJsonPath = join(`${projectRootDirectory()}/package.json`);
     const packageJson = require(packageJsonPath);
 
@@ -105,9 +105,9 @@ async function installDevtools() {
             message: "Installing Nuxt Devtools",
             successMessage: "Nuxt Devtools installed successfully",
             errorMessage: "Nuxt Devtools installation failed",
-        }).then(async () => {
+        }).then(() => {
             const generated = mod.generate().code;
-            writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf-8");
+            writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, "utf8");
         });
     }
 }
@@ -146,11 +146,11 @@ async function nuxtConfigWatcher() {
 }
 
 async function nuxtDevToolsHandler() {
-    const isInstalled = await isDevtoolsInstalled();
+    const isInstalled = isDevtoolsInstalled();
     const nuxtTwo = isNuxtTwo();
     let isDevtoolsNative = false;
 
-    let nuxtVersion = getNuxtVersion();
+    const nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
         isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
     }

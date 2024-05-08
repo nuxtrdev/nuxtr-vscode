@@ -7,98 +7,111 @@ export const getCommandType = async (commandType: string) => {
         extension: '',
     };
     switch (commandType) {
-        case 'components':
+        case 'components': {
             type = {
                 name: 'Components',
                 path: 'components',
                 extension: '.vue',
             };
             break;
-        case 'composables':
+        }
+        case 'composables': {
             type = {
                 name: 'Composables',
                 path: 'composables',
                 extension: '.ts',
             };
             break;
-        case 'pages':
+        }
+        case 'pages': {
             type = {
                 name: 'Pages',
                 path: 'pages',
                 extension: '.vue',
             };
             break;
-        case 'layouts':
+        }
+        case 'layouts': {
             type = {
                 name: 'Layouts',
                 path: 'layouts',
                 extension: '.vue',
             };
             break;
-        case 'store':
+        }
+        case 'store': {
             type = {
                 name: 'Store',
                 path: 'store',
                 extension: '.ts',
             };
             break;
-        case 'middleware':
+        }
+        case 'middleware': {
             type = {
                 name: 'Middleware',
                 path: 'middleware',
                 extension: '.ts',
             };
             break;
-        case 'plugins':
+        }
+        case 'plugins': {
             type = {
                 name: 'Plugins',
                 path: 'plugins',
                 extension: '.ts',
             };
             break;
-        case 'api':
+        }
+        case 'api': {
             type = {
                 name: 'APIs',
                 path: `${await hasServerDir()}/api`,
                 extension: '.ts',
             };
             break;
-        case 'route':
+        }
+        case 'route': {
             type = {
                 name: 'Routes',
                 path: `${await hasServerDir()}/routes`,
                 extension: '.ts',
             };
             break;
-        case 'nitroPlugin':
+        }
+        case 'nitroPlugin': {
             type = {
                 name: 'Plugins',
                 path: `${await hasServerDir()}/plugins`,
                 extension: '.ts',
             };
             break;
-        case 'nitroMiddleware':
+        }
+        case 'nitroMiddleware': {
             type = {
                 name: 'Middleware',
                 path: `${await hasServerDir()}/middleware`,
                 extension: '.ts',
             };
             break;
-        case 'nuxtUtil':
+        }
+        case 'nuxtUtil': {
             type = {
                 name: 'Utilities',
                 path: `utils`,
                 extension: '.ts',
             };
             break;
-        case 'nitroUtil':
+        }
+        case 'nitroUtil': {
             type = {
                 name: 'Utility',
                 path: `${await hasServerDir()}/utils`,
                 extension: '.ts',
             };
             break;
-        default:
+        }
+        default: {
             // show error message
             type = {
                 name: '',
@@ -106,6 +119,7 @@ export const getCommandType = async (commandType: string) => {
                 extension: '',
             };
             break;
+        }
     }
 
     return { type };

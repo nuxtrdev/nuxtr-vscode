@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir, normalizeFileExtension} from '../utils'
-import { nuxtMiddlewareTemplate, nitroDefaultTemplate } from '../templates'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick} from '../utils'
+import { nitroDefaultTemplate, nuxtMiddlewareTemplate } from '../templates'
 
 const createMiddleware = () => {
     window
@@ -12,15 +12,15 @@ const createMiddleware = () => {
 
             if (!name) { return }
 
-            let middlewareDir = `${await projectSrcDirectory()}/middleware`
+            const middlewareDir = `${await projectSrcDirectory()}/middleware`
 
             await createDir('middleware')
 
-            let subFolders = await createSubFolders(middlewareDir, 'middleware')
+            const subFolders = await createSubFolders(middlewareDir, 'middleware')
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'middleware',
                 content: nuxtMiddlewareTemplate
             })
@@ -40,7 +40,7 @@ const directCreateMiddleware = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,

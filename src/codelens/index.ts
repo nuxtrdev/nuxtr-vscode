@@ -1,9 +1,9 @@
-import { ExtensionContext, languages } from 'vscode'
+import { languages } from 'vscode';
 import { ModulesCodelensProvider } from './modules'
 import { PluginsCodelensProvider } from './plugins'
 import { LayersCodeLensProvider } from './layers'
 
-async function activateCodelenses(context: ExtensionContext) {
+function activateCodelenses() {
     const modulesLens = new ModulesCodelensProvider()
     const pluginsLens = new PluginsCodelensProvider()
     const layersLens = new LayersCodeLensProvider()

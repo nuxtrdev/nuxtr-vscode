@@ -1,14 +1,15 @@
-import { QuickPickItem, window, QuickPickOptions } from 'vscode';
-import { newTerminal, detectPackageManagerByName, projectRootDirectory, isNuxtTwo } from '../../utils';
-import type { nuxtModule } from '../../types';
+import { QuickPickItem, QuickPickOptions, window } from 'vscode';
 import { ofetch } from 'ofetch'
+import { detectPackageManagerByName, isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
+import type { nuxtModule } from '../../types';
+
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
 
 
 const fetchModules = async () => {
-    let res = await ofetch('https://api.nuxt.com/modules');
+    const res = await ofetch('https://api.nuxt.com/modules');
     return res.modules;
 }
 
@@ -29,7 +30,7 @@ export const handleAddCommand = (): void => {
         return item;
     });
 
-    const template = window.showQuickPick(items, options).then((selection) => {
+    window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
         }
@@ -58,9 +59,7 @@ export const handleAddCommand = (): void => {
 export const handleModuleCommand = async () => {
     const modules: nuxtModule[] = await fetchModules();
 
-    if (!Array.isArray(modules)) {
-        window.showErrorMessage('Error fetching Nuxt modules');
-    } else {
+    if (Array.isArray(modules)) {
         const options: QuickPickOptions = {
             placeHolder: 'Select module',
             canPickMany: false
@@ -94,10 +93,12 @@ export const handleModuleCommand = async () => {
             const command = `${runCommand} nuxi module add ${userSelection}`;
             newTerminal(terminalName, command, `${projectRootDirectory()}`);
         });
+    } else {
+        window.showErrorMessage('Error fetching Nuxt modules');
     }
 };
 
-export const handleDevtoolsCommand = async () => {
+export const handleDevtoolsCommand = () => {
     const options: QuickPickOptions = {
         placeHolder: 'Select state',
         canPickMany: false
@@ -113,7 +114,7 @@ export const handleDevtoolsCommand = async () => {
         return item;
     });
 
-    const state = window.showQuickPick(items, options).then((selection) => {
+    window.showQuickPick(items, options).then((selection) => {
         if (!selection) {
             return;
         }

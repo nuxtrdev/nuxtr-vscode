@@ -13,10 +13,10 @@ export async function activate(context: ExtensionContext) {
         const nuxtTwo = isNuxtTwo();
         commands.executeCommand('setContext', 'nuxtr.isNuxtTwo', nuxtTwo);
 
-        await activateExtension(context);
+        activateExtension(context);
     } else {
-        publicCommands.forEach(({ command, function: commandFunction }) => {
+        for (const { command, function: commandFunction } of publicCommands) {
             context.subscriptions.push(commands.registerCommand(command, commandFunction));
-        });
+        }
     }
 }

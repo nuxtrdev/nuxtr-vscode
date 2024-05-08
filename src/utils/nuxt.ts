@@ -1,12 +1,9 @@
 import { window } from 'vscode';
-import { writeFileSync, readFileSync, existsSync, promises, readdir } from 'fs';
-import { join } from 'pathe';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { parseModule } from 'magicast';
-import { readTSConfig } from 'pkg-types'
 import { trimEnd } from 'string-ts';
-import { projectRootDirectory, projectSrcDirectory } from '.';
+import { projectRootDirectory } from '.';
 import { pathExistsSync } from 'fs-extra';
-import { TsconfigPaths } from '../types';
 
 export const findNuxtConfig = (): string | undefined => {
     const names = ['nuxt.config.ts', 'nuxt.config.js'];
@@ -17,20 +14,20 @@ export const findNuxtConfig = (): string | undefined => {
     }
 };
 
-const isLayer = async (module: any) => {
-    let modulePath = `${projectRootDirectory()}/node_modules/${module.npm}`;
+const isLayer = (module: any) => {
+    const modulePath = `${projectRootDirectory()}/node_modules/${module.npm}`;
 
     if (existsSync(modulePath)) {
-        let nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
+        const nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
         const result = pathExistsSync(nuxtConfigPath)
         return result ? true : false;
     }
 };
 
 
-export const isModuleConfigured = async (module: string) => {
+export const isModuleConfigured = (module: string) => {
     const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
     const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
 
@@ -39,7 +36,7 @@ export const isModuleConfigured = async (module: string) => {
             ? mod.exports.default.$args[0]
             : mod.exports.default;
 
-    let layer = await isLayer(module);
+    const layer = isLayer(module);
 
     if (layer) {
         config.extends ||= [];
@@ -51,10 +48,10 @@ export const isModuleConfigured = async (module: string) => {
 }
 
 
-export const removeNuxtModule = async (module: any) => {
+export const removeNuxtModule = (module: any) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
         const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
         const config =
@@ -62,7 +59,7 @@ export const removeNuxtModule = async (module: any) => {
                 ? mod.exports.default.$args[0]
                 : mod.exports.default;
 
-        let layer = await isLayer(module);
+        const layer = isLayer(module);
 
         if (layer) {
             config.extends ||= [];
@@ -84,7 +81,7 @@ export const removeNuxtModule = async (module: any) => {
 
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf8');
     } catch (error) {
         window.showErrorMessage(
             `${module} failed to uninstall, please uninstall it manually, ${error}`
@@ -92,7 +89,7 @@ export const removeNuxtModule = async (module: any) => {
     }
 };
 
-export const isNuxtProject = async () => {
+export const isNuxtProject = () => {
     const names = ['nuxt.config.ts', 'nuxt.config.js'];
 
     for (const name of names) {
@@ -105,19 +102,19 @@ export const isNuxtProject = async () => {
 };
 
 export const getNuxtVersion = (): string | undefined => {
-    let packageJsonPath = `${projectRootDirectory()}/package.json`;
-    if (!existsSync(packageJsonPath)) {
-        return;
-    } else {
-        let packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
-        let dependencies = {
+    const packageJsonPath = `${projectRootDirectory()}/package.json`;
+    if (existsSync(packageJsonPath)) {
+        const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
+        const dependencies = {
             ...packageJson.dependencies,
             ...packageJson.devDependencies,
         };
         if ('nuxt' in dependencies) {
-            let nuxtVersion = dependencies['nuxt'];
+            const nuxtVersion = dependencies.nuxt;
             return nuxtVersion.replace('^', '');
         }
+    } else {
+        return;
     }
 };
 
@@ -127,7 +124,7 @@ export const hasSrcDir = async (): Promise<string> => {
         return '/'
     }
     const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
     const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
     const config =
@@ -139,35 +136,13 @@ export const hasSrcDir = async (): Promise<string> => {
 };
 
 
-const fetchNuxtAlias = async () => {
-    const path = `${projectRootDirectory()}/.nuxt/tsconfig.json`;
-
-    if (!existsSync(path)) {
-        return {};
-    }
-
-    try {
-        let tsconfig = await readTSConfig(path);
-
-        if (tsconfig) {
-            const paths = tsconfig.compilerOptions?.paths;
-            let parsedPaths = parseTsconfigPaths(paths);
-            return parsedPaths;
-        }
-
-    } catch (error) {
-        throw new Error('Error fetching Nuxt alias: ' + error);
-    }
-};
-
-
 export const hasServerDir = async (): Promise<string> => {
     const isNuxt = await isNuxtProject();
     if (!isNuxt) {
         return 'server'
     }
     const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
     const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
     const config =
@@ -179,125 +154,17 @@ export const hasServerDir = async (): Promise<string> => {
 };
 
 export const isNuxtTwo = (): boolean | undefined => {
-    let nuxtVersion = getNuxtVersion();
+    const nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
         return nuxtVersion.startsWith('2') ? true : false;
     }
 };
 
 
-const scanNuxtDirectories = async () => {
-    let projectSrcDir = `${await projectSrcDirectory()}`;
-    let nuxtDirectories = ['layouts', 'pages', 'components', 'composables', 'middleware'];
-    let existingDirectories: string[] = [];
-
-    if (existsSync(projectSrcDir)) {
-        try {
-            const srcDirContents = await promises.readdir(projectSrcDir);
-
-            for (const directory of nuxtDirectories) {
-                if (srcDirContents.includes(directory)) {
-                    existingDirectories.push(directory);
-                }
-            }
-        } catch (error) {
-            throw new Error('Error scanning Nuxt directories: ' + error);
-        }
-
-    }
-    return existingDirectories;
-}
-
-async function scanFilesAndSubdirectories(directoryPath: string): Promise<string[]> {
-    return new Promise((resolve, reject) => {
-        readdir(directoryPath, { withFileTypes: true }, (err, files) => {
-            if (err) {
-                reject(err);
-            } else {
-                const fileAndDirNames: string[] = [];
-                files.forEach((file: any) => {
-                    const fullPath = join(directoryPath, file.name);
-                    fileAndDirNames.push(fullPath);
-                    if (file.isDirectory()) {
-                        scanFilesAndSubdirectories(fullPath).then((subFiles) => {
-                            fileAndDirNames.push(...subFiles);
-                            if (fileAndDirNames.length === files.length) {
-                                resolve(fileAndDirNames);
-                            }
-                        }).catch((error) => {
-                            reject(error);
-                        });
-                    } else {
-                        if (fileAndDirNames.length === files.length) {
-                            resolve(fileAndDirNames);
-                        }
-                    }
-                });
-            }
-        });
-    });
-}
-
-function parseTsconfigPaths(tsconfigPaths: TsconfigPaths): {} {
-    const parsedTsconfigPaths: TsconfigPaths = {};
-
-    for (const key in tsconfigPaths) {
-        if (!key.startsWith('#')) {
-            const values = tsconfigPaths[key].filter(value => !value.startsWith('#'));
-
-            const normalizedKey = key.replace(/(\/\*)?$/, '');
-
-            const processedValues = values.map(value => {
-                if (value === '..' || value === '../') {
-                    value = './';
-                } else if (value.startsWith('../')) {
-                    value = `./${value.slice(3)}`;
-                }
-
-                return value.endsWith('/*') ? value.replace('/*', '') : value;
-            });
-
-            parsedTsconfigPaths[normalizedKey] = [processedValues[0]];
-        }
-    }
-
-    return parsedTsconfigPaths;
-}
-
-
-export const getNuxtConfig = async (action: 'inject-eslint-devChcker', input?: string) => {
+export const updateNuxtConfig = (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
     try {
         const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
-
-        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-        const config =
-            mod.exports.default.$type === 'function-call'
-                ? mod.exports.default.$args[0]
-                : mod.exports.default;
-
-        if (action === 'inject-eslint-devChcker') {
-            config.eslint ||= {};
-            config.eslint.checker = true;
-        }
-
-
-        const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
-
-
-    } catch (error) {
-        window.showErrorMessage(
-            `Failed to update nuxt config.`
-        );
-    }
-};
-
-
-export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
-    try {
-        const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf-8');
+        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
 
         const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
         const config =
@@ -311,7 +178,7 @@ export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-
         }
 
         if (action === 'add-module') {
-            let layer = await isLayer(input);
+            const layer = isLayer(input);
 
             if (layer) {
                 config.extends ||= [];
@@ -328,10 +195,10 @@ export const updateNuxtConfig = async (action: 'inject-eslint-devChcker' | 'add-
 
 
         const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf-8');
+        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf8');
 
 
-    } catch (error) {
+    } catch {
         window.showErrorMessage(
             `Failed to update nuxt config.`
         );

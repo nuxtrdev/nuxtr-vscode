@@ -1,4 +1,4 @@
-import { CodeLens, workspace, EventEmitter, Event, TextDocument, CancellationToken, Position, CodeLensProvider } from 'vscode'
+import { CodeLens, CodeLensProvider, Event, EventEmitter, Position, TextDocument, workspace } from 'vscode';
 
 export class LayersCodeLensProvider implements CodeLensProvider {
 
@@ -13,7 +13,7 @@ export class LayersCodeLensProvider implements CodeLensProvider {
         workspace.onDidChangeConfiguration((_) => { this._onDidChangeCodeLenses.fire() })
     }
 
-    public provideCodeLenses(document: TextDocument, token: CancellationToken): CodeLens[] | Thenable<CodeLens[]> {
+    public provideCodeLenses(document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
 
         this.codeLenses = []
         const regex = new RegExp(this.regex)
@@ -31,7 +31,7 @@ export class LayersCodeLensProvider implements CodeLensProvider {
         return this.codeLenses
     }
 
-    public resolveCodeLens(codeLens: CodeLens, token: CancellationToken) {
+    public resolveCodeLens(codeLens: CodeLens) {
         if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
             codeLens.command = {
                 title: 'Add new layer',
@@ -41,6 +41,5 @@ export class LayersCodeLensProvider implements CodeLensProvider {
             }
             return codeLens
         }
-        return null
     }
 }

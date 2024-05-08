@@ -1,4 +1,4 @@
-import { workspace, window, commands, ConfigurationChangeEvent, Disposable } from 'vscode';
+import { ConfigurationChangeEvent, Disposable, commands, window, workspace } from 'vscode';
 
 export function createConfigWatcher(configKey: string, callback?: () => Promise<void>, defaultBehavior?: boolean): Disposable {
     const watcher = workspace.onDidChangeConfiguration(async (event: ConfigurationChangeEvent) => {

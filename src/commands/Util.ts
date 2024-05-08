@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, hasServerDir } from '../utils'
-import { nuxtUtilTemplate, nitroUtilTemplate } from '../templates'
+import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { nitroUtilTemplate, nuxtUtilTemplate } from '../templates'
 
 const createUtil = () => {
     window
@@ -11,17 +11,17 @@ const createUtil = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            let utilsDir = `${await projectSrcDirectory()}/utils`
+            const utilsDir = `${await projectSrcDirectory()}/utils`
 
             await createDir('utils')
 
-            let subFolders = await createSubFolders(utilsDir, 'nuxtUtil')
+            const subFolders = await createSubFolders(utilsDir, 'nuxtUtil')
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nuxtUtil',
-                content: nuxtUtilTemplate(name)
+                content: nuxtUtilTemplate()
             })
 
         })
@@ -39,12 +39,12 @@ const directCreateUtil = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.ts`
+            const filePath = `${path}/${name}.ts`
 
 
             createFile({
                 fileName: `${name}.ts`,
-                content: filePath.includes(`${serverDir}`) ? nitroUtilTemplate : nuxtUtilTemplate(name),
+                content: filePath.includes(`${serverDir}`) ? nitroUtilTemplate : nuxtUtilTemplate(),
                 fullPath: filePath,
             })
         })

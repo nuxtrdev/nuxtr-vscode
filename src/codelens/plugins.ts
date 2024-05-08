@@ -1,4 +1,4 @@
-import { CodeLens, workspace, EventEmitter, Event, TextDocument, CancellationToken, Position, CodeLensProvider } from 'vscode'
+import { CodeLens, CodeLensProvider, Event, EventEmitter, Position, TextDocument, workspace, } from 'vscode';
 
 export class PluginsCodelensProvider implements CodeLensProvider {
 
@@ -15,7 +15,7 @@ export class PluginsCodelensProvider implements CodeLensProvider {
         })
     }
 
-    public provideCodeLenses(document: TextDocument, token: CancellationToken): CodeLens[] | Thenable<CodeLens[]> {
+    public provideCodeLenses(document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
 
         if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
             this.codeLenses = []
@@ -36,7 +36,7 @@ export class PluginsCodelensProvider implements CodeLensProvider {
         return []
     }
 
-    public resolveCodeLens(codeLens: CodeLens, token: CancellationToken) {
+    public resolveCodeLens(codeLens: CodeLens) {
         if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
             codeLens.command = {
                 title: 'Add new plugin',
@@ -46,6 +46,5 @@ export class PluginsCodelensProvider implements CodeLensProvider {
             }
             return codeLens
         }
-        return null
     }
 }

@@ -1,5 +1,5 @@
 import content from "./modules.json";
-const layers = ["seo-kit", "umami"];
+const layers = new Set(["seo-kit", "umami"]);
 
 export interface Module {
     name: string;
@@ -50,11 +50,7 @@ export interface Contributor {
 export function useModules() {
     const modules = content.modules as unknown as Module[];
     modules.forEach((module: Module) => {
-        if (layers.includes(module.name)) {
-            module.isLayer = true;
-        } else {
-            module.isLayer = false;
-        }
+        module.isLayer = layers.has(module.name) ? true : false;
     });
 
     return modules

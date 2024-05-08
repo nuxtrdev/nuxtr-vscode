@@ -64,10 +64,8 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
             });
 
 
-        if (!linePrefix.endsWith('.')) {
-            return completionItems;
-        } else {
-            const propertyPath = linePrefix.slice(0, linePrefix.length - 1);
+        if (linePrefix.endsWith('.')) {
+            const propertyPath = linePrefix.slice(0, - 1);
 
             const property = nuxtRcSchema.properties[propertyPath];
             if (property && property.type === 'object' && property.properties) {
@@ -85,6 +83,8 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
                 return nestedCompletionItems;
             }
             return [];
+        } else {
+            return completionItems;
         }
     }
 }

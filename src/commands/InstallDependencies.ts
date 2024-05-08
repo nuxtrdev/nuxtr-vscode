@@ -19,10 +19,15 @@ export const installDependencies = () => {
         placeHolder: "No package manager detected. Chose one!",
     }
 
-    if (!packageManager) {
+    if (packageManager) {
+        if (packageManager.installCommand.includes("yarn")) {
+            packageManager.installCommand = "yarn"
+        }
+        newTerminal("Install Dependencies", packageManager.installCommand)
+    } else {
         vscode.window.showQuickPick(items, options).then((name) => {
             if (name) {
-                let command = pm.find(
+                const command = pm.find(
                     (item) => item.name === name.label
                 )?.installCommand
                 if (command) {
@@ -30,10 +35,5 @@ export const installDependencies = () => {
                 }
             }
         })
-    } else {
-        if (packageManager.installCommand.includes("yarn")) {
-            packageManager.installCommand = "yarn"
-        }
-        newTerminal("Install Dependencies", packageManager.installCommand)
     }
 }

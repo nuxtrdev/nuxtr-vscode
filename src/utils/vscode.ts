@@ -1,33 +1,16 @@
-import { DocumentSelector, workspace, Uri, FileType, commands, window, QuickInputButton, ThemeIcon } from 'vscode';
+import { DocumentSelector, FileType, QuickInputButton, ThemeIcon, Uri, commands, window, workspace } from 'vscode';
 
 export const languageSelector = (language: string): DocumentSelector => ({ scheme: 'file', language, } as const);
 
 export const patternSelector = (pattern: string): DocumentSelector => ({ scheme: 'file', pattern, } as const);
 
-async function pathExists(localPath: string): Promise<boolean> {
-    try {
-        await workspace.fs.stat(Uri.file(localPath));
-        return true;
-    } catch (e) {
-        return false;
-    }
-}
 
 export async function isDirectory(filePath: string): Promise<boolean> {
     try {
         const stat = await workspace.fs.stat(Uri.file(filePath));
         return stat.type === FileType.Directory;
-    } catch (e) {
+    } catch {
         return false;
-    }
-}
-
-async function readDirectory(filePath: string) {
-    try {
-        return await workspace.fs.readDirectory(Uri.file(filePath));
-    } catch (e) {
-        console.error(`Error reading directory: ${e}`);
-        return [];
     }
 }
 
@@ -37,7 +20,7 @@ export async function openFolder(path: Uri, folderName: string, newWindow: boole
         await commands.executeCommand('vscode.openFolder', path, {
             forceNewWindow: newWindow,
         });
-    } catch (error) {
+    } catch {
         window.showErrorMessage(`Failed to open Nuxt ${folderName} template`)
     }
 }

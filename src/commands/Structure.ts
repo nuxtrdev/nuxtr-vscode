@@ -1,14 +1,14 @@
 import { window } from 'vscode'
-import { mkdirSync, existsSync } from 'node:fs'
-import { isNuxtTwo, createFile, projectRootDirectory, projectSrcDirectory, generateVueFileTemplate } from '../utils'
+import { existsSync, mkdirSync } from 'node:fs'
+import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
 import { appConfigContent } from '../templates'
 
 function promptDirectorySelection() {
     let directories = ['components', 'pages', 'assets', 'plugins', 'layouts', 'middleware', 'modules',]
 
-    let nuxtTwoDirectories = ['static', 'store',]
+    const nuxtTwoDirectories = ['static', 'store',]
 
-    let nuxtThreeDirectories = ['public', 'composables', 'server', 'utils', 'stores']
+    const nuxtThreeDirectories = ['public', 'composables', 'server', 'utils', 'stores']
 
     isNuxtTwo() ? (directories = [...directories, ...nuxtTwoDirectories]) : (directories = [...directories, ...nuxtThreeDirectories])
 
@@ -22,7 +22,7 @@ function promptDirectorySelection() {
         .then((selectedDirs) => {
             if (selectedDirs !== undefined && selectedDirs.length > 0) {
                 selectedDirs.forEach(async (dir) => {
-                    let dirPath = `${await projectSrcDirectory()}/${dir}`
+                    const dirPath = `${await projectSrcDirectory()}/${dir}`
                     if (!existsSync(dirPath)) {
                         mkdirSync(dirPath)
                     }

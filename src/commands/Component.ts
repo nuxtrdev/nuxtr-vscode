@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, createDir, generateVueFileBasicTemplate, } from '../utils';
+import { createDir, createFile, createSubFolders, generateVueFileBasicTemplate, projectSrcDirectory, showSubFolderQuickPick, } from '../utils';
 
 const createComponent = () => {
     window
@@ -10,15 +10,15 @@ const createComponent = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            let componentsDir = `${await projectSrcDirectory()}/components`
+            const componentsDir = `${await projectSrcDirectory()}/components`
 
             await createDir('components')
 
-            let subFolders = await createSubFolders(componentsDir, 'components')
+            const subFolders = await createSubFolders(componentsDir, 'components')
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'components',
                 content: generateVueFileBasicTemplate('component'),
             })
@@ -34,7 +34,7 @@ const directCreateComponent = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${path}/${name}.vue`
+            const filePath = `${path}/${name}.vue`
 
             createFile({
                 fileName: `${name}.vue`,

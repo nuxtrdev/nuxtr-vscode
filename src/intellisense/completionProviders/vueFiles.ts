@@ -1,8 +1,8 @@
-import { CompletionItemProvider, TextDocument, Position, ProviderResult, CompletionItemKind, CompletionItem } from 'vscode';
-import { readdirSync, statSync } from 'fs';
-import { sep, join } from 'pathe';
+import { CompletionItem, CompletionItemKind, CompletionItemProvider, Position, ProviderResult, TextDocument } from 'vscode';
+import { readdirSync, statSync } from 'node:fs';
+import { join, sep } from 'pathe';
 
-import { isNuxtTwo, projectSrcDirectory, isDirectory } from '../../utils';
+import { isDirectory, isNuxtTwo, projectSrcDirectory } from '../../utils';
 
 let publicDir = isNuxtTwo() ? 'static' : 'public';
 let pagesDir = 'pages';
@@ -12,7 +12,7 @@ const DIR_SEPARATOR = sep;
 async function provider(dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
     const fullPath = join(`${await projectSrcDirectory()}`, dirPath);
-    let isDir = await isDirectory(fullPath);
+    const isDir = await isDirectory(fullPath);
 
     if (isDir) {
         const files = readdirSync(fullPath);
@@ -40,7 +40,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
     ProviderResult<CompletionItem[]> {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
-        const contentBeforeCursor = currentLine.substring(0, cursorPosition);
+        const contentBeforeCursor = currentLine.slice(0, Math.max(0, cursorPosition));
         const subDirMatch = /src="\/([^"]*)/.exec(contentBeforeCursor);
 
         if (!subDirMatch) {
@@ -54,9 +54,10 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
         let isDir: Promise<boolean>;
 
         if (subDirMatch && subDirMatch[1] === '..') {
-            let fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
+            const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
@@ -89,7 +90,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
 
                     const uniqueSuggestions = new Set(allSuggestions.map(suggestion => suggestion.label));
 
-                    const suggestionsArray = Array.from(uniqueSuggestions).map(label => {
+                    const suggestionsArray = [...uniqueSuggestions].map(label => {
                         // @ts-ignore
                         const isFile = label.includes('.');
                         const kind = isFile ? CompletionItemKind.File : CompletionItemKind.Folder;
@@ -111,7 +112,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
     ProviderResult<CompletionItem[]> {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
-        const contentBeforeCursor = currentLine.substring(0, cursorPosition);
+        const contentBeforeCursor = currentLine.slice(0, Math.max(0, cursorPosition));
         const subDirMatch = /to="\/([^"]*)/.exec(contentBeforeCursor);
 
         if (!subDirMatch) {
@@ -125,9 +126,10 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
         let isDir: Promise<boolean>;
 
         if (subDirMatch && subDirMatch[1] === '..') {
-            let fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
+            const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
+                // eslint-disable-next-line @typescript-eslint/no-unused-vars
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
@@ -159,7 +161,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
 
                     const uniqueSuggestions = new Set(allSuggestions.map(suggestion => suggestion.label));
 
-                    const suggestionsArray = Array.from(uniqueSuggestions).map(label => {
+                    const suggestionsArray = [...uniqueSuggestions].map(label => {
                         // @ts-ignore
                         const isFile = label.includes('.');
                         const kind = isFile ? CompletionItemKind.File : CompletionItemKind.Folder;

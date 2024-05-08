@@ -1,36 +1,36 @@
 import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
 
-import { projectSrcDirectory, createFile, createSubFolders, showSubFolderQuickPick, createVueTemplate, generateVueFileTemplate, generateVueFileBasicTemplate, projectRootDirectory } from '../utils'
+import { createFile, createSubFolders, createVueTemplate, generateVueFileBasicTemplate, generateVueFileTemplate, projectRootDirectory, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
 
 function createPageTemplate() {
-    let editor = window.activeTextEditor
+    const editor = window.activeTextEditor
     if (editor) {
-        let selection = editor.selection
-        let selectedText = editor.document.getText(selection)
+        const selection = editor.selection
+        const selectedText = editor.document.getText(selection)
 
         if (selectedText) {
-            let content = selectedText
+            const content = selectedText
             createVueTemplate(content, 'page')
         } else {
-            let content = editor.document.getText()
+            const content = editor.document.getText()
             createVueTemplate(content, 'page')
         }
     }
 }
 
 function createLayoutTemplate() {
-    let editor = window.activeTextEditor
+    const editor = window.activeTextEditor
     if (editor) {
-        let selection = editor.selection
-        let selectedText = editor.document.getText(selection)
+        const selection = editor.selection
+        const selectedText = editor.document.getText(selection)
 
         if (selectedText) {
-            let content = selectedText
+            const content = selectedText
             createVueTemplate(content, 'layout')
         } else {
-            let content = editor.document.getText()
+            const content = editor.document.getText()
             createVueTemplate(content, 'layout')
         }
     }
@@ -48,20 +48,18 @@ const createFileFromTemplate = (template?: string) => {
                 if (!name) { return }
 
                 const srcDir = `${await projectSrcDirectory()}`
-                let pagesDir = `${srcDir}/pages`
+                const pagesDir = `${srcDir}/pages`
 
 
-                if (srcDir !== undefined) {
-                    if (!existsSync(pagesDir)) {
-                        mkdirSync(pagesDir)
-                    }
+                if (srcDir !== undefined && !existsSync(pagesDir)) {
+                    mkdirSync(pagesDir)
                 }
 
-                let subFolders = createSubFolders(pagesDir, 'pages')
+                const subFolders = createSubFolders(pagesDir, 'pages')
 
                 showSubFolderQuickPick({
                     name,
-                    subFolders: subFolders,
+                    subFolders,
                     commandType: 'pages',
                     content: generateVueFileTemplate(`page`, template),
                 })
@@ -75,15 +73,13 @@ const createFileFromTemplate = (template?: string) => {
             .then(async (name) => {
                 if (!name) { return }
                 const srcDir = `${await projectSrcDirectory()}`
-                let layoutDir = `${srcDir}/layouts`
+                const layoutDir = `${srcDir}/layouts`
 
-                if (srcDir !== undefined) {
-                    if (!existsSync(layoutDir)) {
-                        mkdirSync(layoutDir)
-                    }
+                if (srcDir !== undefined && !existsSync(layoutDir)) {
+                    mkdirSync(layoutDir)
                 }
 
-                let filePath = `${srcDir}/layouts/${name}.vue`
+                const filePath = `${srcDir}/layouts/${name}.vue`
 
                 createFile({
                     fileName: `${name}.vue`,
@@ -104,7 +100,7 @@ const createFileTemplate = (type: string) => {
         .then((name) => {
             if (!name) { return }
 
-            let filePath = `${projectRootDirectory()}/.vscode/${name}.${type}-template`
+            const filePath = `${projectRootDirectory()}/.vscode/${name}.${type}-template`
 
             createFile({
                 fileName: `${name}.${type}-template`,
@@ -115,9 +111,8 @@ const createFileTemplate = (type: string) => {
 }
 
 
-const createEmptyFileTemplate = (template?: string) => {
+const createEmptyFileTemplate = () => {
     const templates = ['Page', 'Layout']
-
 
     window
         .showQuickPick(templates, {

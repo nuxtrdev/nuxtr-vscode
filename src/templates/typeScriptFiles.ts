@@ -25,7 +25,7 @@ const nitroPluginTemplate = `export default defineNitroPlugin((nitroApp) => {
 })
 `
 
-const nuxtUtilTemplate = (name: string) => `export default () => {
+const nuxtUtilTemplate = () => `export default () => {
   return 'Hello Util'
 }
 `
@@ -33,6 +33,11 @@ const nuxtUtilTemplate = (name: string) => `export default () => {
 const nitroUtilTemplate = `export default () => {
   return 'Hello Util'
 }`
+
+const appConfigContent = `export default defineAppConfig({
+
+})
+`
 
 
 export {
@@ -42,5 +47,6 @@ export {
     nuxtPluginTemplate,
     nitroPluginTemplate,
     nuxtUtilTemplate,
-    nitroUtilTemplate
+    nitroUtilTemplate,
+    appConfigContent
 }

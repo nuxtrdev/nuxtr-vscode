@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { projectSrcDirectory, createSubFolders, showSubFolderQuickPick, createFile, hasServerDir, createDir, normalizeFileExtension } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
 
 const createNitroAPI = () => {
@@ -15,13 +15,13 @@ const createNitroAPI = () => {
             const serverDirName = await hasServerDir();
             await createDir(`${serverDirName}`);
             await createDir(`${serverDirName}/api`);
-            let apisDir = `${await projectSrcDirectory()}/${await hasServerDir()}/api`
+            const apisDir = `${await projectSrcDirectory()}/${await hasServerDir()}/api`
 
-            let subFolders = await createSubFolders(apisDir, 'api');
+            const subFolders = await createSubFolders(apisDir, 'api');
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'api',
                 content: nitroDefaultTemplate
             });
@@ -41,13 +41,13 @@ const createNitroRoute = () => {
             const serverDirName = await hasServerDir();
             await createDir(`${serverDirName}`);
             await createDir(`${serverDirName}/routes`);
-            let composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/routes`
+            const composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/routes`
 
-            let subFolders = await createSubFolders(composablesDir, 'route');
+            const subFolders = await createSubFolders(composablesDir, 'route');
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'route',
                 content: nitroDefaultTemplate
             });
@@ -67,13 +67,13 @@ const createNitroPlugin = () => {
             const serverDirName = await hasServerDir();
             await createDir(`${serverDirName}`);
             await createDir(`${serverDirName}/plugins`);
-            let composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/plugins`
+            const composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/plugins`
 
-            let subFolders = await createSubFolders(composablesDir, 'nitroPlugin');
+            const subFolders = await createSubFolders(composablesDir, 'nitroPlugin');
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroPlugin',
                 content: nitroPluginTemplate
             });
@@ -93,13 +93,13 @@ const createNitroUtil = () => {
             const serverDirName = await hasServerDir();
             await createDir(`${serverDirName}`);
             await createDir(`${serverDirName}/utils`);
-            let composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/utils`
+            const composablesDir = `${await projectSrcDirectory()}/${await hasServerDir()}/utils`
 
-            let subFolders = await createSubFolders(composablesDir, 'nitroUtil');
+            const subFolders = await createSubFolders(composablesDir, 'nitroUtil');
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroUtil',
                 content: nitroUtilTemplate
             });
@@ -120,12 +120,12 @@ const createNitroMiddleware = () => {
             const serverDirName = await hasServerDir();
             await createDir(`${serverDirName}`);
             await createDir(`${serverDirName}/middleware`);
-            let middlewareDir = `${await projectSrcDirectory()}/${await hasServerDir()}/middleware`
-            let subFolders = await createSubFolders(middlewareDir, 'nitroMiddleware');
+            const middlewareDir = `${await projectSrcDirectory()}/${await hasServerDir()}/middleware`
+            const subFolders = await createSubFolders(middlewareDir, 'nitroMiddleware');
 
             showSubFolderQuickPick({
                 name,
-                subFolders: subFolders,
+                subFolders,
                 commandType: 'nitroMiddleware',
                 content: nitroDefaultTemplate
             });
@@ -145,7 +145,7 @@ const directCreateNitroAPI = (path: string) => {
             await createDir('server')
             await createDir('server/api')
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
             createFile({
                 fileName: `${name}.ts`,
                 content: nitroDefaultTemplate,
@@ -166,7 +166,7 @@ const directCreateNitroRoute = (path: string) => {
             createDir('server')
             createDir('server/routes')
 
-            let filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
 
             createFile({
                 fileName: `${name}.ts`,

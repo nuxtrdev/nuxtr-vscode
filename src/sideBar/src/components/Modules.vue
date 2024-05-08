@@ -32,7 +32,7 @@
 </template>
 
 <script setup lang="ts">
-import { useModules, Module } from "./../composables/modules";
+import { useModules, Module } from "../composables/modules";
 import ModuleCard from "./ModuleCard.vue";
 import ModulesFilter from "./ModulesFilter.vue";
 import { ref, computed } from "vue";
