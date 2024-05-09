@@ -134,18 +134,9 @@ export const createFile = async (args: { fileName: string; content: string; full
 
     await workspace.fs.writeFile(parentDirectory, new TextEncoder().encode(args.content));
 
-    // Open the file
     if (nuxtrConfiguration().openItemsAfterCreation) {
         workspace.openTextDocument(parentDirectory).then((doc) => {
             window.showTextDocument(doc);
-        });
-    } else {
-        window.showInformationMessage(`File created`, `Open ${args.fileName}`).then((value) => {
-            if (value === `Open ${args.fileName}`) {
-                workspace.openTextDocument(parentDirectory).then((doc) => {
-                    window.showTextDocument(doc);
-                });
-            }
         });
     }
 };
