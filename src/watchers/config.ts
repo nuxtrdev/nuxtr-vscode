@@ -64,16 +64,6 @@ export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vue
     }
 });
 
-export const piniaConfigWatcher: Disposable = createConfigWatcher('nuxtr.piniaFiles',  (): Promise<void> => {
-    reloatWindowProps();
-    return Promise.resolve();
-});
-
-export const vueConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles', (): Promise<void> => {
-    reloatWindowProps();
-    return Promise.resolve();
-});
-
 export const intellisenseConfigWatcher: Disposable = createConfigWatcher('nuxtr.intellisense', (): Promise<void> => {
     reloatWindowProps();
     return Promise.resolve();
