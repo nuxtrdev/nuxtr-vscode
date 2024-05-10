@@ -11,6 +11,7 @@ const reloatWindowProps = () => {
     window.showInformationMessage('Configuration has been modified.', 'Reload Window').then((answer) => {
         if (answer === 'Reload Window') {
             commands.executeCommand('workbench.action.reloadWindow');
+            return;
         }
     });
 }
@@ -18,14 +19,12 @@ const reloatWindowProps = () => {
 export const nuxtSnippetsConfigWatcher: Disposable =
   createConfigWatcher('nuxtr.snippets.nuxt', async () => {
       await toggleSnippets('Nuxt', nuxtrConfiguration().snippets.nuxt)
-      console.log('nuxtSnippetsConfigWatcher', nuxtrConfiguration().snippets.nuxt);
       reloatWindowProps();
   });
 
 export const nitroSnippetsConfigWatcher: Disposable =
   createConfigWatcher('nuxtr.snippets.nitro', async () => {
       await toggleSnippets('Nitro', nuxtrConfiguration().snippets.nitro)
-      console.log('nitroSnippetsConfigWatcher', nuxtrConfiguration().snippets.nitro);
       reloatWindowProps();
   })
 

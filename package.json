@@ -32,48 +32,6 @@
     "Nuxtr VSCode"
   ],
   "contributes": {
-    "snippets": [
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/boilerplates.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/nuxt/boilerplates.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nitro/imports.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nitro/imports.json"
-      }
-    ],
     "languages": [
       {
         "id": "Log",
@@ -1079,6 +1037,48 @@
             "format": "woff"
           }
         ]
+      }
+    ],
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/nuxt/components.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/components.json"
+      },
+      {
+        "language": "html",
+        "path": "./snippets/nuxt/boilerplates.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/boilerplates.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nitro/imports.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nitro/imports.json"
       }
     ]
   },

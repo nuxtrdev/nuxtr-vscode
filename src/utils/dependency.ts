@@ -232,9 +232,6 @@ export const updateDependencies = async () => {
         Bun: `bun add`,
     }
 
-    console.log('packageManager', packageManager);
-
-
     const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand.NPM : updateCommand[defaultPackageManager])
 
     const items: QuickPickItem[] = outdatedDependenciesList.map((item: any) => {
