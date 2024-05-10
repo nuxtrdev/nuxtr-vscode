@@ -32,48 +32,6 @@
     "Nuxtr VSCode"
   ],
   "contributes": {
-    "snippets": [
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/boilerplates.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/nuxt/boilerplates.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nitro/imports.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nitro/imports.json"
-      }
-    ],
     "languages": [
       {
         "id": "Log",
@@ -608,7 +566,7 @@
           },
           "nuxtr.piniaFiles.defaultTemplate": {
             "type": "string",
-            "default": "options",
+            "default": "setup",
             "enum": [
               "options",
               "setup"
@@ -1080,6 +1038,40 @@
           }
         ]
       }
+    ],
+    "snippets": [
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/components.json"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/nuxt/boilerplates.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/composables.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nuxt/utils.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nitro/imports.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nitro/imports.json"
+      }
     ]
   },
   "permissions": [
@@ -1123,8 +1115,8 @@
     "magicast": "^0.3.4",
     "ofetch": "^1.3.4",
     "pathe": "^1.1.2",
-    "pkg-types": "^1.1.0",
-    "semver": "^7.6.1",
+    "pkg-types": "^1.1.1",
+    "semver": "^7.6.2",
     "string-ts": "^1.3.3"
   },
   "pnpm": {

@@ -30,13 +30,12 @@ const fetchOfficialTemplates = async (): Promise<NuxtOfficialTemplate[]> => {
 
 const fetchUserTemplates = (): UserProjectTemplate[] => {
     try {
-        const userTemplates = nuxtrConfiguration().projectTemplates.map((item) => ({
+        return nuxtrConfiguration().projectTemplates.map((item) => ({
             name: item.name,
             repoURL: item.repoURL,
             description: item.description,
             branch: item.branch,
         } as UserProjectTemplate));
-        return userTemplates;
     } catch {
         window.showErrorMessage(`Failed to fetch user templates`);
         return [];
