@@ -1,54 +1,63 @@
 import { CompletionItem, CompletionItemKind, MarkdownString, extensions, languages } from 'vscode';
-import { existsSync, mkdirSync, move, readdirSync, removeSync } from 'fs-extra';
+import { existsSync, mkdirSync, move, readdirSync, statSync } from 'fs-extra';
 import { join, resolve } from 'pathe';
 import { homedir } from 'node:os';
 
-import { generateVueFileBasicTemplate, nuxtrConfiguration } from '../utils';
+import { generateVueFileBasicTemplate } from '../utils';
 
-enum SnippetSource {
-    nuxt = 'Nuxt',
-    nitro = 'Nitro',
-}
 
-const homeDir = homedir()
-const snippetsConfigurations = nuxtrConfiguration().snippets
-
-const snippetsDir = 'snippets'
-const disabledSnippetsDir = 'disabled_snippets'
-const extensionName = 'nuxtr.nuxtr-vscode'
-const nuxtrVersion = extensions.getExtension(extensionName)?.packageJSON.version
-const extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`)
-
-async function manageSnippetState(snippetSource: string, snippetConfig: boolean) {
-    const snippetSourceDir = join(extensionDir, snippetsDir, snippetSource);
-    const disabledSnippetSourceDir = join(extensionDir, disabledSnippetsDir, snippetSource);
-
-    if (!existsSync(disabledSnippetSourceDir)) {
-        mkdirSync(disabledSnippetSourceDir, { recursive: true });
+function moveSnippets(sourceDir: string, destinationDir: string) {
+    if (!existsSync(destinationDir)) {
+        mkdirSync(destinationDir);
     }
 
-    if (snippetConfig) {
-        const files = readdirSync(snippetSourceDir);
-        for (const file of files) {
-            await move(join(snippetSourceDir, file), join(disabledSnippetSourceDir, file));
-        }
+    const snippets = readdirSync(sourceDir);
+    snippets.forEach((snippet) => {
+        const sourcePath = join(sourceDir, snippet);
+        const destinationPath = join(destinationDir, snippet);
+        const stats = statSync(sourcePath);
+        if (stats.isDirectory()) {
+            moveSnippets(sourcePath, destinationPath);
+        } else {
+            console.log(`Moving ${snippet} from ${sourceDir} to ${destinationDir}`);
+            move(sourcePath, destinationPath, (err) => {
+                console.log(`Moved ${snippet} from ${sourceDir} to ${destinationDir}`);
 
-        removeSync(snippetSourceDir);
+                if (err) {
+                    console.error(`Error moving ${snippet} from ${sourceDir} to ${destinationDir}: ${err}`);
+                }
+            });
+        }
+    });
+}
+
+
+export function toggleSnippets(directory: 'Nuxt' | 'Nitro', moveToDisabled: boolean) {
+    const homeDir = homedir()
+    const snippetsDir = 'snippets';
+    const disabledSnippetsDir = 'disabled_snippets';
+    const extensionName = 'nuxtr.nuxtr-vscode';
+    const nuxtrVersion = extensions.getExtension(extensionName)?.packageJSON.version;
+    const extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`);
+
+    const sourceDir = join(extensionDir, snippetsDir, directory);
+    const destinationDir = join(extensionDir, disabledSnippetsDir, directory);
+
+
+    if (!existsSync(moveToDisabled ? sourceDir : destinationDir)) {
+        console.error(`Directory '${directory}' does not exist inside '${moveToDisabled ? snippetsDir : disabledSnippetsDir}'`);
+        return;
+    }
+
+    if (moveToDisabled) {
+        console.log(`Moving snippets from '${directory}' to 'disabled_snippets/${directory}'`);
+        moveSnippets(sourceDir, destinationDir);
     } else {
-        const files = readdirSync(disabledSnippetSourceDir);
-        for (const file of files) {
-            await move(join(disabledSnippetSourceDir, file), join(snippetSourceDir, file));
-        }
-
-        removeSync(disabledSnippetSourceDir);
+        console.log(`Moving snippets from 'disabled_snippets/${directory}' to '${directory}'`);
+        moveSnippets(destinationDir, sourceDir);
     }
 }
 
-
-export const toggleSnippets = async () => {
-    await manageSnippetState(SnippetSource.nuxt, snippetsConfigurations.nuxt);
-    await manageSnippetState(SnippetSource.nitro, snippetsConfigurations.nitro);
-}
 
 languages.registerCompletionItemProvider(
     { language: 'vue' },

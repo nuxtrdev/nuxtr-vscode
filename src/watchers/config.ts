@@ -15,10 +15,19 @@ const reloatWindowProps = () => {
     });
 }
 
-export const snippetsConfigWatcher: Disposable = createConfigWatcher('nuxtr.snippets', async () => {
-    await toggleSnippets()
-    reloatWindowProps();
-});
+export const nuxtSnippetsConfigWatcher: Disposable =
+  createConfigWatcher('nuxtr.snippets.nuxt', async () => {
+      await toggleSnippets('Nuxt', nuxtrConfiguration().snippets.nuxt)
+      console.log('nuxtSnippetsConfigWatcher', nuxtrConfiguration().snippets.nuxt);
+      reloatWindowProps();
+  });
+
+export const nitroSnippetsConfigWatcher: Disposable =
+  createConfigWatcher('nuxtr.snippets.nitro', async () => {
+      await toggleSnippets('Nitro', nuxtrConfiguration().snippets.nitro)
+      console.log('nitroSnippetsConfigWatcher', nuxtrConfiguration().snippets.nitro);
+      reloatWindowProps();
+  })
 
 export const templatesConfigWatcher: Disposable = createConfigWatcher('nuxtr.vueFiles.template.defaultLanguage', async () => {
     const options: string[] = [];
