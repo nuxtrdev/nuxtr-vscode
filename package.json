@@ -1041,16 +1041,8 @@
     ],
     "snippets": [
       {
-        "language": "html",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
         "language": "vue",
         "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/boilerplates.json"
       },
       {
         "language": "vue",
