@@ -1,12 +1,10 @@
 {
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "fileTypes": [".nuxtrc"],
+  "name": "nuxtrc",
   "scopeName": "source.nuxtrc",
   "patterns": [
     {
-      "include": "#key-value-pair"
-    }
-  ],
-  "repository": {
-    "key-value-pair": {
       "match": "^(\\s*)([a-zA-Z_][\\w-]*(?:\\.[a-zA-Z_][\\w-]*)*)\\s*=\\s*([^\\n]*)$",
       "captures": {
         "2": {
@@ -33,6 +31,10 @@
           ]
         }
       }
+    },
+    {
+      "match": "^\\s*#.*$",
+      "name": "comment.line"
     }
-  }
+  ]
 }
