@@ -41,7 +41,7 @@
         "extensions": [
           ".log"
         ],
-        "configuration": "./log.configuration.json",
+        "configuration": "./log.langConfiguration.json",
         "mimetypes": [
           "log",
           "text/log",
@@ -57,7 +57,8 @@
         ],
         "extensions": [
           ".nuxtignore"
-        ]
+        ],
+        "configuration": "./syntaxes/nuxtignore.langConfiguration.json"
       },
       {
         "id": "nuxtrc",
@@ -66,7 +67,8 @@
         ],
         "extensions": [
           ".nuxtrc"
-        ]
+        ],
+        "configuration": "./syntaxes/nuxtrc.langConfiguration.json"
       }
     ],
     "configurationDefaults": {
@@ -80,17 +82,17 @@
       {
         "language": "Log",
         "scopeName": "code.log",
-        "path": "./syntaxes/log.tmLanguage.json"
+        "path": "./syntaxes/log.tmConfiguration.json"
       },
       {
         "language": "nuxtrc",
         "scopeName": "source.nuxtrc",
-        "path": "./syntaxes/nuxtrc.tmLanguage.json"
+        "path": "./syntaxes/nuxtrc.tmConfiguration.json"
       },
       {
         "language": "nuxtignore",
         "scopeName": "source.nuxtignore",
-        "path": "./syntaxes/nuxtignore.tmLanguage.json"
+        "path": "./syntaxes/nuxtignore.tmConfiguration.json"
       }
     ],
     "viewsContainers": {

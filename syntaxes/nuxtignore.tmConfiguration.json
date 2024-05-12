@@ -1,0 +1,15 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "source.nuxtignore",
+  "patterns": [
+    {
+      "match": "^[^#\\s].*$",
+      "name": "string.path.nuxtignore"
+    },
+    {
+      "match": "^\\s*#.*$",
+      "name": "comment.line"
+    }
+  ],
+  "fileTypes": [".nuxtignore"]
+}
