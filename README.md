@@ -39,7 +39,7 @@
 
 ### Project Creation
 
-Using `Nuxtr: Create Nuxt project` command, you can create a new Nuxt project with a few steps. You can choose a project starter from [Nuxt Startes](https://nuxt.new) or you can add your own project started:
+Using `Nuxtr: Create Nuxt project` command, you can create a new Nuxt project with a few steps. You can choose a project starter from [Nuxt Starters](https://nuxt.new) or you can add your own project started:
 
 ```JSON
 "nuxtr.projectTemplates": [
@@ -238,7 +238,7 @@ You can install and configure most CSS frameworks with few steps:
 - Tailwind CSS.
 - UnoCSS.
 - WindiCSS (RIP).
-- Vueitfy.
+- Vuetify.
 
 Same for linters:
 
