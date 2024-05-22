@@ -238,7 +238,7 @@ You can install and configure most CSS frameworks with few steps:
 - Tailwind CSS.
 - UnoCSS.
 - WindiCSS (RIP).
-- Vueitfy.
+- Vuetify.
 
 Same for linters:
 
