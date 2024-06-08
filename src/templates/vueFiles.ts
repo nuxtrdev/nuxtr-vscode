@@ -16,7 +16,7 @@ function generateStyleTag(lang: string, scoped: boolean) {
 }
 
 function generateScriptTag(scriptType: string, lang: string) {
-    return `<script${lang === 'ts' ? ' lang="ts"' : ''}${scriptType === 'setup' ? ' setup' : ''}>
+    return `<script${scriptType === 'setup' ? ' setup' : ''}${lang === 'ts' ? ' lang="ts"' : ''}>
 
 </script>`
 }
