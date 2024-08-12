@@ -1,5 +1,5 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, generateVueFileBasicTemplate, projectSrcDirectory, showSubFolderQuickPick, } from '../utils';
+import { createDir, createFile, createSubFolders, generateVueFileBasicTemplate, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick, } from '../utils';
 
 const createComponent = () => {
     window
@@ -34,7 +34,7 @@ const directCreateComponent = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${name}.vue`
+            const filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
             createFile({
                 fileName: `${name}.vue`,
