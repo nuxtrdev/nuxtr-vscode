@@ -1,6 +1,8 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick, nuxtrConfiguration } from '../utils'
 import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 const createNitroAPI = () => {
     window
@@ -145,9 +147,9 @@ const directCreateNitroAPI = (path: string) => {
             await createDir('server')
             await createDir('server/api')
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, `.${nuxtLang}`)}.${nuxtLang}`
             createFile({
-                fileName: `${name}.ts`,
+                fileName: `${name}.${nuxtLang}`,
                 content: nitroDefaultTemplate,
                 fullPath: filePath,
             })
@@ -166,10 +168,10 @@ const directCreateNitroRoute = (path: string) => {
             createDir('server')
             createDir('server/routes')
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, `.${nuxtLang}`)}.${nuxtLang}`
 
             createFile({
-                fileName: `${name}.ts`,
+                fileName: `${name}.${nuxtLang}`,
                 content: nitroDefaultTemplate,
                 fullPath: filePath,
             })

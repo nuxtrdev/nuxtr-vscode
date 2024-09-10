@@ -1,7 +1,9 @@
 import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
-import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
+import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory, nuxtrConfiguration } from '../utils'
 import { appConfigContent } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 function promptDirectorySelection() {
     let directories = ['components', 'pages', 'assets', 'plugins', 'layouts', 'middleware', 'modules',]
@@ -53,9 +55,9 @@ const projectStructure = () => {
 
 const appConfig = () => {
     createFile({
-        fileName: 'app.config.ts',
+        fileName: `app.config.${nuxtLang}`,
         content: appConfigContent,
-        fullPath: `${projectRootDirectory()}/app.config.ts`,
+        fullPath: `${projectRootDirectory()}/app.config.${nuxtLang}`,
     })
 }
 

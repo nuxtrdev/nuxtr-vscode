@@ -574,7 +574,16 @@
               "setup"
             ],
             "description": "Default language for script tag"
-          }
+          },
+					"nuxtr.nuxtFiles.defaultLanguage":{
+						"type": "string",
+						"default": "ts",
+						"enum": [
+							"js",
+							"ts"
+						],
+						"description": "Default language for nuxt files"
+					}
         }
       },
       {

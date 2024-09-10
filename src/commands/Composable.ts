@@ -1,6 +1,8 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick, nuxtrConfiguration } from '../utils'
 import { composableTemplate } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 const createComposable = () => {
     window
@@ -37,10 +39,10 @@ const directCreateComposable = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, `.${nuxtLang}`)}.${nuxtLang}`
 
             createFile({
-                fileName: `${name}.ts`,
+                fileName: `${name}.${nuxtLang}`,
                 content: composableTemplate(name),
                 fullPath: filePath,
             })

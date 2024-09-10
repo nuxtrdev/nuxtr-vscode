@@ -1,4 +1,7 @@
 import { hasServerDir } from "../utils";
+import { nuxtrConfiguration } from '.'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 export const getCommandType = async (commandType: string) => {
     let type = {
@@ -19,7 +22,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Composables',
                 path: 'composables',
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -43,7 +46,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Store',
                 path: 'store',
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -51,7 +54,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Middleware',
                 path: 'middleware',
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -59,7 +62,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Plugins',
                 path: 'plugins',
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -67,7 +70,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'APIs',
                 path: `${await hasServerDir()}/api`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -75,7 +78,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Routes',
                 path: `${await hasServerDir()}/routes`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -83,7 +86,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Plugins',
                 path: `${await hasServerDir()}/plugins`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -91,7 +94,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Middleware',
                 path: `${await hasServerDir()}/middleware`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -99,7 +102,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Utilities',
                 path: `utils`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }
@@ -107,7 +110,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Utility',
                 path: `${await hasServerDir()}/utils`,
-                extension: '.ts',
+                extension: `.${nuxtLang}`,
             };
             break;
         }

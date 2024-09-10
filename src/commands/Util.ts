@@ -1,6 +1,8 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick, nuxtrConfiguration } from '../utils'
 import { nitroUtilTemplate, nuxtUtilTemplate } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 const createUtil = () => {
     window
@@ -39,11 +41,11 @@ const directCreateUtil = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${name}.ts`
+            const filePath = `${path}/${name}.${nuxtLang}`
 
 
             createFile({
-                fileName: `${name}.ts`,
+                fileName: `${name}.${nuxtLang}`,
                 content: filePath.includes(`${serverDir}`) ? nitroUtilTemplate : nuxtUtilTemplate(),
                 fullPath: filePath,
             })

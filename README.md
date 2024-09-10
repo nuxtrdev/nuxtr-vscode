@@ -56,7 +56,7 @@ Using `Nuxtr: Create Nuxt project` command, you can create a new Nuxt project wi
 
 ### Directory and File Creation
 
-Effortlessly generate all essential directories and files for your Nuxt project right from within VSCode. Utilize the command palette  or context menus to swiftly create Vue/TypeScript files, as well as special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config), and [`app.config.ts`](https://nuxt.com/docs/guide/directory-structure/app-config).
+Effortlessly generate all essential directories and files for your Nuxt project right from within VSCode. Utilize the command palette  or context menus to swiftly create Vue/TypeScript/JavaScript files, as well as special files like [`.nuxtignore`](https://nuxt.com/docs/guide/directory-structure/nuxtignore), [`.nuxtrc`](https://nuxt.com/docs/api/configuration/nuxt-config), and [`app.config.(ts/js)`](https://nuxt.com/docs/guide/directory-structure/app-config).
 
 To initiate any creation action, simply prepend it with the prefix **`Nuxtr: Create...`** and **`Nuxtr: Nuxt project structure...`** command for creating the entire project structure.
 
@@ -70,7 +70,8 @@ Customize Vue file templates with these settings:
 "nuxtr.vueFiles.style.addStyleTag": true,
 "nuxtr.vueFiles.style.alwaysScoped": true,
 "nuxtr.vueFiles.style.defaultLanguage": "scss",
-"nuxtr.piniaFiles.defaultTemplate": "options"
+"nuxtr.piniaFiles.defaultTemplate": "options",
+"nuxtr.nuxtFiles.defaultLanguage": "js"
 ```
 
 Additionally, you can choose to automatically open the newly created file with:

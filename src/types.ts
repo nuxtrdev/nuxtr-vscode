@@ -45,6 +45,9 @@ export interface NuxtrConfiguration {
             defaultTemplate: string;
         };
     };
+		nuxtFiles:{
+			defaultLanguage: "js" | "ts"
+		}
     intellisense: {
         vueFiles: boolean;
         nuxtignore: boolean;
