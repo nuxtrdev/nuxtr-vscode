@@ -854,7 +854,7 @@
       },
       {
         "command": "nuxtr.appConfig",
-        "title": "Create app.config.ts file",
+        "title": "Create app.config.(ts/js) file",
         "category": "Nuxtr",
         "when": "nuxtr.isNuxtProject"
       },
