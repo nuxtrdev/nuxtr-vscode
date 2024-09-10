@@ -9,10 +9,13 @@ import {
     normalizeFileExtension,
     projectSrcDirectory,
     runCommand,
-    updateNuxtConfig
+    updateNuxtConfig,
+		nuxtrConfiguration
 } from '../utils'
 
 import { vuexContent } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 async function detectPiniaModule() {
     const moduleName = '@pinia/nuxt'
@@ -46,7 +49,7 @@ const createStore = () => {
         .then(async (name: any) => {
             if (!name) { return }
 
-            const filePath = `${await projectSrcDirectory()}/${isNuxtTwo() ? 'store' : 'stores'}/${name}.${isNuxtTwo() ? 'js' : 'ts'}`
+            const filePath = `${await projectSrcDirectory()}/${isNuxtTwo() ? 'store' : 'stores'}/${name}.${isNuxtTwo() ? 'js' : nuxtLang}`
             await (isNuxtTwo() ? createFile({
                 fileName: name,
                 content: vuexContent,
@@ -70,7 +73,7 @@ const directCreateStore = (path: string) => {
         .then(async (name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, isNuxtTwo() ? '.js' : '.ts' )}.${isNuxtTwo() ? 'js' : 'ts'}`
+            const filePath = `${path}/${normalizeFileExtension(name, isNuxtTwo() ? '.js' : `.${nuxtLang}` )}.${isNuxtTwo() ? 'js' : nuxtLang}`
 
             await (isNuxtTwo() ? createFile({
                 fileName: name,

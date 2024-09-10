@@ -574,7 +574,16 @@
               "setup"
             ],
             "description": "Default language for script tag"
-          }
+          },
+					"nuxtr.nuxtFiles.defaultLanguage":{
+						"type": "string",
+						"default": "ts",
+						"enum": [
+							"js",
+							"ts"
+						],
+						"description": "Default language for nuxt files"
+					}
         }
       },
       {
@@ -845,7 +854,7 @@
       },
       {
         "command": "nuxtr.appConfig",
-        "title": "Create app.config.ts file",
+        "title": "Create app.config.(ts/js) file",
         "category": "Nuxtr",
         "when": "nuxtr.isNuxtProject"
       },

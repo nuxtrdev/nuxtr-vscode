@@ -1,6 +1,8 @@
 import { window } from 'vscode'
 import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile, windiCSSConfig } from '../templates'
-import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig } from '../utils'
+import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig, nuxtrConfiguration } from '../utils'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
 
@@ -106,9 +108,9 @@ const configureTailwind = () => {
                     if (selections.includes(TailwindOptions.createConfigFile)) {
 
                         await createFile({
-                            fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
+                            fileName: `tailwind.config.${isNuxtTwo() ? 'js' : nuxtLang}`,
                             content: isNuxtTwo() ? tailwindCSSJSConfig : tailwindCSSTSConfig,
-                            fullPath: `${projectRootDirectory()}/tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
+                            fullPath: `${projectRootDirectory()}/tailwind.config.${isNuxtTwo() ? 'js' : nuxtLang}`,
                         })
                     }
 
@@ -128,7 +130,7 @@ const configureTailwind = () => {
 
 const configureWindi = async () => {
     try {
-        const filePath = `${await projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : 'ts'}`
+        const filePath = `${await projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : nuxtLang}`
 
         const windiOptions = Object.values(WindiOptions)
 
@@ -155,7 +157,7 @@ const configureWindi = async () => {
 
                     if (selections.includes(WindiOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `windi.config.${isNuxtTwo() ? 'js' : 'ts'}`,
+                            fileName: `windi.config.${isNuxtTwo() ? 'js' : nuxtLang}`,
                             content: windiCSSConfig,
                             fullPath: filePath,
                         })
@@ -176,7 +178,7 @@ const configureWindi = async () => {
 
 const configureUno = async () => {
     try {
-        const filePath = `${await projectSrcDirectory()}/uno.config.ts`
+        const filePath = `${await projectSrcDirectory()}/uno.config.${nuxtLang}`
 
         const unoCSSOptions = Object.values(UnoCSSOptions)
 
@@ -203,7 +205,7 @@ const configureUno = async () => {
 
                     if (selections.includes(UnoCSSOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `uno.config.ts`,
+                            fileName: `uno.config.${nuxtLang}`,
                             content: unoCSSConfig,
                             fullPath: filePath,
                         })

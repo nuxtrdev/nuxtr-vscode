@@ -16,6 +16,11 @@ const reloatWindowProps = () => {
     });
 }
 
+export const nuxtFilesConfigWatcher: Disposable =
+  createConfigWatcher('nuxtr.nuxtFiles.defaultLanguage', async () => {
+      reloatWindowProps();
+  });
+
 export const nuxtSnippetsConfigWatcher: Disposable =
   createConfigWatcher('nuxtr.snippets.nuxt', async () => {
       await toggleSnippets('Nuxt', nuxtrConfiguration().snippets.nuxt)

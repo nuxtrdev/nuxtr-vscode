@@ -1,6 +1,8 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick, nuxtrConfiguration } from '../utils'
 import { nitroPluginTemplate, nuxtPluginTemplate } from '../templates'
+
+const nuxtLang = nuxtrConfiguration().nuxtFiles.defaultLanguage
 
 const createPlugin = () => {
     window
@@ -39,11 +41,11 @@ const directCreatePlugin = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, `.${nuxtLang}`)}.${nuxtLang}`
 
 
             createFile({
-                fileName: `${name}.ts`,
+                fileName: `${name}.${nuxtLang}`,
                 content: filePath.includes(`${serverDir}`) ? nitroPluginTemplate : nuxtPluginTemplate,
                 fullPath: filePath,
             })
