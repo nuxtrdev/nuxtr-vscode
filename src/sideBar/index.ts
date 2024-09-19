@@ -1,8 +1,8 @@
-import * as vscode from 'vscode'
-import { capitalize } from 'string-ts'
-import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
-import { exec } from 'node:child_process'
 import { destr } from "destr"
+import { exec } from 'node:child_process'
+import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
+import { capitalize } from 'string-ts'
+import * as vscode from 'vscode'
 
 import {
     detectPackageManagerByName,

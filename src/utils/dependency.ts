@@ -1,12 +1,12 @@
+import { destr } from "destr";
+import { exec } from 'node:child_process';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { readPackageJSON } from 'pkg-types';
 import { ProgressLocation, QuickPickItem, QuickPickOptions, StatusBarItem, commands, window } from 'vscode';
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
-import { exec } from 'node:child_process'
-import { destr } from "destr"
-import { readPackageJSON } from 'pkg-types'
-import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global'
-import { installDependencies } from '../commands/InstallDependencies'
-import pm from '../content/pm'
-import { newTerminal } from '.'
+import { newTerminal } from '.';
+import { installDependencies } from '../commands/InstallDependencies';
+import pm from '../content/pm';
+import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global';
 
 
 const items: QuickPickItem[] = pm.map((item) => {
@@ -140,6 +140,17 @@ export const detectPackageManagerByName = () => {
     }
 
     return undefined
+}
+
+export function getPackageManagerVersion(packageManager: string): Promise<string> {
+    return new Promise((resolve, reject) => {
+        exec(`${packageManager} --version`, (error, stdout) => {
+            if (error) {
+                return reject(`Error fetching version for ${packageManager}: ${error.message}`);
+            }
+            resolve(stdout.trim());
+        });
+    });
 }
 
 export const getInstallationCommand = async (packageName: string, devFlag: boolean) => {

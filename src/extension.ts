@@ -1,10 +1,10 @@
 import { ExtensionContext, Uri, commands, window } from 'vscode';
-import nuxtrCommands from './commands'
-import { ModulesView } from './sideBar'
+import codelens from './codelens';
+import nuxtrCommands from './commands';
+import { activateIntellisense } from './intellisense';
+import { ModulesView } from './sideBar';
+import { activateStatusBarIcons, statusBars } from './statusBar';
 import { logger, updateDependencies } from './utils';
-import codelens from './codelens'
-import { activateStatusBarIcons, statusBars } from './statusBar'
-import { activateIntellisense } from './intellisense'
 import { filesWatcher } from './watchers';
 
 const extensionCommands = [
@@ -58,6 +58,7 @@ const extensionCommands = [
     { command: 'nuxtr.directCreateNitroRoute', function: (filePath: Uri) => nuxtrCommands.directCreateNitroRoute(filePath.path) },
     { command: 'nuxtr.directCreateStore', function: (filePath: Uri) => nuxtrCommands.directCreateStore(filePath.path) },
     { command: 'nuxtr.directCreateUtil', function: (filePath: Uri) => nuxtrCommands.directCreateUtil(filePath.path) },
+    { command: 'nuxtr.generateBugInfoReport', function: nuxtrCommands.generateBugInfoReport }
 ];
 
 export const publicCommands = [
