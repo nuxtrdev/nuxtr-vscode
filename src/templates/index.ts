@@ -9,7 +9,6 @@ export {
 
 export {
     unoCSSConfig,
-    windiCSSConfig,
     tailwindCSSJSConfig,
     tailwindCSSTSConfig,
     tailwindCSSFile,

@@ -4,14 +4,6 @@ export default defineConfig({
 
 })
 `
-
-const windiCSSConfig = `import { defineConfig } from 'windicss/helpers'
-
-export default defineConfig({
-
-})
-`
-
 const tailwindCSSJSConfig = `/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [],
@@ -50,7 +42,6 @@ export default {
 
 export {
     unoCSSConfig,
-    windiCSSConfig,
     tailwindCSSJSConfig,
     tailwindCSSTSConfig,
     tailwindCSSFile,
