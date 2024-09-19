@@ -1,8 +1,8 @@
-import { CompletionItem, CompletionItemKind, MarkdownString, extensions, languages } from 'vscode';
-import { resolve } from 'pathe';
-import { readPackageJSON, writePackageJSON } from 'pkg-types'
 import { homedir } from 'node:os';
-import { generateVueFileBasicTemplate } from '../utils';
+import { resolve } from 'pathe';
+import { readPackageJSON, writePackageJSON } from 'pkg-types';
+import { CompletionItem, CompletionItemKind, MarkdownString, extensions, languages } from 'vscode';
+import { generateVueFileTemplate } from '../utils';
 
 interface Snippet {
     language: string;
@@ -17,7 +17,9 @@ export async function toggleSnippets(source: 'Nuxt' | 'Nitro', moveToDisabled: b
 
     const extensionDir = resolve(homeDir, '.vscode', 'extensions', `${extensionName}-${nuxtrVersion}`);
     const pkgJsonPath = resolve(extensionDir, 'package.json');
+
     const pkgJSON = await readPackageJSON(extensionDir);
+
     let snippets: Snippet[] = pkgJSON?.contributes?.snippets || [];
     let disabledSnippets: Snippet[] = pkgJSON?.contributes?.disabled_snippets || [];
 
@@ -48,15 +50,37 @@ languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
         provideCompletionItems() {
-            const completionItem = new CompletionItem('vueBaseLayout', CompletionItemKind.Snippet);
+            const completionItem = new CompletionItem('nuxtBaseLayout', CompletionItemKind.Snippet);
+            completionItem.detail = 'Generate a Nuxt Layout template';
+
+            const template = generateVueFileTemplate('layout');
+
+            const documentation = new MarkdownString();
+            documentation.appendMarkdown(`Generate a Nuxt layout template according to your Nuxtr configuration.\n\n`);
+            documentation.appendCodeblock(template, 'vue');
+
+            completionItem.documentation = documentation;
+            completionItem.kind = CompletionItemKind.Snippet;
+            completionItem.insertText = template;
+
+            return [completionItem];
+        }
+    }
+);
+
+
+languages.registerCompletionItemProvider(
+    { language: 'vue' },
+    {
+        provideCompletionItems() {
+            const completionItem = new CompletionItem('vueBase', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue file template';
 
-            const template = generateVueFileBasicTemplate('layout');
+            const template = generateVueFileTemplate('page');
 
-            // Create a MarkdownString for documentation with code highlighting
             const documentation = new MarkdownString();
             documentation.appendMarkdown(`Generate a Vue file template according to your Nuxtr configuration.\n\n`);
-            documentation.appendCodeblock(template, 'vue'); // Specify 'vue' as the language for code block highlighting
+            documentation.appendCodeblock(template, 'vue');
 
             completionItem.documentation = documentation;
             completionItem.kind = CompletionItemKind.Snippet;
