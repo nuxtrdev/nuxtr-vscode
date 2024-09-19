@@ -1,12 +1,22 @@
 name: 🐞 Bug Report
-description: Report any issues and help us enhance Nuxtr. Please,  use issues for reporting bugs and bugs only.
+description: Report any issues and help us enhance Nuxtr. Please, use issues for reporting bugs and bugs only.
 title: "[Bug]: "
-labels: ["bug", "triage"]
+labels: ["bug", "pending triage"]
 body:
   - type: markdown
     attributes:
       value: |
         Thanks for taking the time to fill out this bug report!
+  - type: dropdown
+    id: version
+    attributes:
+      label: Version
+      description: What version of our software are you running?
+      options:
+        - 1.0.2 (Default)
+        - 1.0.3 (Edge)
+    validations:
+      required: true
   - type: textarea
     id: bug-env
     attributes:
