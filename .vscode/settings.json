@@ -1,5 +1,5 @@
 {
   "typescript.tsc.autoDetect": "off",
   "editor.formatOnSave": true,
-  "eslint.experimental.useFlatConfig": true
+  "eslint.useFlatConfig": true
 }

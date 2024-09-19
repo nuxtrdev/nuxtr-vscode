@@ -21,6 +21,8 @@
     "src/sideBar/build",
     "taze.config.ts",
     "tsup.config.ts",
+    "tsdown.config.ts",
+    "rolldown.config.js",
     "knip.ts"
   ]
 }
