@@ -231,21 +231,18 @@ Starting from v0.1.0, you can filter integration types (modules/layers) from the
 <br>
 <br>
 
-### Install & Configure CSS frameworks and Linters
+### Install & Configure UI Libraries, CSS frameworks, and Linters
 
-You can install and configure most CSS frameworks with few steps:
+- UI Frameworks: [Vuetify](https://nuxt.com/modules/vuetify-nuxt-module).
 
-- Tailwind CSS.
-- UnoCSS.
-- WindiCSS (RIP).
-- Vueitfy.
+- CSS Frameworks: [Tailwind CSS](https://tailwindcss.nuxtjs.org) and [UnoCSS](https://unocss.dev/integrations/nuxt).
 
-Same for linters:
+- Linters: [`Eslint`](https://eslint.nuxt.com) and [`stylelint`](https://nuxt.com/modules/stylelint).
 
-- Stylelint.
-- Eslint.
 
-More coming soon.
+And more coming soon.
+
+<br>
 
 ![Nuxt Modules](https://raw.githubusercontent.com/nuxtrdev/nuxtr-vscode/main/.github/media/css_frameworks.gif)
 
