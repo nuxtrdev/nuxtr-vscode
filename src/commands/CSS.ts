@@ -11,13 +11,13 @@ enum TailwindOptions {
 }
 
 enum UnoCSSOptions {
-    installModule = 'Install unocss/nuxt module and add it to nuxt config',
+    installModule = 'Install @UnoCSS/Nuxt module and add it to nuxt config',
     createConfigFile = 'Create uno.config.ts file',
 }
 
 enum VuetifyOptions {
-    installModule = 'Install @nuxtjs/vuetify module and add it to nuxt config',
-    createConfigFile = 'Create vuetify.options.js file',
+    installModule = 'Install vuetify-nuxt-module module and add it to nuxt config',
+    createConfigFile = 'Create vuetify.config.ts file',
 }
 
 function configureCSS() {
@@ -40,10 +40,8 @@ function configureCSS() {
                 }
                 case 'Vuetify': {
                     configureVuetify()
-
                     break;
                 }
-            // No default
             }
         })
 }
@@ -167,7 +165,7 @@ const configureUno = async () => {
 
 const configureVuetify = async () => {
     try {
-        const filePath = `${await projectSrcDirectory()}/vuetify.options.js`
+        const filePath = `${await projectSrcDirectory()}/vuetify.config.ts`
 
         const vuetifyOptions = Object.values(VuetifyOptions)
 
@@ -179,7 +177,7 @@ const configureVuetify = async () => {
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(VuetifyOptions.installModule)) {
-                        const moduleName = '@nuxtjs/vuetify'
+                        const moduleName = 'vuetify-nuxt-module'
                         const command = await getInstallationCommand(moduleName, true)
 
                         await runCommand({
@@ -194,7 +192,7 @@ const configureVuetify = async () => {
 
                     if (selections.includes(VuetifyOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `vuetify.options.js`,
+                            fileName: `vuetify.config.ts`,
                             content: vuetifyConfigFile,
                             fullPath: filePath,
                         })

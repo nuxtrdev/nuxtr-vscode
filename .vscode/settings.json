@@ -1,5 +1,9 @@
 {
   "typescript.tsc.autoDetect": "off",
   "editor.formatOnSave": true,
-  "eslint.useFlatConfig": true
+  "eslint.useFlatConfig": true,
+  "cSpell.words": [
+    "unocss",
+    "vuetify"
+  ]
 }

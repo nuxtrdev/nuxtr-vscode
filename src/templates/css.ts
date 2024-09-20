@@ -30,15 +30,11 @@ const tailwindCSSFile = `@tailwind base;
 @tailwind components;
 @tailwind utilities;`
 
-const vuetifyConfigFile = `// vuetify.options.js
-export default {
-  breakpoint: {},
-  icons: {},
-  lang: {},
-  rtl: true,
-  theme: {}
-}
-`
+const vuetifyConfigFile = `import { defineVuetifyConfiguration } from 'vuetify-nuxt-module/custom-configuration'
+
+export default defineVuetifyConfiguration({
+
+})`
 
 export {
     unoCSSConfig,
