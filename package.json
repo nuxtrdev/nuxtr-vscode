@@ -1081,7 +1081,7 @@
     "http"
   ],
   "scripts": {
-    "build": "tsup && cd src/sideBar && pnpm build",
+    "build": "tsdown && cd src/sideBar && pnpm build",
     "vscode:prepublish": "pnpm build",
     "dev": "pnpm build -- --watch",
     "lint": "eslint .",
@@ -1105,6 +1105,7 @@
     "nuxi-nightly": "^3.14.0-20240919-152911-ef57bb1",
     "taze": "^0.16.9",
     "terser": "^5.33.0",
+    "tsdown": "^0.2.16",
     "tsup": "^8.3.0",
     "typescript": "^5.6.2"
   },
