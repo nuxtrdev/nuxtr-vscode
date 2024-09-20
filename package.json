@@ -264,6 +264,10 @@
           "when": "nuxtr.isNuxtProject"
         },
         {
+          "command": "nuxtr.generateBugInfoReport",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
           "command": "nuxtr.managePackageVersion",
           "when": "false"
         },
@@ -968,6 +972,11 @@
       {
         "command": "nuxtr.createProject",
         "title": "Create new Nuxt Project",
+        "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.generateBugInfoReport",
+        "title": "Bug Report Info",
         "category": "Nuxtr"
       }
     ],

@@ -26,6 +26,7 @@ export {
     getProjectDependencies,
     getProjectScripts,
     detectPackageManagerByName,
+    getPackageManagerVersion,
     getInstallationCommand,
     getOutdatedPackages,
     dependenciesUpdatesHandler,

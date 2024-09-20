@@ -1,25 +1,25 @@
+import { managePackageVersion, upgradePackage } from '../utils/dependency'
+import { openSettings } from '../utils/navigation'
+import { configureCSS } from './CSS'
 import { createComponent, directCreateComponent } from './Component'
-import { createPage, directCreatePage } from './Page'
 import { createComposable, directCreateComposable } from './Composable'
+import { directToggleDevTools, nuxtConfigWatcher } from './Devtools'
+import { createEmptyFileTemplate, createFileFromTemplate, createLayoutTemplate, createPageTemplate } from './FileTemplates'
+import { installDependencies } from './InstallDependencies'
 import { createLayout, directCreateLayout } from './Layout'
-import { createPlugin, directCreatePlugin } from './Plugin'
+import { configureLinters } from './Linters'
 import { createMiddleware, directCreateMiddleware } from './Middleware'
 import { createNitroAPI, createNitroMiddleware, createNitroPlugin, createNitroRoute, createNitroUtil, directCreateNitroAPI, directCreateNitroRoute } from './Nitro'
-import { appConfig, errorLayout, nuxtIgnore, nuxtRC, projectStructure } from './Structure'
-import { openDocumentation, openModules } from './externalLinks'
 import { nuxtAnalyze, nuxtBuild, nuxtCleanUp, nuxtDev, nuxtGenerate, nuxtInfo, nuxtModule, showCLICommands } from './Nuxi'
-import { createStore, directCreateStore } from './Store'
-import { installDependencies } from './InstallDependencies'
-import { openSettings } from '../utils/navigation'
-import { managePackageVersion, upgradePackage } from '../utils/dependency'
-import { configureCSS } from './CSS'
-import { configureLinters } from './Linters'
-import { configurePug } from './Templates'
-import { createEmptyFileTemplate, createFileFromTemplate, createLayoutTemplate, createPageTemplate } from './FileTemplates'
-import { directToggleDevTools, nuxtConfigWatcher } from './Devtools'
-import { createUtil, directCreateUtil } from './Util'
+import { createPage, directCreatePage } from './Page'
+import { createPlugin, directCreatePlugin } from './Plugin'
 import { createProject } from './Project'
-
+import { createStore, directCreateStore } from './Store'
+import { appConfig, errorLayout, nuxtIgnore, nuxtRC, projectStructure } from './Structure'
+import { configurePug } from './Templates'
+import { createUtil, directCreateUtil } from './Util'
+import { generateBugInfoReport } from './bugReport'
+import { openDocumentation, openModules } from './externalLinks'
 
 const commands = {
     createComponent,
@@ -73,7 +73,8 @@ const commands = {
     createFileFromTemplate,
     createEmptyFileTemplate,
     directToggleDevTools,
-    nuxtConfigWatcher
+    nuxtConfigWatcher,
+    generateBugInfoReport
 }
 
 export default commands

@@ -9,12 +9,15 @@ body:
         Thanks for taking the time to fill out this bug report!
   - type: textarea
     id: bug-env
-    attributes:
-      label: Environment
-      description: You can use `npx nuxi info` to fill this section
-      placeholder: Environment
     validations:
       required: true
+    attributes:
+      label: Environment
+      description: |
+        You can use the `Nuxtr: Bug Report Info` command in the VSCode Command Palette to fill this section.
+        To open the Command Palette, press `Ctrl + Shift + P` (or `⌘ + Shift + P` on macOS).
+      placeholder: Environment
+
   - type: textarea
     id: bug-description
     attributes:
@@ -23,6 +26,7 @@ body:
       placeholder: Bug description
     validations:
       required: true
+
   - type: textarea
     id: bug-steps-to-reproduce
     attributes:
