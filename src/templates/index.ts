@@ -1,39 +1,18 @@
+export { eslintConfig, stylelintConfig, stylelintIgnore } from './linters'
 
-
-export {
-    eslintConfig,
-    stylelintConfig,
-    stylelintIgnore
-} from './linters'
-
+export { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile } from './css'
 
 export {
-    unoCSSConfig,
-    tailwindCSSJSConfig,
-    tailwindCSSTSConfig,
-    tailwindCSSFile,
-    vuetifyConfigFile
-} from './css'
-
-export {
-    nitroDefaultTemplate,
-    nuxtMiddlewareTemplate,
+    appConfigContent,
     composableTemplate,
-    nuxtPluginTemplate,
+    nitroDefaultTemplate,
     nitroPluginTemplate,
-    nuxtUtilTemplate,
     nitroUtilTemplate,
-    appConfigContent
+    nuxtMiddlewareTemplate,
+    nuxtPluginTemplate,
+    nuxtUtilTemplate
 } from './typeScriptFiles'
 
-export {
-    generateStyleTag,
-    generateScriptTag,
-    templateTag
-} from './vueFiles'
+export { generateScriptTag, generateStyleTag, templateTag } from './vueFiles'
 
-export {
-    vuexContent,
-    piniaOptionsContent,
-    piniaSetupContent
-} from './stores'
+export { piniaOptionsContent, piniaSetupContent, vuexContent } from './stores'

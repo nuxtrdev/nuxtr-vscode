@@ -12,12 +12,12 @@ enum TailwindOptions {
 
 enum UnoCSSOptions {
     installModule = 'Install @UnoCSS/Nuxt module and add it to nuxt config',
-    createConfigFile = 'Create uno.config.ts file',
+    createConfigFile = 'Create UnoCSS config file',
 }
 
 enum VuetifyOptions {
     installModule = 'Install vuetify-nuxt-module module and add it to nuxt config',
-    createConfigFile = 'Create vuetify.config.ts file',
+    createConfigFile = 'Create Vuetify config file',
 }
 
 function configureCSS() {
