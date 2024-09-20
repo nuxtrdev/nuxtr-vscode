@@ -7,6 +7,7 @@ const config: KnipConfig = {
             ignoreDependencies: ['taze', 'terser', 'eslint-config-unjs'],
             ignoreBinaries: ['vsce'],
             ignore: ['taze.config.ts', 'eslint.config.mjs'],
+            // TODO: replace tsup with tsdown
             tsup: { config: 'tsup.config.ts' },
         },
         'src/sideBar': {
