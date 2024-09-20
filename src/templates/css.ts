@@ -4,14 +4,6 @@ export default defineConfig({
 
 })
 `
-
-const windiCSSConfig = `import { defineConfig } from 'windicss/helpers'
-
-export default defineConfig({
-
-})
-`
-
 const tailwindCSSJSConfig = `/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [],
@@ -38,19 +30,14 @@ const tailwindCSSFile = `@tailwind base;
 @tailwind components;
 @tailwind utilities;`
 
-const vuetifyConfigFile = `// vuetify.options.js
-export default {
-  breakpoint: {},
-  icons: {},
-  lang: {},
-  rtl: true,
-  theme: {}
-}
-`
+const vuetifyConfigFile = `import { defineVuetifyConfiguration } from 'vuetify-nuxt-module/custom-configuration'
+
+export default defineVuetifyConfiguration({
+
+})`
 
 export {
     unoCSSConfig,
-    windiCSSConfig,
     tailwindCSSJSConfig,
     tailwindCSSTSConfig,
     tailwindCSSFile,

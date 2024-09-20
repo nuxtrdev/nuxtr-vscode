@@ -1,8 +1,8 @@
 import { window } from 'vscode'
-import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile, windiCSSConfig } from '../templates'
+import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile } from '../templates'
 import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig } from '../utils'
 
-const frameworks = ['TailwindCSS', 'WindiCSS', 'UnoCSS', 'Vuetify']
+const frameworks = ['TailwindCSS', 'UnoCSS', 'Vuetify']
 
 enum TailwindOptions {
     installModule = 'Install @nuxtjs/tailwindcss module and add it to nuxt config',
@@ -10,19 +10,14 @@ enum TailwindOptions {
     createTailwindCSSFile = 'Create tailwind.css file inside assets/css',
 }
 
-enum WindiOptions {
-    installModule = 'Install nuxt-windicss module and add it to nuxt config',
-    createConfigFile = 'Create WindiCSS config file',
-}
-
 enum UnoCSSOptions {
-    installModule = 'Install unocss/nuxt module and add it to nuxt config',
-    createConfigFile = 'Create uno.config.ts file',
+    installModule = 'Install @UnoCSS/Nuxt module and add it to nuxt config',
+    createConfigFile = 'Create UnoCSS config file',
 }
 
 enum VuetifyOptions {
-    installModule = 'Install @nuxtjs/vuetify module and add it to nuxt config',
-    createConfigFile = 'Create vuetify.options.js file',
+    installModule = 'Install vuetify-nuxt-module module and add it to nuxt config',
+    createConfigFile = 'Create Vuetify config file',
 }
 
 function configureCSS() {
@@ -35,25 +30,18 @@ function configureCSS() {
             switch (selection) {
                 case 'TailwindCSS': {
                     configureTailwind()
-            
-                    break;
-                }
-                case 'WindiCSS': {
-                    configureWindi()
-            
+
                     break;
                 }
                 case 'UnoCSS': {
                     configureUno()
-            
+
                     break;
                 }
                 case 'Vuetify': {
                     configureVuetify()
-            
                     break;
                 }
-            // No default
             }
         })
 }
@@ -126,53 +114,6 @@ const configureTailwind = () => {
     }
 }
 
-const configureWindi = async () => {
-    try {
-        const filePath = `${await projectSrcDirectory()}/windi.config.${isNuxtTwo() ? 'js' : 'ts'}`
-
-        const windiOptions = Object.values(WindiOptions)
-
-        window
-            .showQuickPick(windiOptions, {
-                canPickMany: true,
-                placeHolder: 'Select files to create',
-            })
-            .then(async (selections) => {
-                if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes(WindiOptions.installModule)) {
-                        const moduleName = 'nuxt-windicss'
-                        const command = await getInstallationCommand(moduleName, true)
-
-                        await runCommand({
-                            command,
-                            message: 'Installing WindiCSS',
-                            successMessage: 'WindiCSS installed successfully',
-                            errorMessage: 'WindiCSS installation failed',
-                        })
-
-                        await updateNuxtConfig('add-module', moduleName)
-                    }
-
-                    if (selections.includes(WindiOptions.createConfigFile)) {
-                        await createFile({
-                            fileName: `windi.config.${isNuxtTwo() ? 'js' : 'ts'}`,
-                            content: windiCSSConfig,
-                            fullPath: filePath,
-                        })
-                        window
-                            .showInformationMessage('WindiCSS configured successfully.', 'Open documentation')
-                            .then((value) => {
-                                if (value) {
-                                    openExternalLink('https://windicss.org/integrations/nuxt.html')
-                                }
-                            })
-                    }
-                }
-            })
-    } catch (error: any) {
-        console.log(error)
-    }
-}
 
 const configureUno = async () => {
     try {
@@ -224,7 +165,7 @@ const configureUno = async () => {
 
 const configureVuetify = async () => {
     try {
-        const filePath = `${await projectSrcDirectory()}/vuetify.options.js`
+        const filePath = `${await projectSrcDirectory()}/vuetify.config.ts`
 
         const vuetifyOptions = Object.values(VuetifyOptions)
 
@@ -236,7 +177,7 @@ const configureVuetify = async () => {
             .then(async (selections) => {
                 if (selections !== undefined && selections.length > 0) {
                     if (selections.includes(VuetifyOptions.installModule)) {
-                        const moduleName = '@nuxtjs/vuetify'
+                        const moduleName = 'vuetify-nuxt-module'
                         const command = await getInstallationCommand(moduleName, true)
 
                         await runCommand({
@@ -251,7 +192,7 @@ const configureVuetify = async () => {
 
                     if (selections.includes(VuetifyOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `vuetify.options.js`,
+                            fileName: `vuetify.config.ts`,
                             content: vuetifyConfigFile,
                             fullPath: filePath,
                         })
