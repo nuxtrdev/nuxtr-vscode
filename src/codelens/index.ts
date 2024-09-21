@@ -1,9 +1,9 @@
 import { languages } from 'vscode';
-import { ModulesCodelensProvider } from './modules'
-import { PluginsCodelensProvider } from './plugins'
-import { LayersCodeLensProvider } from './layers'
+import { LayersCodeLensProvider } from './layers';
+import { ModulesCodelensProvider } from './modules';
+import { PluginsCodelensProvider } from './plugins';
 
-function activateCodelenses() {
+function activateCodelenses () {
     const modulesLens = new ModulesCodelensProvider()
     const pluginsLens = new PluginsCodelensProvider()
     const layersLens = new LayersCodeLensProvider()

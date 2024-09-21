@@ -8,7 +8,7 @@ const createComposable = () => {
             prompt: 'What is your composable name?',
             placeHolder: 'composable name',
         })
-        .then(async(name) => {
+        .then(async (name) => {
 
             if (!name) { return }
 

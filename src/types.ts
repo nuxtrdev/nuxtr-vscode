@@ -14,29 +14,29 @@ export interface ConfigurationProperty {
 
 export interface NuxtrConfiguration {
     openItemsAfterCreation: boolean;
-    defaultPackageManager: "null" | "Yarn" | "NPM" | "pnpm" | "Bun";
+    defaultPackageManager: 'null' | 'Yarn' | 'NPM' | 'pnpm' | 'Bun';
     monorepoMode: {
         DirectoryName: string | null;
     };
     vueFiles: {
         template: {
-            defaultLanguage: "html" | "pug";
+            defaultLanguage: 'html' | 'pug';
         }
-        firstTag: "template" | "script";
+        firstTag: 'template' | 'script';
         script: {
-            type: "setup" | "options";
-            defaultLanguage: "js" | "ts";
+            type: 'setup' | 'options';
+            defaultLanguage: 'js' | 'ts';
         };
         style: {
             addStyleTag: boolean;
             alwaysScoped: boolean;
             defaultLanguage:
-            | "css"
-            | "scss"
-            | "sass"
-            | "less"
-            | "stylus"
-            | "postcss";
+            | 'css'
+            | 'scss'
+            | 'sass'
+            | 'less'
+            | 'stylus'
+            | 'postcss';
         };
         pages: {
             defaultTemplate: string;
@@ -56,7 +56,7 @@ export interface NuxtrConfiguration {
     }
 
     piniaFiles: {
-        defaultTemplate: "options" | "setup";
+        defaultTemplate: 'options' | 'setup';
     }
 
     projectTemplates: UserProjectTemplate[];

@@ -7,7 +7,7 @@ export class PluginsCodelensProvider implements CodeLensProvider {
     private _onDidChangeCodeLenses: EventEmitter<void> = new EventEmitter<void>()
     public readonly onDidChangeCodeLenses: Event<void> = this._onDidChangeCodeLenses.event
 
-    constructor() {
+    constructor () {
         this.regex = /plugins:/g
 
         workspace.onDidChangeConfiguration((_) => {
@@ -15,9 +15,9 @@ export class PluginsCodelensProvider implements CodeLensProvider {
         })
     }
 
-    public provideCodeLenses(document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
+    public provideCodeLenses (document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
 
-        if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+        if (workspace.getConfiguration('codelens-sample').get('enableCodeLens', true)) {
             this.codeLenses = []
             const regex = new RegExp(this.regex)
             const text = document.getText()
@@ -36,13 +36,13 @@ export class PluginsCodelensProvider implements CodeLensProvider {
         return []
     }
 
-    public resolveCodeLens(codeLens: CodeLens) {
-        if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+    public resolveCodeLens (codeLens: CodeLens) {
+        if (workspace.getConfiguration('codelens-sample').get('enableCodeLens', true)) {
             codeLens.command = {
                 title: 'Add new plugin',
                 command: 'nuxtr.createPlugin',
-                tooltip: "Tooltip provided by sample extension",
-                arguments: ["Argument 1", false]
+                tooltip: 'Tooltip provided by sample extension',
+                arguments: ['Argument 1', false]
             }
             return codeLens
         }

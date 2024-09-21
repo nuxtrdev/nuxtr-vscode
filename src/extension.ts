@@ -66,7 +66,7 @@ export const publicCommands = [
 
 
 // categorize commands and functions
-export function activateExtension(context: ExtensionContext) {
+export function activateExtension (context: ExtensionContext) {
     // initial output channel logger
     logger.log('Nuxtr is active')
 

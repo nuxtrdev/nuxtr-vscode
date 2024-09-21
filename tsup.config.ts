@@ -2,7 +2,7 @@ import { defineConfig } from 'tsup'
 
 export default defineConfig({
     entry: [ 'src/index.ts', ],
-    outDir: "out",
+    outDir: 'out',
     format: ['cjs'],
     shims: false,
     dts: false,
@@ -18,16 +18,16 @@ export default defineConfig({
     target: 'es2022',
     external: ['vscode'],
     noExternal: [
-        "@nuxt/schema",
-        "destr",
-        "fs-extra",
-        "jiti",
-        "magicast",
-        "ofetch",
-        "pathe",
-        "pkg-types",
-        "string-ts",
-        "giget",
-        "semver"
+        '@nuxt/schema',
+        'destr',
+        'fs-extra',
+        'jiti',
+        'magicast',
+        'ofetch',
+        'pathe',
+        'pkg-types',
+        'string-ts',
+        'giget',
+        'semver'
     ]
 })

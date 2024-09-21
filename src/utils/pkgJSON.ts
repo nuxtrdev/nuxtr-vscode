@@ -1,6 +1,6 @@
 
-import { projectRootDirectory } from './'
 import { readPackageJSON, writePackageJSON } from 'pkg-types'
+import { projectRootDirectory } from './'
 
 export const injectPkgJSONScript = async (scriptName: string, script: string) => {
     const packageJsonPath = `${projectRootDirectory()}/package.json`

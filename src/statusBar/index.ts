@@ -18,7 +18,7 @@ interface DevtoolsStatusBar {
     color?: ThemeColor;
 }
 
-export function activateStatusBarIcons(context: ExtensionContext): NuxtrStatusBars {
+export function activateStatusBarIcons (context: ExtensionContext): NuxtrStatusBars {
     statusBars.devToolsStatusBar.name = 'Nuxtr';
     statusBars.devToolsStatusBar.text = '$(loading~spin)';
     statusBars.devToolsStatusBar.show();
@@ -39,13 +39,13 @@ export function activateStatusBarIcons(context: ExtensionContext): NuxtrStatusBa
     return statusBars;
 }
 
-export function updateDevtoolsStatusBar(statusBar: DevtoolsStatusBar) {
+export function updateDevtoolsStatusBar (statusBar: DevtoolsStatusBar) {
     statusBars.devToolsStatusBar.command = statusBar.command;
     statusBars.devToolsStatusBar.tooltip = statusBar.tooltip;
     statusBars.devToolsStatusBar.text = statusBar.text;
     statusBars.devToolsStatusBar.color = statusBar.color;
 }
 
-export function hideDevtoolsStatusBar() {
+export function hideDevtoolsStatusBar () {
     statusBars.devToolsStatusBar.hide()
 }

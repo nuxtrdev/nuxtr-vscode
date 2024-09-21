@@ -1,6 +1,6 @@
-import * as vscode from "vscode";
-import pm from "../content/pm";
-import { detectPackageManagerByName, newTerminal } from "../utils";
+import * as vscode from 'vscode';
+import pm from '../content/pm';
+import { detectPackageManagerByName, newTerminal } from '../utils';
 
 
 export const installDependencies = () => {
@@ -15,14 +15,14 @@ export const installDependencies = () => {
     const options: vscode.QuickPickOptions = {
         canPickMany: false,
         ignoreFocusOut: true,
-        placeHolder: "No package manager detected. Chose one!",
+        placeHolder: 'No package manager detected. Chose one!',
     }
 
     if (packageManager) {
-        if (packageManager.installCommand.includes("yarn")) {
-            packageManager.installCommand = "yarn"
+        if (packageManager.installCommand.includes('yarn')) {
+            packageManager.installCommand = 'yarn'
         }
-        newTerminal("Install Dependencies", packageManager.installCommand)
+        newTerminal('Install Dependencies', packageManager.installCommand)
     } else {
         vscode.window.showQuickPick(items, options).then((name) => {
             if (name) {
@@ -30,7 +30,7 @@ export const installDependencies = () => {
                     (item) => item.name === name.label
                 )?.installCommand
                 if (command) {
-                    newTerminal("Install Dependencies", command)
+                    newTerminal('Install Dependencies', command)
                 }
             }
         })

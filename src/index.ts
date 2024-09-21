@@ -1,8 +1,8 @@
 import { ExtensionContext, commands } from 'vscode';
 import { activateExtension, publicCommands } from './extension'
-import { isNuxtProject , isNuxtTwo }  from './utils';
+import { isNuxtProject, isNuxtTwo }  from './utils';
 
-export async function activate(context: ExtensionContext) {
+export async function activate (context: ExtensionContext) {
     const isNuxt = await isNuxtProject();
 
 

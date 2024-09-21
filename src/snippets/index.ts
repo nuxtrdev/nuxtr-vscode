@@ -10,7 +10,7 @@ interface Snippet {
 }
 
 
-export async function toggleSnippets(source: 'Nuxt' | 'Nitro', moveToDisabled: boolean) {
+export async function toggleSnippets (source: 'Nuxt' | 'Nitro', moveToDisabled: boolean) {
     const homeDir = homedir();
     const extensionName = 'nuxtr.nuxtr-vscode';
     const nuxtrVersion = await extensions.getExtension(extensionName)?.packageJSON.version;
@@ -49,14 +49,14 @@ export async function toggleSnippets(source: 'Nuxt' | 'Nitro', moveToDisabled: b
 languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems() {
+        provideCompletionItems () {
             const completionItem = new CompletionItem('nuxtBaseLayout', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Nuxt Layout template';
 
             const template = generateVueFileTemplate('layout');
 
             const documentation = new MarkdownString();
-            documentation.appendMarkdown(`Generate a Nuxt layout template according to your Nuxtr configuration.\n\n`);
+            documentation.appendMarkdown('Generate a Nuxt layout template according to your Nuxtr configuration.\n\n');
             documentation.appendCodeblock(template, 'vue');
 
             completionItem.documentation = documentation;
@@ -72,14 +72,14 @@ languages.registerCompletionItemProvider(
 languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems() {
+        provideCompletionItems () {
             const completionItem = new CompletionItem('vueBase', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue file template';
 
             const template = generateVueFileTemplate('page');
 
             const documentation = new MarkdownString();
-            documentation.appendMarkdown(`Generate a Vue file template according to your Nuxtr configuration.\n\n`);
+            documentation.appendMarkdown('Generate a Vue file template according to your Nuxtr configuration.\n\n');
             documentation.appendCodeblock(template, 'vue');
 
             completionItem.documentation = documentation;

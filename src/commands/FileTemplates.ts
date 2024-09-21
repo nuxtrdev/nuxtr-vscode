@@ -3,7 +3,7 @@ import { window } from 'vscode'
 import { createFile, createSubFolders, createVueTemplate, generateVueFileBasicTemplate, generateVueFileTemplate, projectRootDirectory, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
 
-function createPageTemplate() {
+function createPageTemplate () {
     const editor = window.activeTextEditor
     if (editor) {
         const selection = editor.selection
@@ -19,7 +19,7 @@ function createPageTemplate() {
     }
 }
 
-function createLayoutTemplate() {
+function createLayoutTemplate () {
     const editor = window.activeTextEditor
     if (editor) {
         const selection = editor.selection
@@ -40,8 +40,8 @@ const createFileFromTemplate = (template?: string) => {
 
         window
             .showInputBox({
-                prompt: `What is your page name?`,
-                placeHolder: `Page name`,
+                prompt: 'What is your page name?',
+                placeHolder: 'Page name',
             })
             .then(async (name) => {
                 if (!name) { return }
@@ -60,7 +60,7 @@ const createFileFromTemplate = (template?: string) => {
                     name,
                     subFolders,
                     commandType: 'pages',
-                    content: generateVueFileTemplate(`page`, template),
+                    content: generateVueFileTemplate('page', template),
                 })
             })
     } else {
@@ -82,7 +82,7 @@ const createFileFromTemplate = (template?: string) => {
 
                 createFile({
                     fileName: `${name}.vue`,
-                    content: generateVueFileTemplate(`layout`, template),
+                    content: generateVueFileTemplate('layout', template),
                     fullPath: filePath,
                 })
             })

@@ -1,32 +1,31 @@
-import { QuickPickItem, ThemeIcon, window } from 'vscode';
 import { capitalize } from 'string-ts';
+import { QuickPickItem, ThemeIcon, window } from 'vscode';
 import { detectPackageManagerByName, newTerminal, projectRootDirectory } from '../../utils';
-
-import { handleAddCommand, handleDevtoolsCommand, handleModuleCommand } from './multiStepCommands';
 import { tryImportNuxi } from '../../nuxi';
+import { handleAddCommand, handleDevtoolsCommand, handleModuleCommand } from './multiStepCommands';
 
 const pm = detectPackageManagerByName();
 const runCommand = pm ? pm.runCommand : 'npx';
 
 enum CLICommandDescription {
-    add = "Create a new template file",
-    analyze = "Build nuxt and analyze production bundle (experimental)",
-    "build-module" = "Helper command for using @nuxt/module-builder",
-    build = "Build nuxt for production deployment",
-    cleanup = "Cleanup generated nuxt files and caches",
-    _dev = "Run nuxt development server (internal command to start child process)",
-    dev = "Run nuxt development server",
-    devtools = "Enable or disable devtools in a Nuxt project",
-    generate = "Build Nuxt and prerender all routes",
-    info = "Get information about nuxt project",
-    init = "Initialize a fresh project",
-    module = "Manage Nuxt Modules",
-    prepare = "Prepare nuxt for development/build",
-    preview = "Launches nitro server for local testing after nuxi build",
-    start = "Launches nitro server for local testing after nuxi build",
-    test = "Run tests",
-    typecheck = "Runs vue-tsc to check types throughout your app",
-    upgrade = "Upgrade nuxt"
+    add = 'Create a new template file',
+    analyze = 'Build nuxt and analyze production bundle (experimental)',
+    'build-module' = 'Helper command for using @nuxt/module-builder',
+    build = 'Build nuxt for production deployment',
+    cleanup = 'Cleanup generated nuxt files and caches',
+    _dev = 'Run nuxt development server (internal command to start child process)',
+    dev = 'Run nuxt development server',
+    devtools = 'Enable or disable devtools in a Nuxt project',
+    generate = 'Build Nuxt and prerender all routes',
+    info = 'Get information about nuxt project',
+    init = 'Initialize a fresh project',
+    module = 'Manage Nuxt Modules',
+    prepare = 'Prepare nuxt for development/build',
+    preview = 'Launches nitro server for local testing after nuxi build',
+    start = 'Launches nitro server for local testing after nuxi build',
+    test = 'Run tests',
+    typecheck = 'Runs vue-tsc to check types throughout your app',
+    upgrade = 'Upgrade nuxt'
 }
 
 const directlyExecutableCommands = new Set([ 'dev', 'build', 'generate', 'cleanup', 'analyze', 'build-module', 'info', 'typecheck', 'preview', 'prepare', 'upgrade', 'start', 'test' ]);
@@ -100,6 +99,6 @@ const showCLICommands = async () => {
 };
 
 
-export {        showCLICommands }
+export { showCLICommands };
 
-export {nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule} from './commonCommands';
+export { nuxtAnalyze, nuxtBuild, nuxtCleanUp, nuxtDev, nuxtGenerate, nuxtInfo, nuxtModule } from './commonCommands';

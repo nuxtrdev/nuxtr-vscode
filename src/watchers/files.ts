@@ -6,7 +6,7 @@ class FileWatchers {
     public sidebarProvider: any
     public statusBar: StatusBarItem
 
-    constructor(sidebarProvider: any, context: ExtensionContext, statusBar: StatusBarItem) {
+    constructor (sidebarProvider: any, context: ExtensionContext, statusBar: StatusBarItem) {
         this.sidebarProvider = sidebarProvider
         this.statusBar = statusBar
     }

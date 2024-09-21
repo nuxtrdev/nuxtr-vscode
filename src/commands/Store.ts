@@ -14,7 +14,7 @@ import {
 
 import { vuexContent } from '../templates'
 
-async function detectPiniaModule() {
+async function detectPiniaModule () {
     const moduleName = '@pinia/nuxt'
     const isConfigured = isModuleConfigured(moduleName)
     const installationCommand = await getInstallationCommand(moduleName, true)

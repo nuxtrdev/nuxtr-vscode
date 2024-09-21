@@ -1,4 +1,4 @@
-import { hasServerDir } from "../utils";
+import { hasServerDir } from '../utils';
 
 export const getCommandType = async (commandType: string) => {
     let type = {
@@ -98,7 +98,7 @@ export const getCommandType = async (commandType: string) => {
         case 'nuxtUtil': {
             type = {
                 name: 'Utilities',
-                path: `utils`,
+                path: 'utils',
                 extension: '.ts',
             };
             break;

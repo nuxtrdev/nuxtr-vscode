@@ -7,7 +7,7 @@ import { languageSelector, nuxtrConfiguration, patternSelector } from '../utils'
 const intelliSenseConfig = nuxtrConfiguration().intellisense;
 
 
-export function activateIntellisense(context: ExtensionContext) {
+export function activateIntellisense (context: ExtensionContext) {
     if (intelliSenseConfig.nuxtignore) {
         const nuxtIgnoreProvider = languages.registerCompletionItemProvider(
             patternSelector('**/.nuxtignore'),

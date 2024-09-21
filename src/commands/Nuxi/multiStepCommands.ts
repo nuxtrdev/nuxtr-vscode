@@ -1,7 +1,7 @@
+import { ofetch } from 'ofetch';
 import { QuickPickItem, QuickPickOptions, window } from 'vscode';
-import { ofetch } from 'ofetch'
-import { detectPackageManagerByName, isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
 import type { nuxtModule } from '../../types';
+import { detectPackageManagerByName, isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
 
 
 const pm = detectPackageManagerByName();
@@ -47,7 +47,7 @@ export const handleAddCommand = (): void => {
                 return;
             }
 
-            const terminalName = `Nuxi: Add`;
+            const terminalName = 'Nuxi: Add';
             const command = `nuxi add ${template} ${templateName}`;
             newTerminal(terminalName, command, `${projectRootDirectory()}`);
         });
@@ -89,7 +89,7 @@ export const handleModuleCommand = async () => {
                 return;
             }
 
-            const terminalName = `Nuxi: Module`;
+            const terminalName = 'Nuxi: Module';
             const command = `${runCommand} nuxi module add ${userSelection}`;
             newTerminal(terminalName, command, `${projectRootDirectory()}`);
         });
@@ -120,7 +120,7 @@ export const handleDevtoolsCommand = () => {
         }
 
         const state = selection.label;
-        const terminalName = `Nuxi: Devtools`;
+        const terminalName = 'Nuxi: Devtools';
         const command = `nuxi devtools ${state}`;
         newTerminal(terminalName, command, `${projectRootDirectory()}`);
     })
