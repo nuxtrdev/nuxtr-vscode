@@ -62,7 +62,7 @@ const configureEslint = async () => {
     })
 
     const config = workspace.getConfiguration('eslint')
-    config.update('experimental.useFlatConfig', true, ConfigurationTarget.Workspace)
+    config.update('useFlatConfig', true, ConfigurationTarget.Workspace)
     window.showInformationMessage('Eslint useFlagConfig enabled successfully')
 
 
