@@ -33,11 +33,6 @@
     ],
     "description": "Nuxt | NuxtErrorBoundary"
   },
-  "Nuxt | Template with ID": {
-    "prefix": "templateWithId",
-    "body": ["<template #$1>", "  $2", "</template>"],
-    "description": "Nuxt | Template with ID"
-  },
   "Nuxt | NuxtLoadingIndicator": {
     "prefix": "nuxtLoadingIndicator",
     "body": ["<NuxtLoadingIndicator $1/>"],
@@ -77,5 +72,10 @@
     "prefix": "pageKey",
     "body": ["page-key=\"$1\""],
     "description": "Nuxt | pageKey"
+  },
+  "Nuxt | Template with ID": {
+    "prefix": "templateWithId",
+    "body": ["<template #$1>", "  $2", "</template>"],
+    "description": "Nuxt | Template with ID"
   }
 }
