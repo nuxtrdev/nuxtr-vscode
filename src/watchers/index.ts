@@ -1,4 +1,4 @@
 
 
+export { intellisenseConfigWatcher, nitroSnippetsConfigWatcher, nuxtSnippetsConfigWatcher, templatesConfigWatcher } from './config'
 export { default as filesWatcher } from './files'
-export { nuxtSnippetsConfigWatcher, nitroSnippetsConfigWatcher, templatesConfigWatcher, intellisenseConfigWatcher } from './config'

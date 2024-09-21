@@ -1,8 +1,8 @@
-import { window } from 'vscode'
 import { existsSync } from 'node:fs'
-import { getInstallationCommand, projectRootDirectory, runCommand } from '../utils'
-import type { TSConfigNuxt } from '../types'
 import { readTSConfig, writeTSConfig } from 'pkg-types'
+import { window } from 'vscode'
+import type { TSConfigNuxt } from '../types'
+import { getInstallationCommand, projectRootDirectory, runCommand } from '../utils'
 
 export enum PugConfigurationSteps {
     installPug = 'Install Pug',

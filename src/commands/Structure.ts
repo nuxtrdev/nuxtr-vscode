@@ -1,7 +1,7 @@
-import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
-import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
+import { window } from 'vscode'
 import { appConfigContent } from '../templates'
+import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
 
 function promptDirectorySelection() {
     let directories = ['components', 'pages', 'assets', 'plugins', 'layouts', 'middleware', 'modules',]
@@ -85,4 +85,4 @@ const errorLayout = async () => {
     })
 }
 
-export { projectStructure, appConfig, nuxtIgnore, nuxtRC, errorLayout }
+export { appConfig, errorLayout, nuxtIgnore, nuxtRC, projectStructure }

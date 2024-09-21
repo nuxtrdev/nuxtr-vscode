@@ -4,7 +4,7 @@ import { exec } from 'node:child_process'
 import { destr } from "destr"
 import { readPackageJSON } from 'pkg-types'
 import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global'
-import { installDependencies } from '../commands/InstallDependencies'
+import { installDependencies } from '../commands/installDependencies'
 import pm from '../content/pm'
 import { newTerminal } from '.'
 

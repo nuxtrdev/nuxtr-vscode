@@ -1,6 +1,5 @@
-import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
-
+import { window } from 'vscode'
 import { createFile, createSubFolders, createVueTemplate, generateVueFileBasicTemplate, generateVueFileTemplate, projectRootDirectory, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
 
@@ -131,4 +130,4 @@ const createEmptyFileTemplate = () => {
 
 }
 
-export { createPageTemplate, createLayoutTemplate, createFileFromTemplate, createEmptyFileTemplate }
+export { createEmptyFileTemplate, createFileFromTemplate, createLayoutTemplate, createPageTemplate }

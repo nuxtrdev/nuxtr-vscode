@@ -1,9 +1,10 @@
-import { ThemeColor, window } from "vscode";
-import { readFileSync, writeFileSync } from "node:fs";
-import { trimEnd } from "string-ts";
-import { join } from "pathe";
 import { parseModule } from "magicast";
-import semver from 'semver'
+import { readFileSync, writeFileSync } from "node:fs";
+import { join } from "pathe";
+import semver from 'semver';
+import { trimEnd } from "string-ts";
+import { ThemeColor, window } from "vscode";
+import { hideDevtoolsStatusBar, updateDevtoolsStatusBar } from "../statusBar";
 import {
     findNuxtConfig,
     getInstallationCommand,
@@ -12,7 +13,6 @@ import {
     projectRootDirectory,
     runCommand,
 } from "../utils";
-import { hideDevtoolsStatusBar, updateDevtoolsStatusBar } from "../statusBar";
 
 let mod: any;
 let nuxtConfigFile: string;
@@ -201,5 +201,5 @@ async function nuxtDevToolsHandler() {
 export {
     directToggleDevTools,
     nuxtConfigWatcher,
-    nuxtDevToolsHandler,
+    nuxtDevToolsHandler
 };

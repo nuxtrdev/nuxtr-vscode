@@ -1,6 +1,6 @@
 import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 import { nitroUtilTemplate, nuxtUtilTemplate } from '../templates'
+import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
 const createUtil = () => {
     window

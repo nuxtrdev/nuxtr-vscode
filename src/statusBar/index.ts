@@ -1,6 +1,6 @@
-import { ExtensionContext, StatusBarAlignment, StatusBarItem, ThemeColor, commands, window } from 'vscode'
-import { directToggleDevTools, nuxtDevToolsHandler } from '../commands/Devtools'
-import { dependenciesUpdatesHandler } from '../utils'
+import { ExtensionContext, StatusBarAlignment, StatusBarItem, ThemeColor, commands, window } from 'vscode';
+import { directToggleDevTools, nuxtDevToolsHandler } from '../commands/devtools';
+import { dependenciesUpdatesHandler } from '../utils';
 
 export const statusBars: NuxtrStatusBars = {
     devToolsStatusBar: window.createStatusBarItem(StatusBarAlignment.Right, 100),

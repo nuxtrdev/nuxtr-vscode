@@ -1,6 +1,6 @@
-import { OpenDialogOptions, QuickInputButton, QuickPick, QuickPickItem, ThemeIcon, Uri, window } from 'vscode';
 import { downloadTemplate } from 'giget';
 import { ofetch } from 'ofetch';
+import { OpenDialogOptions, QuickInputButton, QuickPick, QuickPickItem, ThemeIcon, Uri, window } from 'vscode';
 import { NuxtOfficialTemplate, UserProjectTemplate } from '../types';
 import { nuxtrConfiguration, openExternalLink, openFolder, quickOpenButtons } from '../utils';
 

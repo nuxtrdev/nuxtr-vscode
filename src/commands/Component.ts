@@ -1,4 +1,4 @@
-import { window } from 'vscode'
+import { window } from 'vscode';
 import { createDir, createFile, createSubFolders, generateVueFileBasicTemplate, projectSrcDirectory, showSubFolderQuickPick, } from '../utils';
 
 const createComponent = () => {
@@ -44,4 +44,4 @@ const directCreateComponent = (path: string) => {
         })
 }
 
-export { createComponent, directCreateComponent }
+export { createComponent, directCreateComponent };

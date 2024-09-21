@@ -2,7 +2,7 @@ import { ProgressLocation, ThemeIcon, Uri, Webview, env, window, workspace } fro
 import type { WorkspaceConfiguration } from 'vscode';
 import { exec } from 'node:child_process';
 import { hasSrcDir } from './nuxt';
-import { installDependencies } from '../commands/InstallDependencies'
+import { installDependencies } from '../commands/installDependencies'
 import { logger } from './outputChannel';
 import type { NuxtrConfiguration } from '../types';
 

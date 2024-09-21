@@ -1,6 +1,5 @@
 import { window } from 'vscode'
 import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
-
 import { generateVueFileTemplate } from '../utils/files'
 
 const createPage = () => {

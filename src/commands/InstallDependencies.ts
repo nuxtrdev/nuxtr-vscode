@@ -1,7 +1,6 @@
-import * as vscode from "vscode"
-import { detectPackageManagerByName } from "../utils"
-import pm from "../content/pm"
-import { newTerminal } from "../utils";
+import * as vscode from "vscode";
+import pm from "../content/pm";
+import { detectPackageManagerByName, newTerminal } from "../utils";
 
 
 export const installDependencies = () => {
