@@ -1,0 +1,17 @@
+{
+  "getRouteRules": {
+    "prefix": "getRouteRules",
+    "description": "Get Route Rules",
+    "body": ["const ${1:routeRules} = getRouteRules($2);"]
+  },
+  "useNitroApp": {
+    "prefix": "useNitroApp",
+    "description": "Use Nitro App",
+    "body": ["const ${1:nitro} = useNitroApp();"]
+  },
+  "useStorage": {
+    "prefix": "useStorage",
+    "description": "Use Storage",
+    "body": ["const ${1:storage} = useStorage();"]
+  }
+}

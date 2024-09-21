@@ -1043,7 +1043,7 @@
     ],
     "snippets": [
       {
-        "language": "vue",
+        "language": "html",
         "path": "./snippets/nuxt/components.json"
       },
       {
@@ -1068,11 +1068,19 @@
       },
       {
         "language": "javascript",
-        "path": "./snippets/nitro/imports.json"
+        "path": "./snippets/nitro/utils.json"
       },
       {
         "language": "typescript",
-        "path": "./snippets/nitro/imports.json"
+        "path": "./snippets/nitro/utils.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/nitro/boilerplates.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./snippets/nitro/boilerplates.json"
       }
     ]
   },
