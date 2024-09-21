@@ -7,7 +7,7 @@
   "useAsyncData": {
     "prefix": "useAsyncData",
     "body": [
-      "const { data, pending, error, refresh } = await useAsyncData(",
+      "const { data, status, error, refresh, clear } = await useAsyncData(",
       "    '$2',",
       "    () => \\$fetch('$3')",
       ");"
@@ -37,7 +37,7 @@
   "useFetch": {
     "prefix": "useFetch",
     "body": [
-      "const { data, pending, error, refresh } = await useFetch('$1',{",
+      "const { data, status, error, refresh, clear } = await useFetch('$1',{",
       "    $2",
       "})"
     ],
