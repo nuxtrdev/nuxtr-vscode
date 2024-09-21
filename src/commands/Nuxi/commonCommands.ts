@@ -12,4 +12,4 @@ const nuxtAnalyze = () => newTerminal('Nuxi: Analyze', `${runCommand} nuxi analy
 const nuxtInfo = () => newTerminal('Nuxi: Info', `${runCommand} nuxi info`, `${projectRootDirectory()}`)
 const nuxtModule = async () => await handleModuleCommand()
 
-export { nuxtDev, nuxtBuild, nuxtGenerate, nuxtCleanUp, nuxtAnalyze, nuxtInfo, nuxtModule }
+export { nuxtAnalyze, nuxtBuild, nuxtCleanUp, nuxtDev, nuxtGenerate, nuxtInfo, nuxtModule };

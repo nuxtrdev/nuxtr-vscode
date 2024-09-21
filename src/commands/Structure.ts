@@ -1,9 +1,9 @@
-import { window } from 'vscode'
 import { existsSync, mkdirSync } from 'node:fs'
-import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
+import { window } from 'vscode'
 import { appConfigContent } from '../templates'
+import { createFile, generateVueFileTemplate, isNuxtTwo, projectRootDirectory, projectSrcDirectory } from '../utils'
 
-function promptDirectorySelection() {
+function promptDirectorySelection () {
     let directories = ['components', 'pages', 'assets', 'plugins', 'layouts', 'middleware', 'modules',]
 
     const nuxtTwoDirectories = ['static', 'store',]
@@ -29,7 +29,7 @@ function promptDirectorySelection() {
 
                     if (dir === 'pages') {
                         await createFile({
-                            fileName: `index.vue`,
+                            fileName: 'index.vue',
                             content: generateVueFileTemplate('page'),
                             fullPath: `${dirPath}/index.vue`,
                         })
@@ -37,7 +37,7 @@ function promptDirectorySelection() {
 
                     if (dir === 'layouts') {
                         await createFile({
-                            fileName: `default.vue`,
+                            fileName: 'default.vue',
                             content: generateVueFileTemplate('layout'),
                             fullPath: `${dirPath}/default.vue`,
                         })
@@ -85,4 +85,4 @@ const errorLayout = async () => {
     })
 }
 
-export { projectStructure, appConfig, nuxtIgnore, nuxtRC, errorLayout }
+export { appConfig, errorLayout, nuxtIgnore, nuxtRC, projectStructure }

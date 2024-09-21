@@ -20,7 +20,7 @@ enum VuetifyOptions {
     createConfigFile = 'Create Vuetify config file',
 }
 
-function configureCSS() {
+function configureCSS () {
     window
         .showQuickPick(frameworks, {
             canPickMany: false,
@@ -85,7 +85,7 @@ const configureTailwind = () => {
                         const filePath = `${await projectSrcDirectory()}/assets/css/tailwind.css`
 
                         await createFile({
-                            fileName: `tailwind.css`,
+                            fileName: 'tailwind.css',
                             content: tailwindCSSFile,
                             fullPath: filePath,
                         })
@@ -144,7 +144,7 @@ const configureUno = async () => {
 
                     if (selections.includes(UnoCSSOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `uno.config.ts`,
+                            fileName: 'uno.config.ts',
                             content: unoCSSConfig,
                             fullPath: filePath,
                         })
@@ -192,7 +192,7 @@ const configureVuetify = async () => {
 
                     if (selections.includes(VuetifyOptions.createConfigFile)) {
                         await createFile({
-                            fileName: `vuetify.config.ts`,
+                            fileName: 'vuetify.config.ts',
                             content: vuetifyConfigFile,
                             fullPath: filePath,
                         })

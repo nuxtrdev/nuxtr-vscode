@@ -1,64 +1,54 @@
 export {
     getNonce,
     getUri,
-    projectRootDirectory,
-    openExternalLink,
-    nuxtrConfiguration,
-    vscodeConfiguration,
     newTerminal,
-    runCommand,
+    nuxtrConfiguration,
+    openExternalLink,
+    projectRootDirectory,
     projectSrcDirectory,
-    tryImport
+    runCommand,
+    tryImport,
+    vscodeConfiguration
 } from './global'
 
 export {
-    removeNuxtModule,
-    getNuxtVersion,
-    isNuxtTwo,
-    hasServerDir,
     findNuxtConfig,
-    isNuxtProject,
+    getNuxtVersion,
+    hasServerDir,
     isModuleConfigured,
+    isNuxtProject,
+    isNuxtTwo,
+    removeNuxtModule,
     updateNuxtConfig
 } from './nuxt'
 
 export {
-    getProjectDependencies,
-    getProjectScripts,
+    dependenciesUpdatesHandler,
     detectPackageManagerByName,
     getInstallationCommand,
     getOutdatedPackages,
-    dependenciesUpdatesHandler,
-    updateDependencies,
+    getProjectDependencies,
+    getProjectScripts,
     isDependencyInstalled,
+    managePackageVersion,
     removePackage,
-    managePackageVersion
+    updateDependencies
 } from './dependency'
 
 export {
+    createDir,
     createFile,
     createSubFolders,
-    showSubFolderQuickPick,
-    createDir,
     createVueTemplate,
+    normalizeFileExtension,
     normalizeName,
-    normalizeFileExtension
+    showSubFolderQuickPick
 } from './file'
 
 export { logger } from './outputChannel'
-export { createConfigWatcher } from './watchers'
 export { injectPkgJSONScript } from './pkgJSON'
+export { createConfigWatcher } from './watchers'
 
-export {
-    languageSelector,
-    patternSelector,
-    isDirectory,
-    openFolder,
-    quickOpenButtons
-} from './vscode';
+export { isDirectory, languageSelector, openFolder, patternSelector, quickOpenButtons } from './vscode'
 
-export {
-    generateVueFileBasicTemplate,
-    generateVueFileTemplate,
-    generatePiniaTemplates
-} from './files'
+export { generatePiniaTemplates, generateVueFileBasicTemplate, generateVueFileTemplate } from './files'

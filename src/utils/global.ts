@@ -1,10 +1,10 @@
-import { ProgressLocation, ThemeIcon, Uri, Webview, env, window, workspace } from 'vscode';
-import type { WorkspaceConfiguration } from 'vscode';
 import { exec } from 'node:child_process';
-import { hasSrcDir } from './nuxt';
-import { installDependencies } from '../commands/InstallDependencies'
-import { logger } from './outputChannel';
+import type { WorkspaceConfiguration } from 'vscode';
+import { ProgressLocation, ThemeIcon, Uri, Webview, env, window, workspace } from 'vscode';
+import { installDependencies } from '../commands/installDependencies';
 import type { NuxtrConfiguration } from '../types';
+import { hasSrcDir } from './nuxt';
+import { logger } from './outputChannel';
 
 export const getNonce = () => {
     let text = '';
@@ -127,7 +127,7 @@ export const runCommand = async (args: {
 };
 
 
-const _jiti = require("jiti")(projectRootDirectory(), { esmResolve: true, interopDefault: true });
+const _jiti = require('jiti')(projectRootDirectory(), { esmResolve: true, interopDefault: true });
 
 export async function tryImport (path: string): Promise<undefined | unknown> {
     try {

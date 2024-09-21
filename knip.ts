@@ -13,8 +13,8 @@ const config: KnipConfig = {
             ignoreDependencies: ['ofetch', '@types/vscode-webview', 'prettier', 'prettier-plugin-tailwindcss'],
             ignore: ['build/**', 'prettier.config.ts'],
             vite: {
-                "config": [
-                    "vite.config.ts"
+                'config': [
+                    'vite.config.ts'
                 ]
             }
         }

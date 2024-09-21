@@ -1,8 +1,8 @@
-import { Uri, window, workspace } from 'vscode';
-import { capitalize, endsWith, replace, split, trim } from 'string-ts';
 import { existsSync, mkdirSync, readdirSync } from 'node:fs';
-import { join } from 'pathe';
 import { TextEncoder } from 'node:util';
+import { join } from 'pathe';
+import { capitalize, endsWith, replace, split, trim } from 'string-ts';
+import { Uri, window, workspace } from 'vscode';
 
 import { getCommandType } from './commands';
 
@@ -89,7 +89,7 @@ export const showSubFolderQuickPick = async (args: {
 
     window
         .showQuickPick(args.subFolders, { placeHolder: 'Select a subfolder' })
-        .then(async(selection) => {
+        .then(async (selection) => {
             if (selection === undefined) {
                 return;
             }
@@ -164,6 +164,6 @@ export const createVueTemplate = (content: string, type: string) => {
 
 };
 
-export const normalizeName = (name: string) => split(trim(split(name, '.')[0]), "-").map((value) => capitalize(value)).join('');
+export const normalizeName = (name: string) => split(trim(split(name, '.')[0]), '-').map((value) => capitalize(value)).join('');
 
 export const normalizeFileExtension = (name: string, extension: string) => endsWith(name, extension) ? replace(name, extension, '') : name

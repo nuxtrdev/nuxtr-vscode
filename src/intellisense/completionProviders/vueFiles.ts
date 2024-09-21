@@ -1,6 +1,6 @@
-import { CompletionItem, CompletionItemKind, CompletionItemProvider, Position, ProviderResult, TextDocument } from 'vscode';
 import { readdirSync, statSync } from 'node:fs';
 import { join, sep } from 'pathe';
+import { CompletionItem, CompletionItemKind, CompletionItemProvider, Position, ProviderResult, TextDocument } from 'vscode';
 
 import { isDirectory, isNuxtTwo, projectSrcDirectory } from '../../utils';
 
@@ -9,7 +9,7 @@ let pagesDir = 'pages';
 
 const DIR_SEPARATOR = sep;
 
-async function provider(dirPath: string): Promise<CompletionItem[]> {
+async function provider (dirPath: string): Promise<CompletionItem[]> {
     const items: CompletionItem[] = [];
     const fullPath = join(`${await projectSrcDirectory()}`, dirPath);
     const isDir = await isDirectory(fullPath);
@@ -36,7 +36,7 @@ async function provider(dirPath: string): Promise<CompletionItem[]> {
 }
 
 export class PublicDirCompletionProvider implements CompletionItemProvider {
-    provideCompletionItems(document: TextDocument, position: Position):
+    provideCompletionItems (document: TextDocument, position: Position):
     ProviderResult<CompletionItem[]> {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
@@ -57,7 +57,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
             const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                 
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);
@@ -108,7 +108,7 @@ export class PublicDirCompletionProvider implements CompletionItemProvider {
 }
 
 export class NuxtPagesCompletionProvider implements CompletionItemProvider {
-    provideCompletionItems(document: TextDocument, position: Position):
+    provideCompletionItems (document: TextDocument, position: Position):
     ProviderResult<CompletionItem[]> {
         const currentLine = document.lineAt(position.line).text;
         const cursorPosition = position.character;
@@ -129,7 +129,7 @@ export class NuxtPagesCompletionProvider implements CompletionItemProvider {
             const fullPathTest = join(`${projectSrcDirectory()}`, subDirMatch[1]);
 
             try {
-                // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                 
                 isDir = isDirectory(fullPathTest);
             } catch (error) {
                 console.error('Error checking directory:', fullPathTest, error);

@@ -1,11 +1,11 @@
-import { Disposable, commands, window } from 'vscode';
-import { createConfigWatcher, getProjectDependencies, nuxtrConfiguration, projectRootDirectory } from '../utils';
 import { existsSync } from 'node:fs';
+import { readTSConfig } from 'pkg-types';
+import { Disposable, commands, window } from 'vscode';
+import nuxtrCommands from '../commands';
+import { PugConfigurationSteps } from '../commands/templates';
 import { toggleSnippets } from '../snippets';
 import { TSConfigNuxt } from '../types';
-import { readTSConfig } from 'pkg-types'
-import nuxtrCommands from '../commands'
-import { PugConfigurationSteps } from '../commands/Templates'
+import { createConfigWatcher, getProjectDependencies, nuxtrConfiguration, projectRootDirectory } from '../utils';
 
 const reloatWindowProps = () => {
     window.showInformationMessage('Configuration has been modified.', 'Reload Window').then((answer) => {

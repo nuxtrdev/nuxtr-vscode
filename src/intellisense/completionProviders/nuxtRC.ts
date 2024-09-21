@@ -1,31 +1,31 @@
+import * as nuxtRcSchemaJson from '@nuxt/schema/schema/config.schema.json';
 import * as vscode from 'vscode';
-import * as nuxtRcSchemaJson from "@nuxt/schema/schema/config.schema.json";
 import type { ConfigurationProperty } from '../../types';
 
 const nuxtRcSchema = nuxtRcSchemaJson as { properties: { [key: string]: ConfigurationProperty } };
 
 const autoImportProperty: ConfigurationProperty = {
-    type: "boolean",
-    id: "#imports/autoImport",
+    type: 'boolean',
+    id: '#imports/autoImport',
     default: true,
-    title: "Enable implicit auto import from Vue, Nuxt, and module contributed utilities. Generate global TypeScript definitions.",
-    markdownType: "SrcTypesImportsImportsOptions"
+    title: 'Enable implicit auto import from Vue, Nuxt, and module contributed utilities. Generate global TypeScript definitions.',
+    markdownType: 'SrcTypesImportsImportsOptions'
 };
 
 const transformProperty: ConfigurationProperty = {
-    type: "object",
-    id: "#imports/transform",
+    type: 'object',
+    id: '#imports/transform',
     properties: {
         exclude: {
-            type: "array",
+            type: 'array',
         },
         include: {
-            type: "array",
+            type: 'array',
         }
     }
 };
 
-function createCompletionItem(propertyName: string, property: ConfigurationProperty) {
+function createCompletionItem (propertyName: string, property: ConfigurationProperty) {
     const snippet = new vscode.CompletionItem(propertyName);
     snippet.detail = property.title || '';
     snippet.label = propertyName;
@@ -52,7 +52,7 @@ function createCompletionItem(propertyName: string, property: ConfigurationPrope
 
 
 export class CustomCompletionProvider implements vscode.CompletionItemProvider {
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
+    provideCompletionItems (document: vscode.TextDocument, position: vscode.Position) {
         const linePrefix = document.lineAt(position).text.slice(0, position.character);
 
         const completionItems =  Object.keys(nuxtRcSchema.properties)
@@ -76,8 +76,8 @@ export class CustomCompletionProvider implements vscode.CompletionItemProvider {
                 });
 
                 if (propertyPath ===  'imports') {
-                    nestedCompletionItems.push(createCompletionItem("autoImport", autoImportProperty));
-                    nestedCompletionItems.push(createCompletionItem("transform", transformProperty));
+                    nestedCompletionItems.push(createCompletionItem('autoImport', autoImportProperty));
+                    nestedCompletionItems.push(createCompletionItem('transform', transformProperty));
                 }
 
                 return nestedCompletionItems;

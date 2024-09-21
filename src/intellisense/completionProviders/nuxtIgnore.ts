@@ -1,13 +1,13 @@
-import * as vscode from 'vscode';
 import { existsSync, readdirSync } from 'node:fs';
 import { dirname, extname, join, sep } from 'pathe';
+import * as vscode from 'vscode';
 
 const EXTENSIONS = new Set(['.vue', '.js', '.ts']);
 const DIR_SEPARATOR = sep;
 const SCOPED_DIRECTORIES = new Set(['components', 'layouts', 'pages', 'composables', 'middleware']);
 
 export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvider {
-    provideCompletionItems(
+    provideCompletionItems (
         document: vscode.TextDocument,
         position: vscode.Position,
     ): vscode.ProviderResult<vscode.CompletionItem[] | vscode.CompletionList> {
@@ -45,7 +45,7 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
         return [];
     }
 
-    private createCompletionItems(directories: string[]): vscode.CompletionItem[] {
+    private createCompletionItems (directories: string[]): vscode.CompletionItem[] {
         return directories.map(subDir => {
             const type = this.getCompletionItemType(subDir);
             const item = new vscode.CompletionItem(subDir, type);
@@ -58,12 +58,12 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
         });
     }
 
-    private getCompletionItemType(name: string): vscode.CompletionItemKind {
+    private getCompletionItemType (name: string): vscode.CompletionItemKind {
         const extension = extname(name);
         return EXTENSIONS.has(extension) ? vscode.CompletionItemKind.File : vscode.CompletionItemKind.Folder;
     }
 
-    private getSubDirectories(directory: string): string[] {
+    private getSubDirectories (directory: string): string[] {
         directory = directory.replace(/!/g, '');
 
         try {
@@ -79,11 +79,11 @@ export class NuxtIgnoreCompletionProvider implements vscode.CompletionItemProvid
         return [];
     }
 
-    private getTopLevelSubDirectories(directory: string): string[] {
+    private getTopLevelSubDirectories (directory: string): string[] {
         return this.getSubDirectories(directory).filter(subDir => SCOPED_DIRECTORIES.has(subDir));
     }
 
-    private logError(error: any): void {
+    private logError (error: any): void {
         console.error(error);
     }
 }

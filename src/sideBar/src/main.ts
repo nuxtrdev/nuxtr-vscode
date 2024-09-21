@@ -1,9 +1,9 @@
-import { createApp } from "vue";
-import "./assets/main.css";
-import App from "./App.vue";
-import { provideVSCodeDesignSystem } from "@vscode/webview-ui-toolkit";
-import { createRouter, createWebHistory } from "vue-router";
-import routes from "./router";
+import { createApp } from 'vue';
+import './assets/main.css';
+import App from './App.vue';
+import { provideVSCodeDesignSystem } from '@vscode/webview-ui-toolkit';
+import { createRouter, createWebHistory } from 'vue-router';
+import routes from './router';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -11,4 +11,4 @@ const router = createRouter({
 });
 
 provideVSCodeDesignSystem().register();
-createApp(App).use(router).mount("#app");
+createApp(App).use(router).mount('#app');

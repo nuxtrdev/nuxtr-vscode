@@ -1,7 +1,5 @@
 import { window } from 'vscode'
 import { createDir, createFile, normalizeFileExtension, projectSrcDirectory } from '../utils'
-
-
 import { generateVueFileTemplate } from '../utils/files'
 
 

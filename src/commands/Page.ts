@@ -1,6 +1,5 @@
 import { window } from 'vscode'
 import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
-
 import { generateVueFileTemplate } from '../utils/files'
 
 const createPage = () => {
@@ -9,7 +8,7 @@ const createPage = () => {
             prompt: 'What is your page name?',
             placeHolder: 'page name',
         })
-        .then(async(name) => {
+        .then(async (name) => {
             if (!name) {return}
 
             const pagesDir = `${await projectSrcDirectory()}/pages`
@@ -27,7 +26,7 @@ const createPage = () => {
         })
 }
 
-function directCreatePage(path: string) {
+function directCreatePage (path: string) {
     window
         .showInputBox({
             prompt: 'What is your page name?',

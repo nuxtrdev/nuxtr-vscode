@@ -11,7 +11,7 @@ const stylelintConfig = `{
 }
 `
 
-const stylelintIgnore = `node_modules`
+const stylelintIgnore = 'node_modules'
 
 
 export { eslintConfig, stylelintConfig, stylelintIgnore }

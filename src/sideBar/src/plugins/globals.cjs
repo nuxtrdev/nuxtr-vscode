@@ -1,16 +1,16 @@
-import _ from "lodash";
+import _ from 'lodash';
 
 export default {
-    install(app) {
-        const componentFiles = import.meta.globEager("./components/Icon/*.vue");
+    install (app) {
+        const componentFiles = import.meta.globEager('./components/Icon/*.vue');
 
         for (const [path, m] of Object.entries(componentFiles)) {
             const componentName = _.upperFirst(
                 _.camelCase(
                     path
-                        .split("/")
+                        .split('/')
                         .pop()
-                        .replace(/\.\w+$/, ""),
+                        .replace(/\.\w+$/, ''),
                 ),
             );
 

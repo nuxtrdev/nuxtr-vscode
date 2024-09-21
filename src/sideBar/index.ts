@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import { capitalize } from 'string-ts'
 import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
 import { exec } from 'node:child_process'
-import { destr } from "destr"
+import { destr } from 'destr'
 
 import {
     detectPackageManagerByName,
@@ -27,9 +27,9 @@ const nonce = getNonce()
 export class ModulesView implements vscode.WebviewViewProvider {
     _view?: vscode.WebviewView
 
-    constructor(private readonly _extensionUri: vscode.Uri) {}
+    constructor (private readonly _extensionUri: vscode.Uri) {}
 
-    public resolveWebviewView(webviewView: vscode.WebviewView) {
+    public resolveWebviewView (webviewView: vscode.WebviewView) {
         this._view = webviewView
 
         webviewView.webview.options = {
@@ -52,12 +52,12 @@ export class ModulesView implements vscode.WebviewViewProvider {
         })
     }
 
-    public goToProjectView() {
+    public goToProjectView () {
         this.postMessage({ command: 'projectView' })
         this.getDependencies()
     }
 
-    public async getDependencies() {
+    public async getDependencies () {
         const dependencies = await getProjectDependencies()
         const scripts = getProjectScripts()
 
@@ -120,7 +120,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
-    public runAction(script: string) {
+    public runAction (script: string) {
         const packageManager = detectPackageManagerByName()
 
         switch (packageManager?.name) {
@@ -190,7 +190,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
-    public async updateModules() {
+    public async updateModules () {
         const installedModules = await getProjectDependencies()
         this.postMessage({
             command: 'installedModules',
@@ -198,13 +198,13 @@ export class ModulesView implements vscode.WebviewViewProvider {
         })
     }
 
-    public postMessage(message: any) {
+    public postMessage (message: any) {
         if (this._view) {
             this._view.webview.postMessage(message)
         }
     }
 
-    private _getHtmlForWebview(webview: vscode.Webview) {
+    private _getHtmlForWebview (webview: vscode.Webview) {
         const stylesUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.css'])
         // The JS file from the Vue build output
         const scriptUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.js'])
@@ -227,7 +227,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
     `
     }
 
-    private async installModule(module: any) {
+    private async installModule (module: any) {
         const command = await getInstallationCommand(
             module.npm,
             module['dependency-type'] === 'dev' ? true : false
@@ -273,7 +273,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         )
     }
 
-    private async addNuxtModule(module: any) {
+    private async addNuxtModule (module: any) {
         await updateNuxtConfig('add-module', module)
         this.postMessage({
             command: 'moduleInstalled',
@@ -292,11 +292,11 @@ export class ModulesView implements vscode.WebviewViewProvider {
             })
     }
 
-    public async upgradeModule(module: any) {
+    public async upgradeModule (module: any) {
         await managePackageVersion(module)
     }
 
-    public async removeModule(module: any) {
+    public async removeModule (module: any) {
         // show confirmation message
         const confirmation = await vscode.window.showInformationMessage(
             `Are you sure you want to remove ${module}?`,
@@ -308,7 +308,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
             await removePackage(module)
         }
     }
-    public editSnippet(snippet: string) {
+    public editSnippet (snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
         if (existsSync(snippetPath)) {
             vscode.window.showTextDocument(vscode.Uri.file(snippetPath))
@@ -317,7 +317,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
-    public editTemplate(snippet: string) {
+    public editTemplate (snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
         if (existsSync(snippetPath)) {
             vscode.window.showTextDocument(vscode.Uri.file(snippetPath))
@@ -326,7 +326,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
-    public async deleteTemplate(template: string) {
+    public async deleteTemplate (template: string) {
         //  create a confirmation message to delete the template
         const confirmation = await vscode.window.showInformationMessage(
             `Are you sure you want to delete ${template}?`,
@@ -344,7 +344,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     }
 
-    public async deleteSnippet(snippet: string) {
+    public async deleteSnippet (snippet: string) {
         //  create a confirmation message to delete the template
         const confirmation = await vscode.window.showInformationMessage(
             `Are you sure you want to delete ${snippet}?`,
@@ -362,7 +362,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     }
 
-    private _setWebviewMessageListener(webview: vscode.Webview) {
+    private _setWebviewMessageListener (webview: vscode.Webview) {
         webview.onDidReceiveMessage((message: any) => {
             const { command, module, script } = message
             switch (command) {

@@ -1,6 +1,6 @@
-import { window } from 'vscode'
-import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
-import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates'
+import { window } from 'vscode';
+import { nitroDefaultTemplate, nitroPluginTemplate, nitroUtilTemplate } from '../templates';
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils';
 
 const createNitroAPI = () => {
     window
@@ -177,11 +177,5 @@ const directCreateNitroRoute = (path: string) => {
 }
 
 export {
-    createNitroAPI,
-    directCreateNitroAPI,
-    createNitroRoute,
-    directCreateNitroRoute,
-    createNitroPlugin,
-    createNitroMiddleware,
-    createNitroUtil
-}
+    createNitroAPI, createNitroMiddleware, createNitroPlugin, createNitroRoute, createNitroUtil, directCreateNitroAPI, directCreateNitroRoute
+};

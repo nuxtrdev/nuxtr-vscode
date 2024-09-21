@@ -5,7 +5,7 @@ export const languageSelector = (language: string): DocumentSelector => ({ schem
 export const patternSelector = (pattern: string): DocumentSelector => ({ scheme: 'file', pattern, } as const);
 
 
-export async function isDirectory(filePath: string): Promise<boolean> {
+export async function isDirectory (filePath: string): Promise<boolean> {
     try {
         const stat = await workspace.fs.stat(Uri.file(filePath));
         return stat.type === FileType.Directory;
@@ -15,7 +15,7 @@ export async function isDirectory(filePath: string): Promise<boolean> {
 }
 
 
-export async function openFolder(path: Uri, folderName: string, newWindow: boolean) {
+export async function openFolder (path: Uri, folderName: string, newWindow: boolean) {
     try {
         await commands.executeCommand('vscode.openFolder', path, {
             forceNewWindow: newWindow,
@@ -27,13 +27,13 @@ export async function openFolder(path: Uri, folderName: string, newWindow: boole
 
 
 const github: QuickInputButton = {
-    iconPath: new ThemeIcon("github"),
-    tooltip: "Template Github Repo",
+    iconPath: new ThemeIcon('github'),
+    tooltip: 'Template Github Repo',
 };
 
 const docs: QuickInputButton = {
-    iconPath: new ThemeIcon("book"),
-    tooltip: "Template Docs/Reference",
+    iconPath: new ThemeIcon('book'),
+    tooltip: 'Template Docs/Reference',
 };
 
 

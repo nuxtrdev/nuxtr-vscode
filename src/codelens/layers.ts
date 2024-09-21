@@ -7,13 +7,13 @@ export class LayersCodeLensProvider implements CodeLensProvider {
     private _onDidChangeCodeLenses: EventEmitter<void> = new EventEmitter<void>()
     public readonly onDidChangeCodeLenses: Event<void> = this._onDidChangeCodeLenses.event
 
-    constructor() {
+    constructor () {
         this.regex = /extends:/g,
 
         workspace.onDidChangeConfiguration((_) => { this._onDidChangeCodeLenses.fire() })
     }
 
-    public provideCodeLenses(document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
+    public provideCodeLenses (document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
 
         this.codeLenses = []
         const regex = new RegExp(this.regex)
@@ -31,13 +31,13 @@ export class LayersCodeLensProvider implements CodeLensProvider {
         return this.codeLenses
     }
 
-    public resolveCodeLens(codeLens: CodeLens) {
-        if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+    public resolveCodeLens (codeLens: CodeLens) {
+        if (workspace.getConfiguration('codelens-sample').get('enableCodeLens', true)) {
             codeLens.command = {
                 title: 'Add new layer',
-                tooltip: "Nuxtr: Add new layer",
+                tooltip: 'Nuxtr: Add new layer',
                 command: 'nuxtr.createLayer',
-                arguments: ["Argument 1", false]
+                arguments: ['Argument 1', false]
             }
             return codeLens
         }

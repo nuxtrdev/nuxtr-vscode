@@ -1,9 +1,9 @@
-import { window } from 'vscode';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { parseModule } from 'magicast';
-import { trimEnd } from 'string-ts';
-import { projectRootDirectory } from '.';
 import { pathExistsSync } from 'fs-extra';
+import { parseModule } from 'magicast';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { trimEnd } from 'string-ts';
+import { window } from 'vscode';
+import { projectRootDirectory } from '.';
 
 export const findNuxtConfig = (): string | undefined => {
     const names = ['nuxt.config.ts', 'nuxt.config.js'];
@@ -200,7 +200,7 @@ export const updateNuxtConfig = (action: 'inject-eslint-devChcker' | 'add-module
 
     } catch {
         window.showErrorMessage(
-            `Failed to update nuxt config.`
+            'Failed to update nuxt config.'
         );
     }
 };

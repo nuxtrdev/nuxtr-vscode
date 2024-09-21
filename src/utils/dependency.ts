@@ -1,12 +1,12 @@
+import { destr } from 'destr';
+import { exec } from 'node:child_process';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { readPackageJSON } from 'pkg-types';
 import { ProgressLocation, QuickPickItem, QuickPickOptions, StatusBarItem, commands, window } from 'vscode';
-import { existsSync, readFileSync, readdirSync } from 'node:fs'
-import { exec } from 'node:child_process'
-import { destr } from "destr"
-import { readPackageJSON } from 'pkg-types'
-import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global'
-import { installDependencies } from '../commands/InstallDependencies'
-import pm from '../content/pm'
-import { newTerminal } from '.'
+import { newTerminal } from '.';
+import { installDependencies } from '../commands/installDependencies';
+import pm from '../content/pm';
+import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global';
 
 
 const items: QuickPickItem[] = pm.map((item) => {
@@ -226,10 +226,10 @@ export const updateDependencies = async () => {
     const outdatedDependenciesList: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
 
     const updateCommand: any = {
-        NPM: `npm install`,
-        Yarn: `yarn add`,
-        pnpm: `pnpm add`,
-        Bun: `bun add`,
+        NPM: 'npm install',
+        Yarn: 'yarn add',
+        pnpm: 'pnpm add',
+        Bun: 'bun add',
     }
 
     const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand.NPM : updateCommand[defaultPackageManager])
@@ -278,7 +278,7 @@ export const updateDependencies = async () => {
     return
 }
 
-export function upgradePackage(packageName: string) {
+export function upgradePackage (packageName: string) {
     const packageManager = detectPackageManagerByName()
     const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
     const options: QuickPickOptions = {
@@ -307,7 +307,7 @@ export function upgradePackage(packageName: string) {
     }
 }
 
-export async function managePackageVersion(packageName: string) {
+export async function managePackageVersion (packageName: string) {
     const packageManager = detectPackageManagerByName()
     const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
 
@@ -421,7 +421,7 @@ export async function managePackageVersion(packageName: string) {
     }
 }
 
-export async function removePackage(packageName: string): Promise<void> {
+export async function removePackage (packageName: string): Promise<void> {
     const packageManager = detectPackageManagerByName()
     // uninstall package
 
@@ -470,7 +470,7 @@ export async function removePackage(packageName: string): Promise<void> {
     )
 }
 
-export async function isDependencyInstalled(packageName: string): Promise<boolean> {
+export async function isDependencyInstalled (packageName: string): Promise<boolean> {
     const dependencies = await getProjectDependencies()
     return dependencies.some((dependency) => dependency.name === packageName)
 }

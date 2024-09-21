@@ -1,7 +1,7 @@
-import { ConfigurationTarget, window, workspace } from 'vscode'
 import { writeFileSync } from 'node:fs'
-import { createFile, getInstallationCommand, injectPkgJSONScript, openExternalLink, projectRootDirectory, runCommand, updateNuxtConfig} from '../utils'
+import { ConfigurationTarget, window, workspace } from 'vscode'
 import { eslintConfig, stylelintConfig, stylelintIgnore } from '../templates'
+import { createFile, getInstallationCommand, injectPkgJSONScript, openExternalLink, projectRootDirectory, runCommand, updateNuxtConfig } from '../utils'
 const frameworks = ['Eslint', 'Stylelint']
 
 enum StylelintOptions {
@@ -10,7 +10,7 @@ enum StylelintOptions {
     createStyleLintAndIgnoreFiles = 'Create .stylelintrc & .stylelintignore files',
 }
 
-function configureLinters() {
+function configureLinters () {
     window
         .showQuickPick(frameworks, {
             canPickMany: false,
@@ -35,7 +35,7 @@ const configureEslint = async () => {
 
     await runCommand({
         command: eslintCommand,
-        message: `Installing Eslint`,
+        message: 'Installing Eslint',
         successMessage: 'Eslint installed successfully',
         errorMessage: 'Eslint installation failed',
     })
@@ -56,7 +56,7 @@ const configureEslint = async () => {
     await injectPkgJSONScript(scriptName, script)
 
     await createFile({
-        fileName: `eslint.config.mjs`,
+        fileName: 'eslint.config.mjs',
         content: eslintConfig,
         fullPath: `${projectRootDirectory()}/eslint.config.mjs`
     })
@@ -75,9 +75,9 @@ const configureEslint = async () => {
     if (devServerChecker === 'Yes') {
         await runCommand({
             command: devServerCheckerCommand,
-            message: `Installing vite-plugin-eslint2 module`,
-            successMessage: `vite-plugin-eslint2 installed successfully`,
-            errorMessage: `vite-plugin-eslint2 installation failed`,
+            message: 'Installing vite-plugin-eslint2 module',
+            successMessage: 'vite-plugin-eslint2 installed successfully',
+            errorMessage: 'vite-plugin-eslint2 installation failed',
         })
 
         await updateNuxtConfig('inject-eslint-devChcker')
@@ -106,9 +106,9 @@ const configureStylelint = () => {
 
                     await runCommand({
                         command,
-                        message: `Installing stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules`,
-                        successMessage: `stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules installed successfully`,
-                        errorMessage: `stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules installation failed`,
+                        message: 'Installing stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules',
+                        successMessage: 'stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules installed successfully',
+                        errorMessage: 'stylelint, @nuxtjs/stylelint-module, stylelint-config-recommended-vue modules installation failed',
                     })
 
                 }
@@ -127,13 +127,13 @@ const configureStylelint = () => {
                     const stylelintIgnorePath = `${projectRootDirectory()}/.stylelintignore`
 
                     await createFile({
-                        fileName: `.stylelintignore`,
+                        fileName: '.stylelintignore',
                         content: stylelintIgnore,
                         fullPath: stylelintIgnorePath,
                     })
 
                     await createFile({
-                        fileName: `.stylelintrc`,
+                        fileName: '.stylelintrc',
                         content: stylelintConfig,
                         fullPath: stylelintPath,
                     })

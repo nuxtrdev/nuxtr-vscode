@@ -1,10 +1,10 @@
-import { readFileSync } from 'node:fs'
+import { readFileSync } from 'node:fs';
 import { nuxtrConfiguration, projectRootDirectory, vscodeConfiguration } from '.';
-import { generateScriptTag, generateStyleTag, piniaOptionsContent, piniaSetupContent, templateTag } from '../templates'
+import { generateScriptTag, generateStyleTag, piniaOptionsContent, piniaSetupContent, templateTag } from '../templates';
 
 const eolConfiguration = vscodeConfiguration().files.eol
 
-export function generateVueFileTemplate(type: 'page' | 'layout', template?: string) {
+export function generateVueFileTemplate (type: 'page' | 'layout', template?: string) {
     const userDefaultTemplate = template || (type === 'page'
         ? nuxtrConfiguration().vueFiles.pages.defaultTemplate
         : nuxtrConfiguration().vueFiles.layouts.defaultTemplate);
@@ -17,8 +17,8 @@ export function generateVueFileTemplate(type: 'page' | 'layout', template?: stri
     }
 }
 
-export function generateVueFileBasicTemplate(type: string) {
-    let fileTemplate = ``
+export function generateVueFileBasicTemplate (type: string) {
+    let fileTemplate = ''
     const templateLang = nuxtrConfiguration().vueFiles.template.defaultLanguage
     const firstTag = nuxtrConfiguration().vueFiles.firstTag
     const scriptType = nuxtrConfiguration().vueFiles.script.type
@@ -29,7 +29,7 @@ export function generateVueFileBasicTemplate(type: string) {
 
     const scriptTag = generateScriptTag(scriptType, lang)
 
-    const eol = eolConfiguration === '\n' ? `\n\n` : `\n\n`;
+    const eol = eolConfiguration === '\n' ? '\n\n' : '\n\n';
 
     if (firstTag === 'template') {
         fileTemplate = templateTag(type, templateLang);
@@ -50,6 +50,6 @@ export function generateVueFileBasicTemplate(type: string) {
     return fileTemplate
 }
 
-export function generatePiniaTemplates(name: string) {
+export function generatePiniaTemplates (name: string) {
     return nuxtrConfiguration().piniaFiles.defaultTemplate === 'options' ? piniaOptionsContent(name) : piniaSetupContent(name)
 }

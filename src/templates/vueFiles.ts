@@ -9,13 +9,13 @@ const templateTag = (type: string, language: string) => {
 </template>`;
 }
 
-function generateStyleTag(lang: string, scoped: boolean) {
+function generateStyleTag (lang: string, scoped: boolean) {
     return `<style${lang === 'css' ? '' : ` lang="${lang}"`}${scoped ? ' scoped' : ''}>
 
 </style>`
 }
 
-function generateScriptTag(scriptType: string, lang: string) {
+function generateScriptTag (scriptType: string, lang: string) {
     return `<script${lang === 'ts' ? ' lang="ts"' : ''}${scriptType === 'setup' ? ' setup' : ''}>
 
 </script>`

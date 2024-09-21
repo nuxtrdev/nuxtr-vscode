@@ -1,12 +1,4 @@
-import {
-    CodeLens,
-    CodeLensProvider,
-    Event,
-    EventEmitter,
-    Position,
-    TextDocument,
-    workspace,
-} from 'vscode';
+import { CodeLens, CodeLensProvider, Event, EventEmitter, Position, TextDocument, workspace } from 'vscode';
 
 export class ModulesCodelensProvider implements CodeLensProvider {
 
@@ -15,7 +7,7 @@ export class ModulesCodelensProvider implements CodeLensProvider {
     private _onDidChangeCodeLenses: EventEmitter<void> = new EventEmitter<void>()
     public readonly onDidChangeCodeLenses: Event<void> = this._onDidChangeCodeLenses.event
 
-    constructor() {
+    constructor () {
         this.regex = /modules:/g
 
         workspace.onDidChangeConfiguration((_) => {
@@ -23,7 +15,7 @@ export class ModulesCodelensProvider implements CodeLensProvider {
         })
     }
 
-    public provideCodeLenses(document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
+    public provideCodeLenses (document: TextDocument): CodeLens[] | Thenable<CodeLens[]> {
 
         this.codeLenses = []
         const regex = new RegExp(this.regex)
@@ -41,13 +33,13 @@ export class ModulesCodelensProvider implements CodeLensProvider {
         return this.codeLenses
     }
 
-    public resolveCodeLens(codeLens: CodeLens) {
-        if (workspace.getConfiguration("codelens-sample").get("enableCodeLens", true)) {
+    public resolveCodeLens (codeLens: CodeLens) {
+        if (workspace.getConfiguration('codelens-sample').get('enableCodeLens', true)) {
             codeLens.command = {
                 title: 'Add new module',
-                tooltip: "Tooltip provided by sample extension",
+                tooltip: 'Tooltip provided by sample extension',
                 command: 'nuxtr.createModuleAction',
-                arguments: ["Argument 1", false]
+                arguments: ['Argument 1', false]
             }
             return codeLens
         }

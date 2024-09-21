@@ -1,6 +1,6 @@
-import { OpenDialogOptions, QuickInputButton, QuickPick, QuickPickItem, ThemeIcon, Uri, window } from 'vscode';
 import { downloadTemplate } from 'giget';
 import { ofetch } from 'ofetch';
+import { OpenDialogOptions, QuickInputButton, QuickPick, QuickPickItem, ThemeIcon, Uri, window } from 'vscode';
 import { NuxtOfficialTemplate, UserProjectTemplate } from '../types';
 import { nuxtrConfiguration, openExternalLink, openFolder, quickOpenButtons } from '../utils';
 
@@ -23,7 +23,7 @@ const fetchOfficialTemplates = async (): Promise<NuxtOfficialTemplate[]> => {
         const res = await ofetch('https://nuxt.new/data/starters.json');
         return res as NuxtOfficialTemplate[];
     } catch {
-        window.showErrorMessage(`Failed to fetch Nuxt templates`);
+        window.showErrorMessage('Failed to fetch Nuxt templates');
         return [];
     }
 };
@@ -37,7 +37,7 @@ const fetchUserTemplates = (): UserProjectTemplate[] => {
             branch: item.branch,
         } as UserProjectTemplate));
     } catch {
-        window.showErrorMessage(`Failed to fetch user templates`);
+        window.showErrorMessage('Failed to fetch user templates');
         return [];
     }
 };
@@ -45,7 +45,7 @@ const fetchTemplate = async (repo: NuxtOfficialTemplate, path: string, projectNa
     try {
         await downloadTemplate(`${repo.branch}`, {
             cwd: path,
-            registry: "https://raw.githubusercontent.com/nuxt/starter/templates/templates",
+            registry: 'https://raw.githubusercontent.com/nuxt/starter/templates/templates',
             dir: projectName,
         });
     } catch {
@@ -84,14 +84,14 @@ const createProjectPrompt = (officialTemplates: NuxtOfficialTemplate[], userTemp
     picker.canSelectMany = false;
     picker.ignoreFocusOut = true;
     picker.matchOnDescription = true;
-    picker.placeholder = "Select a Nuxt starter";
+    picker.placeholder = 'Select a Nuxt starter';
 
     const officialItems: QuickPickItem[] = officialTemplates.map((item) => ({
         label: item.name,
         description: item.description,
         buttons: [quickOpenButtons.github, quickOpenButtons.docs],
         package: item,
-        iconPath: new ThemeIcon("nuxt-logo"),
+        iconPath: new ThemeIcon('nuxt-logo'),
     } as QuickPickItem));
 
     const userItems: QuickPickItem[] = userTemplates.map((item) => ({
@@ -100,7 +100,7 @@ const createProjectPrompt = (officialTemplates: NuxtOfficialTemplate[], userTemp
         // Hide buttons for user templates
         buttons: [],
         package: item,
-        iconPath: new ThemeIcon("account"),
+        iconPath: new ThemeIcon('account'),
     } as QuickPickItem));
 
     picker.items = [...officialItems, ...userItems];
@@ -149,7 +149,7 @@ const handleFileUri = async (fileUri: Uri[] | undefined, template: (NuxtOfficial
                 await fetchUserTemplate(userTemplate, fileUri[0].fsPath, proName);
             }
 
-            const result = await window.showInformationMessage(`Project created`, 'Open in current window', 'Open in new window');
+            const result = await window.showInformationMessage('Project created', 'Open in current window', 'Open in new window');
             const projectPath = `${fileUri[0].fsPath}/${proName}`;
             const projectURI = Uri.file(projectPath);
 
@@ -184,7 +184,7 @@ const handleItemButton = (e: { item: QuickPickItem & { package: NuxtOfficialTemp
     }
 };
 
-export async function createProject() {
+export async function createProject () {
     try {
         const nuxtTemplates = await fetchOfficialTemplates() as NuxtOfficialTemplate[];
         const userTemplates = await fetchUserTemplates() as UserProjectTemplate[];
@@ -195,6 +195,6 @@ export async function createProject() {
             return;
         }
     } catch {
-        window.showErrorMessage(`Failed to fetch Nuxt starters`);
+        window.showErrorMessage('Failed to fetch Nuxt starters');
     }
 }
