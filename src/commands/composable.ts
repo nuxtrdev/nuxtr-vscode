@@ -2,6 +2,8 @@ import { window } from 'vscode'
 import { composableTemplate } from '../templates'
 import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
+const neglectUsePrefix = (name: string) => name.replace(/^use/i, '')
+
 const createComposable = () => {
     window
         .showInputBox({
@@ -22,7 +24,7 @@ const createComposable = () => {
                 name,
                 subFolders,
                 commandType: 'composables',
-                content: composableTemplate(name),
+                content: composableTemplate(neglectUsePrefix(name)),
             })
 
         })
@@ -41,7 +43,7 @@ const directCreateComposable = (path: string) => {
 
             createFile({
                 fileName: `${name}.ts`,
-                content: composableTemplate(name),
+                content: composableTemplate(neglectUsePrefix(name)),
                 fullPath: filePath,
             })
         })
