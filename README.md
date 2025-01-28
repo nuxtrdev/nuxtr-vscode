@@ -258,7 +258,7 @@ Nuxtr relies on the following projects/repositories:
 
 - [Nuxt Modules](https://github.com/nuxt/modules)
 - [Nuxt Assets](https://github.com/nuxt/assets)
-- [Tabler Icons](https://tablericons.com/)
+- [Tabler Icons](https://tabler.io/icons)
 
 <br>
 
