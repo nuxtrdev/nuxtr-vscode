@@ -111,7 +111,18 @@ export const getNuxtVersion = (): string | undefined => {
         };
         if ('nuxt' in dependencies) {
             const nuxtVersion = dependencies.nuxt;
-            return nuxtVersion.replace('^', '');
+
+            if (!nuxtVersion.includes('catalog:')) {
+                return nuxtVersion.replace('^', '');
+            }
+
+            const workspaceConfigPath = `${projectRootDirectory()}/pnpm-workspace.yaml`;
+            const workspaceConfig = readFileSync(workspaceConfigPath, 'utf8')
+
+            const regex = /[\s]['"]?nuxt['"]?[\s]*:[^0-9\n\r]*(?<version>[0-9]+(?:\.[0-9]+){0,2})/g
+            const matches = regex.exec(workspaceConfig)
+
+            return matches?.groups?.version
         }
     } else {
         return;
