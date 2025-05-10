@@ -6,7 +6,7 @@ import { window } from 'vscode';
 import { projectRootDirectory } from '.';
 
 export const findNuxtConfig = (): string | undefined => {
-    const names = ['nuxt.config.ts', 'nuxt.config.js'];
+    const names = ['nuxt.config.ts', 'nuxt.config.js', '.config/nuxt.ts'];
 
     for (const name of names) {
         const path = `${projectRootDirectory()}/${name}`;
