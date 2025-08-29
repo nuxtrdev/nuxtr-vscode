@@ -10,7 +10,7 @@ interface Snippet {
 }
 
 
-export async function toggleSnippets (source: 'Nuxt' | 'Nitro', moveToDisabled: boolean) {
+export async function toggleSnippets(source: 'Nuxt' | 'Nitro', moveToDisabled: boolean) {
     const homeDir = homedir();
     const extensionName = 'nuxtr.nuxtr-vscode';
     const nuxtrVersion = await extensions.getExtension(extensionName)?.packageJSON.version;
@@ -23,8 +23,8 @@ export async function toggleSnippets (source: 'Nuxt' | 'Nitro', moveToDisabled: 
     let snippets: Snippet[] = pkgJSON?.contributes?.snippets || [];
     let disabledSnippets: Snippet[] = pkgJSON?.contributes?.disabled_snippets || [];
 
-    const filteredSnippets = snippets.filter(snippet => snippet.path.includes(source.toLowerCase()));
-    const filteredDisabledSnippets = disabledSnippets.filter(snippet => snippet.path.includes(source.toLowerCase()));
+    const filteredSnippets = snippets.filter(snippet => snippet.path.toLowerCase().includes(source.toLowerCase()));
+    const filteredDisabledSnippets = disabledSnippets.filter(snippet => snippet.path.toLowerCase().includes(source.toLowerCase()));
 
     if (moveToDisabled) {
         snippets = [...new Set([...snippets, ...filteredDisabledSnippets])];
@@ -49,7 +49,7 @@ export async function toggleSnippets (source: 'Nuxt' | 'Nitro', moveToDisabled: 
 languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems () {
+        provideCompletionItems() {
             const completionItem = new CompletionItem('nuxtBaseLayout', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Nuxt Layout template';
 
@@ -72,7 +72,7 @@ languages.registerCompletionItemProvider(
 languages.registerCompletionItemProvider(
     { language: 'vue' },
     {
-        provideCompletionItems () {
+        provideCompletionItems() {
             const completionItem = new CompletionItem('vueBase', CompletionItemKind.Snippet);
             completionItem.detail = 'Generate a Vue file template';
 
