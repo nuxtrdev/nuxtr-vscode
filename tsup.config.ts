@@ -1,3 +1,4 @@
+/** Bundle extension runtime dependencies into the CommonJS entrypoint loaded by VS Code. */
 import { defineConfig } from 'tsup'
 
 export default defineConfig({
@@ -7,7 +8,7 @@ export default defineConfig({
     shims: false,
     dts: false,
     splitting: false,
-    clean: true,
+    clean: false,
     minify: 'terser',
     platform: 'node',
     sourcemap: false,
@@ -19,15 +20,13 @@ export default defineConfig({
     external: ['vscode'],
     noExternal: [
         '@nuxt/schema',
-        'destr',
-        'fs-extra',
-        'jiti',
         'magicast',
         'ofetch',
         'pathe',
         'pkg-types',
         'string-ts',
         'giget',
-        'semver'
+        'semver',
+        'yaml'
     ]
 })

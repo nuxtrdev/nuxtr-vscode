@@ -1,0 +1,733 @@
+{
+  "getHeader": {
+    "prefix": [
+      "getHeader",
+      "h3GetHeader"
+    ],
+    "body": [
+      "const ${1:header} = getHeader(${2:event}, '${3:content-type}');"
+    ],
+    "description": "H3 v1: Read one request header."
+  },
+  "getRequestHeader": {
+    "prefix": [
+      "getRequestHeader",
+      "h3GetRequestHeader"
+    ],
+    "body": [
+      "const ${1:header} = getRequestHeader(${2:event}, '${3:content-type}');"
+    ],
+    "description": "H3 v1: Read one request header."
+  },
+  "getHeaders": {
+    "prefix": [
+      "getHeaders",
+      "h3GetHeaders"
+    ],
+    "body": [
+      "const ${1:headers} = getHeaders(${2:event});"
+    ],
+    "description": "H3 v1: Read headers from the event."
+  },
+  "getRequestHeaders": {
+    "prefix": [
+      "getRequestHeaders",
+      "h3GetRequestHeaders"
+    ],
+    "body": [
+      "const ${1:headers} = getRequestHeaders(${2:event});"
+    ],
+    "description": "H3 v1: Read headers from the event."
+  },
+  "getQuery": {
+    "prefix": [
+      "getQuery",
+      "h3GetQuery"
+    ],
+    "body": [
+      "const ${1:query} = getQuery(${2:event});"
+    ],
+    "description": "H3 v1: Read query from the event."
+  },
+  "getRouterParams": {
+    "prefix": [
+      "getRouterParams",
+      "h3GetRouterParams"
+    ],
+    "body": [
+      "const ${1:params} = getRouterParams(${2:event});"
+    ],
+    "description": "H3 v1: Read params from the event."
+  },
+  "getRequestHost": {
+    "prefix": [
+      "getRequestHost",
+      "h3GetRequestHost"
+    ],
+    "body": [
+      "const ${1:host} = getRequestHost(${2:event});"
+    ],
+    "description": "H3 v1: Read host from the event."
+  },
+  "getRequestIP": {
+    "prefix": [
+      "getRequestIP",
+      "h3GetRequestIP"
+    ],
+    "body": [
+      "const ${1:ip} = getRequestIP(${2:event});"
+    ],
+    "description": "H3 v1: Read ip from the event."
+  },
+  "getRequestProtocol": {
+    "prefix": [
+      "getRequestProtocol",
+      "h3GetRequestProtocol"
+    ],
+    "body": [
+      "const ${1:protocol} = getRequestProtocol(${2:event});"
+    ],
+    "description": "H3 v1: Read protocol from the event."
+  },
+  "getRequestURL": {
+    "prefix": [
+      "getRequestURL",
+      "h3GetRequestURL"
+    ],
+    "body": [
+      "const ${1:url} = getRequestURL(${2:event});"
+    ],
+    "description": "H3 v1: Read url from the event."
+  },
+  "getRequestWebStream": {
+    "prefix": [
+      "getRequestWebStream",
+      "h3GetRequestWebStream"
+    ],
+    "body": [
+      "const ${1:stream} = getRequestWebStream(${2:event});"
+    ],
+    "description": "H3 v1: Access the incoming Web ReadableStream."
+  },
+  "toWebRequest": {
+    "prefix": [
+      "toWebRequest",
+      "h3ToWebRequest"
+    ],
+    "body": [
+      "const ${1:request} = toWebRequest(${2:event});"
+    ],
+    "description": "H3 v1: Create a Web Request (experimental)."
+  },
+  "getResponseHeaders": {
+    "prefix": [
+      "getResponseHeaders",
+      "h3GetResponseHeaders"
+    ],
+    "body": [
+      "const ${1:headers} = getResponseHeaders(${2:event});"
+    ],
+    "description": "H3 v1: Read headers from the event."
+  },
+  "getResponseStatus": {
+    "prefix": [
+      "getResponseStatus",
+      "h3GetResponseStatus"
+    ],
+    "body": [
+      "const ${1:status} = getResponseStatus(${2:event});"
+    ],
+    "description": "H3 v1: Read status from the event."
+  },
+  "getResponseStatusText": {
+    "prefix": [
+      "getResponseStatusText",
+      "h3GetResponseStatusText"
+    ],
+    "body": [
+      "const ${1:statusText} = getResponseStatusText(${2:event});"
+    ],
+    "description": "H3 v1: Read statusText from the event."
+  },
+  "parseCookies": {
+    "prefix": [
+      "parseCookies",
+      "h3ParseCookies"
+    ],
+    "body": [
+      "const ${1:cookies} = parseCookies(${2:event});"
+    ],
+    "description": "H3 v1: Read cookies from the event."
+  },
+  "getProxyRequestHeaders": {
+    "prefix": [
+      "getProxyRequestHeaders",
+      "h3GetProxyRequestHeaders"
+    ],
+    "body": [
+      "const ${1:headers} = getProxyRequestHeaders(${2:event});"
+    ],
+    "description": "H3 v1: Read headers from the event."
+  },
+  "isPreflightRequest": {
+    "prefix": [
+      "isPreflightRequest",
+      "h3IsPreflightRequest"
+    ],
+    "body": [
+      "const ${1:preflight} = isPreflightRequest(${2:event});"
+    ],
+    "description": "H3 v1: Read preflight from the event."
+  },
+  "assertMethod": {
+    "prefix": [
+      "assertMethod",
+      "h3AssertMethod"
+    ],
+    "body": [
+      "assertMethod(${1:event}, '${2:GET}');"
+    ],
+    "description": "H3 v1: Reject requests using another HTTP method."
+  },
+  "isMethod": {
+    "prefix": [
+      "isMethod",
+      "h3IsMethod"
+    ],
+    "body": [
+      "const ${1:matches} = isMethod(${2:event}, '${3:GET}');"
+    ],
+    "description": "H3 v1: Check the request method."
+  },
+  "getRouterParam": {
+    "prefix": [
+      "getRouterParam",
+      "h3GetRouterParam"
+    ],
+    "body": [
+      "const ${1:param} = getRouterParam(${2:event}, '${3:id}');"
+    ],
+    "description": "H3 v1: Read a named route parameter."
+  },
+  "getValidatedQuery": {
+    "prefix": [
+      "getValidatedQuery",
+      "h3GetValidatedQuery"
+    ],
+    "body": [
+      "const ${1:data} = await getValidatedQuery(${2:event}, (${3:value}) => ${3:value} !== null && typeof ${3:value} === 'object');"
+    ],
+    "description": "H3 v1: Validate incoming data; replace the predicate with your schema or validation function."
+  },
+  "getValidatedRouterParams": {
+    "prefix": [
+      "getValidatedRouterParams",
+      "h3GetValidatedRouterParams"
+    ],
+    "body": [
+      "const ${1:data} = await getValidatedRouterParams(${2:event}, (${3:value}) => ${3:value} !== null && typeof ${3:value} === 'object');"
+    ],
+    "description": "H3 v1: Validate incoming data; replace the predicate with your schema or validation function."
+  },
+  "readValidatedBody": {
+    "prefix": [
+      "readValidatedBody",
+      "h3ReadValidatedBody"
+    ],
+    "body": [
+      "const ${1:data} = await readValidatedBody(${2:event}, (${3:value}) => ${3:value} !== null && typeof ${3:value} === 'object');"
+    ],
+    "description": "H3 v1: Validate incoming data; replace the predicate with your schema or validation function."
+  },
+  "getRequestFingerprint": {
+    "prefix": [
+      "getRequestFingerprint",
+      "h3GetRequestFingerprint"
+    ],
+    "body": [
+      "const ${1:fingerprint} = await getRequestFingerprint(${2:event});"
+    ],
+    "description": "H3 v1: Calculate a request fingerprint (experimental)."
+  },
+  "readBody": {
+    "prefix": [
+      "readBody",
+      "h3ReadBody"
+    ],
+    "body": [
+      "const ${1:body} = await readBody(${2:event});"
+    ],
+    "description": "H3 v1: Read a parsed request body."
+  },
+  "readFormData": {
+    "prefix": [
+      "readFormData",
+      "h3ReadFormData"
+    ],
+    "body": [
+      "const ${1:body} = await readFormData(${2:event});"
+    ],
+    "description": "H3 v1: Read Web FormData."
+  },
+  "readMultipartFormData": {
+    "prefix": [
+      "readMultipartFormData",
+      "h3ReadMultipartFormData"
+    ],
+    "body": [
+      "const ${1:body} = await readMultipartFormData(${2:event});"
+    ],
+    "description": "H3 v1: Read multipart file and field data."
+  },
+  "readRawBody": {
+    "prefix": [
+      "readRawBody",
+      "h3ReadRawBody"
+    ],
+    "body": [
+      "const ${1:body} = await readRawBody(${2:event});"
+    ],
+    "description": "H3 v1: Read the unparsed body."
+  },
+  "appendHeader": {
+    "prefix": [
+      "appendHeader",
+      "h3AppendHeader"
+    ],
+    "body": [
+      "appendHeader(${1:event}, '${2:x-example}', '${3:value}');"
+    ],
+    "description": "H3 v1: Append a response header."
+  },
+  "appendResponseHeader": {
+    "prefix": [
+      "appendResponseHeader",
+      "h3AppendResponseHeader"
+    ],
+    "body": [
+      "appendResponseHeader(${1:event}, '${2:x-example}', '${3:value}');"
+    ],
+    "description": "H3 v1: Append a response header."
+  },
+  "setHeader": {
+    "prefix": [
+      "setHeader",
+      "h3SetHeader"
+    ],
+    "body": [
+      "setHeader(${1:event}, '${2:x-example}', '${3:value}');"
+    ],
+    "description": "H3 v1: Set a response header."
+  },
+  "setResponseHeader": {
+    "prefix": [
+      "setResponseHeader",
+      "h3SetResponseHeader"
+    ],
+    "body": [
+      "setResponseHeader(${1:event}, '${2:x-example}', '${3:value}');"
+    ],
+    "description": "H3 v1: Set a response header."
+  },
+  "appendHeaders": {
+    "prefix": [
+      "appendHeaders",
+      "h3AppendHeaders"
+    ],
+    "body": [
+      "appendHeaders(${1:event}, { '${2:x-example}': '${3:value}' });"
+    ],
+    "description": "H3 v1: Append response headers."
+  },
+  "appendResponseHeaders": {
+    "prefix": [
+      "appendResponseHeaders",
+      "h3AppendResponseHeaders"
+    ],
+    "body": [
+      "appendResponseHeaders(${1:event}, { '${2:x-example}': '${3:value}' });"
+    ],
+    "description": "H3 v1: Append response headers."
+  },
+  "setHeaders": {
+    "prefix": [
+      "setHeaders",
+      "h3SetHeaders"
+    ],
+    "body": [
+      "setHeaders(${1:event}, { '${2:x-example}': '${3:value}' });"
+    ],
+    "description": "H3 v1: Set response headers."
+  },
+  "setResponseHeaders": {
+    "prefix": [
+      "setResponseHeaders",
+      "h3SetResponseHeaders"
+    ],
+    "body": [
+      "setResponseHeaders(${1:event}, { '${2:x-example}': '${3:value}' });"
+    ],
+    "description": "H3 v1: Set response headers."
+  },
+  "clearResponseHeaders": {
+    "prefix": [
+      "clearResponseHeaders",
+      "h3ClearResponseHeaders"
+    ],
+    "body": [
+      "clearResponseHeaders(${1:event});"
+    ],
+    "description": "H3 v1: Clear outgoing headers, or pass an array of selected names."
+  },
+  "defaultContentType": {
+    "prefix": [
+      "defaultContentType",
+      "h3DefaultContentType"
+    ],
+    "body": [
+      "defaultContentType(${1:event}, '${2:application/json}');"
+    ],
+    "description": "H3 v1: Set Content-Type when no value has been assigned."
+  },
+  "getResponseHeader": {
+    "prefix": [
+      "getResponseHeader",
+      "h3GetResponseHeader"
+    ],
+    "body": [
+      "const ${1:header} = getResponseHeader(${2:event}, '${3:content-type}');"
+    ],
+    "description": "H3 v1: Inspect an outgoing header."
+  },
+  "removeResponseHeader": {
+    "prefix": [
+      "removeResponseHeader",
+      "h3RemoveResponseHeader"
+    ],
+    "body": [
+      "removeResponseHeader(${1:event}, '${2:x-example}');"
+    ],
+    "description": "H3 v1: Remove an outgoing header."
+  },
+  "isStream": {
+    "prefix": [
+      "isStream",
+      "h3IsStream"
+    ],
+    "body": [
+      "const ${1:streaming} = isStream(${2:new ReadableStream()});"
+    ],
+    "description": "H3 v1: Test whether a value is a Node or Web stream."
+  },
+  "isWebResponse": {
+    "prefix": [
+      "isWebResponse",
+      "h3IsWebResponse"
+    ],
+    "body": [
+      "const ${1:webResponse} = isWebResponse(${2:new Response()});"
+    ],
+    "description": "H3 v1: Test whether a value is a Web Response."
+  },
+  "send": {
+    "prefix": [
+      "send",
+      "h3Send"
+    ],
+    "body": [
+      "await send(${1:event}, '${2:Hello}', '${3:text/plain}');"
+    ],
+    "description": "H3 v1: Send response data."
+  },
+  "sendIterable": {
+    "prefix": [
+      "sendIterable",
+      "h3SendIterable"
+    ],
+    "body": [
+      "await sendIterable(${1:event}, ['${2:Hello}']);"
+    ],
+    "description": "H3 v1: Stream a synchronous or asynchronous iterable."
+  },
+  "sendNoContent": {
+    "prefix": [
+      "sendNoContent",
+      "h3SendNoContent"
+    ],
+    "body": [
+      "sendNoContent(${1:event}, ${2:204});"
+    ],
+    "description": "H3 v1: Finish with an empty response."
+  },
+  "sendRedirect": {
+    "prefix": [
+      "sendRedirect",
+      "h3SendRedirect"
+    ],
+    "body": [
+      "return sendRedirect(${1:event}, '${2:/}', ${3:302});"
+    ],
+    "description": "H3 v1: Send an HTTP redirect."
+  },
+  "sendStream": {
+    "prefix": [
+      "sendStream",
+      "h3SendStream"
+    ],
+    "body": [
+      "return sendStream(${1:event}, ${2:new ReadableStream()});"
+    ],
+    "description": "H3 v1: Send a Node or Web stream."
+  },
+  "sendWebResponse": {
+    "prefix": [
+      "sendWebResponse",
+      "h3SendWebResponse"
+    ],
+    "body": [
+      "return sendWebResponse(${1:event}, new Response('${2:Hello}'));"
+    ],
+    "description": "H3 v1: Forward a Web Response."
+  },
+  "setResponseStatus": {
+    "prefix": [
+      "setResponseStatus",
+      "h3SetResponseStatus"
+    ],
+    "body": [
+      "setResponseStatus(${1:event}, ${2:200}, '${3:OK}');"
+    ],
+    "description": "H3 v1: Set the HTTP response code and optional status text."
+  },
+  "writeEarlyHints": {
+    "prefix": [
+      "writeEarlyHints",
+      "h3WriteEarlyHints"
+    ],
+    "body": [
+      "writeEarlyHints(${1:event}, { link: '</${2:styles.css}>; rel=preload; as=style' });"
+    ],
+    "description": "H3 v1: Emit HTTP 103 preload hints."
+  },
+  "clearSession": {
+    "prefix": [
+      "clearSession",
+      "h3ClearSession"
+    ],
+    "body": [
+      "await clearSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} });"
+    ],
+    "description": "H3 v1: Manage an encrypted session; configure a private runtime sessionPassword of at least 32 characters."
+  },
+  "getSession": {
+    "prefix": [
+      "getSession",
+      "h3GetSession"
+    ],
+    "body": [
+      "const ${1:session} = await getSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} });"
+    ],
+    "description": "H3 v1: Manage an encrypted session; configure a private runtime sessionPassword of at least 32 characters."
+  },
+  "sealSession": {
+    "prefix": [
+      "sealSession",
+      "h3SealSession"
+    ],
+    "body": [
+      "const ${1:sealed} = await sealSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} });"
+    ],
+    "description": "H3 v1: Manage an encrypted session; configure a private runtime sessionPassword of at least 32 characters."
+  },
+  "updateSession": {
+    "prefix": [
+      "updateSession",
+      "h3UpdateSession"
+    ],
+    "body": [
+      "const ${1:session} = await updateSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} }, { ${4:userId}: '${5:example}' });"
+    ],
+    "description": "H3 v1: Manage an encrypted session; configure a private runtime sessionPassword of at least 32 characters."
+  },
+  "useSession": {
+    "prefix": [
+      "useSession",
+      "h3UseSession"
+    ],
+    "body": [
+      "const ${1:session} = await useSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} });"
+    ],
+    "description": "H3 v1: Manage an encrypted session; configure a private runtime sessionPassword of at least 32 characters."
+  },
+  "unsealSession": {
+    "prefix": [
+      "unsealSession",
+      "h3UnsealSession"
+    ],
+    "body": [
+      "const ${1:session} = await unsealSession(${2:event}, { password: ${3:useRuntimeConfig().sessionPassword} }, '${4:sealed-session}');"
+    ],
+    "description": "H3 v1: Decode a sealed session using a private runtime secret of at least 32 characters."
+  },
+  "deleteCookie": {
+    "prefix": [
+      "deleteCookie",
+      "h3DeleteCookie"
+    ],
+    "body": [
+      "deleteCookie(${1:event}, '${2:cookie-name}', { path: '/' });"
+    ],
+    "description": "H3 v1: Expire a cookie using its original path/domain options."
+  },
+  "getCookie": {
+    "prefix": [
+      "getCookie",
+      "h3GetCookie"
+    ],
+    "body": [
+      "const ${1:cookie} = getCookie(${2:event}, '${3:cookie-name}');"
+    ],
+    "description": "H3 v1: Read a request cookie."
+  },
+  "setCookie": {
+    "prefix": [
+      "setCookie",
+      "h3SetCookie"
+    ],
+    "body": [
+      "setCookie(${1:event}, '${2:cookie-name}', '${3:value}', {",
+      "    httpOnly: true,",
+      "    secure: true,",
+      "    sameSite: 'lax',",
+      "    path: '/'",
+      "});"
+    ],
+    "description": "H3 v1: Set a cookie with editable security and path options."
+  },
+  "sanitizeStatusCode": {
+    "prefix": [
+      "sanitizeStatusCode",
+      "h3SanitizeStatusCode"
+    ],
+    "body": [
+      "const ${1:status} = sanitizeStatusCode(${2:200}, ${3:200});"
+    ],
+    "description": "H3 v1: Normalize a status code with a fallback."
+  },
+  "sanitizeStatusMessage": {
+    "prefix": [
+      "sanitizeStatusMessage",
+      "h3SanitizeStatusMessage"
+    ],
+    "body": [
+      "const ${1:statusText} = sanitizeStatusMessage('${2:OK}');"
+    ],
+    "description": "H3 v1: Remove invalid characters from a status message."
+  },
+  "useBase": {
+    "prefix": [
+      "useBase",
+      "h3UseBase"
+    ],
+    "body": [
+      "const ${1:handler} = useBase('${2:/base}', defineEventHandler((${3:event}) => '${4:Hello}'));"
+    ],
+    "description": "H3 v1: Mount an event handler under a base URL."
+  },
+  "handleCacheHeaders": {
+    "prefix": [
+      "handleCacheHeaders",
+      "h3HandleCacheHeaders"
+    ],
+    "body": [
+      "if (handleCacheHeaders(${1:event}, { maxAge: ${2:60}, etag: '${3:version}' })) {",
+      "    return;",
+      "}"
+    ],
+    "description": "H3 v1: Set cache validators and stop when the response is already handled."
+  },
+  "fetchWithEvent": {
+    "prefix": [
+      "fetchWithEvent",
+      "h3FetchWithEvent"
+    ],
+    "body": [
+      "const ${1:response} = await fetchWithEvent(${2:event}, '${3:https://example.com/api}');"
+    ],
+    "description": "H3 v1: Fetch while forwarding the current event context and request headers."
+  },
+  "proxyRequest": {
+    "prefix": [
+      "proxyRequest",
+      "h3ProxyRequest"
+    ],
+    "body": [
+      "return proxyRequest(${1:event}, '${2:https://example.com/api}');"
+    ],
+    "description": "H3 v1: Proxy a request and stream the upstream response."
+  },
+  "sendProxy": {
+    "prefix": [
+      "sendProxy",
+      "h3SendProxy"
+    ],
+    "body": [
+      "return sendProxy(${1:event}, '${2:https://example.com/api}');"
+    ],
+    "description": "H3 v1: Proxy a request and stream the upstream response."
+  },
+  "appendCorsHeaders": {
+    "prefix": [
+      "appendCorsHeaders",
+      "h3AppendCorsHeaders"
+    ],
+    "body": [
+      "appendCorsHeaders(${1:event}, { origin: ['${2:https://example.com}'], methods: ['GET', 'POST'] });"
+    ],
+    "description": "H3 v1: Apply an explicit CORS policy."
+  },
+  "appendCorsPreflightHeaders": {
+    "prefix": [
+      "appendCorsPreflightHeaders",
+      "h3AppendCorsPreflightHeaders"
+    ],
+    "body": [
+      "appendCorsPreflightHeaders(${1:event}, { origin: ['${2:https://example.com}'], methods: ['GET', 'POST'] });"
+    ],
+    "description": "H3 v1: Apply an explicit CORS policy."
+  },
+  "handleCors": {
+    "prefix": [
+      "handleCors",
+      "h3HandleCors"
+    ],
+    "body": [
+      "if (handleCors(${1:event}, { origin: ['${2:https://example.com}'], methods: ['GET', 'POST'] })) {",
+      "    return;",
+      "}"
+    ],
+    "description": "H3 v1: Apply an explicit CORS policy and stop after a handled preflight."
+  },
+  "isCorsOriginAllowed": {
+    "prefix": [
+      "isCorsOriginAllowed",
+      "h3IsCorsOriginAllowed"
+    ],
+    "body": [
+      "const ${1:allowed} = isCorsOriginAllowed('${2:https://example.com}', { origin: ['${3:https://example.com}'] });"
+    ],
+    "description": "H3 v1: Check an origin against a CORS policy."
+  },
+  "createEventStream": {
+    "prefix": [
+      "createEventStream",
+      "h3CreateEventStream"
+    ],
+    "body": [
+      "const ${1:stream} = createEventStream(${2:event});",
+      "${1:stream}.push(JSON.stringify({ message: \"${3:Hello}\" }));",
+      "return ${1:stream}.send();"
+    ],
+    "description": "H3 v1: Create and send a server-sent event stream."
+  }
+}

@@ -1,14 +1,13 @@
+/** Mount the Vue sidebar with in-memory navigation suitable for a VS Code webview. */
 import { createApp } from 'vue';
 import './assets/main.css';
 import App from './App.vue';
-import { provideVSCodeDesignSystem } from '@vscode/webview-ui-toolkit';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createMemoryHistory, createRouter } from 'vue-router';
 import routes from './router';
 
 const router = createRouter({
-    history: createWebHistory(),
+    history: createMemoryHistory(),
     routes,
 });
 
-provideVSCodeDesignSystem().register();
 createApp(App).use(router).mount('#app');

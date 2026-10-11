@@ -1,9 +1,13 @@
+/** Prompt for and scaffold util files in the selected project’s resolved directories. */
+import { scaffoldExtension } from '../utils/files';
+import { directServerScaffold, projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
 import { nitroUtilTemplate, nuxtUtilTemplate } from '../templates'
-import { createDir, createFile, createSubFolders, hasServerDir, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
+/** Prompt for a name and create the selected util scaffold. */
 const createUtil = () => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your utility name?',
             placeHolder: 'utility name',
@@ -11,13 +15,13 @@ const createUtil = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            const utilsDir = `${await projectSrcDirectory()}/utils`
+            const utilsDir = projectDirectory('utils')
 
             await createDir('utils')
 
             const subFolders = await createSubFolders(utilsDir, 'nuxtUtil')
 
-            showSubFolderQuickPick({
+            return showSubFolderQuickPick({
                 name,
                 subFolders,
                 commandType: 'nuxtUtil',
@@ -28,10 +32,12 @@ const createUtil = () => {
 }
 
 
+/** Create a file in the Explorer folder supplied by the command. */
 const directCreateUtil = async (path: string) => {
-    const serverDir = await hasServerDir()
+    const server = await directServerScaffold(path);
+    if (server === undefined) { return; }
 
-    window
+    return window
         .showInputBox({
             prompt: 'What is your utility name?',
             placeHolder: 'utility name',
@@ -39,12 +45,12 @@ const directCreateUtil = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${name}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, scaffoldExtension())}${scaffoldExtension()}`
 
 
-            createFile({
-                fileName: `${name}.ts`,
-                content: filePath.includes(`${serverDir}`) ? nitroUtilTemplate : nuxtUtilTemplate(),
+            return createFile({
+                fileName: `${name}${scaffoldExtension()}`,
+                content: server ? nitroUtilTemplate : nuxtUtilTemplate(),
                 fullPath: filePath,
             })
         })

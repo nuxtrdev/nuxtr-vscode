@@ -1,13 +1,16 @@
+/** Bundle the Vue sidebar and Tailwind 4 CSS with stable packaged asset names. */
 import { defineConfig } from 'vite';
+import tailwindcss from '@tailwindcss/vite';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-    plugins: [vue()],
+    plugins: [vue(), tailwindcss()],
     build: {
-        outDir: 'build',
-        cssMinify: 'esbuild',
+        outDir: '../../out/sidebar',
+        emptyOutDir: true,
+        cssMinify: 'lightningcss',
         minify: 'terser',
-        rollupOptions: {
+        rolldownOptions: {
             output: {
                 entryFileNames: 'assets/[name].js',
                 chunkFileNames: 'assets/[name].js',

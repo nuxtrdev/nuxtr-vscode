@@ -1,19 +1,19 @@
+/** Collect template, module and DevTools choices for the project-local public Nuxt CLI. */
 import { ofetch } from 'ofetch';
 import { QuickPickItem, QuickPickOptions, window } from 'vscode';
+import { nuxtCLICommand } from '../../nuxi';
 import type { nuxtModule } from '../../types';
-import { detectPackageManagerByName, isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
+import { isNuxtTwo, newTerminal, projectRootDirectory } from '../../utils';
 
 
-const pm = detectPackageManagerByName();
-const runCommand = pm ? pm.runCommand : 'npx';
-
-
+/** Fetch the official module list for the CLI module picker. */
 const fetchModules = async () => {
     const res = await ofetch('https://api.nuxt.com/modules');
     return res.modules;
 }
 
 
+/** Prompt for a Nuxt CLI template and file name. */
 export const handleAddCommand = (): void => {
     const options: QuickPickOptions = {
         placeHolder: 'Select module(s)',
@@ -48,7 +48,7 @@ export const handleAddCommand = (): void => {
             }
 
             const terminalName = 'Nuxi: Add';
-            const command = `nuxi add ${template} ${templateName}`;
+            const command = nuxtCLICommand(['add', template, templateName]);
             newTerminal(terminalName, command, `${projectRootDirectory()}`);
         });
     })
@@ -56,6 +56,7 @@ export const handleAddCommand = (): void => {
 }
 
 
+/** Prompt for a compatible module and delegate installation to the local CLI. */
 export const handleModuleCommand = async () => {
     const modules: nuxtModule[] = await fetchModules();
 
@@ -90,7 +91,7 @@ export const handleModuleCommand = async () => {
             }
 
             const terminalName = 'Nuxi: Module';
-            const command = `${runCommand} nuxi module add ${userSelection}`;
+            const command = nuxtCLICommand(['module', 'add', userSelection]);
             newTerminal(terminalName, command, `${projectRootDirectory()}`);
         });
     } else {
@@ -98,6 +99,7 @@ export const handleModuleCommand = async () => {
     }
 };
 
+/** Prompt to enable or disable Nuxt DevTools. */
 export const handleDevtoolsCommand = () => {
     const options: QuickPickOptions = {
         placeHolder: 'Select state',
@@ -121,7 +123,7 @@ export const handleDevtoolsCommand = () => {
 
         const state = selection.label;
         const terminalName = 'Nuxi: Devtools';
-        const command = `nuxi devtools ${state}`;
+        const command = nuxtCLICommand(['devtools', state]);
         newTerminal(terminalName, command, `${projectRootDirectory()}`);
     })
 

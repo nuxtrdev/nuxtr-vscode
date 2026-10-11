@@ -1,126 +1,405 @@
 {
   "$fetch": {
-    "prefix": "fetch",
-    "body": ["const $1 = await \\$fetch('$2')"],
-    "description": "$fetch"
+    "prefix": [
+      "$fetch",
+      "fetch",
+      "nuxtFetch"
+    ],
+    "body": [
+      "const ${1:result} = await \\$fetch('${2:/api/hello}');"
+    ],
+    "description": "Make a direct HTTP request; use useFetch or useAsyncData for SSR payload deduplication.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/dollarfetch"
   },
   "abortNavigation": {
-    "prefix": "abortNavigation()",
-    "body": ["abortNavigation($1)"],
-    "description": "abortNavigation"
+    "prefix": [
+      "abortNavigation",
+      "abortNavigation()"
+    ],
+    "body": [
+      "return abortNavigation('${1:Navigation cancelled}');"
+    ],
+    "description": "Stop navigation from route middleware.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/abort-navigation"
   },
   "addRouteMiddleware": {
-    "prefix": "addRouteMiddleware",
-    "body": [
-      "addRouteMiddleware('$1', (${2:to, from}) => {",
-      "    $3",
-      "}, { global: true })"
+    "prefix": [
+      "addRouteMiddleware"
     ],
-    "description": "addRouteMiddleware"
+    "body": [
+      "addRouteMiddleware('${1:example}', (${2:to, from}) => {",
+      "    ${0:// Return a redirect or abortNavigation when needed.}",
+      "}, { global: ${3:false} });"
+    ],
+    "description": "Register named or global route middleware.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/add-route-middleware"
   },
   "clearError": {
-    "prefix": "clearError",
-    "body": ["clearError($1)"],
-    "description": "clearError"
+    "prefix": [
+      "clearError"
+    ],
+    "body": [
+      "await clearError({ redirect: '${1:/}' });"
+    ],
+    "description": "Clear the global error and optionally redirect.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/clear-error"
   },
   "clearNuxtData": {
-    "prefix": "clearNuxtData",
-    "body": ["clearNuxtData($1)"],
-    "description": "clearNuxtData"
+    "prefix": [
+      "clearNuxtData"
+    ],
+    "body": [
+      "clearNuxtData('${1:example}');"
+    ],
+    "description": "Clear cached async data for a key.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/clear-nuxt-data"
   },
   "createError": {
-    "prefix": "createError",
+    "prefix": [
+      "createError"
+    ],
     "body": [
       "throw createError({",
-      "    statusCode: $1,",
-      "    statusMessage: '$2'",
-      "})"
+      "    statusCode: ${1:404},",
+      "    statusMessage: '${2:Not Found}'",
+      "});"
     ],
-    "description": "createError"
+    "description": "Create and throw a Nuxt application error.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/create-error"
   },
   "defineNuxtComponent": {
-    "prefix": "defineNuxtComponent",
-    "body": ["export default defineNuxtComponent({", "$1", "})"],
-    "description": "defineNuxtComponent"
+    "prefix": [
+      "defineNuxtComponent"
+    ],
+    "body": [
+      "export default defineNuxtComponent({",
+      "    setup () {",
+      "        ${0:// Set up the component here.}",
+      "        return {};",
+      "    }",
+      "});"
+    ],
+    "description": "Define an Options API component in a normal script block, not script setup.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-nuxt-component"
   },
   "defineNuxtRouteMiddleware": {
-    "prefix": "defineNuxtRouteMiddleware",
+    "prefix": [
+      "defineNuxtRouteMiddleware"
+    ],
     "body": [
       "export default defineNuxtRouteMiddleware((${1:to, from}) => {",
-      "   $2",
-      "})",
-      ""
+      "    ${0:// Return a redirect or abortNavigation when needed.}",
+      "});"
     ],
-    "description": "defineNuxtRouteMiddleware"
+    "description": "Define route middleware in the application middleware directory.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-nuxt-route-middleware"
   },
   "definePageMeta": {
-    "prefix": "definePageMeta",
-    "body": ["definePageMeta({", "    $1", "})"],
-    "description": "definePageMeta"
+    "prefix": [
+      "definePageMeta"
+    ],
+    "body": [
+      "definePageMeta({",
+      "    layout: '${1:default}'",
+      "});"
+    ],
+    "description": "Declare metadata in a page component script setup block.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-page-meta"
   },
   "navigateTo": {
-    "prefix": "navigateTo",
-    "body": ["navigateTo('$1', $2)"],
-    "description": "navigateTo"
+    "prefix": [
+      "navigateTo"
+    ],
+    "body": [
+      "await navigateTo('${1:/}');"
+    ],
+    "description": "Navigate to a route; return the result when using route middleware.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/navigate-to"
   },
   "onBeforeRouteLeave": {
-    "prefix": "onBeforeRouteLeave",
-    "body": ["onBeforeRouteLeave($1)"],
-    "description": "onBeforeRouteLeave"
+    "prefix": [
+      "onBeforeRouteLeave"
+    ],
+    "body": [
+      "onBeforeRouteLeave(($1) => {",
+      "    ${0:// Return false to cancel leaving this route.}",
+      "});"
+    ],
+    "description": "Register a guard before leaving the current route.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/on-before-route-leave"
   },
   "onBeforeRouteUpdate": {
-    "prefix": "onBeforeRouteUpdate",
-    "body": ["onBeforeRouteUpdate($1)"],
-    "description": "onBeforeRouteUpdate"
+    "prefix": [
+      "onBeforeRouteUpdate"
+    ],
+    "body": [
+      "onBeforeRouteUpdate(($1) => {",
+      "    ${0:// React to changes of this route.}",
+      "});"
+    ],
+    "description": "Register a guard before updating the current route.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/on-before-route-update"
   },
   "onNuxtReady": {
-    "prefix": "onNuxtReady",
-    "body": ["onNuxtReady(async () => {", "    $1", "})"],
-    "description": "onNuxtReady"
+    "prefix": [
+      "onNuxtReady"
+    ],
+    "body": [
+      "onNuxtReady(async () => {",
+      "    ${0:// Run browser code after Nuxt initialization.}",
+      "});"
+    ],
+    "description": "Run browser work after Nuxt initialization.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/on-nuxt-ready"
   },
   "prefetchComponents": {
-    "prefix": "prefetchComponents",
-    "body": ["prefetchComponents('$1')"],
-    "description": "prefetchComponents"
+    "prefix": [
+      "prefetchComponents"
+    ],
+    "body": [
+      "await prefetchComponents('${1:Example}');"
+    ],
+    "description": "Prefetch a registered application component.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/prefetch-components"
   },
   "preloadComponents": {
-    "prefix": "preloadComponents",
-    "body": ["preloadComponents('$1')"],
-    "description": "preloadComponents"
+    "prefix": [
+      "preloadComponents"
+    ],
+    "body": [
+      "await preloadComponents('${1:Example}');"
+    ],
+    "description": "Preload a registered application component.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/preload-components"
   },
   "preloadRouteComponents": {
-    "prefix": "preloadRouteComponents",
-    "body": ["preloadRouteComponents('$1')"],
-    "description": "preloadRouteComponents"
+    "prefix": [
+      "preloadRouteComponents"
+    ],
+    "body": [
+      "await preloadRouteComponents('${1:/}');"
+    ],
+    "description": "Load components for a route before navigating.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/preload-route-components"
   },
   "refreshNuxtData": {
-    "prefix": "refreshNuxtData",
-    "body": ["refreshNuxtData('$1')"],
-    "description": "refreshNuxtData"
+    "prefix": [
+      "refreshNuxtData"
+    ],
+    "body": [
+      "await refreshNuxtData('${1:example}');"
+    ],
+    "description": "Refetch keyed async data.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/refresh-nuxt-data"
   },
   "reloadNuxtApp": {
-    "prefix": "reloadNuxtApp",
-    "body": ["reloadNuxtApp('$1')"],
-    "description": "reloadNuxtApp"
+    "prefix": [
+      "reloadNuxtApp"
+    ],
+    "body": [
+      "reloadNuxtApp({ path: '${1:/}' });"
+    ],
+    "description": "Perform a full application reload.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/reload-nuxt-app"
   },
   "setPageLayout": {
-    "prefix": "setPageLayout",
-    "body": ["setPageLayout('$1')"],
-    "description": "setPageLayout"
+    "prefix": [
+      "setPageLayout"
+    ],
+    "body": [
+      "setPageLayout('${1:default}');"
+    ],
+    "description": "Change the current page layout.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/set-page-layout"
   },
   "setResponseStatus": {
-    "prefix": "setResponseStatus",
-    "body": ["setResponseStatus('$1:event', $2:404, ${3: '${4:'Message'}'})"],
-    "description": "setResponseStatus"
+    "prefix": [
+      "setResponseStatus"
+    ],
+    "body": [
+      "const ${1:event} = useRequestEvent();",
+      "if (${1:event}) {",
+      "    setResponseStatus(${1:event}, ${2:404}, '${3:Not Found}');",
+      "}"
+    ],
+    "description": "Set the SSR response status after checking for a request event.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/set-response-status"
   },
   "showError": {
-    "prefix": "showError",
-    "body": ["showError({ statusCode: $1, statusMessage: \"$2\" })"],
-    "description": "showError"
+    "prefix": [
+      "showError"
+    ],
+    "body": [
+      "showError({ statusCode: ${1:500}, statusMessage: '${2:Something went wrong}' });"
+    ],
+    "description": "Display the global Nuxt error page.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/show-error"
   },
   "updateAppConfig": {
-    "prefix": "updateAppConfig",
-    "body": ["const ${1:newAppConfig} = { $2 }", "updateAppConfig($1)"],
-    "description": "updateAppConfig"
+    "prefix": [
+      "updateAppConfig"
+    ],
+    "body": [
+      "updateAppConfig({",
+      "    ${0:// Add public configuration values to update.}",
+      "});"
+    ],
+    "description": "Update reactive public application configuration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/update-app-config"
+  },
+  "callOnce": {
+    "prefix": [
+      "callOnce"
+    ],
+    "body": [
+      "await callOnce('${1:initialize}', async () => {",
+      "    ${0:// Initialize application state here.}",
+      "});"
+    ],
+    "description": "Run initialization once across SSR and hydration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/call-once",
+    "minimumNuxtVersion": "3.9.0"
+  },
+  "clearNuxtState": {
+    "prefix": [
+      "clearNuxtState"
+    ],
+    "body": [
+      "clearNuxtState('${1:state-key}');"
+    ],
+    "description": "Clear keyed useState data.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/clear-nuxt-state"
+  },
+  "defineLazyHydrationComponent": {
+    "prefix": [
+      "defineLazyHydrationComponent"
+    ],
+    "body": [
+      "const ${1:LazyExample} = defineLazyHydrationComponent(",
+      "    '${2:visible}',",
+      "    () => import('${3:~/components/Example.vue}')",
+      ");"
+    ],
+    "description": "Declare a lazy hydration component using literal strategy and import arguments.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-lazy-hydration-component"
+  },
+  "defineNuxtPlugin": {
+    "prefix": [
+      "defineNuxtPlugin"
+    ],
+    "body": [
+      "export default defineNuxtPlugin((${1:nuxtApp}) => {",
+      "    ${0:// Register services or hooks here.}",
+      "});"
+    ],
+    "description": "Define a plugin in the application plugins directory.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-nuxt-plugin"
+  },
+  "defineRouteRules": {
+    "prefix": [
+      "defineRouteRules"
+    ],
+    "body": [
+      "defineRouteRules({",
+      "    ssr: ${1:true}",
+      "});"
+    ],
+    "description": "Declare page route rules; requires experimental.inlineRouteRules.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-route-rules"
+  },
+  "defineUseAsyncDataAddon": {
+    "prefix": [
+      "defineUseAsyncDataAddon"
+    ],
+    "body": [
+      "const ${1:addon} = defineUseAsyncDataAddon({",
+      "    setup: (${2:options}) => {",
+      "        ${0:// Customize the created composable here.}",
+      "    }",
+      "});"
+    ],
+    "description": "Define an addon for createUseAsyncData; requires Nuxt 4.6+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-use-async-data-addon",
+    "minimumNuxtVersion": "4.6.0"
+  },
+  "defineUseFetchAddon": {
+    "prefix": [
+      "defineUseFetchAddon"
+    ],
+    "body": [
+      "const ${1:addon} = defineUseFetchAddon({",
+      "    setup: (${2:options}) => {",
+      "        ${0:// Customize the created composable here.}",
+      "    }",
+      "});"
+    ],
+    "description": "Define an addon for createUseFetch; requires Nuxt 4.6+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/define-use-fetch-addon",
+    "minimumNuxtVersion": "4.6.0"
+  },
+  "prerenderRoutes": {
+    "prefix": [
+      "prerenderRoutes"
+    ],
+    "body": [
+      "prerenderRoutes(['${1:/}']);"
+    ],
+    "description": "Add routes to prerender during server rendering.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/prerender-routes"
+  },
+  "refreshCookie": {
+    "prefix": [
+      "refreshCookie"
+    ],
+    "body": [
+      "refreshCookie('${1:cookie-name}');"
+    ],
+    "description": "Refresh a useCookie ref after an external cookie change.",
+    "documentation": "https://nuxt.com/docs/4.x/api/utils/refresh-cookie"
+  },
+  "definePayloadPlugin": {
+    "prefix": "definePayloadPlugin",
+    "body": [
+      "export default definePayloadPlugin((${1:nuxtApp}) => {",
+      "    ${0:// Register matching payload reducers and revivers here.}",
+      "});"
+    ],
+    "description": "Define an early payload plugin before ordinary Nuxt plugins.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-app#payload",
+    "minimumNuxtVersion": "3.4.0"
+  },
+  "definePayloadReducer": {
+    "prefix": "definePayloadReducer",
+    "body": [
+      "definePayloadReducer('${1:CustomType}', (${2:value}) => {",
+      "    ${0:// Return a serialized value for matching values, or false otherwise.}",
+      "    return false;",
+      "});"
+    ],
+    "description": "Register serialization for a custom payload type.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-app#payload",
+    "minimumNuxtVersion": "3.4.0"
+  },
+  "definePayloadReviver": {
+    "prefix": "definePayloadReviver",
+    "body": [
+      "definePayloadReviver('${1:CustomType}', (${2:value}) => {",
+      "    ${0:// Reconstruct the value handled by the matching reducer.}",
+      "    return ${2:value};",
+      "});"
+    ],
+    "description": "Register deserialization for a custom payload type.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-app#payload",
+    "minimumNuxtVersion": "3.4.0"
+  },
+  "defineNuxtLink": {
+    "prefix": "defineNuxtLink",
+    "body": [
+      "const ${1:CustomLink} = defineNuxtLink({",
+      "    componentName: '${2:CustomLink}'",
+      "});"
+    ],
+    "description": "Create a link component with custom NuxtLink defaults.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-link#definenuxtlink-signature"
   }
 }

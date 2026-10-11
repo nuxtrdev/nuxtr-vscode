@@ -1,3 +1,4 @@
+/** Public entrypoints for shared extension helpers and project services. */
 export {
     getNonce,
     getUri,
@@ -7,7 +8,6 @@ export {
     projectRootDirectory,
     projectSrcDirectory,
     runCommand,
-    tryImport,
     vscodeConfiguration
 } from './global'
 
@@ -23,6 +23,7 @@ export {
 } from './nuxt'
 
 export {
+    choosePackageManager,
     dependenciesUpdatesHandler,
     detectPackageManagerByName,
     getInstallationCommand,
@@ -51,4 +52,6 @@ export { createConfigWatcher } from './watchers'
 
 export { isDirectory, languageSelector, openFolder, patternSelector, quickOpenButtons } from './vscode'
 
-export { generatePiniaTemplates, generateVueFileBasicTemplate, generateVueFileTemplate } from './files'
+export { generateScaffoldTemplate, scaffoldExtension, generatePiniaTemplates, generateVueFileBasicTemplate, generateVueFileTemplate } from './files'
+
+export { projectDirectories, projectDirectory } from './nuxt';

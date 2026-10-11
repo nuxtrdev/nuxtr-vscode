@@ -1,9 +1,13 @@
+/** Prompt for and scaffold middleware files in the selected project’s resolved directories. */
+import { scaffoldExtension } from '../utils/files';
+import { directServerScaffold, projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
-import { nitroDefaultTemplate, nuxtMiddlewareTemplate } from '../templates'
+import { nuxtMiddlewareTemplate, serverMiddlewareTemplate } from '../templates'
 import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
+/** Prompt for a middleware name and create its configured template under the resolved Nuxt directory. */
 const createMiddleware = () => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your middleware name?',
             placeHolder: 'middleware name',
@@ -12,13 +16,13 @@ const createMiddleware = () => {
 
             if (!name) { return }
 
-            const middlewareDir = `${await projectSrcDirectory()}/middleware`
+            const middlewareDir = projectDirectory('middleware')
 
             await createDir('middleware')
 
             const subFolders = await createSubFolders(middlewareDir, 'middleware')
 
-            showSubFolderQuickPick({
+            return showSubFolderQuickPick({
                 name,
                 subFolders,
                 commandType: 'middleware',
@@ -29,10 +33,12 @@ const createMiddleware = () => {
         })
 }
 
+/** Create a file in the Explorer folder supplied by the command. */
 const directCreateMiddleware = async (path: string) => {
-    const serverDir = await hasServerDir()
+    const server = await directServerScaffold(path);
+    if (server === undefined) { return; }
 
-    window
+    return window
         .showInputBox({
             prompt: 'What is your middleware name?',
             placeHolder: 'middleware name',
@@ -40,11 +46,11 @@ const directCreateMiddleware = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, scaffoldExtension())}${scaffoldExtension()}`
 
-            createFile({
-                fileName: `${name}.ts`,
-                content: filePath.includes(`${serverDir}`) ? nitroDefaultTemplate : nuxtMiddlewareTemplate,
+            return createFile({
+                fileName: `${name}${scaffoldExtension()}`,
+                content: server ? serverMiddlewareTemplate : nuxtMiddlewareTemplate,
                 fullPath: filePath,
             })
         })

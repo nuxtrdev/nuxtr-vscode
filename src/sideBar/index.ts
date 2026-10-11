@@ -1,5 +1,15 @@
-import { destr } from 'destr'
-import { exec } from 'node:child_process'
+/** Present the Vue sidebar and dispatch project dependency, module and template actions. */
+import { sidebarHtml } from '../core/webview';
+import { cachedCatalogue, fetchCatalogue } from '../services/catalogue';
+import { CataloguePayload, moduleCompatible } from '../core/catalogue';
+import { getNuxtVersion } from '../utils/nuxt';
+import { openPackageReleaseNotes } from '../services/releases';
+import { SidebarEvent, parseSidebarRequest } from '../core/messages';
+import { ProjectContext } from '../core/project';
+import { currentProject, withProject } from '../services/project';
+import { managerCommand, terminalCommand } from '../core/managers';
+import { choosePackageManager } from '../utils/dependency';
+import { ModuleMetadata, canonicalPackageName, installThenConfigure, moduleIsDevelopment } from '../core/modules';
 import { existsSync, readFileSync, readdirSync, unlinkSync } from 'node:fs'
 import { capitalize } from 'string-ts'
 import * as vscode from 'vscode'
@@ -25,13 +35,22 @@ import {
 import commands from '../commands'
 
 
-const nonce = getNonce()
 export class ModulesView implements vscode.WebviewViewProvider {
     _view?: vscode.WebviewView
+    private listeners: vscode.Disposable[] = [];
+    private project?: ProjectContext;
+    private request = 0;
+    private catalogue: CataloguePayload;
+    private route: 'projectView' | 'modules' = 'projectView';
+    private pendingAction?: 'addModule' | 'addLayer';
+    private webviewReady = false;
 
-    constructor (private readonly _extensionUri: vscode.Uri) {}
+    /** Keep the extension URI for packaged asset resolution. */
+    constructor (private readonly _extensionUri: vscode.Uri, private readonly context: vscode.ExtensionContext) { this.catalogue = cachedCatalogue(context.globalState); }
 
+    /** Initialize the webview and bind sidebar visibility and messages. */
     public resolveWebviewView (webviewView: vscode.WebviewView) {
+        this.dispose();
         this._view = webviewView
 
         webviewView.webview.options = {
@@ -39,27 +58,29 @@ export class ModulesView implements vscode.WebviewViewProvider {
             localResourceRoots: [this._extensionUri],
         }
 
-        webviewView.webview.html = this._getHtmlForWebview(webviewView.webview)
         this._setWebviewMessageListener(webviewView.webview)
+        webviewView.webview.html = this._getHtmlForWebview(webviewView.webview)
 
-        // in case the user reload the window while opening the extension tab
-        if (webviewView.visible) {
-            this.goToProjectView()
-        }
-
-        webviewView.onDidChangeVisibility(() => {
-            if (webviewView.visible) {
-                this.goToProjectView()
+        this.listeners.push(webviewView.onDidChangeVisibility(() => {
+            // Revealing the sidebar must preserve the page requested by its opening command.
+            if (webviewView.visible && this.webviewReady) {
+                this.refreshProjectData()
             }
-        })
+        }), webviewView.onDidDispose(() => this.dispose()));
     }
 
-    public goToProjectView () {
-        this.postMessage({ command: 'projectView' })
-        this.getDependencies()
+    /** Dispose listeners whenever the sidebar is replaced or the extension shuts down. */
+    public dispose () { for (const listener of this.listeners.splice(0)) { listener.dispose(); } this._view = undefined; this.webviewReady = false; }
+
+    /** Refresh visible sidebar data without replacing the requested route or integration filter. */
+    private refreshProjectData () {
+        void this.getDependencies().catch(error => { vscode.window.showErrorMessage(String(error)); })
     }
 
+    /** Send project package, template and update metadata to the sidebar. */
     public async getDependencies () {
+        this.project = currentProject();
+        const request = ++this.request;
         const dependencies = await getProjectDependencies()
         const scripts = getProjectScripts()
 
@@ -82,9 +103,10 @@ export class ModulesView implements vscode.WebviewViewProvider {
         // regex find list of file templates inside .vscode folder
         const fileTemplates = existsSync(`${projectRootDirectory()}/.vscode`)
             ? readdirSync(`${projectRootDirectory()}/.vscode`)
-                .filter((file) => file.match(/.*\.(page-template|layout-template)/))
+                .filter((file) => file.match(/.*\.(page-template|layout-template|component-template|composable-template|api-template)/))
             : []
 
+        if (request !== this.request) { return; }
         this.postMessage({
             command: 'projectViewData',
             data: {
@@ -96,11 +118,17 @@ export class ModulesView implements vscode.WebviewViewProvider {
             },
         })
 
+        await this.refreshCatalogue();
         await this.updateModules();
 
-        let outdatedDependencies: any = await getOutdatedPackages()
+        let outdatedDependencies: any;
+        try { outdatedDependencies = await getOutdatedPackages(); } catch (error) {
+            if (request === this.request) { this.postMessage({ command: 'outdatedDependencies', data: [] }); }
+            throw error;
+        }
+        if (request !== this.request) { return; }
 
-        outdatedDependencies = destr(outdatedDependencies)
+        outdatedDependencies = JSON.parse(outdatedDependencies)
 
         if (outdatedDependencies) {
             outdatedDependencies = Object.keys(outdatedDependencies).map((key) => {
@@ -122,76 +150,18 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
-    public runAction (script: string) {
-        const packageManager = detectPackageManagerByName()
-
-        switch (packageManager?.name) {
-            case 'Yarn': {
-                if (script.includes('build') || script.includes('generate')) {
-                    runCommand({
-                        command: `yarn ${script}`,
-                        message: `Nuxtr: ${script}`,
-                        successMessage: `Nuxtr: ${script} successfully`,
-                        errorMessage: `Nuxtr: ${script} failed`,
-                        logger: true
-                    })
-                } else {
-                    const command = capitalize(script)
-                    newTerminal(`Project: ${command}`, `yarn ${script}`, `${projectRootDirectory()}`)
-                }
-                break
-            }
-            case 'NPM': {
-                if (script.includes('build') || script.includes('generate')) {
-                    runCommand({
-                        command: `npm run ${script}`,
-                        message: `Nuxtr: ${script}`,
-                        successMessage: `Nuxtr: ${script} successfully`,
-                        errorMessage: `Nuxtr: ${script} failed`,
-                        logger: true
-                    })
-                } else {
-                    const command = capitalize(script)
-                    newTerminal(`Project: ${command}`, `npm run ${script}`, `${projectRootDirectory()}`)
-                }
-                break
-            }
-            case 'pnpm': {
-                if (script.includes('build') || script.includes('generate')) {
-                    runCommand({
-                        command: `pnpm ${script}`,
-                        message: `Nuxtr: ${script}`,
-                        successMessage: `Nuxtr: ${script} successfully`,
-                        errorMessage: `Nuxtr: ${script} failed`,
-                        logger: true
-                    })
-                } else {
-                    const command = capitalize(script)
-                    newTerminal(`Project: ${command}`, `pnpm ${script}`, `${projectRootDirectory()}`)
-                }
-                break
-            }
-            case 'Bun': {
-                if (script.includes('build') || script.includes('generate')) {
-                    runCommand({
-                        command: `bun --bun run ${script}`,
-                        message: `Nuxtr: ${script}`,
-                        successMessage: `Nuxtr: ${script} successfully`,
-                        errorMessage: `Nuxtr: ${script} failed`,
-                        logger: true
-                    })
-                } else {
-                    const command = capitalize(script)
-                    newTerminal(`Project: ${command}`, `bun ${script}`, `${projectRootDirectory()}`)
-                }
-                break
-            }
-            default: {
-                commands.installDependencies()
-            }
-        }
+    /** Execute a declared script with the selected manager, separating scripts from local CLI actions. */
+    public async runAction (script: string) {
+        if (!Object.hasOwn(getProjectScripts(), script)) { throw new Error('The selected script does not exist in this project.'); }
+        const manager = await choosePackageManager();
+        if (!manager) { return; }
+        const command = managerCommand(manager, 'script', projectRootDirectory(), [script]);
+        if (script.includes('build') || script.includes('generate')) {
+            await runCommand({ command, message: `Nuxtr: ${script}`, successMessage: `${script} finished`, errorMessage: `${script} failed`, logger: true });
+        } else { newTerminal(`Project: ${script}`, terminalCommand(command), command.cwd); }
     }
 
+    /** Send the current project’s installed dependency list to the module view. */
     public async updateModules () {
         const installedModules = await getProjectDependencies()
         this.postMessage({
@@ -200,104 +170,82 @@ export class ModulesView implements vscode.WebviewViewProvider {
         })
     }
 
-    public postMessage (message: any) {
-        if (this._view) {
+    /** Serve offline metadata immediately, refreshing through the host only when explicitly requested. */
+    public async refreshCatalogue (force = false) {
+        if (force) { this.catalogue = await fetchCatalogue(this.context.globalState, this.catalogue); }
+        this.postMessage({ command: 'moduleCatalogue', data: { ...this.catalogue, projectVersion: getNuxtVersion() } });
+    }
+
+    /** Retain navigation until the webview is ready, then deliver events to its mounted page. */
+    public postMessage (message: SidebarEvent) {
+        if (message.command === 'projectView' || message.command === 'modules') {
+            this.project = currentProject();
+            this.route = message.command;
+            this.pendingAction = undefined;
+            this.sendNavigation();
+            return;
+        }
+        if (message.command === 'addModule' || message.command === 'addLayer') {
+            this.project = currentProject();
+            this.route = 'modules';
+            this.pendingAction = message.command;
+            this.sendNavigation();
+            return;
+        }
+        if (this._view && this.webviewReady) {
             this._view.webview.postMessage(message)
         }
     }
 
+    /** Replay page and filter together, including when Vue mounts the destination page. */
+    private sendNavigation () {
+        if (!this._view || !this.webviewReady) { return; }
+        this._view.webview.postMessage({ command: this.route });
+        if (this.pendingAction) { this._view.webview.postMessage({ command: this.pendingAction }); }
+    }
+
+    /** Render the sidebar shell with local JS/CSS asset URIs. */
     private _getHtmlForWebview (webview: vscode.Webview) {
-        const stylesUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.css'])
+        const nonce = getNonce();
+        const stylesUri = getUri(webview, this._extensionUri, ['out', 'sidebar', 'assets', 'index.css'])
         // The JS file from the Vue build output
-        const scriptUri = getUri(webview, this._extensionUri, ['src', 'sidebar', 'build', 'assets', 'index.js'])
+        const scriptUri = getUri(webview, this._extensionUri, ['out', 'sidebar', 'assets', 'index.js'])
 
-        return /*html*/ `
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <meta http-equiv="Content-Security-Policy" content="default-src https://fonts.gstatic.com/ https://fonts.googleapis.com/ https://raw.githubusercontent.com/ https://api.nuxtr.com/  img-src https: data: style-src 'unsafe-inline' ${webview.cspSource} script-src 'nonce-${nonce}'">
-          <link rel="stylesheet" type="text/css" href="${stylesUri}">
-          <title>Nuxtr UI</title>
-        </head>
-        <body>
-          <div id="app"></div>
-          <script type="module" nonce="${nonce}" src="${scriptUri}"></script>
-        </body>
-      </html>
-    `
+        return sidebarHtml({ css: String(stylesUri), js: String(scriptUri), source: webview.cspSource, nonce });
     }
 
-    private async installModule (module: any) {
-        const command = await getInstallationCommand(
-            module.npm,
-            module['dependency-type'] === 'dev' ? true : false
-        )
-        await vscode.window.withProgress(
-            {
-                location: vscode.ProgressLocation.Notification,
-                title: `Installing ${module.npm}...`,
-                cancellable: false,
+    /** Install first, then edit configuration; report an installed package separately from a failed config edit. */
+    private async installModule (module: ModuleMetadata) {
+        const name = canonicalPackageName(module);
+        const metadata = this.catalogue.modules.find(item => item.npm === name);
+        if (metadata && !moduleCompatible(metadata, getNuxtVersion())) {
+            const error = 'This module’s compatibility range does not include the selected Nuxt version. Choose a compatible module or update the project.';
+            this.postMessage({ command: 'moduleInstalled', installed: false, configured: false, cmd: name, error });
+            vscode.window.showErrorMessage(error);
+            return;
+        }
+        module = metadata || module;
+        const result = await installThenConfigure(
+            async () => {
+                const command = await getInstallationCommand(name, moduleIsDevelopment(module));
+                return runCommand({ command, message: `Installing ${name}`, successMessage: `${name} installed`, errorMessage: `Failed to install ${name}`, logger: true });
             },
-            () => {
-                return new Promise((resolve, reject) => {
-                    const child = exec(
-                        command,
-                        { cwd: projectRootDirectory() },
-                        (error: any, stdout: any, stderr: any) => {
-                            if (error) {
-                                reject(error.message)
-                            } else if (stderr) {
-                                reject(stderr)
-                            } else {
-                                resolve(stdout)
-                            }
-                        }
-                    )
-
-                    child.on('exit', (code) => {
-                        if (code === 0) {
-                            this.addNuxtModule(module)
-                        } else {
-                            vscode.window.showErrorMessage(
-                                `${module.npm} is installed but we got an error in configuration, please make sure all modules are configured`
-                            )
-                            this.postMessage({
-                                command: 'moduleInstalled',
-                                installed: false,
-                                cmd: module.npm,
-                            })
-                        }
-                    })
-                })
-            }
-        )
+            () => updateNuxtConfig('add-module', name)
+        );
+        this.postMessage({ command: 'moduleInstalled', installed: result.installed, configured: result.configured, cmd: name, error: result.error ? String(result.error) : undefined });
+        if (!result.installed) { return; }
+        try { await this.updateModules(); }
+        catch (error) { vscode.window.showErrorMessage(`${name} is installed, but refreshing the dependency list failed: ${String(error)}.`); }
+        if (result.configured) { vscode.window.showInformationMessage(`${name} installed and configured.`); }
+        else { vscode.window.showErrorMessage(`${name} is installed, but its Nuxt config edit failed: ${String(result.error)}. Add it manually to modules/extends.`); }
     }
 
-    private async addNuxtModule (module: any) {
-        await updateNuxtConfig('add-module', module)
-        this.postMessage({
-            command: 'moduleInstalled',
-            installed: true,
-            cmd: module.npm,
-        })
-        await vscode.window
-            .showInformationMessage(
-                `${module.npm} is installed successfully and added to Nuxt config`,
-                'Open documentation'
-            )
-            .then((value) => {
-                if (value === 'Open documentation') {
-                    openExternalLink(module.website)
-                }
-            })
-    }
-
+    /** Upgrade a selected module through dependency management. */
     public async upgradeModule (module: any) {
         await managePackageVersion(module)
     }
 
+    /** Remove a Nuxt module and its corresponding configuration entry. */
     public async removeModule (module: any) {
         // show confirmation message
         const confirmation = await vscode.window.showInformationMessage(
@@ -306,10 +254,13 @@ export class ModulesView implements vscode.WebviewViewProvider {
             'No'
         )
         if (confirmation === 'Yes') {
-            await removeNuxtModule(module)
-            await removePackage(module)
+            const name = canonicalPackageName(module);
+            await removePackage(name);
+            try { removeNuxtModule(name); } catch (error) { vscode.window.showErrorMessage(`${name} removed, but configuration cleanup failed: ${String(error)}`); }
+            await this.updateModules();
         }
     }
+    /** Open a project snippet file in the editor. */
     public editSnippet (snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
         if (existsSync(snippetPath)) {
@@ -319,6 +270,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
+    /** Open a project template file in the editor. */
     public editTemplate (snippet: string) {
         const snippetPath = `${projectRootDirectory()}/.vscode/${snippet}`
         if (existsSync(snippetPath)) {
@@ -328,6 +280,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
         }
     }
 
+    /** Confirm and remove an existing project template. */
     public async deleteTemplate (template: string) {
         //  create a confirmation message to delete the template
         const confirmation = await vscode.window.showInformationMessage(
@@ -346,6 +299,7 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     }
 
+    /** Confirm and remove an existing project snippet. */
     public async deleteSnippet (snippet: string) {
         //  create a confirmation message to delete the template
         const confirmation = await vscode.window.showInformationMessage(
@@ -364,54 +318,37 @@ export class ModulesView implements vscode.WebviewViewProvider {
 
     }
 
+    /** Validate and await a sidebar action in the project that supplied the displayed data. */
     private _setWebviewMessageListener (webview: vscode.Webview) {
-        webview.onDidReceiveMessage((message: any) => {
-            const { command, module, script } = message
-            switch (command) {
-                case 'installModule': {
-                    this.installModule(module)
-                    break
+        this.listeners.push(webview.onDidReceiveMessage(async (raw: unknown) => {
+            const message = parseSidebarRequest(raw);
+            if (!message) { return; }
+            try {
+                if (message.command === 'openExternal') { await openExternalLink(message.url); return; }
+                await withProject(this.project || currentProject(), async () => {
+                    switch (message.command) {
+                        case 'refreshCatalogue': { await this.refreshCatalogue(true); break; }
+                        case 'ready': { this.webviewReady = true; this.sendNavigation(); await this.getDependencies(); break; }
+                        case 'installModule': { await this.installModule(message.module); break; }
+                        case 'openPackageReleaseNotes': { await openPackageReleaseNotes(message.name); break; }
+                        case 'runAction': { await this.runAction(message.script); break; }
+                        case 'upgradeModule': { await this.upgradeModule(message.module); break; }
+                        case 'removeModule': { await this.removeModule(message.module); break; }
+                        case 'editSnippet': { this.editSnippet(message.data); break; }
+                        case 'deleteSnippet': { await this.deleteSnippet(message.data); break; }
+                        case 'editTemplate': { this.editTemplate(message.data); break; }
+                        case 'deleteTemplate': { await this.deleteTemplate(message.data); break; }
+                        case 'configureNewSnippet': { await vscode.commands.executeCommand('workbench.action.openSnippets'); break; }
+                        case 'createFileFromTemplate': { await vscode.commands.executeCommand('nuxtr.createFileFromTemplate', message.data); break; }
+                        case 'createEmptyFileTemplate': { await vscode.commands.executeCommand('nuxtr.createEmptyFileTemplate'); break; }
+                    }
+                });
+            } catch (error) {
+                if (message.command === 'installModule') {
+                    this.postMessage({ command: 'moduleInstalled', installed: false, configured: false, cmd: message.module.npm, error: String(error) });
                 }
-                case 'runAction': {
-                    this.runAction(script)
-                    break
-                }
-                case 'upgradeModule': {
-                    this.upgradeModule(module)
-                    break
-                }
-                case 'removeModule': {
-                    this.removeModule(module)
-                    break
-                }
-                case 'editSnippet': {
-                    this.editSnippet(message.data)
-                    break
-                }
-                case 'deleteSnippet': {
-                    this.deleteSnippet(message.data)
-                    break
-                }
-                case 'configureNewSnippet': {
-                    vscode.commands.executeCommand('workbench.action.openSnippets')
-                    break
-                }
-                case 'editTemplate': {
-                    this.editTemplate(message.data)
-                    break
-                }
-                case 'deleteTemplate': {
-                    this.deleteTemplate(message.data)
-                    break
-                }
-                case 'createFileFromTemplate': {
-                    vscode.commands.executeCommand('nuxtr.createFileFromTemplate', message.data)
-                    break
-                }
-                case 'createEmptyFileTemplate': {
-                    vscode.commands.executeCommand('nuxtr.createEmptyFileTemplate')
-                }
+                vscode.window.showErrorMessage(String(error));
             }
-        })
+        }));
     }
 }

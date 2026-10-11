@@ -6,9 +6,23 @@
 
 .vscode-test/**
 src/**
-!src/sideBar/build/**
 vsc-extension-quickstart.md
 **/tsconfig.json
 **/eslint.config.mjs
 **/*.map
 **/*.ts
+/PLAN.md
+/PROGRESS.md
+PLAN.md
+PROGRESS.md
+**/*.tsbuildinfo
+scripts/**
+tests/**
+.artifacts/**
+
+**/*.mts
+pnpm-lock.yaml
+pnpm-workspace.yaml
+.node-version
+.npmrc
+knip.ts

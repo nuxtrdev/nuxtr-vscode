@@ -1,13 +1,26 @@
+/** Register Nuxt project commands, sidebar, status indicators and owned project watchers. */
 import { ExtensionContext, Uri, commands, window } from 'vscode';
+import { activateTerminals } from './services/terminals';
+import { activateSnippets } from './snippets';
+import { wrapWithNuxtComponent } from './commands/wrapComponent';
+import { projectHealthCheck } from './commands/projectHealth';
+import { selectProject, withProject } from './services/project';
 import nuxtrCommands from './commands'
 import { ModulesView } from './sideBar'
-import { logger, updateDependencies } from './utils';
+import { logger, projectRootDirectory, updateDependencies } from './utils';
 import codelens from './codelens'
 import { activateStatusBarIcons, statusBars } from './statusBar'
 import { activateIntellisense } from './intellisense'
-import { filesWatcher } from './watchers';
+import { activateConfigWatchers, filesWatcher } from './watchers';
 
 const extensionCommands = [
+    { command: 'nuxtr.wrapWithNuxtComponent', function: wrapWithNuxtComponent },
+    { command: 'nuxtr.projectHealthCheck', function: projectHealthCheck },
+    { command: 'nuxtr.createNitroTask', function: () => nuxtrCommands.createNitroTask() },
+    // Keybindings and command history can invoke the Explorer action without a folder URI.
+    { command: 'nuxtr.directCreateNitroTask', function: (resource?: Uri) => resource
+        ? nuxtrCommands.directCreateNitroTask(resource.fsPath) : nuxtrCommands.createNitroTask() },
+    { command: 'nuxtr.enableNitroTasks', function: nuxtrCommands.enableNitroTasks },
     { command: 'nuxtr.createPage', function: nuxtrCommands.createPage },
     { command: 'nuxtr.createComponent', function: nuxtrCommands.createComponent },
     { command: 'nuxtr.createComposable', function: nuxtrCommands.createComposable },
@@ -48,16 +61,16 @@ const extensionCommands = [
     { command: 'nuxtr.createFileFromTemplate', function: (template: string) => nuxtrCommands.createFileFromTemplate(template) },
     { command: 'nuxtr.directUpgradeNuxt', function: async () => await nuxtrCommands.upgradePackage('nuxt') },
     { command: 'nuxtr.managePackageVersion', function: async () => await nuxtrCommands.managePackageVersion('nuxt') },
-    { command: 'nuxtr.directCreatePage', function: async (filePath: Uri) => await nuxtrCommands.directCreatePage(filePath.path) },
-    { command: 'nuxtr.directCreateComponent', function: async (filePath: Uri) => await nuxtrCommands.directCreateComponent(filePath.path) },
-    { command: 'nuxtr.directCreateComposable', function: (filePath: Uri) => nuxtrCommands.directCreateComposable(filePath.path) },
-    { command: 'nuxtr.directCreateLayout', function: (filePath: Uri) => nuxtrCommands.directCreateLayout(filePath.path) },
-    { command: 'nuxtr.directCreatePlugin', function: (filePath: Uri) => nuxtrCommands.directCreatePlugin(filePath.path) },
-    { command: 'nuxtr.directCreateMiddleware', function: (filePath: Uri) => nuxtrCommands.directCreateMiddleware(filePath.path) },
-    { command: 'nuxtr.directCreateNitroAPI', function: (filePath: Uri) => nuxtrCommands.directCreateNitroAPI(filePath.path) },
-    { command: 'nuxtr.directCreateNitroRoute', function: (filePath: Uri) => nuxtrCommands.directCreateNitroRoute(filePath.path) },
-    { command: 'nuxtr.directCreateStore', function: (filePath: Uri) => nuxtrCommands.directCreateStore(filePath.path) },
-    { command: 'nuxtr.directCreateUtil', function: (filePath: Uri) => nuxtrCommands.directCreateUtil(filePath.path) },
+    { command: 'nuxtr.directCreatePage', function: async (filePath: Uri) => await nuxtrCommands.directCreatePage(filePath.fsPath) },
+    { command: 'nuxtr.directCreateComponent', function: async (filePath: Uri) => await nuxtrCommands.directCreateComponent(filePath.fsPath) },
+    { command: 'nuxtr.directCreateComposable', function: (filePath: Uri) => nuxtrCommands.directCreateComposable(filePath.fsPath) },
+    { command: 'nuxtr.directCreateLayout', function: (filePath: Uri) => nuxtrCommands.directCreateLayout(filePath.fsPath) },
+    { command: 'nuxtr.directCreatePlugin', function: (filePath: Uri) => nuxtrCommands.directCreatePlugin(filePath.fsPath) },
+    { command: 'nuxtr.directCreateMiddleware', function: (filePath: Uri) => nuxtrCommands.directCreateMiddleware(filePath.fsPath) },
+    { command: 'nuxtr.directCreateNitroAPI', function: (filePath: Uri) => nuxtrCommands.directCreateNitroAPI(filePath.fsPath) },
+    { command: 'nuxtr.directCreateNitroRoute', function: (filePath: Uri) => nuxtrCommands.directCreateNitroRoute(filePath.fsPath) },
+    { command: 'nuxtr.directCreateStore', function: (filePath: Uri) => nuxtrCommands.directCreateStore(filePath.fsPath) },
+    { command: 'nuxtr.directCreateUtil', function: (filePath: Uri) => nuxtrCommands.directCreateUtil(filePath.fsPath) },
 ];
 
 export const publicCommands = [
@@ -65,24 +78,30 @@ export const publicCommands = [
 ];
 
 
-// categorize commands and functions
-export function activateExtension (context: ExtensionContext) {
+/** Activate project services once; all registrations are owned by the extension context. */
+export async function activateExtension (context: ExtensionContext) {
     // initial output channel logger
+    context.subscriptions.push(logger);
     logger.log('Nuxtr is active')
+    await activateSnippets(context);
+    activateTerminals(context);
 
     // global state command
     context.subscriptions.push(commands.registerCommand('nuxtr.globalState', ({ update, name, value }) => {
         if (update) {
-            context.globalState.update(name, value)
-            return
+            return context.globalState.update(name === 'outdatedDependencies' ? name + ':' + projectRootDirectory() : name, value)
+
         } else {
-            return context.globalState.get(name)
+            return context.globalState.get(name === 'outdatedDependencies' ? name + ':' + projectRootDirectory() : name)
         }
     }))
 
 
-    const sidebarProvider = new ModulesView(context.extensionUri)
+    const sidebarProvider = new ModulesView(context.extensionUri, context)
+    context.subscriptions.push(sidebarProvider);
 
+
+    activateConfigWatchers(context);
 
     // Initialize file watchers
     new filesWatcher(sidebarProvider, context, statusBars.updatesStatusBar)
@@ -94,17 +113,20 @@ export function activateExtension (context: ExtensionContext) {
     activateIntellisense(context)
 
     // activate codelens
-    codelens.activateCodelenses()
+    codelens.activateCodelenses(context)
 
     for (const { command, function: commandFunction } of extensionCommands) {
-        context.subscriptions.push(commands.registerCommand(command, commandFunction));
+        context.subscriptions.push(commands.registerCommand(command, async (...args: any[]) => {
+            try {
+                const project = await selectProject(args.find(arg => arg instanceof Uri));
+                if (!project) { return; }
+                return await withProject(project, () => (commandFunction as (...args: any[]) => any)(...args));
+            } catch (error) { window.showErrorMessage(String(error)); }
+        }));
     }
 
-    for (const { command, function: commandFunction } of publicCommands) {
-        context.subscriptions.push(commands.registerCommand(command, commandFunction));
-    }
 
-    context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', () => sidebarProvider.updateModules()))
+    context.subscriptions.push(commands.registerCommand('nuxtr.refreshModules', async () => { await sidebarProvider.refreshCatalogue(true); await sidebarProvider.updateModules(); }))
 
     context.subscriptions.push(window.registerWebviewViewProvider('nuxtrSidebar', sidebarProvider))
 
@@ -117,37 +139,21 @@ export function activateExtension (context: ExtensionContext) {
         })
     )
 
-    // nuxtr.sidebarModulesView
-    context.subscriptions.push(
-        commands.registerCommand('nuxtr.sidebarModulesView', async () => {
-            await commands.executeCommand('workbench.view.extension.sidebar-view').then(() => {
-                setTimeout(() => {
-                    sidebarProvider.postMessage({ command: 'modules' })
-                    sidebarProvider.updateModules()
-                }, 50)
-            })
-        })
-    )
-
-    // nuxtr.addModule command for codelens action
-    context.subscriptions.push(
-        commands.registerCommand('nuxtr.createModuleAction', async () => {
-            await commands.executeCommand('nuxtr.sidebarModulesView').then(() => {
-                setTimeout(() => {
-                    sidebarProvider.postMessage({ command: 'addModule' })
-                }, 50)
-            })
-        })
-    )
-
-    // nuxtr.createLayer command for codelens action
-    context.subscriptions.push(
-        commands.registerCommand('nuxtr.createLayer', async () => {
-            await commands.executeCommand('nuxtr.sidebarModulesView').then(() => {
-                setTimeout(() => {
-                    sidebarProvider.postMessage({ command: 'addLayer' })
-                }, 50)
-            })
-        })
-    )
+    // Navigation state is retained until the webview's ready handshake arrives.
+    context.subscriptions.push(commands.registerCommand('nuxtr.sidebarModulesView', async () => {
+        sidebarProvider.postMessage({ command: 'modules' });
+        await commands.executeCommand('workbench.view.extension.sidebar-view');
+        await sidebarProvider.updateModules();
+    }));
+    for (const [command, action] of [['nuxtr.createModuleAction', 'addModule'], ['nuxtr.createLayer', 'addLayer']] as const) {
+        context.subscriptions.push(commands.registerCommand(command, async (resource?: Uri) => {
+            const project = await selectProject(resource);
+            if (!project) { return; }
+            await withProject(project, async () => {
+                sidebarProvider.postMessage({ command: action });
+                await commands.executeCommand('workbench.view.extension.sidebar-view');
+                await sidebarProvider.updateModules();
+            });
+        }));
+    }
 }

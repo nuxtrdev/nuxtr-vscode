@@ -1,5 +1,6 @@
+<!-- Show a section’s expanded state without conflicting Tailwind rotation classes. -->
 <template>
-    <svg class="h-3 w-3 -rotate-90 transition-all duration-200" :class="{ 'rotate-0': listOpen }" viewBox="0 0 11 7" fill="none"
+    <svg class="h-3 w-3 transition-all duration-200" :class="listOpen ? 'rotate-0' : '-rotate-90'" viewBox="0 0 11 7" fill="none"
         xmlns="http://www.w3.org/2000/svg">
         <path d="M1 1L5.5 5.5L10 1" stroke="currentColor" stroke-width="1.38" stroke-linecap="round" stroke-linejoin="round" />
     </svg>

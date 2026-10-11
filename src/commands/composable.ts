@@ -1,11 +1,12 @@
+/** Prompt for and scaffold composable files in the selected project’s resolved directories. */
+import { scaffoldFileName } from '../core/templates';
+import { projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
-import { composableTemplate } from '../templates'
-import { createDir, createFile, createSubFolders, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+import { createDir, createFile, createSubFolders, generateScaffoldTemplate, nuxtrConfiguration, showSubFolderQuickPick } from '../utils'
 
-const neglectUsePrefix = (name: string) => name.replace(/^use/i, '')
-
+/** Prompt for a composable name and create its configured template under the resolved Nuxt directory. */
 const createComposable = () => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your composable name?',
             placeHolder: 'composable name',
@@ -14,24 +15,25 @@ const createComposable = () => {
 
             if (!name) { return }
 
-            const composablesDir = `${await projectSrcDirectory()}/composables`
+            const composablesDir = projectDirectory('composables')
 
-            createDir('composables')
+            await createDir('composables')
 
             const subFolders = await createSubFolders(composablesDir, 'composables')
 
-            showSubFolderQuickPick({
-                name,
+            return showSubFolderQuickPick({
+                name: scaffoldFileName(name, 'composable', nuxtrConfiguration().scaffolding.defaultLanguage, nuxtrConfiguration().scaffolding.composableUsePrefix),
                 subFolders,
                 commandType: 'composables',
-                content: composableTemplate(neglectUsePrefix(name)),
+                content: generateScaffoldTemplate('composable', name),
             })
 
         })
 }
 
+/** Create a file in the Explorer folder supplied by the command. */
 const directCreateComposable = (path: string) => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your composable name?',
             placeHolder: 'composable name',
@@ -39,11 +41,11 @@ const directCreateComposable = (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${scaffoldFileName(name, 'composable', nuxtrConfiguration().scaffolding.defaultLanguage, nuxtrConfiguration().scaffolding.composableUsePrefix)}`
 
-            createFile({
+            return createFile({
                 fileName: `${name}.ts`,
-                content: composableTemplate(neglectUsePrefix(name)),
+                content: generateScaffoldTemplate('composable', name),
                 fullPath: filePath,
             })
         })

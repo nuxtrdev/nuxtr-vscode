@@ -1,12 +1,13 @@
+<!-- Display declared dependencies, versions and host-managed upgrade/removal actions. -->
 <template>
     <div class="my-0.5 flex w-full select-none flex-col items-center text-[var(--vscode-foreground)]">
-        <div class="flex w-full cursor-pointer flex-row items-center" @click="expandSection">
+        <button type="button" :aria-expanded="isSectionOpened" class="flex w-full cursor-pointer flex-row items-center" @click="expandSection">
             <IconChevron class="h-2.5 w-2.5" :listOpen="isSectionOpened" />
             <div class="mx-2.5 flex flex-1 flex-row items-center gap-2 hover:bg-[var(--vscode-list-hoverBackground)]">
                 <IconNPM class="h-4 w-4" />
                 <p class="text-sm font-medium">Dependencies</p>
             </div>
-        </div>
+        </button>
         <Transition name="slide-down-fade">
             <div v-if="isSectionOpened" class="mx-auto mb-2.5 mt-1 w-11/12 px-2" :class="{ showing: isSectionOpened, hidden: !isSectionOpened }">
                 <div v-for="(module, i) in dependencies" :key="i"
@@ -34,6 +35,7 @@
                     </div>
 
                     <div class="flex items-center gap-2">
+                        <button v-if="outdated?.some((update: any) => update.name === module.name)" class="text-xs text-[var(--vscode-textLink-foreground)]" :aria-label="`Release notes for ${module.name}`" @click="releaseNotes(module.name)">Release notes</button>
                         <button class="hidden cursor-pointer hover:opacity-80 group-hover:block group-hover:font-medium"
                             @click="removeModule(module.name)">
                             <IconTrash class="h-4 w-4" />
@@ -50,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, PropType, computed } from "vue";
+import { ref, PropType } from "vue";
 import IconChevron from "../../Icons/Chevron.vue";
 import IconUpgrade from "../../Icons/Upgrade.vue";
 import IconTrash from "../../Icons/Trash.vue";
@@ -59,6 +61,7 @@ import IconModule from "../../Icons/Module.vue";
 import { vscode } from "../../../utilities/vscode";
 
 const isSectionOpened = ref(false);
+/** Expand or collapse the dependency section. */
 const expandSection = () => {
     isSectionOpened.value = !isSectionOpened.value;
 };
@@ -88,19 +91,23 @@ defineProps({
     },
 });
 
-const upgradeModule = (module: Object) => {
+/** Request an upgrade through the selected project manager. */
+const upgradeModule = (module: string) => {
     vscode.postMessage({
         command: "upgradeModule",
-        module: module,
+        module,
     });
 };
 
-const removeModule = (module: Object) => {
+/** Request confirmed removal through the selected project manager. */
+const removeModule = (module: string) => {
     vscode.postMessage({
         command: "removeModule",
-        module: module,
+        module,
     });
 };
+/** Open verified repository releases, with an npm page fallback. */
+function releaseNotes (name: string) { vscode.postMessage({ command: 'openPackageReleaseNotes', name }); }
 </script>
 
 <style>

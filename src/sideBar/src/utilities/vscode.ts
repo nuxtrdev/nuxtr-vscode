@@ -1,3 +1,5 @@
+/** Provide a typed host-message bridge and persistent state in VS Code or local previews. */
+import { type SidebarRequest, parseSidebarRequest } from '../../../core/messages';
 import type { WebviewApi } from 'vscode-webview';
 
 /**
@@ -12,6 +14,7 @@ import type { WebviewApi } from 'vscode-webview';
 class VSCodeAPIWrapper {
     private readonly vsCodeApi: WebviewApi<unknown> | undefined;
 
+    /** Acquire the webview API once, falling back to browser storage for previews. */
     constructor () {
         // Check if the acquireVsCodeApi function exists in the current development
         // context (i.e. VS Code development window or web browser)
@@ -21,18 +24,21 @@ class VSCodeAPIWrapper {
     }
 
     /**
-     * Post a message (i.e. send arbitrary data) to the owner of the webview.
+     * Validate and rebuild a plain request before crossing the webview's structured-clone boundary.
+     * Vue catalogue objects can be reactive proxies, which the VS Code transport cannot clone.
      *
      * @remarks When running webview code inside a web browser, postMessage will instead
      * log the given message to the console.
      *
-     * @param message Abitrary data (must be JSON serializable) to send to the extension context.
+     * @param message A typed request; only validated primitive metadata is forwarded to the extension host.
      */
-    public postMessage (message: unknown) {
+    public postMessage (message: SidebarRequest) {
+        const request = parseSidebarRequest(message);
+        if (!request) { throw new Error('Invalid sidebar request.'); }
         if (this.vsCodeApi) {
-            this.vsCodeApi.postMessage(message);
+            this.vsCodeApi.postMessage(request);
         } else {
-            console.log(message);
+            console.log(request);
         }
     }
 

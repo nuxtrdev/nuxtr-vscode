@@ -1,33 +1,52 @@
+# Validate extension, sidebar and packaged assets across host platforms and VS Code releases.
 name: ci
-
 on:
+  workflow_dispatch:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
-    branches:
-      - main
-
+    branches: [main]
+permissions:
+  contents: read
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  validate:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        vscode: ['1.141.0', stable]
+    runs-on: ${{ matrix.os }}
+    env:
+      VSCODE_TEST_VERSION: ${{ matrix.vscode }}
+      NUXTR_ARTIFACT_DIR: ${{ github.workspace }}/.artifacts/release-confidence
     steps:
-      - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
-      - run: corepack enable
-      - uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          node-version: 20
-          cache: "pnpm"
-
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
-
-      - name: Typecheck
-        run: pnpm typecheck
-
-      - name: Build
-        run: pnpm build
-
-      - name: lint
-        run: pnpm lint
+          fetch-depth: 0
+      - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
+        with:
+          version: 12.10.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 24.20.0
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Install isolated browser dependencies
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Validate under Linux display server
+        if: runner.os == 'Linux'
+        run: xvfb-run -a node scripts/ci-validate.cjs
+      - name: Validate on Windows and macOS
+        if: runner.os != 'Linux'
+        run: node scripts/ci-validate.cjs
+      - name: Generated Nuxt project fixtures
+        if: runner.os == 'Linux' && matrix.vscode == '1.141.0'
+        run: node scripts/ci-validate.cjs fixtures
+      - name: Retain validation evidence and tested package
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-confidence-${{ matrix.os }}-${{ matrix.vscode }}
+          path: .artifacts/release-confidence/
+          retention-days: 14
+          if-no-files-found: warn

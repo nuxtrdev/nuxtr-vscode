@@ -1,476 +1,137 @@
-import { destr } from 'destr';
-import { exec } from 'node:child_process';
-import { existsSync, readFileSync, readdirSync } from 'node:fs';
-import { readPackageJSON } from 'pkg-types';
-import { ProgressLocation, QuickPickItem, QuickPickOptions, StatusBarItem, commands, window } from 'vscode';
-import { newTerminal } from '.';
-import { installDependencies } from '../commands/installDependencies';
-import pm from '../content/pm';
+/** Inspect project dependencies and run package actions through shared detection and complete process results. */
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+import semver from 'semver';
+import { applyCatalogUpdate, prepareCatalogUpdate, resolveDependency } from '../core/catalogs';
+import { StatusBarItem, commands, window } from 'vscode';
+import { ManagerName, detectManager, managerCommand, managers } from '../core/managers';
+import { executeCommand, requireSuccess } from '../core/process';
+import { currentProject } from '../services/project';
 import { nuxtrConfiguration, projectRootDirectory, runCommand } from './global';
 
+export interface Dependency { name: string; version: string; specifier: string; dev: boolean; }
+export interface OutdatedDependency { name: string; current?: string; latest: string; wanted?: string; }
 
-const items: QuickPickItem[] = pm.map((item) => {
-    return {
-        label: item.name,
+/** Read declared dependency groups without losing the original specifier or development/runtime classification. */
+export function getProjectDependencies (): Promise<Dependency[]> {
+    const path = join(projectRootDirectory(), 'package.json');
+    if (!existsSync(path)) { return Promise.resolve([]); }
+    const manifest = JSON.parse(readFileSync(path, 'utf8'));
+    const result: Dependency[] = [];
+    for (const [dev, values] of [[false, manifest.dependencies], [true, manifest.devDependencies]] as const) {
+        for (const [name, specifier] of Object.entries(values || {}) as [string, string][]) {
+            result.push({ name, version: resolveDependency(projectRootDirectory(), name, specifier).version || specifier, specifier, dev });
+        }
     }
-})
+    return Promise.resolve(result);
+}
 
-interface Dependency { name: string; version: string; }
+/** Resolve the nearest project/workspace package manager and the configured fallback consistently. */
+export function detectPackageManagerByName () {
+    const fallback = nuxtrConfiguration().defaultPackageManager;
+    const name = detectManager(projectRootDirectory(), fallback === 'null' ? undefined : fallback);
+    if (!name) { return; }
+    const executable = { NPM: 'npm', Yarn: 'yarn', Bun: 'bun', pnpm: 'pnpm' }[name];
+    return { name, installCommand: executable + (name === 'NPM' ? ' install' : ' add'), uninstallCommand: executable + (name === 'NPM' ? ' uninstall' : ' remove'), runCommand: executable + ' run', lockFile: { Bun: 'bun.lock', pnpm: 'pnpm-lock.yaml', Yarn: 'yarn.lock', NPM: 'package-lock.json' }[name] };
+}
 
-export const getProjectDependencies = async (): Promise<Dependency[]> => {
-    const dependencies: Dependency[] = [];
+/** Ask for a manager only when neither workspace metadata nor the explicit fallback resolves it. */
+export async function choosePackageManager (): Promise<ManagerName | undefined> {
+    const detected = detectPackageManagerByName();
+    if (detected) { return detected.name; }
+    const selection = await window.showQuickPick(managers, { placeHolder: 'Select this project’s package manager' });
+    return managers.find(manager => manager === selection);
+}
 
-    const packageJsonPath = `${projectRootDirectory()}/package.json`
+/** Produce a legacy command string for scaffold callers; shared execution turns these tokens into argument arrays. */
+export async function getInstallationCommand (packageName: string, devFlag: boolean): Promise<string> {
+    const manager = await choosePackageManager();
+    if (!manager) { throw new Error('Package installation cancelled.'); }
+    const command = managerCommand(manager, 'add', projectRootDirectory(), packageName.trim().split(/\s+/), devFlag);
+    return [command.executable, ...command.args].join(' ');
+}
 
-    if (existsSync(packageJsonPath)) {
+/** Collect and normalize npm/pnpm outdated JSON, including empty output and pnpm's array format. */
+export async function getOutdatedPackages (): Promise<string> {
+    const manager = detectPackageManagerByName()?.name || 'NPM';
+    const result = requireSuccess(await executeCommand(managerCommand(manager, 'outdated', projectRootDirectory())));
+    const output = result.stdout.trim();
+    if (!output) {
+        if (result.exitCode !== 0) { throw new Error(result.stderr || 'Outdated command failed without JSON output.'); }
+        return '{}';
+    }
+    const parsed = JSON.parse(output);
+    const values = Array.isArray(parsed) ? Object.fromEntries(parsed.map(item => [item.packageName || item.name, item])) : parsed;
+    if (!values || typeof values !== 'object' || values.error) { throw new Error('The package manager returned invalid outdated data.'); }
+    return JSON.stringify(values);
+}
 
-        const packageJSON = await readPackageJSON(packageJsonPath)
+/** Read script definitions from the selected project, returning an empty map for a missing manifest. */
+export function getProjectScripts (): Record<string, string> {
+    const path = join(projectRootDirectory(), 'package.json');
+    return existsSync(path) ? JSON.parse(readFileSync(path, 'utf8')).scripts || {} : {};
+}
 
-        const addDependencies = (depObj: Record<string, string>) => {
-
-            dependencies.push(
-                ...Object.keys(depObj).map((key) => ({
-                    name: key,
-                    // @ts-ignore
-                    version: depObj[key].replace(/[\^~]/, ''),
-                }))
-            );
-        };
-
-        if (packageJSON?.dependencies) {
-            addDependencies(packageJSON.dependencies,);
-        }
-
-        if (packageJSON?.devDependencies) {
-            addDependencies(packageJSON.devDependencies);
-        }
-
-        return dependencies
-    } else {
-        return dependencies
+/** Store update data and always settle the status indicator, including command/parse failures. */
+export async function dependenciesUpdatesHandler (status: StatusBarItem) {
+    try {
+        const values = JSON.parse(await getOutdatedPackages());
+        const updates: OutdatedDependency[] = Object.entries(values).map(([name, data]) => ({ name, ...(data as object) } as OutdatedDependency));
+        await commands.executeCommand('nuxtr.globalState', { update: true, name: 'outdatedDependencies', value: updates });
+        status.text = '$(nuxtr-npm) ' + updates.length;
+        status.tooltip = updates.length > 0 ? `${updates.length} dependency updates available` : 'Dependencies are up to date';
+        status.command = updates.length > 0 ? 'nuxtr.updateDependencies' : undefined;
+    } catch (error) {
+        status.text = '$(warning)'; status.tooltip = String(error); status.command = undefined;
     }
 }
 
-export const getOutdatedPackages = async () => {
-    const packageManager = detectPackageManagerByName()
-
-    let checkingVersionCommand: string = ''
-
-
-    const pm = packageManager && packageManager.name === 'pnpm' ? 'pnpm' : 'npm'
-    checkingVersionCommand = `${pm} outdated --json`
-
-
-    const child = exec(
-        checkingVersionCommand,
-        { cwd: projectRootDirectory() },
-        (error: any, stdout: any) => {
-            const outdatedDependencies = destr(stdout)
-            return outdatedDependencies
+/** Install a requested version while preserving an existing dependency's development/runtime group. */
+export async function installPackageVersion (name: string, version: string) {
+    if (!semver.valid(version) && version !== 'latest') { throw new Error('Select a valid package version.'); }
+    const manager = await choosePackageManager();
+    if (!manager) { return; }
+    const existing = (await getProjectDependencies()).find(dependency => dependency.name === name);
+    if (existing?.specifier.startsWith('catalog:')) {
+        let target = version;
+        if (target === 'latest') {
+            const result = requireSuccess(await executeCommand({ executable: 'npm', args: ['view', name, 'version', '--json'], cwd: projectRootDirectory() }));
+            target = JSON.parse(result.stdout);
         }
-    )
-
-    // use await here to wait for the result of the exec function
-    const result = await new Promise((resolve) => {
-        child.stdout?.on('data', (data) => {
-            resolve(data)
-        })
+        const update = prepareCatalogUpdate(projectRootDirectory(), name, existing.specifier, target);
+        const choice = await window.showInformationMessage(`Updating ${existing.specifier || 'catalog:default'} affects every workspace package referencing ${name}.`, 'Update catalog');
+        if (choice !== 'Update catalog') { return; }
+        await applyCatalogUpdate(update, () => runCommand({ command: managerCommand('pnpm', 'install', currentProject().packageManagerRoot), message: `Updating ${name} catalog`, successMessage: `${name} catalog updated`, errorMessage: 'Catalog installation failed; the catalog edit will be restored', logger: true }));
+        return;
     }
-    )
-
-    return result
+    await runCommand({ command: managerCommand(manager, 'add', projectRootDirectory(), [`${name}@${version}`], existing?.dev ?? true), message: `Installing ${name}@${version}`, successMessage: `${name} installed`, errorMessage: `Failed to install ${name}`, logger: true });
 }
 
-export const getProjectScripts = () => {
-    const packageJsonPath = `${projectRootDirectory()}/package.json`
-
-    if (existsSync(packageJsonPath)) {
-        const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'))
-        const scripts = {
-            ...packageJson.scripts,
-        }
-        return scripts
-    } else {
-        return
-    }
+/** Prompt for dependency updates and install each package with its original dependency group. */
+export async function updateDependencies () {
+    const values = JSON.parse(await getOutdatedPackages());
+    const updates: OutdatedDependency[] = Object.entries(values).map(([name, value]) => ({ name, ...(value as object) } as OutdatedDependency));
+    const selection = await window.showQuickPick(updates.map(update => ({ label: update.name, description: `${update.current || 'unknown'} → ${update.latest}`, update })), { canPickMany: true, placeHolder: 'Select packages to update' });
+    for (const item of selection || []) { await installPackageVersion(item.update.name, item.update.latest); }
 }
 
+/** Upgrade one package to the registry's current stable release, awaiting success before returning. */
+export async function upgradePackage (name: string) { await installPackageVersion(name, 'latest'); }
 
-export const detectPackageManagerByName = () => {
-    const projectDirectory = readdirSync(`${projectRootDirectory()}`)
-
-    if (projectDirectory.includes('package-lock.json')) {
-        return {
-            name: 'NPM',
-            lockFile: 'package-lock.json',
-            installCommand: 'npm install',
-            uninstallCommand: 'npm uninstall',
-            runCommand: 'npm run',
-        }
-    }
-
-    if (projectDirectory.includes('yarn.lock')) {
-        return {
-            name: 'Yarn',
-            lockFile: 'yarn.lock',
-            installCommand: 'yarn add',
-            uninstallCommand: 'yarn remove',
-            runCommand: 'yarn',
-        }
-    }
-
-    if (projectDirectory.includes('pnpm-lock.yaml')) {
-        return {
-            name: 'pnpm',
-            lockFile: 'pnpm-lock.yaml',
-            installCommand: 'pnpm install',
-            uninstallCommand: 'pnpm remove',
-            runCommand: 'pnpm',
-        }
-    }
-
-    if (projectDirectory.includes('bun.lockb')) {
-        return {
-            name: 'Bun',
-            lockFile: 'bun.lockb',
-            installCommand: 'bun install',
-            uninstallCommand: 'bun remove',
-            runCommand: 'bun',
-        }
-    }
-
-    return undefined
+/** Fetch published versions with complete output, then install the selected version without changing its dependency group. */
+export async function managePackageVersion (name: string) {
+    const result = requireSuccess(await executeCommand({ executable: 'npm', args: ['view', name, 'versions', '--json'], cwd: projectRootDirectory() }));
+    const parsed = JSON.parse(result.stdout);
+    const versions = (Array.isArray(parsed) ? parsed : [parsed]).filter(version => semver.valid(version)).reverse();
+    const selection = await window.showQuickPick(versions, { placeHolder: `Select a ${name} version` });
+    if (selection) { await installPackageVersion(name, selection); }
 }
 
-export const getInstallationCommand = async (packageName: string, devFlag: boolean) => {
-    const packageManager = detectPackageManagerByName()
-
-    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
-
-    const installationCommand: any = {
-        Yarn: `yarn add ${packageName} ${devFlag ? '-D' : ''}`,
-        NPM: `npm install ${packageName} ${devFlag ? '-D' : ''}`,
-        pnpm: `pnpm add ${packageName} ${devFlag ? '-D' : ''}`,
-        Bun: `bun install ${packageName} ${devFlag ? '-D' : ''}`,
-    }
-
-    if (packageManager) {
-        return installationCommand[packageManager.name]
-    }
-
-    if (defaultPackageManager !== 'null') {
-        return installationCommand[defaultPackageManager]
-    }
-
-    if (defaultPackageManager === 'null') {
-        const items: QuickPickItem[] = pm.map((item) => {
-            return {
-                label: item.name,
-            }
-        })
-        const options: QuickPickOptions = {
-            canPickMany: false,
-            ignoreFocusOut: true,
-            placeHolder: 'No package manager detected. Chose one!',
-        }
-        const selectedPackageManager = await window
-            .showQuickPick(items, options)
-            .then((name) => {
-                if (name) {
-                    const command = pm.find((item) => item.name === name.label)?.name
-                    if (command) {
-                        return installationCommand[command]
-                    }
-                }
-            })
-        return selectedPackageManager
-    }
+/** Remove a dependency with the same manager selection and awaited progress used for installation. */
+export async function removePackage (name: string): Promise<void> {
+    const manager = await choosePackageManager();
+    if (manager) { await runCommand({ command: managerCommand(manager, 'remove', projectRootDirectory(), [name]), message: `Removing ${name}`, successMessage: `${name} removed`, errorMessage: `Failed to remove ${name}`, logger: true }); }
 }
 
-
-export const dependenciesUpdatesHandler = async (updatesStatusBar: StatusBarItem) => {
-    let outdatedDependencies: any = await getOutdatedPackages()
-
-    outdatedDependencies = destr(outdatedDependencies)
-
-    outdatedDependencies = Object.keys(outdatedDependencies).map((key) => {
-        return {
-            current: outdatedDependencies[key].current,
-            latest: outdatedDependencies[key].latest,
-            wanted: outdatedDependencies[key].wanted,
-            dependent: outdatedDependencies[key].dependent,
-            name: key,
-        }
-    })
-
-    await commands.executeCommand('nuxtr.globalState', { update: true, name: 'outdatedDependencies', value: outdatedDependencies })
-
-    const updates = outdatedDependencies.length
-
-    if (updates) {
-        updatesStatusBar.command = 'nuxtr.updateDependencies'
-        updatesStatusBar.tooltip = `Nuxt Dependencies: ${updates} outdated dependencies`
-        updatesStatusBar.text = '$(nuxtr-npm) ' + updates
-    } else {
-        updatesStatusBar.tooltip = 'Nuxt Dependencies: Up to date'
-        updatesStatusBar.text = '$(nuxtr-npm) ' + updates
-
-    }
-}
-
-export const updateDependencies = async () => {
-    const packageManager = detectPackageManagerByName()
-
-    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
-
-    const outdatedDependenciesList: any = await commands.executeCommand('nuxtr.globalState', { name: 'outdatedDependencies' })
-
-    const updateCommand: any = {
-        NPM: 'npm install',
-        Yarn: 'yarn add',
-        pnpm: 'pnpm add',
-        Bun: 'bun add',
-    }
-
-    const command = packageManager ? updateCommand[packageManager.name] : (updateCommand[defaultPackageManager] === null ? updateCommand.NPM : updateCommand[defaultPackageManager])
-
-    const items: QuickPickItem[] = outdatedDependenciesList.map((item: any) => {
-        return {
-            label: item.name,
-            description: `${item.current} -> ${item.latest}`,
-        }
-    })
-
-    const options: QuickPickOptions = {
-        canPickMany: true,
-        ignoreFocusOut: true,
-        placeHolder: 'Select packages to update',
-    }
-
-    const selectedPackages: any = await window.showQuickPick(items, options)
-
-    if (selectedPackages && selectedPackages.length > 0) {
-        const packagesToUpdate = selectedPackages.map((item: any) => {
-            return item.label + '@' + outdatedDependenciesList.find((dependency: any) => dependency.name === item.label).latest
-        })
-
-        if (command === undefined) {
-            const response = await window.showErrorMessage(
-                'No lockfiles found. Install dependencies first?',
-                'Install',
-                'Close'
-            )
-            if (response === 'Install') {
-                installDependencies()
-            }
-        } else {
-            await runCommand({
-                command: `${command} ${packagesToUpdate.join(' ')}`,
-                message: `Updating ${packagesToUpdate.length > 1 ? packagesToUpdate.join(' | ') : packagesToUpdate.join(' ')}`,
-                successMessage: `${packagesToUpdate.length > 1 ? packagesToUpdate.join(' | ') : packagesToUpdate.join(' ')} installed`,
-                errorMessage: `Error installing ${packagesToUpdate.length} packages`,
-                logger: true
-            })
-        }
-
-    }
-
-    return
-}
-
-export function upgradePackage (packageName: string) {
-    const packageManager = detectPackageManagerByName()
-    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
-    const options: QuickPickOptions = {
-        canPickMany: false,
-        ignoreFocusOut: true,
-        placeHolder: 'No package manager detected. Chose one!',
-    }
-
-    if (packageManager) {
-        const command = `${packageManager.installCommand} ${packageName} --save-dev`
-        exec(command, { cwd: projectRootDirectory() })
-    } else if (defaultPackageManager) {
-        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-        if (command) {
-            exec(command, { cwd: projectRootDirectory() })
-        }
-    } else {
-        window.showQuickPick(items, options).then((name) => {
-            if (name) {
-                const command = pm.find((item) => item.name === name.label)?.installCommand
-                if (command) {
-                    exec(command, { cwd: projectRootDirectory() })
-                }
-            }
-        })
-    }
-}
-
-export async function managePackageVersion (packageName: string) {
-    const packageManager = detectPackageManagerByName()
-    const defaultPackageManager = nuxtrConfiguration().defaultPackageManager
-
-    const dependencies = await getProjectDependencies()
-
-    const options: QuickPickOptions = {
-        canPickMany: false,
-        ignoreFocusOut: true,
-        placeHolder: 'No package manager detected. Chose one!',
-    }
-
-    if (packageManager) {
-        const checkingVersionCommand = `npm view ${packageName} versions --json`
-
-        // show progress bar while checking version
-        await window.withProgress(
-            {
-                location: ProgressLocation.Notification,
-                title: `Finding ${packageName} versions...`,
-                cancellable: false,
-            },
-            () => {
-                return new Promise((resolve, reject) => {
-                    exec(checkingVersionCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
-                        if (error) {
-                            reject(error.message)
-                        } else if (stderr) {
-                            reject(stderr)
-                        } else {
-                            resolve(stdout)
-                            const versions: any = []
-                            const versionOfPackage = dependencies
-                            JSON.parse(stdout)
-                                .reverse()
-                                .forEach((version: any) => {
-                                    versions.push({
-                                        label: version,
-                                        description: versionOfPackage?.find((item: any) => item.name === packageName)?.version === version ? 'current version' : '',
-                                    })
-                                })
-
-                            const options: QuickPickOptions = {
-                                canPickMany: false,
-                                ignoreFocusOut: true,
-                                placeHolder: `Select which ${packageName} version to install`,
-                            }
-                            window.showQuickPick(versions, options).then((version: any) => {
-                                if (version) {
-                                    const installationCommand = `${packageManager.installCommand} ${packageName}@${version.label} --save-dev`
-                                    //  show progress bar while installing package
-                                    window.withProgress(
-                                        {
-                                            location: ProgressLocation.Notification,
-                                            title: `Installing ${packageName}@${version.label}...`,
-                                            cancellable: false,
-                                        },
-                                        () => {
-                                            return new Promise((resolve, reject) => {
-                                                const child = exec(installationCommand, { cwd: projectRootDirectory() }, (error: any, stdout: any, stderr: any) => {
-                                                    if (error) {
-                                                        reject(error.message)
-                                                    } else if (stderr) {
-                                                        reject(stderr)
-                                                    } else {
-                                                        resolve(stdout)
-                                                    }
-                                                })
-
-                                                child.on('exit', async (code) => {
-                                                    if (code === 0) {
-                                                        window.showInformationMessage(`Successfully installed ${packageName}@${version.label}`)
-                                                    } else {
-                                                        const response = await window.showErrorMessage(
-                                                            `Failed to upgrade ${packageName}@${version.label}. Do you want to install manually?`,
-                                                            'Install Manually'
-                                                        )
-
-                                                        if (response === 'Install Manually') {
-                                                            newTerminal(
-                                                                `Nuxtr: Install ${packageName}`,
-                                                                `${packageManager?.installCommand} ${packageName}@${version.label}`
-                                                            )
-                                                        }
-                                                    }
-                                                })
-                                            })
-                                        }
-                                    )
-                                }
-                            })
-                        }
-                    })
-                })
-            }
-        )
-
-    } else if (defaultPackageManager) {
-        const command = pm.find((item) => item.name === defaultPackageManager)?.installCommand
-        if (command) {
-            exec(command, { cwd: projectRootDirectory() })
-        }
-    } else {
-        window.showQuickPick(items, options).then((name) => {
-            if (name) {
-                const command = pm.find((item) => item.name === name.label)?.installCommand
-                if (command) {
-                    exec(command, { cwd: projectRootDirectory() })
-                }
-            }
-        })
-    }
-}
-
-export async function removePackage (packageName: string): Promise<void> {
-    const packageManager = detectPackageManagerByName()
-    // uninstall package
-
-    await window.withProgress(
-        {
-            location: ProgressLocation.Notification,
-            title: `Uninstalling ${packageName}...`,
-            cancellable: false,
-        },
-        () => {
-            return new Promise((resolve, reject) => {
-                const command = `${packageManager?.uninstallCommand} ${packageName}`
-                const child = exec(
-                    command,
-                    { cwd: projectRootDirectory() },
-                    (error: any, stdout: any, stderr: any) => {
-                        if (error) {
-                            reject(error.message)
-                        } else if (stderr) {
-                            reject(stderr)
-                        } else {
-                            resolve(stdout)
-                        }
-                    }
-                )
-
-                child.on('exit', async (code) => {
-                    if (code === 0) {
-                        window.showInformationMessage(`Successfully uninstalled ${packageName}`)
-                    } else {
-                        const response = await window.showErrorMessage(
-                            `Failed to uninstall ${packageName}. Please try again or uninstall it manually.`,
-                            'Uninstall Manually'
-                        )
-
-                        if (response === 'Uninstall Manually') {
-                            newTerminal(
-                                `Nuxtr: Install ${packageName}`,
-                                `${packageManager?.uninstallCommand} ${packageName}`
-                            )
-                        }
-                    }
-                })
-            })
-        }
-    )
-}
-
-export async function isDependencyInstalled (packageName: string): Promise<boolean> {
-    const dependencies = await getProjectDependencies()
-    return dependencies.some((dependency) => dependency.name === packageName)
-}
+/** Check whether the package appears in either declared dependency group. */
+export async function isDependencyInstalled (name: string): Promise<boolean> { return (await getProjectDependencies()).some(dependency => dependency.name === name); }

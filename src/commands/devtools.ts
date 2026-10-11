@@ -1,3 +1,4 @@
+/** Read and edit the current project’s DevTools configuration lazily, preserving source comments. */
 import { parseModule } from 'magicast';
 import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'pathe';
@@ -17,22 +18,19 @@ import {
 let mod: any;
 let nuxtConfigFile: string;
 const moduleName = '@nuxt/devtools';
-const nuxtConfigPath = findNuxtConfig();
+let nuxtConfigPath: string | undefined;
 
-if (nuxtConfigPath) {
-    nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, 'utf8');
-    mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
-} else {
-    // window.showErrorMessage('Nuxt config file not found.')
-}
-
+/** Reload the active project config before every read or edit; report missing configuration to the caller. */
 const updateNuxtFile = () => {
+    nuxtConfigPath = findNuxtConfig();
+    if (!nuxtConfigPath) { throw new Error('No Nuxt configuration found for this project.'); }
     nuxtConfigFile = readFileSync(`${nuxtConfigPath}`, 'utf8');
     mod = parseModule(nuxtConfigFile, { sourceFileName: nuxtConfigPath });
 };
 
-async function readConfigFile () {
-    await updateNuxtFile();
+/** Resolve the literal configuration object used by defineNuxtConfig. */
+function readConfigFile () {
+    updateNuxtFile();
     const config =
         mod.exports.default.$type === 'function-call'
             ? mod.exports.default.$args[0]
@@ -41,6 +39,7 @@ async function readConfigFile () {
     return config;
 }
 
+/** Toggle DevTools in the active configuration and preserve existing comments. */
 async function directToggleDevTools () {
     try {
         const config = await readConfigFile();
@@ -79,9 +78,10 @@ async function directToggleDevTools () {
     }
 }
 
-function isDevtoolsInstalled (): Promise<boolean> {
+/** Check the current manifest without the stale cache used by require. */
+function isDevtoolsInstalled (): boolean {
     const packageJsonPath = join(`${projectRootDirectory()}/package.json`);
-    const packageJson = require(packageJsonPath);
+    const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
 
     return (
         (packageJson.dependencies &&
@@ -91,6 +91,7 @@ function isDevtoolsInstalled (): Promise<boolean> {
     );
 }
 
+/** Offer installation of DevTools for older supported Nuxt versions. */
 async function installDevtools () {
     const response = await window.showErrorMessage(
         'Nuxt Devtools is not installed. Install it?',
@@ -112,6 +113,7 @@ async function installDevtools () {
     }
 }
 
+/** Refresh the DevTools status icon after configuration changes. */
 async function nuxtConfigWatcher () {
     const config = await readConfigFile();
     let devtoolsEnabled = false;
@@ -145,6 +147,7 @@ async function nuxtConfigWatcher () {
     });
 }
 
+/** Show DevTools availability and its current enabled state for this project. */
 async function nuxtDevToolsHandler () {
     const isInstalled = isDevtoolsInstalled();
     const nuxtTwo = isNuxtTwo();
@@ -152,7 +155,8 @@ async function nuxtDevToolsHandler () {
 
     const nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
-        isDevtoolsNative = semver.gte(nuxtVersion, '3.8.0') ? true : false;
+        const minimum = semver.valid(nuxtVersion) || semver.minVersion(nuxtVersion)?.version;
+        isDevtoolsNative = minimum ? semver.gte(minimum, '3.8.0') : false;
     }
 
     if (nuxtTwo) {

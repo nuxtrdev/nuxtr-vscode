@@ -1,61 +1,82 @@
 {
   "useAppConfig": {
-    "prefix": "useAppConfig",
-    "body": ["const appConfig = useAppConfig();"],
-    "description": "useAppConfig"
+    "prefix": [
+      "useAppConfig"
+    ],
+    "body": [
+      "const ${1:appConfig} = useAppConfig();"
+    ],
+    "description": "Read reactive public application configuration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-app-config"
   },
   "useAsyncData": {
-    "prefix": "useAsyncData",
+    "prefix": [
+      "useAsyncData"
+    ],
     "body": [
-      "const { data, pending, error, refresh } = await useAsyncData(",
-      "    '$2',",
-      "    () => \\$fetch('$3')",
+      "const { data, status, error, refresh } = await useAsyncData(",
+      "    '${1:example}',",
+      "    () => \\$fetch('${2:/api/hello}')",
       ");"
     ],
-    "description": "useAsyncData"
+    "description": "Fetch keyed data shared between server rendering and hydration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-async-data"
   },
   "useCookie": {
-    "prefix": "useCookie",
-    "body": ["const ${1:cookie} = useCookie('$2'${3:, })"],
-    "description": "useCookie"
-  },
-  "getCookie": {
-    "prefix": "getCookie",
-    "body": ["const ${1:cookie} = getCookie('$2'${3:, })"],
-    "description": "getCookie"
-  },
-  "setCookie": {
-    "prefix": "setCookie",
-    "body": ["setCookie('$1'${2:, })"],
-    "description": "setCookie"
+    "prefix": [
+      "useCookie"
+    ],
+    "body": [
+      "const ${1:cookie} = useCookie('${2:cookie-name}');"
+    ],
+    "description": "Read or write an SSR-aware cookie ref.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-cookie"
   },
   "useError": {
-    "prefix": "useError",
-    "body": ["const ${1:error} = useError()"],
-    "description": "useError"
+    "prefix": [
+      "useError"
+    ],
+    "body": [
+      "const ${1:error} = useError();"
+    ],
+    "description": "Read the current global Nuxt error.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-error"
   },
   "useFetch": {
-    "prefix": "useFetch",
-    "body": [
-      "const { data, pending, error, refresh } = await useFetch('$1',{",
-      "    $2",
-      "})"
+    "prefix": [
+      "useFetch"
     ],
-    "description": "useFetch"
+    "body": [
+      "const { data, status, error, refresh } = await useFetch('${1:/api/hello}');"
+    ],
+    "description": "Fetch SSR-safe reactive data with typed request options.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-fetch"
   },
   "onRequest": {
     "prefix": "onRequest",
-    "body": ["onRequest({ request, options }) {", "    $1", "}"],
+    "body": [
+      "onRequest({ request, options }) {",
+      "    $1",
+      "}"
+    ],
     "description": "onRequest"
   },
   "onRequestError": {
     "prefix": "onRequestError",
-    "body": ["onRequestError({ request, options, error }) {", "    $1", "}"],
+    "body": [
+      "onRequestError({ request, options, error }) {",
+      "    $1",
+      "}"
+    ],
     "description": "onRequestError"
   },
   "onResponse": {
     "prefix": "onResponse",
-    "body": ["onResponse({ request, response, options }) {", "    $1", "}"],
+    "body": [
+      "onResponse({ request, response, options }) {",
+      "    $1",
+      "}"
+    ],
     "description": "onResponse"
   },
   "onResponseError": {
@@ -68,85 +89,327 @@
     "description": "onResponseError"
   },
   "useHeadSafe": {
-    "prefix": "useHeadSafe",
-    "body": ["useHeadSafe({", "    $1", "});"],
-    "description": "useHeadSafe"
+    "prefix": [
+      "useHeadSafe"
+    ],
+    "body": [
+      "useHeadSafe({",
+      "    title: '${1:Page title}'",
+      "});"
+    ],
+    "description": "Set document metadata using the restricted safe attribute set.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-head-safe"
   },
   "useHead": {
-    "prefix": "useHead",
-    "body": ["useHead({", "  $1", "})"],
-    "description": "useHead"
+    "prefix": [
+      "useHead"
+    ],
+    "body": [
+      "useHead({",
+      "    title: '${1:Page title}'",
+      "});"
+    ],
+    "description": "Set reactive document metadata.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-head"
   },
   "useHydration": {
-    "prefix": "useHydration",
-    "body": ["useHydration({", "  $1", "})"],
-    "description": "useHydration"
+    "prefix": [
+      "useHydration"
+    ],
+    "body": [
+      "useHydration(",
+      "    '${1:hydration-key}',",
+      "    () => ${2:null},",
+      "    (${3:value}) => {",
+      "        ${0:// Restore application state from the hydrated value.}",
+      "    }",
+      ");"
+    ],
+    "description": "Transfer keyed plugin state from server to client using getter and setter callbacks.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-hydration"
   },
   "useLazyAsyncData": {
-    "prefix": "useLazyAsyncData",
-    "body": [
-      "const { $1 } = await useLazyAsyncData('$2', () => \\$fetch('$3'))"
+    "prefix": [
+      "useLazyAsyncData"
     ],
-    "description": "useLazyAsyncData"
+    "body": [
+      "const { data, status, error, refresh } = await useLazyAsyncData(",
+      "    '${1:example}',",
+      "    () => \\$fetch('${2:/api/hello}')",
+      ");"
+    ],
+    "description": "Start keyed data loading without blocking navigation.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-lazy-async-data"
   },
   "useLazyFetch": {
-    "prefix": "useLazyFetch",
-    "body": ["const { $1 } = await useLazyFetch('$3')"],
-    "description": "useLazyFetch"
+    "prefix": [
+      "useLazyFetch"
+    ],
+    "body": [
+      "const { data, status, error, refresh } = await useLazyFetch('${1:/api/hello}');"
+    ],
+    "description": "Fetch data without blocking navigation.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-lazy-fetch"
   },
   "useNuxtApp": {
-    "prefix": "useNuxtApp",
-    "body": ["const nuxtApp = useNuxtApp()", ""],
-    "description": "useNuxtApp"
+    "prefix": [
+      "useNuxtApp"
+    ],
+    "body": [
+      "const ${1:nuxtApp} = useNuxtApp();"
+    ],
+    "description": "Access the Nuxt application context and injected services.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-app"
   },
   "useNuxtData": {
-    "prefix": "useNuxtData",
-    "body": ["const { data: $1 } = useNuxtData('$2')"],
-    "description": "useNuxtData"
+    "prefix": [
+      "useNuxtData"
+    ],
+    "body": [
+      "const { data: ${1:cachedData} } = useNuxtData('${2:example}');"
+    ],
+    "description": "Read cached async data by key.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-data"
   },
   "useRequestEvent": {
-    "prefix": "useRequestEvent",
-    "body": ["const event = useRequestEvent()"],
-    "description": "useRequestEvent"
+    "prefix": [
+      "useRequestEvent"
+    ],
+    "body": [
+      "const ${1:event} = useRequestEvent();"
+    ],
+    "description": "Access the SSR request event; undefined in the browser.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-request-event"
   },
   "useRequestHeaders": {
-    "prefix": "useRequestHeaders",
-    "body": ["const headers = useRequestHeaders($1)"],
-    "description": "useRequestHeaders"
+    "prefix": [
+      "useRequestHeaders"
+    ],
+    "body": [
+      "const ${1:headers} = useRequestHeaders(['${2:authorization}']);"
+    ],
+    "description": "Read selected SSR request headers; empty in the browser.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-request-headers"
   },
   "useRequestURL": {
-    "prefix": "useRequestURL",
-    "body": ["const url = useRequestURL()"],
-    "description": "useRequestURL"
+    "prefix": [
+      "useRequestURL"
+    ],
+    "body": [
+      "const ${1:url} = useRequestURL();"
+    ],
+    "description": "Read the current request URL in server or browser context.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-request-url"
   },
   "useRoute": {
-    "prefix": "useRoute",
-    "body": ["const route = useRoute();"],
-    "description": "useRoute"
+    "prefix": [
+      "useRoute"
+    ],
+    "body": [
+      "const ${1:route} = useRoute();"
+    ],
+    "description": "Read Nuxt’s synchronized current route.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-route"
   },
   "useRouter": {
-    "prefix": "useRouter",
-    "body": ["const router = useRouter();"],
-    "description": "useRouter"
+    "prefix": [
+      "useRouter"
+    ],
+    "body": [
+      "const ${1:router} = useRouter();"
+    ],
+    "description": "Access the application router.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-router"
   },
   "useRuntimeConfig": {
-    "prefix": "useRuntimeConfig",
-    "body": ["const config = useRuntimeConfig()"],
-    "description": "useRuntimeConfig"
+    "prefix": [
+      "useRuntimeConfig"
+    ],
+    "body": [
+      "const ${1:config} = useRuntimeConfig();"
+    ],
+    "description": "Read runtime configuration; private values are server-only.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-runtime-config"
   },
   "useSeoMeta": {
-    "prefix": "useSeoMeta",
-    "body": ["useSeoMeta({", "  $1", "})"],
-    "description": "useSeoMeta"
+    "prefix": [
+      "useSeoMeta"
+    ],
+    "body": [
+      "useSeoMeta({",
+      "    title: '${1:Page title}',",
+      "    description: '${2:Page description}'",
+      "});"
+    ],
+    "description": "Set typed reactive SEO metadata.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-seo-meta"
   },
   "useServerSeoMeta": {
-    "prefix": "useServerSeoMeta",
-    "body": ["useServerSeoMeta({", "  $1", "})"],
-    "description": "useServerSeoMeta"
+    "prefix": [
+      "useServerSeoMeta"
+    ],
+    "body": [
+      "useServerSeoMeta({",
+      "    title: '${1:Page title}',",
+      "    description: '${2:Page description}'",
+      "});"
+    ],
+    "description": "Set SEO metadata during server rendering.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-server-seo-meta"
   },
   "useState": {
-    "prefix": "useState",
-    "body": ["const $1 = useState('$2', () => $3)"],
-    "description": "useState"
+    "prefix": [
+      "useState"
+    ],
+    "body": [
+      "const ${1:state} = useState('${2:state-key}', () => ${3:null});"
+    ],
+    "description": "Create keyed state shared safely across SSR and hydration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-state"
+  },
+  "createUseAsyncData": {
+    "prefix": [
+      "createUseAsyncData"
+    ],
+    "body": [
+      "export const ${1:useCustomAsyncData} = createUseAsyncData({",
+      "    lazy: ${2:true}",
+      "});"
+    ],
+    "description": "Export a configured async-data composable from the composables directory; requires Nuxt 4.4+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/create-use-async-data",
+    "minimumNuxtVersion": "4.4.0"
+  },
+  "createUseFetch": {
+    "prefix": [
+      "createUseFetch"
+    ],
+    "body": [
+      "export const ${1:useAPI} = createUseFetch({",
+      "    baseURL: '${2:https://example.com}'",
+      "});"
+    ],
+    "description": "Export a configured fetch composable from the composables directory; requires Nuxt 4.4+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/create-use-fetch",
+    "minimumNuxtVersion": "4.4.0"
+  },
+  "onPrehydrate": {
+    "prefix": [
+      "onPrehydrate"
+    ],
+    "body": [
+      "onPrehydrate((${1:element}) => {",
+      "    ${0:// Use only browser globals and values inside this callback.}",
+      "});"
+    ],
+    "description": "Run serialized browser code before hydration; the callback must be self-contained.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/on-prehydrate",
+    "minimumNuxtVersion": "3.12.0"
+  },
+  "useAnnouncer": {
+    "prefix": [
+      "useAnnouncer"
+    ],
+    "body": [
+      "const { polite, assertive } = useAnnouncer();"
+    ],
+    "description": "Send accessible announcements through NuxtAnnouncer; requires Nuxt 4.4.2+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-announcer",
+    "minimumNuxtVersion": "4.4.2"
+  },
+  "useLayout": {
+    "prefix": [
+      "useLayout"
+    ],
+    "body": [
+      "const ${1:layout} = useLayout();"
+    ],
+    "description": "Read the effective layout for the current route; requires Nuxt 4.5+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-layout",
+    "minimumNuxtVersion": "4.5.0"
+  },
+  "useLoadingIndicator": {
+    "prefix": [
+      "useLoadingIndicator"
+    ],
+    "body": [
+      "const { isLoading, progress, start, finish } = useLoadingIndicator();"
+    ],
+    "description": "Control the application loading indicator.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-loading-indicator"
+  },
+  "usePreviewMode": {
+    "prefix": [
+      "usePreviewMode"
+    ],
+    "body": [
+      "const { enabled, state } = usePreviewMode();"
+    ],
+    "description": "Enable preview behavior and read its state.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-preview-mode"
+  },
+  "useRequestFetch": {
+    "prefix": [
+      "useRequestFetch"
+    ],
+    "body": [
+      "const ${1:requestFetch} = useRequestFetch();"
+    ],
+    "description": "Get a fetch function that forwards SSR request context and headers.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-request-fetch"
+  },
+  "useRequestHeader": {
+    "prefix": [
+      "useRequestHeader"
+    ],
+    "body": [
+      "const ${1:header} = useRequestHeader('${2:authorization}');"
+    ],
+    "description": "Read one SSR request header; undefined in the browser.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-request-header"
+  },
+  "useResponseHeader": {
+    "prefix": [
+      "useResponseHeader"
+    ],
+    "body": [
+      "const ${1:header} = useResponseHeader('${2:x-example}');",
+      "${1:header}.value = '${3:value}';"
+    ],
+    "description": "Read or set an SSR response header through a ref.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-response-header",
+    "minimumNuxtVersion": "3.14.0"
+  },
+  "useRouteAnnouncer": {
+    "prefix": [
+      "useRouteAnnouncer"
+    ],
+    "body": [
+      "const { message, polite, assertive } = useRouteAnnouncer();"
+    ],
+    "description": "Read or override accessible route announcements.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-route-announcer"
+  },
+  "useRuntimeHook": {
+    "prefix": [
+      "useRuntimeHook"
+    ],
+    "body": [
+      "useRuntimeHook('${1:app:mounted}', () => {",
+      "    ${0:// Handle the application hook here.}",
+      "});"
+    ],
+    "description": "Register a runtime hook with automatic scope disposal; requires Nuxt 3.14+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-runtime-hook",
+    "minimumNuxtVersion": "3.14.0"
+  },
+  "tryUseNuxtApp": {
+    "prefix": "tryUseNuxtApp",
+    "body": [
+      "const ${1:nuxtApp} = tryUseNuxtApp();"
+    ],
+    "description": "Access an optional Nuxt context without throwing when unavailable.",
+    "documentation": "https://nuxt.com/docs/4.x/api/composables/use-nuxt-app#tryusenuxtapp",
+    "minimumNuxtVersion": "3.10.0"
   }
 }

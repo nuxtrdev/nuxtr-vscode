@@ -1,7 +1,8 @@
+<!-- Select integration, Nuxt version, category and module source filters. -->
 <template>
   <div>
     <button
-      class="relative flex w-full items-center gap-1.5"
+      class="relative flex w-full items-center gap-1.5" :aria-expanded="listOpen"
       @click="listOpen = !listOpen"
     >
       <IconFilter />
@@ -10,8 +11,8 @@
         class="pointer-events-none absolute bottom-0 right-0 top-0 flex items-center"
       >
         <svg
-          class="h-3 w-3 -rotate-90 transition-all duration-300"
-          :class="{ 'rotate-0': listOpen }"
+          class="h-3 w-3 transition-all duration-300"
+          :class="listOpen ? 'rotate-0' : '-rotate-90'"
           viewBox="0 0 11 7"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,24 +30,28 @@
     <Transition name="slide-fade">
       <div v-show="listOpen" class="mt-3 flex flex-col gap-3">
         <DropdownItem
+          heading="Integration type"
           :label="integrationType"
           :items="integrationTypes"
           :selecteditemValue="integrationType"
           @selectedItem="selectIntegrationType($event)"
         />
         <DropdownItem
+          heading="Nuxt version"
           :label="selectedVersion"
           :items="nuxtVersions"
           :selecteditemValue="selectedVersion"
           @selectedItem="selectVersion($event)"
         />
         <DropdownItem
+          heading="Module source"
           :label="selectedType"
           :items="types"
           :selecteditemValue="selectedType"
           @selectedItem="selectType($event)"
         />
         <DropdownItem
+          heading="Category"
           :label="selectedCategory"
           :items="categories"
           :selecteditemValue="selectedCategory"
@@ -68,7 +73,7 @@ const props = defineProps({
   },
   nuxtVersions: {
     type: Array,
-    default: () => ["3.0.0", "2.0.0"],
+    default: () => ["Project", "4.x", "3.x", "2.x", "All"],
   },
   categories: {
     type: Array,
@@ -101,24 +106,28 @@ const emit = defineEmits([
 
 const listOpen = ref(props.open || false);
 const integrationType = ref("All Integrations");
-const selectedVersion = ref("3.0.0");
+const selectedVersion = ref("Project");
 const selectedType = ref("Type");
 const selectedCategory = ref("Category");
 
+/** Update and emit the selected catalogue category. */
 const selectCategory = (event: any) => {
   selectedCategory.value = event;
   emit("selectCategory", event);
 };
+/** Update and emit the selected Nuxt compatibility filter. */
 const selectVersion = (event: any) => {
   selectedVersion.value = event;
   emit("selectVersion", event);
 };
 
+/** Update and emit the modules/layers filter. */
 const selectIntegrationType = (event: any) => {
   integrationType.value = event;
   emit("selectIntegrationType", event);
 };
 
+/** Update and emit the official/community source filter. */
 const selectType = (event: any) => {
   selectedType.value = event;
   emit("selectType", event);

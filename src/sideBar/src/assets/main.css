@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Sidebar utility styles and the existing Nuxtr color palette, processed by Tailwind 4. */
+@import "tailwindcss";
+@config "../../tailwind.config.cjs";
+
+/* The shared application shell owns spacing in development and VS Code webviews. */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Give enabled actions a pointer while keeping unavailable actions visibly disabled. */
+button:enabled:not([aria-disabled="true"]),
+a[href]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+button[aria-disabled="true"],
+a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
 
 /* @layer base {
   @font-face {

@@ -1,133 +1,57 @@
-import { existsSync, mkdirSync } from 'node:fs'
-import { window } from 'vscode'
-import { createFile, createSubFolders, createVueTemplate, generateVueFileBasicTemplate, generateVueFileTemplate, projectRootDirectory, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
+/** Save reusable project templates and instantiate them through the shared directory and filename resolvers. */
+import { existsSync, readdirSync } from 'node:fs';
+import { join } from 'node:path';
+import { window } from 'vscode';
+import { TemplateKind, scaffoldFileName, templateKind } from '../core/templates';
+import { projectResourceName } from '../core/messages';
+import { projectDirectory } from '../utils/nuxt';
+import { createDir, createFile, createSubFolders, createVueTemplate, generateScaffoldTemplate, nuxtrConfiguration, projectRootDirectory, showSubFolderQuickPick } from '../utils';
 
+/** Save the editor selection, or whole document, as a named page template. */
+function createPageTemplate () { return saveEditorTemplate('page'); }
+/** Save the editor selection, or whole document, as a named layout template. */
+function createLayoutTemplate () { return saveEditorTemplate('layout'); }
+/** Read editor content once and preserve the existing page/layout template workflow. */
+function saveEditorTemplate (type: 'page' | 'layout') {
+    const editor = window.activeTextEditor;
+    if (editor) { return createVueTemplate(editor.document.getText(editor.selection) || editor.document.getText(), type); }
+}
 
-function createPageTemplate () {
-    const editor = window.activeTextEditor
-    if (editor) {
-        const selection = editor.selection
-        const selectedText = editor.document.getText(selection)
-
-        if (selectedText) {
-            const content = selectedText
-            createVueTemplate(content, 'page')
-        } else {
-            const content = editor.document.getText()
-            createVueTemplate(content, 'page')
-        }
+/** Select a supported .vscode resource and create its file in the selected project's configured directory. */
+async function createFileFromTemplate (template?: string) {
+    if (!template) {
+        const directory = join(projectRootDirectory(), '.vscode');
+        const resources = existsSync(directory) ? readdirSync(directory).filter(name => templateKind(name)) : [];
+        template = await window.showQuickPick(resources, { placeHolder: 'Select a project file template' });
     }
+    if (!template) { return; }
+    const kind = templateKind(template);
+    if (!kind || !projectResourceName(template)) { throw new Error('Select a supported template filename from this project’s .vscode directory.'); }
+    const name = await window.showInputBox({ prompt: `What is your ${kind} name?`, placeHolder: `${kind} name` });
+    if (!name) { return; }
+    const commandType = { page: 'pages', layout: 'layouts', component: 'components', composable: 'composables', api: 'api' }[kind];
+    const directory = kind === 'api' ? join(projectDirectory('server'), 'api') : projectDirectory(commandType as 'pages');
+    await createDir(directory);
+    const settings = nuxtrConfiguration().scaffolding;
+    return showSubFolderQuickPick({
+        name: scaffoldFileName(name, kind, settings.defaultLanguage, settings.composableUsePrefix),
+        subFolders: await createSubFolders(directory, commandType), commandType,
+        content: generateScaffoldTemplate(kind, name, template)
+    });
 }
 
-function createLayoutTemplate () {
-    const editor = window.activeTextEditor
-    if (editor) {
-        const selection = editor.selection
-        const selectedText = editor.document.getText(selection)
-
-        if (selectedText) {
-            const content = selectedText
-            createVueTemplate(content, 'layout')
-        } else {
-            const content = editor.document.getText()
-            createVueTemplate(content, 'layout')
-        }
-    }
+/** Create a new template resource with the same defaults used by its scaffold kind. */
+async function createFileTemplate (type: TemplateKind) {
+    const name = await window.showInputBox({ prompt: `What is your ${type} template name?`, placeHolder: 'Template name' });
+    if (!name) { return; }
+    const filename = name.replace(/\.(?:page|layout|component|composable|api)-template$/, '') + `.${type}-template`;
+    if (!projectResourceName(filename)) { throw new Error('Enter a template basename without directory separators.'); }
+    return createFile({ fileName: filename, content: generateScaffoldTemplate(type), fullPath: join(projectRootDirectory(), '.vscode', filename) });
 }
 
-const createFileFromTemplate = (template?: string) => {
-    if (template && template.includes('.page-template')) {
-
-        window
-            .showInputBox({
-                prompt: 'What is your page name?',
-                placeHolder: 'Page name',
-            })
-            .then(async (name) => {
-                if (!name) { return }
-
-                const srcDir = `${await projectSrcDirectory()}`
-                const pagesDir = `${srcDir}/pages`
-
-
-                if (srcDir !== undefined && !existsSync(pagesDir)) {
-                    mkdirSync(pagesDir)
-                }
-
-                const subFolders = createSubFolders(pagesDir, 'pages')
-
-                showSubFolderQuickPick({
-                    name,
-                    subFolders,
-                    commandType: 'pages',
-                    content: generateVueFileTemplate('page', template),
-                })
-            })
-    } else {
-        window
-            .showInputBox({
-                prompt: 'What is your layout name?',
-                placeHolder: 'Layout name',
-            })
-            .then(async (name) => {
-                if (!name) { return }
-                const srcDir = `${await projectSrcDirectory()}`
-                const layoutDir = `${srcDir}/layouts`
-
-                if (srcDir !== undefined && !existsSync(layoutDir)) {
-                    mkdirSync(layoutDir)
-                }
-
-                const filePath = `${srcDir}/layouts/${name}.vue`
-
-                createFile({
-                    fileName: `${name}.vue`,
-                    content: generateVueFileTemplate('layout', template),
-                    fullPath: filePath,
-                })
-            })
-    }
+/** Offer every supported template kind while retaining the page/layout choices. */
+async function createEmptyFileTemplate () {
+    const kind = await window.showQuickPick(['page', 'layout', 'component', 'composable', 'api'], { placeHolder: 'Select a template kind' });
+    if (kind) { return createFileTemplate(kind as TemplateKind); }
 }
-
-const createFileTemplate = (type: string) => {
-
-    window
-        .showInputBox({
-            prompt: `What is your ${type} name?`,
-            placeHolder: `${type} name`,
-        })
-        .then((name) => {
-            if (!name) { return }
-
-            const filePath = `${projectRootDirectory()}/.vscode/${name}.${type}-template`
-
-            createFile({
-                fileName: `${name}.${type}-template`,
-                content: generateVueFileBasicTemplate(`${type}`),
-                fullPath: filePath,
-            })
-        })
-}
-
-
-const createEmptyFileTemplate = () => {
-    const templates = ['Page', 'Layout']
-
-    window
-        .showQuickPick(templates, {
-            canPickMany: false,
-            placeHolder: 'Select file type',
-        })
-        .then((selection) => {
-            if (selection === 'Page') {
-                createFileTemplate('page')
-            }
-
-            if (selection === 'Layout') {
-                createFileTemplate('layout')
-            }
-        })
-
-}
-
-export { createEmptyFileTemplate, createFileFromTemplate, createLayoutTemplate, createPageTemplate }
+export { createEmptyFileTemplate, createFileFromTemplate, createLayoutTemplate, createPageTemplate };

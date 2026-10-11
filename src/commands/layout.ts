@@ -1,10 +1,13 @@
+/** Prompt for and scaffold layout files in the selected project’s resolved directories. */
+import { projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
 import { createDir, createFile, normalizeFileExtension, projectSrcDirectory } from '../utils'
 import { generateVueFileTemplate } from '../utils/files'
 
 
+/** Prompt for a layout name and create its configured template under the resolved Nuxt directory. */
 const createLayout = () => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your layout name?',
             placeHolder: 'Layout name',
@@ -12,11 +15,11 @@ const createLayout = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            createDir('layouts')
+            await createDir('layouts')
 
-            const filePath = `${await projectSrcDirectory()}/layouts/${normalizeFileExtension(name, '.vue')}.vue`
+            const filePath = `${projectDirectory('layouts')}/${normalizeFileExtension(name, '.vue')}.vue`
 
-            createFile({
+            return createFile({
                 fileName: `${name}.vue`,
                 content: generateVueFileTemplate('layout'),
                 fullPath: filePath,
@@ -24,8 +27,9 @@ const createLayout = () => {
         })
 }
 
+/** Create a file in the Explorer folder supplied by the command. */
 const directCreateLayout = (path: string) => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your layout name?',
             placeHolder: 'layout name',
@@ -35,7 +39,7 @@ const directCreateLayout = (path: string) => {
 
             const filePath = `${path}/${normalizeFileExtension(name, '.vue')}.vue`
 
-            createFile({
+            return createFile({
                 fileName: `${name}.vue`,
                 content: generateVueFileTemplate('layout'),
                 fullPath: filePath,

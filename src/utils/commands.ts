@@ -1,5 +1,11 @@
+/** Map command categories to configured application/server directories and file types. */
+import { relative } from 'node:path';
+import { projectDirectory } from './nuxt';
+import { DirectoryKind } from '../core/directories';
+import { scaffoldExtension } from './files';
 import { hasServerDir } from '../utils';
 
+/** Return the configured folder relative to appDir so existing scaffold callers share one path resolver. */
 export const getCommandType = async (commandType: string) => {
     let type = {
         name: '',
@@ -19,7 +25,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Composables',
                 path: 'composables',
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -43,7 +49,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Store',
                 path: 'store',
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -51,7 +57,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Middleware',
                 path: 'middleware',
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -59,7 +65,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Plugins',
                 path: 'plugins',
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -67,7 +73,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'APIs',
                 path: `${await hasServerDir()}/api`,
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -75,7 +81,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Routes',
                 path: `${await hasServerDir()}/routes`,
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -83,7 +89,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Plugins',
                 path: `${await hasServerDir()}/plugins`,
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -91,7 +97,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Middleware',
                 path: `${await hasServerDir()}/middleware`,
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -99,7 +105,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Utilities',
                 path: 'utils',
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -107,7 +113,7 @@ export const getCommandType = async (commandType: string) => {
             type = {
                 name: 'Utility',
                 path: `${await hasServerDir()}/utils`,
-                extension: '.ts',
+                extension: scaffoldExtension(),
             };
             break;
         }
@@ -122,6 +128,10 @@ export const getCommandType = async (commandType: string) => {
         }
     }
 
+    const kind = commandType === 'nuxtUtil' ? 'utils' : commandType;
+    if (['pages', 'layouts', 'components', 'composables', 'plugins', 'middleware', 'store', 'utils'].includes(kind)) {
+        type.path = relative(projectDirectory('app'), projectDirectory(kind as DirectoryKind));
+    }
     return { type };
 
 };

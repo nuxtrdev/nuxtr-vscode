@@ -1,4 +1,5 @@
-import { TSConfig } from 'pkg-types'
+/** Shared contracts for extension settings, dependency data and sidebar messages. */
+import type { TSConfig } from 'pkg-types'
 
 export interface ConfigurationProperty {
     title?: string;
@@ -9,10 +10,13 @@ export interface ConfigurationProperty {
     id?: string;
     properties?: { [key: string]: ConfigurationProperty };
     default?: any;
-    type: string;
+    type?: string;
 }
 
 export interface NuxtrConfiguration {
+    terminal: { reuse: boolean };
+    scaffolding: { defaultLanguage: 'ts' | 'js'; composableUsePrefix: boolean };
+    fileTemplates: { components: { defaultTemplate: string }; composables: { defaultTemplate: string }; apis: { defaultTemplate: string } };
     openItemsAfterCreation: boolean;
     defaultPackageManager: 'null' | 'Yarn' | 'NPM' | 'pnpm' | 'Bun';
     monorepoMode: {
@@ -46,6 +50,7 @@ export interface NuxtrConfiguration {
         };
     };
     intellisense: {
+        nuxtModules: boolean;
         vueFiles: boolean;
         nuxtignore: boolean;
         nuxtrc: boolean;

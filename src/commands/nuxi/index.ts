@@ -1,11 +1,10 @@
+/** Present documented Nuxt CLI commands without importing private CLI implementation details. */
 import { capitalize } from 'string-ts';
 import { QuickPickItem, ThemeIcon, window } from 'vscode';
-import { detectPackageManagerByName, newTerminal, projectRootDirectory } from '../../utils';
-import { tryImportNuxi } from '../../nuxi';
+import { newTerminal, projectRootDirectory } from '../../utils';
+import { nuxtCLICommand } from '../../nuxi';
 import { handleAddCommand, handleDevtoolsCommand, handleModuleCommand } from './multiStepCommands';
 
-const pm = detectPackageManagerByName();
-const runCommand = pm ? pm.runCommand : 'npx';
 
 enum CLICommandDescription {
     add = 'Create a new template file',
@@ -34,16 +33,14 @@ const unsupportedCommands = new Set(['init']);
 const moduleCommands = new Set(['build-module'])
 const internalCommands = new Set(['_dev'])
 
-const shouldDirectlyRun = (command: any) => directlyExecutableCommands.has(command);
-const shouldIndirectlyRun = (command: any) => indirectlyExecutableCommands.has(command);
+/** Tell whether a documented command can run without additional prompts. */
+const shouldDirectlyRun = (command: string) => directlyExecutableCommands.has(command);
+/** Tell whether a documented command needs a Nuxtr prompt. */
+const shouldIndirectlyRun = (command: string) => indirectlyExecutableCommands.has(command);
 
-const showCLICommands = async () => {
-    const nuxi = await tryImportNuxi()
-    if (!nuxi) {
-        console.log('nuxi not found')
-        return
-    }
-    const commands = Object.keys(nuxi.main.subCommands);
+/** Show supported public CLI commands and launch the project-local executable. */
+const showCLICommands = () => {
+    const commands = [...directlyExecutableCommands, ...indirectlyExecutableCommands];
 
     const options = {
         placeHolder: 'Select a command',
@@ -78,7 +75,7 @@ const showCLICommands = async () => {
 
         if (shouldDirectlyRun(selection.label.toLowerCase())) {
             const terminalName = `Nuxi: ${command}`;
-            newTerminal(terminalName, `${runCommand} nuxi ${command.toLowerCase()}`, `${projectRootDirectory()}`);
+            newTerminal(terminalName, nuxtCLICommand([command.toLowerCase()]), `${projectRootDirectory()}`);
         } else if (shouldIndirectlyRun(command.toLowerCase())) {
             if (command.toLowerCase() === 'module') {
                 await handleModuleCommand();

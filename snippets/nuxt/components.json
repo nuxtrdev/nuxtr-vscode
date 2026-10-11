@@ -1,81 +1,249 @@
 {
-  "Nuxt | NuxtLink": {
-    "prefix": "nuxtLink",
-    "body": ["<NuxtLink to=\"$1\">$2</NuxtLink>"],
-    "description": "Nuxt NuxtLink component."
-  },
-  "Nuxt | Teleport": {
-    "prefix": "nuxtTeleport",
-    "body": ["<Teleport to=\"$1\">$2</Teleport>"],
-    "description": "Nuxt Teleport component"
-  },
-  "Nuxt | NuxtLayout": {
-    "prefix": "nuxtLayout",
-    "body": ["<NuxtLayout $1>$2</NuxtLayout>"],
-    "description": "Nuxt | NuxtLayout"
-  },
-  "Nuxt | NuxtPage": {
-    "prefix": "nuxtPage",
-    "body": ["<NuxtPage $1/>"],
-    "description": "Nuxt | NuxtPage"
-  },
-  "Nuxt | NuxtWelcome": {
-    "prefix": "nuxtWelcome",
-    "body": ["<NuxtWelcome $1/>"],
-    "description": "NuxtWelcome Component"
-  },
-  "Nuxt | NuxtErrorBoundary": {
-    "prefix": "nuxtErrorBoundary",
-    "body": [
-      "<NuxtErrorBoundary ${1:@error=\"$2\"}>",
-      "$3",
-      "</NuxtErrorBoundary>"
-    ],
-    "description": "Nuxt | NuxtErrorBoundary"
-  },
-  "Nuxt | NuxtLoadingIndicator": {
-    "prefix": "nuxtLoadingIndicator",
-    "body": ["<NuxtLoadingIndicator $1/>"],
-    "description": "Nuxt | NuxtLoadingIndicator"
-  },
-  "Nuxt | ClientOnly": {
-    "prefix": "clientonly",
-    "body": ["<ClientOnly $1>", "  $2", "</ClientOnly>"],
-    "description": "Nuxt | NuxtPortal"
-  },
-  "Nuxt | NuxtClientFallback": {
-    "prefix": "nuxtClientFallback",
-    "body": ["<NuxtClientFallback $1>", "  $2", "</NuxtClientFallback>"],
-    "description": "Nuxt | NuxtClientFallback"
-  },
   "Nuxt | fallback": {
     "prefix": "fallback",
-    "body": ["fallback=\"$1\""],
+    "body": [
+      "fallback=\"$1\""
+    ],
     "description": "Nuxt | fallback"
   },
   "Nuxt | fallbackTag": {
     "prefix": "fallbackTag",
-    "body": ["fallback-tag=\"$1\""],
+    "body": [
+      "fallback-tag=\"$1\""
+    ],
     "description": "Nuxt | fallbackTag"
   },
   "Nuxt | SSR Error": {
     "prefix": "ssrError",
-    "body": [" @ssr-error=\"$1\""],
+    "body": [
+      " @ssr-error=\"$1\""
+    ],
     "description": "Nuxt | SSR Error"
   },
   "Nuxt | name": {
     "prefix": "name",
-    "body": ["name=\"$1\""],
+    "body": [
+      "name=\"$1\""
+    ],
     "description": "Nuxt | name"
   },
   "Nuxt | pageKey": {
     "prefix": "pageKey",
-    "body": ["page-key=\"$1\""],
+    "body": [
+      "page-key=\"$1\""
+    ],
     "description": "Nuxt | pageKey"
   },
   "Nuxt | Template with ID": {
     "prefix": "templateWithId",
-    "body": ["<template #$1>", "  $2", "</template>"],
+    "body": [
+      "<template #$1>",
+      "  $2",
+      "</template>"
+    ],
     "description": "Nuxt | Template with ID"
+  },
+  "ClientOnly": {
+    "prefix": [
+      "ClientOnly",
+      "clientOnly",
+      "nuxtClientOnly",
+      "clientonly"
+    ],
+    "body": [
+      "<ClientOnly>",
+      "    ${1:<!-- Client-rendered content -->}",
+      "    <template #fallback>",
+      "        ${2:<p>Loading…</p>}",
+      "    </template>",
+      "</ClientOnly>"
+    ],
+    "description": "Render browser-only content with an SSR fallback.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/client-only"
+  },
+  "DevOnly": {
+    "prefix": [
+      "DevOnly",
+      "devOnly",
+      "nuxtDevOnly"
+    ],
+    "body": [
+      "<DevOnly>",
+      "    ${1:<!-- Development-only content -->}",
+      "</DevOnly>"
+    ],
+    "description": "Render content during development.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/dev-only"
+  },
+  "NuxtClientFallback": {
+    "prefix": [
+      "NuxtClientFallback",
+      "nuxtClientFallback"
+    ],
+    "body": [
+      "<NuxtClientFallback>",
+      "    ${1:<!-- Content that may fail during SSR -->}",
+      "    <template #fallback>",
+      "        ${2:<p>Unable to render this content.</p>}",
+      "    </template>",
+      "</NuxtClientFallback>"
+    ],
+    "description": "Recover from child SSR errors; requires experimental.clientFallback.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-client-fallback"
+  },
+  "NuxtPage": {
+    "prefix": [
+      "NuxtPage",
+      "nuxtPage"
+    ],
+    "body": [
+      "<NuxtPage />"
+    ],
+    "description": "Render the current page from the pages directory.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-page"
+  },
+  "NuxtLayout": {
+    "prefix": [
+      "NuxtLayout",
+      "nuxtLayout"
+    ],
+    "body": [
+      "<NuxtLayout>",
+      "    ${1:<NuxtPage />}",
+      "</NuxtLayout>"
+    ],
+    "description": "Render the active layout around page content.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-layout"
+  },
+  "NuxtLink": {
+    "prefix": [
+      "NuxtLink",
+      "nuxtLink"
+    ],
+    "body": [
+      "<NuxtLink to=\"${1:/}\">${2:Home}</NuxtLink>"
+    ],
+    "description": "Navigate using Nuxt routing and prefetching.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-link"
+  },
+  "NuxtLoadingIndicator": {
+    "prefix": [
+      "NuxtLoadingIndicator",
+      "nuxtLoadingIndicator"
+    ],
+    "body": [
+      "<NuxtLoadingIndicator :height=\"${1:3}\" />"
+    ],
+    "description": "Show progress during page navigation.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-loading-indicator"
+  },
+  "NuxtErrorBoundary": {
+    "prefix": [
+      "NuxtErrorBoundary",
+      "nuxtErrorBoundary"
+    ],
+    "body": [
+      "<NuxtErrorBoundary>",
+      "    ${1:<!-- Protected content -->}",
+      "    <template #error=\"{ error, clearError }\">",
+      "        <p>{{ error.message }}</p>",
+      "        <button type=\"button\" @click=\"clearError\">${2:Try again}</button>",
+      "    </template>",
+      "</NuxtErrorBoundary>"
+    ],
+    "description": "Catch client rendering errors and offer recovery.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-error-boundary"
+  },
+  "NuxtWelcome": {
+    "prefix": [
+      "NuxtWelcome",
+      "nuxtWelcome"
+    ],
+    "body": [
+      "<NuxtWelcome />"
+    ],
+    "description": "Show the Nuxt starter welcome screen.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-welcome"
+  },
+  "NuxtIsland": {
+    "prefix": [
+      "NuxtIsland",
+      "nuxtIsland"
+    ],
+    "body": [
+      "<NuxtIsland name=\"${1:Example}\" />"
+    ],
+    "description": "Render a server island; requires experimental.componentIslands and a matching server component.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-island"
+  },
+  "NuxtImg": {
+    "prefix": [
+      "NuxtImg",
+      "nuxtImg"
+    ],
+    "body": [
+      "<NuxtImg src=\"${1:/logo.svg}\" alt=\"${2:Description}\" width=\"${3:400}\" height=\"${4:300}\" />"
+    ],
+    "description": "Optimize an image; requires the @nuxt/image module.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-img"
+  },
+  "NuxtPicture": {
+    "prefix": [
+      "NuxtPicture",
+      "nuxtPicture"
+    ],
+    "body": [
+      "<NuxtPicture src=\"${1:/logo.svg}\" alt=\"${2:Description}\" width=\"${3:400}\" height=\"${4:300}\" />"
+    ],
+    "description": "Generate an optimized picture; requires the @nuxt/image module.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-picture"
+  },
+  "Teleport": {
+    "prefix": [
+      "Teleport",
+      "teleport",
+      "nuxtTeleport"
+    ],
+    "body": [
+      "<Teleport to=\"${1:#teleports}\">",
+      "    ${2:<!-- Teleported content -->}",
+      "</Teleport>"
+    ],
+    "description": "Move content to a DOM target; SSR supports #teleports. Wrap other targets in ClientOnly.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/teleports"
+  },
+  "NuxtRouteAnnouncer": {
+    "prefix": [
+      "NuxtRouteAnnouncer",
+      "nuxtRouteAnnouncer"
+    ],
+    "body": [
+      "<NuxtRouteAnnouncer />"
+    ],
+    "description": "Announce page changes to assistive technology.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-route-announcer"
+  },
+  "NuxtTime": {
+    "prefix": [
+      "NuxtTime",
+      "nuxtTime"
+    ],
+    "body": [
+      "<NuxtTime datetime=\"${1:2026-01-01T00:00:00.000Z}\" />"
+    ],
+    "description": "Render a date consistently during SSR and hydration.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-time"
+  },
+  "NuxtAnnouncer": {
+    "prefix": [
+      "NuxtAnnouncer",
+      "nuxtAnnouncer"
+    ],
+    "body": [
+      "<NuxtAnnouncer />"
+    ],
+    "description": "Render the live region used by useAnnouncer; requires Nuxt 4.4.2+.",
+    "documentation": "https://nuxt.com/docs/4.x/api/components/nuxt-announcer",
+    "minimumNuxtVersion": "4.4.2"
   }
 }

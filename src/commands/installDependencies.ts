@@ -1,38 +1,13 @@
-import * as vscode from 'vscode';
-import pm from '../content/pm';
-import { detectPackageManagerByName, newTerminal } from '../utils';
+/** Install the selected project's dependencies using its detected or explicitly selected workspace manager. */
+import { managerCommand, terminalCommand } from '../core/managers';
+import { choosePackageManager } from '../utils/dependency';
+import { currentProject } from '../services/project';
+import { newTerminal } from '../utils/global';
 
-
-export const installDependencies = () => {
-    const packageManager = detectPackageManagerByName()
-
-    const items: vscode.QuickPickItem[] = pm.map((item) => {
-        return {
-            label: item.name,
-        }
-    })
-
-    const options: vscode.QuickPickOptions = {
-        canPickMany: false,
-        ignoreFocusOut: true,
-        placeHolder: 'No package manager detected. Chose one!',
-    }
-
-    if (packageManager) {
-        if (packageManager.installCommand.includes('yarn')) {
-            packageManager.installCommand = 'yarn'
-        }
-        newTerminal('Install Dependencies', packageManager.installCommand)
-    } else {
-        vscode.window.showQuickPick(items, options).then((name) => {
-            if (name) {
-                const command = pm.find(
-                    (item) => item.name === name.label
-                )?.installCommand
-                if (command) {
-                    newTerminal('Install Dependencies', command)
-                }
-            }
-        })
-    }
+/** Launch dependency installation from the package-manager workspace root, honoring fallback settings. */
+export async function installDependencies () {
+    const manager = await choosePackageManager();
+    if (!manager) { return; }
+    const command = managerCommand(manager, 'install', currentProject().packageManagerRoot);
+    newTerminal('Install Dependencies', terminalCommand(command), command.cwd);
 }

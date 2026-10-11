@@ -1,3 +1,5 @@
+/** Export the command handlers registered by the extension host. */
+import { createNitroTask, directCreateNitroTask, enableNitroTasks } from './tasks';
 import { managePackageVersion, upgradePackage } from '../utils/dependency'
 import { openSettings } from '../utils/navigation'
 import { createComponent, directCreateComponent } from './component'
@@ -22,6 +24,7 @@ import { createUtil, directCreateUtil } from './util'
 
 
 const commands = {
+    createNitroTask, directCreateNitroTask, enableNitroTasks,
     createComponent,
     directCreateComponent,
     createPage,

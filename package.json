@@ -3,9 +3,10 @@
   "displayName": "Nuxtr",
   "description": "An extension for Nuxt offering commands and tools to make your experience more pleasant.",
   "version": "0.2.16",
-  "packageManager": "pnpm@9.11.0",
+  "packageManager": "pnpm@12.10.1",
   "engines": {
-    "vscode": "^1.93.0"
+    "vscode": "^1.141.0",
+    "node": ">=24.20.0"
   },
   "categories": [
     "Programming Languages",
@@ -15,9 +16,6 @@
   "homepage": "https://nuxtr.com",
   "activationEvents": [
     "onStartupFinished"
-  ],
-  "files": [
-    "out"
   ],
   "main": "./out/index.js",
   "icon": "assets/logo.png",
@@ -33,23 +31,6 @@
   ],
   "contributes": {
     "languages": [
-      {
-        "id": "Log",
-        "aliases": [
-          "log"
-        ],
-        "extensions": [
-          ".log"
-        ],
-        "configuration": "./log.langConfiguration.json",
-        "mimetypes": [
-          "log",
-          "text/log",
-          "text/x-log",
-          "text/x-code-output",
-          "x-code-output"
-        ]
-      },
       {
         "id": "nuxtignore",
         "aliases": [
@@ -75,15 +56,13 @@
       "files.associations": {
         "*.page-template": "vue",
         "*.layout-template": "vue",
-        "*.vue": "vue"
+        "*.vue": "vue",
+        "*.component-template": "vue",
+        "*.composable-template": "typescript",
+        "*.api-template": "typescript"
       }
     },
     "grammars": [
-      {
-        "language": "Log",
-        "scopeName": "code.log",
-        "path": "./syntaxes/log.tmConfiguration.json"
-      },
       {
         "language": "nuxtrc",
         "scopeName": "source.nuxtrc",
@@ -119,6 +98,18 @@
     },
     "menus": {
       "commandPalette": [
+        {
+          "command": "nuxtr.createNitroTask",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.directCreateNitroTask",
+          "when": "false"
+        },
+        {
+          "command": "nuxtr.enableNitroTasks",
+          "when": "nuxtr.isNuxtProject"
+        },
         {
           "command": "nuxtr.projectStructure",
           "when": "nuxtr.isNuxtProject"
@@ -346,6 +337,14 @@
         {
           "command": "nuxtr.globalState",
           "when": "false"
+        },
+        {
+          "command": "nuxtr.projectHealthCheck",
+          "when": "nuxtr.isNuxtProject"
+        },
+        {
+          "command": "nuxtr.wrapWithNuxtComponent",
+          "when": "nuxtr.isNuxtProject && editorLangId == vue"
         }
       ],
       "view/title": [
@@ -418,8 +417,23 @@
         },
         {
           "command": "nuxtr.projectStructure",
-          "when": " nuxtr.isNuxtProject && explorerResourceIsFolder && explorerResourceIsRoot",
+          "when": "nuxtr.isNuxtProject && explorerResourceIsFolder && (explorerResourceIsRoot || resourcePath in nuxtr.projectRoots || resourcePath in nuxtr.applicationDirectories)",
           "group": "navigation"
+        },
+        {
+          "command": "nuxtr.directCreateNitroTask",
+          "when": "nuxtr.isNuxtProject && explorerResourceIsFolder",
+          "group": "nuxtr/nitro"
+        },
+        {
+          "command": "nuxtr.createNitroAPI",
+          "when": "nuxtr.isNuxtProject && explorerResourceIsFolder && resourcePath in nuxtr.serverDirectories",
+          "group": "nuxtr/nitro"
+        },
+        {
+          "command": "nuxtr.createNitroUtil",
+          "when": "nuxtr.isNuxtProject && explorerResourceIsFolder && resourcePath in nuxtr.serverDirectories",
+          "group": "nuxtr/nitro"
         }
       ],
       "editor/context": [
@@ -432,6 +446,11 @@
           "command": "nuxtr.createLayoutTemplate",
           "when": " nuxtr.isNuxtProject &&  resourcePath =~ /layouts/ ",
           "group": "5_cutcopypaste@1"
+        },
+        {
+          "command": "nuxtr.wrapWithNuxtComponent",
+          "when": "nuxtr.isNuxtProject && editorLangId == vue && editorHasSelection",
+          "group": "modification"
         }
       ]
     },
@@ -490,6 +509,41 @@
                 "repoURL"
               ]
             }
+          },
+          "nuxtr.fileTemplates.components.defaultTemplate": {
+            "type": "string",
+            "default": "",
+            "description": "Optional components template filename in the selected project’s .vscode directory."
+          },
+          "nuxtr.fileTemplates.composables.defaultTemplate": {
+            "type": "string",
+            "default": "",
+            "description": "Optional composables template filename in the selected project’s .vscode directory."
+          },
+          "nuxtr.fileTemplates.apis.defaultTemplate": {
+            "type": "string",
+            "default": "",
+            "description": "Optional apis template filename in the selected project’s .vscode directory."
+          },
+          "nuxtr.scaffolding.defaultLanguage": {
+            "type": "string",
+            "enum": [
+              "ts",
+              "js"
+            ],
+            "default": "ts",
+            "description": "File language for Nuxt and Nitro code scaffolds. Vue script language uses its existing setting."
+          },
+          "nuxtr.scaffolding.composableUsePrefix": {
+            "type": "boolean",
+            "default": false,
+            "description": "Prefix generated composable filenames with use (for example useCounter.ts)."
+          },
+          "nuxtr.terminal.reuse": {
+            "type": "boolean",
+            "default": false,
+            "description": "Reuse idle Nuxtr-owned terminals for the same Nuxt project and working directory. Requires shell integration; busy or unobserved terminals always get a new terminal.",
+            "scope": "resource"
           }
         }
       },
@@ -594,6 +648,12 @@
             "type": "boolean",
             "default": true,
             "description": "Allow .nuxtrc intellisense"
+          },
+          "nuxtr.intellisense.nuxtModules": {
+            "type": "boolean",
+            "default": true,
+            "description": "Complete Nuxt module package names in nuxt.config modules arrays using the shared cached/offline catalogue.",
+            "scope": "resource"
           }
         }
       },
@@ -969,6 +1029,35 @@
         "command": "nuxtr.createProject",
         "title": "Create new Nuxt Project",
         "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.selectProject",
+        "title": "Nuxtr: Select Nuxt Project"
+      },
+      {
+        "command": "nuxtr.createNitroTask",
+        "title": "Create Nitro Task",
+        "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.directCreateNitroTask",
+        "title": "Create Nitro Task",
+        "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.enableNitroTasks",
+        "title": "Enable Experimental Nitro Tasks",
+        "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.projectHealthCheck",
+        "title": "Project Health Check and Diagnostics",
+        "category": "Nuxtr"
+      },
+      {
+        "command": "nuxtr.wrapWithNuxtComponent",
+        "title": "Wrap Selection in Nuxt Component",
+        "category": "Nuxtr"
       }
     ],
     "keybindings": [],
@@ -1040,48 +1129,6 @@
           }
         ]
       }
-    ],
-    "snippets": [
-      {
-        "language": "html",
-        "path": "./snippets/nuxt/components.json"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/nuxt/boilerplates.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/composables.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nuxt/utils.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nitro/utils.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nitro/utils.json"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/nitro/boilerplates.json"
-      },
-      {
-        "language": "typescript",
-        "path": "./snippets/nitro/boilerplates.json"
-      }
     ]
   },
   "permissions": [
@@ -1089,10 +1136,10 @@
     "http"
   ],
   "scripts": {
-    "build": "tsup && cd src/sideBar && pnpm build",
+    "build": "node scripts/build.mjs",
     "vscode:prepublish": "pnpm build",
-    "dev": "pnpm build -- --watch",
-    "lint": "eslint .",
+    "dev": "node scripts/dev.mjs",
+    "lint": "node scripts/check-lint.mjs && eslint .",
     "lint:fix": "eslint . --fix",
     "package": "vsce package --no-dependencies",
     "publish:release": "vsce publish --no-dependencies",
@@ -1100,39 +1147,48 @@
     "release": "pnpm build && changelogen --release --push && pnpm publish:release",
     "prerelease": "pnpm build && changelogen --prerelease --push && pnpm publish:pre",
     "typecheck": "tsc --noEmit",
-    "knip": "knip"
+    "knip": "knip",
+    "typecheck:ui": "pnpm --filter ui typecheck",
+    "test:extension": "node scripts/test-extension.cjs",
+    "validate": "node scripts/validate.cjs",
+    "schema:generate": "node scripts/generate-schema.mjs",
+    "test": "vitest run",
+    "test:fixtures": "node scripts/test-fixtures.mjs",
+    "test:sidebar": "node scripts/test-sidebar.mjs",
+    "test:packaged": "node scripts/test-packaged.cjs",
+    "docs:check": "node scripts/check-docs.mjs"
   },
   "devDependencies": {
-    "@types/fs-extra": "^11.0.4",
-    "@types/node": "20.16.5",
-    "@types/vscode": "^1.93.0",
-    "changelogen": "^0.5.7",
-    "eslint": "^9.11.0",
-    "eslint-config-unjs": "^0.3.2",
-    "knip": "^5.30.4",
-    "nuxi-nightly": "^3.14.0-20240921-193235-ef57bb1",
-    "taze": "^0.16.9",
-    "terser": "^5.33.0",
-    "tsup": "^8.3.0",
-    "typescript": "^5.6.2"
+    "@nuxt/schema": "^4.6.1",
+    "@types/node": "^24.19.2",
+    "@types/semver": "^7.8.0",
+    "@types/vscode": "1.140.0",
+    "@vscode/test-electron": "^3.1.0",
+    "@vscode/vsce": "4.0.0",
+    "changelogen": "^0.6.2",
+    "eslint": "^10.12.0",
+    "eslint-config-unjs": "^0.6.2",
+    "eslint-plugin-vue": "^10.11.1",
+    "jiti": "^2.7.0",
+    "knip": "^6.41.0",
+    "playwright": "1.64.0",
+    "taze": "^21.3.0",
+    "terser": "^5.51.2",
+    "tsup": "^8.5.1",
+    "typescript": "~6.0.3",
+    "typescript-eslint": "^8.71.1",
+    "untyped": "^2.0.0",
+    "vitest": "^5.0.3",
+    "vue-eslint-parser": "^10.4.1"
   },
   "dependencies": {
-    "@nuxt/schema": "^3.13.2",
-    "@types/semver": "^7.5.8",
-    "destr": "^2.0.3",
-    "fs-extra": "^11.2.0",
-    "giget": "^1.2.3",
-    "jiti": "^2.0.0-rc.1",
-    "magicast": "^0.3.5",
-    "ofetch": "^1.4.0",
-    "pathe": "^1.1.2",
-    "pkg-types": "^1.2.0",
-    "semver": "^7.6.3",
-    "string-ts": "^2.2.0"
-  },
-  "pnpm": {
-    "overrides": {
-      "eslint": "^9.11.0"
-    }
+    "giget": "^3.3.1",
+    "magicast": "^0.5.5",
+    "ofetch": "^1.5.1",
+    "pathe": "^2.0.3",
+    "pkg-types": "^2.3.3",
+    "semver": "^7.8.5",
+    "string-ts": "^2.3.1",
+    "yaml": "^2.9.1"
   }
 }

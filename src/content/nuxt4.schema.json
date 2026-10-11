@@ -1,0 +1,1695 @@
+{
+  "id": "#",
+  "properties": {
+    "components": {
+      "id": "#components",
+      "type": "object"
+    },
+    "imports": {
+      "id": "#imports",
+      "properties": {
+        "global": {
+          "type": "boolean",
+          "id": "#imports/global"
+        },
+        "scan": {
+          "type": "boolean",
+          "id": "#imports/scan"
+        },
+        "dirs": {
+          "type": "array",
+          "id": "#imports/dirs",
+          "items": {
+            "type": "any"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "pages": {
+      "id": "#pages"
+    },
+    "telemetry": {
+      "id": "#telemetry"
+    },
+    "devtools": {
+      "id": "#devtools",
+      "type": "any"
+    },
+    "vue": {
+      "id": "#vue",
+      "properties": {
+        "transformAssetUrls": {
+          "id": "#vue/transformAssetUrls",
+          "properties": {
+            "video": {
+              "type": "array",
+              "id": "#vue/transformAssetUrls/video",
+              "items": {
+                "type": "string"
+              }
+            },
+            "source": {
+              "type": "array",
+              "id": "#vue/transformAssetUrls/source",
+              "items": {
+                "type": "string"
+              }
+            },
+            "img": {
+              "type": "array",
+              "id": "#vue/transformAssetUrls/img",
+              "items": {
+                "type": "string"
+              }
+            },
+            "image": {
+              "type": "array",
+              "id": "#vue/transformAssetUrls/image",
+              "items": {
+                "type": "string"
+              }
+            },
+            "use": {
+              "type": "array",
+              "id": "#vue/transformAssetUrls/use",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "type": "object"
+        },
+        "compilerOptions": {
+          "id": "#vue/compilerOptions",
+          "type": "any"
+        },
+        "runtimeCompiler": {
+          "id": "#vue/runtimeCompiler",
+          "type": "boolean"
+        },
+        "optionsApi": {
+          "id": "#vue/optionsApi",
+          "type": "boolean"
+        },
+        "vapor": {
+          "id": "#vue/vapor",
+          "type": "boolean"
+        },
+        "propsDestructure": {
+          "type": "boolean",
+          "id": "#vue/propsDestructure"
+        },
+        "config": {
+          "id": "#vue/config",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "app": {
+      "id": "#app",
+      "properties": {
+        "baseURL": {
+          "id": "#app/baseURL",
+          "type": "string"
+        },
+        "buildAssetsDir": {
+          "id": "#app/buildAssetsDir",
+          "type": "string"
+        },
+        "cdnURL": {
+          "id": "#app/cdnURL",
+          "type": "string"
+        },
+        "head": {
+          "id": "#app/head",
+          "type": "object"
+        },
+        "layoutTransition": {
+          "type": "boolean",
+          "id": "#app/layoutTransition"
+        },
+        "pageTransition": {
+          "type": "boolean",
+          "id": "#app/pageTransition"
+        },
+        "viewTransition": {
+          "id": "#app/viewTransition",
+          "type": "object"
+        },
+        "keepalive": {
+          "type": "boolean",
+          "id": "#app/keepalive"
+        },
+        "rootId": {
+          "id": "#app/rootId",
+          "type": "string"
+        },
+        "rootTag": {
+          "id": "#app/rootTag",
+          "type": "string"
+        },
+        "rootAttrs": {
+          "id": "#app/rootAttrs",
+          "type": "object"
+        },
+        "teleportTag": {
+          "id": "#app/teleportTag",
+          "type": "string"
+        },
+        "teleportId": {
+          "id": "#app/teleportId",
+          "type": "string"
+        },
+        "teleportAttrs": {
+          "id": "#app/teleportAttrs",
+          "type": "object"
+        },
+        "spaLoaderTag": {
+          "id": "#app/spaLoaderTag",
+          "type": "string"
+        },
+        "spaLoaderAttrs": {
+          "id": "#app/spaLoaderAttrs",
+          "properties": {
+            "id": {
+              "type": "string",
+              "id": "#app/spaLoaderAttrs/id"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "spaLoadingTemplate": {
+      "id": "#spaLoadingTemplate",
+      "type": "any"
+    },
+    "plugins": {
+      "type": "array",
+      "id": "#plugins",
+      "items": {
+        "type": "any"
+      }
+    },
+    "css": {
+      "id": "#css",
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "unhead": {
+      "id": "#unhead",
+      "properties": {
+        "legacy": {
+          "id": "#unhead/legacy",
+          "type": "boolean"
+        },
+        "vite": {
+          "id": "#unhead/vite",
+          "type": "any"
+        },
+        "renderSSRHeadOptions": {
+          "id": "#unhead/renderSSRHeadOptions",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "builder": {
+      "id": "#builder",
+      "type": "string"
+    },
+    "sourcemap": {
+      "id": "#sourcemap",
+      "type": "object"
+    },
+    "logLevel": {
+      "id": "#logLevel",
+      "type": "string"
+    },
+    "build": {
+      "id": "#build",
+      "properties": {
+        "transpile": {
+          "id": "#build/transpile",
+          "type": "array",
+          "items": {
+            "type": "any"
+          }
+        },
+        "templates": {
+          "type": "array",
+          "id": "#build/templates",
+          "items": {
+            "type": "any"
+          }
+        },
+        "analyze": {
+          "id": "#build/analyze",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "optimization": {
+      "id": "#optimization",
+      "properties": {
+        "keyedComposables": {
+          "id": "#optimization/keyedComposables",
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "keyedComposableFactories": {
+          "id": "#optimization/keyedComposableFactories",
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "treeShake": {
+          "id": "#optimization/treeShake",
+          "properties": {
+            "composables": {
+              "id": "#optimization/treeShake/composables",
+              "properties": {
+                "server": {
+                  "id": "#optimization/treeShake/composables/server",
+                  "type": "object"
+                },
+                "client": {
+                  "id": "#optimization/treeShake/composables/client",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "asyncTransforms": {
+          "id": "#optimization/asyncTransforms",
+          "properties": {
+            "asyncFunctions": {
+              "type": "array",
+              "id": "#optimization/asyncTransforms/asyncFunctions",
+              "items": {
+                "type": "string"
+              }
+            },
+            "objectDefinitions": {
+              "id": "#optimization/asyncTransforms/objectDefinitions",
+              "properties": {
+                "defineNuxtComponent": {
+                  "type": "array",
+                  "id": "#optimization/asyncTransforms/objectDefinitions/defineNuxtComponent",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "defineNuxtPlugin": {
+                  "type": "array",
+                  "id": "#optimization/asyncTransforms/objectDefinitions/defineNuxtPlugin",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "definePageMeta": {
+                  "type": "array",
+                  "id": "#optimization/asyncTransforms/objectDefinitions/definePageMeta",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "extends": {
+      "id": "#extends"
+    },
+    "compatibilityDate": {
+      "id": "#compatibilityDate"
+    },
+    "theme": {
+      "id": "#theme"
+    },
+    "rootDir": {
+      "id": "#rootDir",
+      "type": "string"
+    },
+    "workspaceDir": {
+      "id": "#workspaceDir",
+      "type": "string"
+    },
+    "srcDir": {
+      "id": "#srcDir",
+      "type": "string"
+    },
+    "serverDir": {
+      "id": "#serverDir",
+      "type": "string"
+    },
+    "buildDir": {
+      "id": "#buildDir",
+      "type": "string"
+    },
+    "typesDir": {
+      "id": "#typesDir",
+      "type": "string"
+    },
+    "appId": {
+      "id": "#appId",
+      "type": "string"
+    },
+    "buildId": {
+      "id": "#buildId",
+      "type": "string"
+    },
+    "modulesDir": {
+      "id": "#modulesDir",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "analyzeDir": {
+      "id": "#analyzeDir",
+      "type": "string"
+    },
+    "dev": {
+      "id": "#dev",
+      "type": "boolean"
+    },
+    "test": {
+      "id": "#test",
+      "type": "boolean"
+    },
+    "envName": {
+      "id": "#envName",
+      "type": "string"
+    },
+    "debug": {
+      "id": "#debug",
+      "type": "object"
+    },
+    "ssr": {
+      "id": "#ssr",
+      "type": "boolean"
+    },
+    "modules": {
+      "id": "#modules",
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "dir": {
+      "id": "#dir",
+      "properties": {
+        "app": {
+          "id": "#dir/app",
+          "type": "string"
+        },
+        "assets": {
+          "type": "string",
+          "id": "#dir/assets"
+        },
+        "layouts": {
+          "type": "string",
+          "id": "#dir/layouts"
+        },
+        "middleware": {
+          "type": "string",
+          "id": "#dir/middleware"
+        },
+        "modules": {
+          "id": "#dir/modules",
+          "type": "string"
+        },
+        "pages": {
+          "type": "string",
+          "id": "#dir/pages"
+        },
+        "plugins": {
+          "type": "string",
+          "id": "#dir/plugins"
+        },
+        "shared": {
+          "id": "#dir/shared",
+          "type": "string"
+        },
+        "public": {
+          "id": "#dir/public",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "extensions": {
+      "id": "#extensions",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "alias": {
+      "id": "#alias",
+      "type": "object"
+    },
+    "ignoreOptions": {
+      "id": "#ignoreOptions"
+    },
+    "ignorePrefix": {
+      "id": "#ignorePrefix",
+      "type": "string"
+    },
+    "ignore": {
+      "id": "#ignore",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "watch": {
+      "id": "#watch",
+      "type": "array",
+      "items": {
+        "type": "any"
+      }
+    },
+    "watchers": {
+      "id": "#watchers",
+      "properties": {
+        "rewatchOnRawEvents": {
+          "id": "#watchers/rewatchOnRawEvents"
+        },
+        "webpack": {
+          "id": "#watchers/webpack",
+          "properties": {
+            "aggregateTimeout": {
+              "type": "number",
+              "id": "#watchers/webpack/aggregateTimeout"
+            }
+          },
+          "type": "object"
+        },
+        "chokidar": {
+          "id": "#watchers/chokidar",
+          "properties": {
+            "ignoreInitial": {
+              "type": "boolean",
+              "id": "#watchers/chokidar/ignoreInitial"
+            },
+            "ignorePermissionErrors": {
+              "type": "boolean",
+              "id": "#watchers/chokidar/ignorePermissionErrors"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "hooks": {
+      "id": "#hooks"
+    },
+    "runtimeConfig": {
+      "id": "#runtimeConfig",
+      "type": "object"
+    },
+    "appConfig": {
+      "id": "#appConfig",
+      "properties": {
+        "nuxt": {
+          "id": "#appConfig/nuxt",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "devServer": {
+      "id": "#devServer",
+      "properties": {
+        "https": {
+          "type": "boolean",
+          "id": "#devServer/https"
+        },
+        "port": {
+          "type": "number",
+          "id": "#devServer/port"
+        },
+        "host": {
+          "id": "#devServer/host"
+        },
+        "url": {
+          "type": "string",
+          "id": "#devServer/url"
+        },
+        "loadingTemplate": {
+          "type": "function",
+          "id": "#devServer/loadingTemplate"
+        },
+        "errorChannel": {
+          "type": "string",
+          "id": "#devServer/errorChannel"
+        },
+        "cors": {
+          "id": "#devServer/cors",
+          "properties": {
+            "origin": {
+              "type": "array",
+              "id": "#devServer/cors/origin",
+              "items": {
+                "type": "object"
+              }
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "future": {
+      "id": "#future",
+      "properties": {
+        "compatibilityVersion": {
+          "id": "#future/compatibilityVersion",
+          "type": "number"
+        },
+        "multiApp": {
+          "type": "boolean",
+          "id": "#future/multiApp"
+        },
+        "typescriptBundlerResolution": {
+          "id": "#future/typescriptBundlerResolution",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "features": {
+      "id": "#features",
+      "properties": {
+        "inlineStyles": {
+          "id": "#features/inlineStyles",
+          "type": "function"
+        },
+        "devLogs": {
+          "id": "#features/devLogs",
+          "type": "boolean"
+        },
+        "noScripts": {
+          "id": "#features/noScripts",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "experimental": {
+      "id": "#experimental",
+      "properties": {
+        "routeTypedFetch": {
+          "id": "#experimental/routeTypedFetch",
+          "type": "boolean"
+        },
+        "strictRouteTypes": {
+          "id": "#experimental/strictRouteTypes",
+          "type": "boolean"
+        },
+        "runtimeBaseURL": {
+          "type": "boolean",
+          "id": "#experimental/runtimeBaseURL"
+        },
+        "decorators": {
+          "type": "boolean",
+          "id": "#experimental/decorators"
+        },
+        "asyncEntry": {
+          "id": "#experimental/asyncEntry",
+          "type": "boolean"
+        },
+        "externalVue": {
+          "type": "boolean",
+          "id": "#experimental/externalVue"
+        },
+        "serverAppConfig": {
+          "type": "boolean",
+          "id": "#experimental/serverAppConfig"
+        },
+        "emitRouteChunkError": {
+          "id": "#experimental/emitRouteChunkError",
+          "type": "string"
+        },
+        "templateRouteInjection": {
+          "type": "boolean",
+          "id": "#experimental/templateRouteInjection"
+        },
+        "restoreState": {
+          "type": "boolean",
+          "id": "#experimental/restoreState"
+        },
+        "renderJsonPayloads": {
+          "type": "boolean",
+          "id": "#experimental/renderJsonPayloads"
+        },
+        "noVueServer": {
+          "type": "boolean",
+          "id": "#experimental/noVueServer"
+        },
+        "payloadExtraction": {
+          "id": "#experimental/payloadExtraction",
+          "type": "boolean"
+        },
+        "inlineErrorRendering": {
+          "id": "#experimental/inlineErrorRendering",
+          "type": "boolean"
+        },
+        "prerenderErrorPages": {
+          "id": "#experimental/prerenderErrorPages",
+          "type": "boolean"
+        },
+        "early404": {
+          "type": "boolean",
+          "id": "#experimental/early404"
+        },
+        "clientFallback": {
+          "type": "boolean",
+          "id": "#experimental/clientFallback"
+        },
+        "crossOriginPrefetch": {
+          "type": "boolean",
+          "id": "#experimental/crossOriginPrefetch"
+        },
+        "viewTransition": {
+          "type": "boolean",
+          "id": "#experimental/viewTransition"
+        },
+        "writeEarlyHints": {
+          "type": "boolean",
+          "id": "#experimental/writeEarlyHints"
+        },
+        "componentIslands": {
+          "id": "#experimental/componentIslands",
+          "type": "string"
+        },
+        "localLayerAliases": {
+          "type": "boolean",
+          "id": "#experimental/localLayerAliases"
+        },
+        "typedPages": {
+          "id": "#experimental/typedPages",
+          "type": "boolean"
+        },
+        "serverPathFallback": {
+          "id": "#experimental/serverPathFallback",
+          "type": "boolean"
+        },
+        "appManifest": {
+          "type": "boolean",
+          "id": "#experimental/appManifest"
+        },
+        "checkOutdatedBuildInterval": {
+          "type": "number",
+          "id": "#experimental/checkOutdatedBuildInterval"
+        },
+        "watcher": {
+          "id": "#experimental/watcher",
+          "type": "string"
+        },
+        "asyncContext": {
+          "type": "boolean",
+          "id": "#experimental/asyncContext"
+        },
+        "headNext": {
+          "type": "boolean",
+          "id": "#experimental/headNext"
+        },
+        "inlineRouteRules": {
+          "type": "boolean",
+          "id": "#experimental/inlineRouteRules"
+        },
+        "scanPageMeta": {
+          "id": "#experimental/scanPageMeta",
+          "type": "string"
+        },
+        "extraPageMetaExtractionKeys": {
+          "type": "array",
+          "id": "#experimental/extraPageMetaExtractionKeys",
+          "items": {
+            "type": "any"
+          }
+        },
+        "extractSerializablePageMeta": {
+          "id": "#experimental/extractSerializablePageMeta",
+          "type": "boolean"
+        },
+        "sharedPrerenderData": {
+          "id": "#experimental/sharedPrerenderData",
+          "type": "boolean"
+        },
+        "cookieStore": {
+          "type": "boolean",
+          "id": "#experimental/cookieStore"
+        },
+        "defaults": {
+          "id": "#experimental/defaults",
+          "properties": {
+            "nuxtLink": {
+              "id": "#experimental/defaults/nuxtLink",
+              "properties": {
+                "componentName": {
+                  "type": "string",
+                  "id": "#experimental/defaults/nuxtLink/componentName"
+                },
+                "prefetch": {
+                  "type": "boolean",
+                  "id": "#experimental/defaults/nuxtLink/prefetch"
+                },
+                "prefetchOn": {
+                  "id": "#experimental/defaults/nuxtLink/prefetchOn",
+                  "properties": {
+                    "visibility": {
+                      "type": "boolean",
+                      "id": "#experimental/defaults/nuxtLink/prefetchOn/visibility"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "useAsyncData": {
+              "id": "#experimental/defaults/useAsyncData",
+              "properties": {
+                "deep": {
+                  "type": "boolean",
+                  "id": "#experimental/defaults/useAsyncData/deep"
+                }
+              },
+              "type": "object"
+            },
+            "useState": {
+              "id": "#experimental/defaults/useState",
+              "properties": {
+                "resetOnClear": {
+                  "id": "#experimental/defaults/useState/resetOnClear",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "useFetch": {
+              "id": "#experimental/defaults/useFetch",
+              "type": "any"
+            }
+          },
+          "type": "object"
+        },
+        "clientNodeCompat": {
+          "type": "boolean",
+          "id": "#experimental/clientNodeCompat"
+        },
+        "navigationRepaint": {
+          "type": "boolean",
+          "id": "#experimental/navigationRepaint"
+        },
+        "navigateToEarlyReturn": {
+          "id": "#experimental/navigateToEarlyReturn",
+          "type": "boolean"
+        },
+        "buildCache": {
+          "type": "boolean",
+          "id": "#experimental/buildCache"
+        },
+        "normalizeComponentNames": {
+          "id": "#experimental/normalizeComponentNames",
+          "type": "boolean"
+        },
+        "normalizePageNames": {
+          "id": "#experimental/normalizePageNames",
+          "type": "boolean"
+        },
+        "spaLoadingTemplateLocation": {
+          "id": "#experimental/spaLoadingTemplateLocation",
+          "type": "string"
+        },
+        "browserDevtoolsTiming": {
+          "id": "#experimental/browserDevtoolsTiming",
+          "type": "boolean"
+        },
+        "chromeDevtoolsProjectSettings": {
+          "type": "boolean",
+          "id": "#experimental/chromeDevtoolsProjectSettings"
+        },
+        "debugModuleMutation": {
+          "id": "#experimental/debugModuleMutation",
+          "type": "boolean"
+        },
+        "lazyHydration": {
+          "id": "#experimental/lazyHydration",
+          "type": "boolean"
+        },
+        "templateImportResolution": {
+          "type": "boolean",
+          "id": "#experimental/templateImportResolution"
+        },
+        "purgeCachedData": {
+          "id": "#experimental/purgeCachedData",
+          "type": "boolean"
+        },
+        "prefetchPreloadTags": {
+          "id": "#experimental/prefetchPreloadTags",
+          "type": "boolean"
+        },
+        "granularCachedData": {
+          "id": "#experimental/granularCachedData",
+          "type": "boolean"
+        },
+        "stripNeverHydratedData": {
+          "type": "boolean",
+          "id": "#experimental/stripNeverHydratedData"
+        },
+        "alwaysRunFetchOnKeyChange": {
+          "id": "#experimental/alwaysRunFetchOnKeyChange",
+          "type": "boolean"
+        },
+        "parseErrorData": {
+          "id": "#experimental/parseErrorData",
+          "type": "boolean"
+        },
+        "enforceModuleCompatibility": {
+          "type": "boolean",
+          "id": "#experimental/enforceModuleCompatibility"
+        },
+        "pendingWhenIdle": {
+          "id": "#experimental/pendingWhenIdle",
+          "type": "boolean"
+        },
+        "entryImportMap": {
+          "type": "boolean",
+          "id": "#experimental/entryImportMap"
+        },
+        "extractAsyncDataHandlers": {
+          "id": "#experimental/extractAsyncDataHandlers",
+          "type": "boolean"
+        },
+        "viteEnvironmentApi": {
+          "id": "#experimental/viteEnvironmentApi",
+          "type": "boolean"
+        },
+        "nitroAutoImports": {
+          "id": "#experimental/nitroAutoImports",
+          "type": "boolean"
+        },
+        "nitroViteEnvironment": {
+          "id": "#experimental/nitroViteEnvironment",
+          "type": "boolean"
+        },
+        "ssrStreaming": {
+          "id": "#experimental/ssrStreaming",
+          "type": "object"
+        },
+        "asyncCallHook": {
+          "id": "#experimental/asyncCallHook",
+          "type": "boolean"
+        },
+        "clientNodePlaceholder": {
+          "id": "#experimental/clientNodePlaceholder",
+          "type": "boolean"
+        },
+        "clearBuildHooks": {
+          "type": "boolean",
+          "id": "#experimental/clearBuildHooks"
+        }
+      },
+      "type": "object"
+    },
+    "generate": {
+      "id": "#generate",
+      "properties": {
+        "routes": {
+          "type": "array",
+          "id": "#generate/routes",
+          "items": {
+            "type": "any"
+          }
+        },
+        "exclude": {
+          "type": "array",
+          "id": "#generate/exclude",
+          "items": {
+            "type": "any"
+          }
+        }
+      },
+      "type": "object"
+    },
+    "_majorVersion": {
+      "type": "number",
+      "id": "#_majorVersion"
+    },
+    "_nitroMajor": {
+      "type": "number",
+      "id": "#_nitroMajor"
+    },
+    "_legacyGenerate": {
+      "type": "boolean",
+      "id": "#_legacyGenerate"
+    },
+    "_start": {
+      "type": "boolean",
+      "id": "#_start"
+    },
+    "_build": {
+      "type": "boolean",
+      "id": "#_build"
+    },
+    "_generate": {
+      "type": "boolean",
+      "id": "#_generate"
+    },
+    "_prepare": {
+      "type": "boolean",
+      "id": "#_prepare"
+    },
+    "_cli": {
+      "type": "boolean",
+      "id": "#_cli"
+    },
+    "_requiredModules": {
+      "id": "#_requiredModules",
+      "type": "any"
+    },
+    "_loadOptions": {
+      "id": "#_loadOptions"
+    },
+    "_nuxtConfigFile": {
+      "id": "#_nuxtConfigFile"
+    },
+    "_nuxtConfigFiles": {
+      "type": "array",
+      "id": "#_nuxtConfigFiles",
+      "items": {
+        "type": "any"
+      }
+    },
+    "appDir": {
+      "type": "string",
+      "id": "#appDir"
+    },
+    "_installedModules": {
+      "type": "array",
+      "id": "#_installedModules",
+      "items": {
+        "type": "any"
+      }
+    },
+    "_modules": {
+      "type": "array",
+      "id": "#_modules",
+      "items": {
+        "type": "any"
+      }
+    },
+    "_noScriptsPageSources": {
+      "type": "array",
+      "id": "#_noScriptsPageSources",
+      "items": {
+        "type": "any"
+      }
+    },
+    "server": {
+      "id": "#server",
+      "properties": {
+        "builder": {
+          "id": "#server/builder",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "nitro": {
+      "id": "#nitro",
+      "properties": {
+        "runtimeConfig": {
+          "id": "#nitro/runtimeConfig",
+          "type": "object"
+        },
+        "routeRules": {
+          "id": "#nitro/routeRules",
+          "type": "object"
+        },
+        "prerender": {
+          "id": "#nitro/prerender",
+          "type": "object"
+        },
+        "tracingChannel": {
+          "id": "#nitro/tracingChannel",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "routeRules": {
+      "id": "#routeRules",
+      "type": "any"
+    },
+    "prerender": {
+      "id": "#prerender",
+      "type": "any"
+    },
+    "serverHandlers": {
+      "type": "array",
+      "id": "#serverHandlers",
+      "items": {
+        "type": "any"
+      }
+    },
+    "devServerHandlers": {
+      "type": "array",
+      "id": "#devServerHandlers",
+      "items": {
+        "type": "any"
+      }
+    },
+    "_serverPlugins": {
+      "type": "array",
+      "id": "#_serverPlugins",
+      "items": {
+        "type": "any"
+      }
+    },
+    "tracingChannel": {
+      "id": "#tracingChannel",
+      "type": "boolean"
+    },
+    "postcss": {
+      "id": "#postcss",
+      "properties": {
+        "order": {
+          "id": "#postcss/order",
+          "type": "function"
+        },
+        "plugins": {
+          "id": "#postcss/plugins",
+          "properties": {
+            "autoprefixer": {
+              "id": "#postcss/plugins/autoprefixer",
+              "type": "object"
+            },
+            "cssnano": {
+              "id": "#postcss/plugins/cssnano",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "router": {
+      "id": "#router",
+      "properties": {
+        "options": {
+          "id": "#router/options",
+          "properties": {
+            "hashMode": {
+              "type": "boolean",
+              "id": "#router/options/hashMode"
+            },
+            "scrollBehaviorType": {
+              "type": "string",
+              "id": "#router/options/scrollBehaviorType"
+            },
+            "sensitive": {
+              "id": "#router/options/sensitive",
+              "type": "boolean"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "typescript": {
+      "id": "#typescript",
+      "properties": {
+        "strict": {
+          "type": "boolean",
+          "id": "#typescript/strict"
+        },
+        "builder": {
+          "id": "#typescript/builder",
+          "type": "any"
+        },
+        "hoist": {
+          "id": "#typescript/hoist",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "includeWorkspace": {
+          "type": "boolean",
+          "id": "#typescript/includeWorkspace"
+        },
+        "typeCheck": {
+          "type": "boolean",
+          "id": "#typescript/typeCheck"
+        },
+        "tsConfig": {
+          "id": "#typescript/tsConfig",
+          "type": "any"
+        },
+        "shim": {
+          "type": "boolean",
+          "id": "#typescript/shim"
+        }
+      },
+      "type": "object"
+    },
+    "esbuild": {
+      "id": "#esbuild",
+      "properties": {
+        "options": {
+          "id": "#esbuild/options",
+          "properties": {
+            "target": {
+              "id": "#esbuild/options/target",
+              "type": "string"
+            },
+            "jsxFactory": {
+              "type": "string",
+              "id": "#esbuild/options/jsxFactory"
+            },
+            "jsxFragment": {
+              "type": "string",
+              "id": "#esbuild/options/jsxFragment"
+            },
+            "tsconfigRaw": {
+              "id": "#esbuild/options/tsconfigRaw",
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "oxc": {
+      "id": "#oxc",
+      "properties": {
+        "transform": {
+          "id": "#oxc/transform",
+          "properties": {
+            "options": {
+              "id": "#oxc/transform/options",
+              "properties": {
+                "target": {
+                  "type": "string",
+                  "id": "#oxc/transform/options/target"
+                },
+                "jsxFactory": {
+                  "type": "string",
+                  "id": "#oxc/transform/options/jsxFactory"
+                },
+                "jsxFragment": {
+                  "type": "string",
+                  "id": "#oxc/transform/options/jsxFragment"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "vite": {
+      "id": "#vite",
+      "properties": {
+        "root": {
+          "id": "#vite/root",
+          "type": "string"
+        },
+        "mode": {
+          "id": "#vite/mode",
+          "type": "string"
+        },
+        "define": {
+          "id": "#vite/define",
+          "type": "object"
+        },
+        "resolve": {
+          "id": "#vite/resolve",
+          "properties": {
+            "extensions": {
+              "type": "array",
+              "id": "#vite/resolve/extensions",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "type": "object"
+        },
+        "publicDir": {
+          "id": "#vite/publicDir",
+          "type": "boolean"
+        },
+        "vue": {
+          "id": "#vite/vue",
+          "properties": {
+            "isProduction": {
+              "id": "#vite/vue/isProduction",
+              "type": "boolean"
+            },
+            "template": {
+              "id": "#vite/vue/template",
+              "properties": {
+                "compilerOptions": {
+                  "id": "#vite/vue/template/compilerOptions",
+                  "type": "object"
+                },
+                "transformAssetUrls": {
+                  "id": "#vite/vue/template/transformAssetUrls",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "script": {
+              "id": "#vite/vue/script",
+              "properties": {
+                "hoistStatic": {
+                  "id": "#vite/vue/script/hoistStatic",
+                  "type": "any"
+                }
+              },
+              "type": "object"
+            },
+            "features": {
+              "id": "#vite/vue/features",
+              "properties": {
+                "propsDestructure": {
+                  "id": "#vite/vue/features/propsDestructure",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "vueJsx": {
+          "id": "#vite/vueJsx",
+          "type": "object"
+        },
+        "optimizeDeps": {
+          "id": "#vite/optimizeDeps",
+          "properties": {
+            "exclude": {
+              "id": "#vite/optimizeDeps/exclude",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "type": "object"
+        },
+        "clearScreen": {
+          "type": "boolean",
+          "id": "#vite/clearScreen"
+        },
+        "build": {
+          "id": "#vite/build",
+          "properties": {
+            "assetsDir": {
+              "id": "#vite/build/assetsDir",
+              "type": "string"
+            },
+            "emptyOutDir": {
+              "type": "boolean",
+              "id": "#vite/build/emptyOutDir"
+            }
+          },
+          "type": "object"
+        },
+        "server": {
+          "id": "#vite/server",
+          "properties": {
+            "fs": {
+              "id": "#vite/server/fs",
+              "properties": {
+                "allow": {
+                  "id": "#vite/server/fs/allow",
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "cacheDir": {
+          "id": "#vite/cacheDir",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "webpack": {
+      "id": "#webpack",
+      "properties": {
+        "analyze": {
+          "id": "#webpack/analyze",
+          "type": "object"
+        },
+        "profile": {
+          "type": "boolean",
+          "id": "#webpack/profile"
+        },
+        "extractCSS": {
+          "type": "boolean",
+          "id": "#webpack/extractCSS"
+        },
+        "cssSourceMap": {
+          "id": "#webpack/cssSourceMap",
+          "type": "boolean"
+        },
+        "serverURLPolyfill": {
+          "type": "string",
+          "id": "#webpack/serverURLPolyfill"
+        },
+        "filenames": {
+          "id": "#webpack/filenames",
+          "properties": {
+            "app": {
+              "type": "function",
+              "id": "#webpack/filenames/app"
+            },
+            "chunk": {
+              "type": "function",
+              "id": "#webpack/filenames/chunk"
+            },
+            "css": {
+              "type": "function",
+              "id": "#webpack/filenames/css"
+            },
+            "img": {
+              "type": "function",
+              "id": "#webpack/filenames/img"
+            },
+            "font": {
+              "type": "function",
+              "id": "#webpack/filenames/font"
+            },
+            "video": {
+              "type": "function",
+              "id": "#webpack/filenames/video"
+            }
+          },
+          "type": "object"
+        },
+        "loaders": {
+          "id": "#webpack/loaders",
+          "properties": {
+            "esbuild": {
+              "id": "#webpack/loaders/esbuild",
+              "type": "object"
+            },
+            "file": {
+              "id": "#webpack/loaders/file",
+              "properties": {
+                "esModule": {
+                  "type": "boolean",
+                  "id": "#webpack/loaders/file/esModule"
+                },
+                "limit": {
+                  "type": "number",
+                  "id": "#webpack/loaders/file/limit"
+                }
+              },
+              "type": "object"
+            },
+            "fontUrl": {
+              "id": "#webpack/loaders/fontUrl",
+              "properties": {
+                "esModule": {
+                  "type": "boolean",
+                  "id": "#webpack/loaders/fontUrl/esModule"
+                },
+                "limit": {
+                  "type": "number",
+                  "id": "#webpack/loaders/fontUrl/limit"
+                }
+              },
+              "type": "object"
+            },
+            "imgUrl": {
+              "id": "#webpack/loaders/imgUrl",
+              "properties": {
+                "esModule": {
+                  "type": "boolean",
+                  "id": "#webpack/loaders/imgUrl/esModule"
+                },
+                "limit": {
+                  "type": "number",
+                  "id": "#webpack/loaders/imgUrl/limit"
+                }
+              },
+              "type": "object"
+            },
+            "pugPlain": {
+              "id": "#webpack/loaders/pugPlain",
+              "type": "any"
+            },
+            "vue": {
+              "id": "#webpack/loaders/vue",
+              "properties": {
+                "transformAssetUrls": {
+                  "id": "#webpack/loaders/vue/transformAssetUrls",
+                  "type": "object"
+                },
+                "compilerOptions": {
+                  "id": "#webpack/loaders/vue/compilerOptions",
+                  "type": "object"
+                },
+                "propsDestructure": {
+                  "id": "#webpack/loaders/vue/propsDestructure",
+                  "type": "boolean"
+                }
+              },
+              "type": "object"
+            },
+            "css": {
+              "id": "#webpack/loaders/css",
+              "properties": {
+                "importLoaders": {
+                  "type": "number",
+                  "id": "#webpack/loaders/css/importLoaders"
+                },
+                "url": {
+                  "id": "#webpack/loaders/css/url",
+                  "properties": {
+                    "filter": {
+                      "type": "function",
+                      "id": "#webpack/loaders/css/url/filter"
+                    }
+                  },
+                  "type": "object"
+                },
+                "esModule": {
+                  "type": "boolean",
+                  "id": "#webpack/loaders/css/esModule"
+                }
+              },
+              "type": "object"
+            },
+            "cssModules": {
+              "id": "#webpack/loaders/cssModules",
+              "properties": {
+                "importLoaders": {
+                  "type": "number",
+                  "id": "#webpack/loaders/cssModules/importLoaders"
+                },
+                "url": {
+                  "id": "#webpack/loaders/cssModules/url",
+                  "properties": {
+                    "filter": {
+                      "type": "function",
+                      "id": "#webpack/loaders/cssModules/url/filter"
+                    }
+                  },
+                  "type": "object"
+                },
+                "esModule": {
+                  "type": "boolean",
+                  "id": "#webpack/loaders/cssModules/esModule"
+                },
+                "modules": {
+                  "id": "#webpack/loaders/cssModules/modules",
+                  "properties": {
+                    "localIdentName": {
+                      "type": "string",
+                      "id": "#webpack/loaders/cssModules/modules/localIdentName"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "less": {
+              "id": "#webpack/loaders/less",
+              "type": "any"
+            },
+            "sass": {
+              "id": "#webpack/loaders/sass",
+              "properties": {
+                "sassOptions": {
+                  "id": "#webpack/loaders/sass/sassOptions",
+                  "properties": {
+                    "indentedSyntax": {
+                      "type": "boolean",
+                      "id": "#webpack/loaders/sass/sassOptions/indentedSyntax"
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            },
+            "scss": {
+              "id": "#webpack/loaders/scss",
+              "type": "any"
+            },
+            "stylus": {
+              "id": "#webpack/loaders/stylus",
+              "type": "any"
+            },
+            "vueStyle": {
+              "id": "#webpack/loaders/vueStyle",
+              "type": "any"
+            }
+          },
+          "type": "object"
+        },
+        "plugins": {
+          "type": "array",
+          "id": "#webpack/plugins",
+          "items": {
+            "type": "any"
+          }
+        },
+        "aggressiveCodeRemoval": {
+          "type": "boolean",
+          "id": "#webpack/aggressiveCodeRemoval"
+        },
+        "optimizeCSS": {
+          "id": "#webpack/optimizeCSS",
+          "type": "boolean"
+        },
+        "optimization": {
+          "id": "#webpack/optimization",
+          "properties": {
+            "runtimeChunk": {
+              "type": "string",
+              "id": "#webpack/optimization/runtimeChunk"
+            },
+            "minimize": {
+              "id": "#webpack/optimization/minimize",
+              "type": "boolean"
+            },
+            "minimizer": {
+              "id": "#webpack/optimization/minimizer"
+            },
+            "splitChunks": {
+              "id": "#webpack/optimization/splitChunks",
+              "properties": {
+                "chunks": {
+                  "type": "string",
+                  "id": "#webpack/optimization/splitChunks/chunks"
+                },
+                "automaticNameDelimiter": {
+                  "type": "string",
+                  "id": "#webpack/optimization/splitChunks/automaticNameDelimiter"
+                },
+                "cacheGroups": {
+                  "id": "#webpack/optimization/splitChunks/cacheGroups",
+                  "type": "any"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "postcss": {
+          "id": "#webpack/postcss",
+          "properties": {
+            "postcssOptions": {
+              "id": "#webpack/postcss/postcssOptions",
+              "properties": {
+                "plugins": {
+                  "id": "#webpack/postcss/postcssOptions/plugins",
+                  "type": "object"
+                }
+              },
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "devMiddleware": {
+          "id": "#webpack/devMiddleware",
+          "properties": {
+            "stats": {
+              "type": "string",
+              "id": "#webpack/devMiddleware/stats"
+            }
+          },
+          "type": "object"
+        },
+        "hotMiddleware": {
+          "id": "#webpack/hotMiddleware",
+          "type": "any"
+        },
+        "friendlyErrors": {
+          "type": "boolean",
+          "id": "#webpack/friendlyErrors"
+        },
+        "warningIgnoreFilters": {
+          "type": "array",
+          "id": "#webpack/warningIgnoreFilters",
+          "items": {
+            "type": "any"
+          }
+        },
+        "experiments": {
+          "id": "#webpack/experiments",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object",
+  "$comment": "Generated from @nuxt/schema 4.6.1 by pnpm schema:generate. Nuxt 3 uses its retained 3.21.11 snapshot."
+}

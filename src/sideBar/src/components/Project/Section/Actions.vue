@@ -1,12 +1,13 @@
+<!-- Display project actions and dispatch their actions to the extension host. -->
 <template>
     <div class="my-0.5 flex w-full select-none flex-col items-center text-[var(--vscode-foreground)]">
-        <div class="flex w-full cursor-pointer flex-row items-center" @click="expandSection">
+        <button type="button" :aria-expanded="isSectionOpened" class="flex w-full cursor-pointer flex-row items-center" @click="expandSection">
             <IconChevron class="h-2.5 w-2.5" :listOpen="isSectionOpened" />
             <div class="mx-2.5 flex flex-1 flex-row items-center gap-2 hover:bg-[var(--vscode-list-hoverBackground)]">
                 <IconFlash class="h-3 w-3" />
                 <p class="text-sm font-medium">Actions</p>
             </div>
-        </div>
+        </button>
         <Transition name="slide-down-fade">
             <div @click.stop v-if="isSectionOpened" class="mx-auto mb-2.5 mt-1 w-11/12 px-2"
                 :class="{ showing: isSectionOpened, hidden: !isSectionOpened }">
@@ -37,10 +38,12 @@ defineProps({
 
 const isSectionOpened = ref(true);
 
+/** Expand or collapse this project section. */
 const expandSection = () => {
     isSectionOpened.value = !isSectionOpened.value;
 };
 
+/** Request a declared script through the project-scoped host executor. */
 const executeCommand = (script: string) => {
     vscode.postMessage({
         command: "runAction",

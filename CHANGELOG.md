@@ -1,3 +1,41 @@
+## Unreleased — modernization
+
+- Label sidebar filters and show pointer cursors on enabled actions and links.
+
+- Add consistent 12px padding around both sidebar views, keeping controls and module cards inset at narrow widths.
+
+- Complete canonical module names in Nuxt configuration from cached/offline catalogue data, with tuple, duplicate and compatibility handling (#144).
+
+- Add opt-in terminal reuse for confirmed idle Nuxtr terminals in the same project and working directory (#154).
+
+- Wrap Vue template selections with Nuxt built-ins, preserving indentation and offering one undo for multiple selections (#134).
+
+- Add read-only project health checks with a diagnostics preview and explicit clipboard copy.
+
+- Complete Pinia and other successful command configuration while documentation notifications remain open; keep delayed documentation actions functional and separate browser errors from installation results.
+- Open module/layer sidebar tabs on the first CodeLens click, including cold views and stale filters. Show one Nitro task palette entry and handle missing Explorer resources without `undefined.fsPath` errors.
+- Execute offline package-manager launchers in paths containing spaces, including real Windows command shims in CI; cover cancellation, timeouts, failed installs and preserved configuration.
+- Add manual CI dispatch and retain complete gate logs, actual editor/runtime identity, sidebar screenshots and the tested VSIX/checksum. Document issue regressions, installed-extension checks and mandatory WSL release sign-off.
+
+- Fix sidebar Install clicks failing to send reactive module metadata; show recoverable installation errors and allow configuration to proceed without dismissing the success notification.
+
+- Cover all Nuxt 4 API components, composables and utilities, preserve existing prefixes, link official docs, correct invalid signatures and guard newer APIs by project version.
+
+- Add all 72 documented H3 v1 helpers as server-only Nitro snippets; correct cookie helper arguments and support custom server directories.
+
+- Show project structure in the application-folder Explorer menu, and API/server-utility creation on resolved server folders, including custom/nested layouts.
+
+- Raise the minimum VS Code version to 1.141.0; development/CI use Node 24.20.0 and pnpm 12.10.1.
+- Upgrade stable Nuxt schema, Vue/Vite/Router, Tailwind, lint and packaging tooling. Retain TypeScript 6.0.3 until Vue/ESLint integrations support TypeScript 7.
+- Fix empty-window activation, nested/multiple project selection, Nuxt 3/4 and custom directory handling, Bun lockfile/fallback detection, complete process results and pnpm catalog updates.
+- Replace installed-manifest snippet mutation with owned dynamic providers; prevent boilerplate suggestions in imports. Remove the unrelated global log override.
+- Separate module installation/config-edit errors, preserve config comments and default build-time modules to devDependencies. Add explicit Tailwind 4/Vite and legacy Tailwind 3 recipes.
+- Protect generated files, honor indentation, normalize extensions and correct Pinia/server-middleware templates.
+- Add optional component/composable/API templates, JS/TS scaffolds, composable filename prefixes, nested Nitro tasks with explicit experimental opt-in, release-note links and cached/offline module catalogues.
+- Dispose listeners/providers, validate typed sidebar messages, restrict CSP and replace the feedback service with issue/discussion links. Move generated sidebar assets into ignored out/ output.
+- Refresh compatible transitive dependencies and include Vue template/script lint in the merge gate.
+- Add unit regressions, VS Code integration and packaged-extension tests, production-sidebar browser checks, generated Nuxt fixtures and Linux/Windows/macOS CI.
+
 ## v0.2.12
 
 [compare changes](https://github.com/nuxtrdev/nuxtr-vscode/compare/0.2.10...v0.2.12)

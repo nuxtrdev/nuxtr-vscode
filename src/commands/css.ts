@@ -1,14 +1,13 @@
+/** Offer CSS framework setup using recipes that align installed packages, CSS and Nuxt configuration. */
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { join, relative } from 'node:path';
+import { configureTailwindSource, tailwindRecipe } from '../core/tailwind';
+import { findNuxtConfig, projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
 import { tailwindCSSFile, tailwindCSSJSConfig, tailwindCSSTSConfig, unoCSSConfig, vuetifyConfigFile } from '../templates'
 import { createFile, getInstallationCommand, isNuxtTwo, openExternalLink, projectRootDirectory, projectSrcDirectory, runCommand, updateNuxtConfig } from '../utils'
 
 const frameworks = ['TailwindCSS', 'UnoCSS', 'Vuetify']
-
-enum TailwindOptions {
-    installModule = 'Install @nuxtjs/tailwindcss module and add it to nuxt config',
-    createConfigFile = 'Create TailwindCSS config file',
-    createTailwindCSSFile = 'Create tailwind.css file inside assets/css',
-}
 
 enum UnoCSSOptions {
     installModule = 'Install @UnoCSS/Nuxt module and add it to nuxt config',
@@ -20,6 +19,7 @@ enum VuetifyOptions {
     createConfigFile = 'Create Vuetify config file',
 }
 
+/** Prompt for a framework and start its project-specific setup. */
 function configureCSS () {
     window
         .showQuickPick(frameworks, {
@@ -46,75 +46,34 @@ function configureCSS () {
         })
 }
 
-const configureTailwind = () => {
+/** Offer explicit Tailwind 4/Vite or legacy Tailwind 3/module setup without overwriting user CSS/config files. */
+const configureTailwind = async () => {
     try {
+        const selected = await window.showQuickPick(isNuxtTwo() ? ['Tailwind 3 (Nuxt module)'] : ['Tailwind 4 (Vite)', 'Tailwind 3 (Nuxt module)'], { placeHolder: 'Select a Tailwind integration' });
+        if (!selected) { return; }
+        const recipe = selected.startsWith('Tailwind 4') ? 'vite4' : 'module3';
+        const definition = tailwindRecipe(recipe);
+        const path = findNuxtConfig();
+        if (!path) { throw new Error('No Nuxt configuration found.'); }
+        const cssPath = join(projectDirectory('assets'), 'css/tailwind.css');
+        if (existsSync(cssPath) && readFileSync(cssPath, 'utf8') !== definition.css) { throw new Error(`Existing ${cssPath} has custom content. Preserve it and apply the recipe manually.`); }
+        const alias = '~/' + relative(projectDirectory('app'), cssPath).replaceAll('\\', '/');
+        const original = readFileSync(path, 'utf8');
+        const updated = configureTailwindSource(original, recipe, alias);
+        const command = await getInstallationCommand(definition.packages.join(' '), true);
+        await runCommand({ command, message: `Installing ${selected}`, successMessage: 'Tailwind dependencies installed', errorMessage: 'Tailwind dependency installation failed', logger: true });
+        if (readFileSync(path, 'utf8') !== original) { throw new Error('Nuxt config changed during installation. Packages are installed; apply configuration manually.'); }
+        if (!existsSync(cssPath)) { await createFile({ fileName: 'tailwind.css', content: definition.css, fullPath: cssPath }); }
+        writeFileSync(path, updated, 'utf8');
+        if (recipe === 'module3' && !existsSync(join(projectRootDirectory(), 'tailwind.config.ts'))) {
+            const filename = `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`;
+            if (!existsSync(join(projectRootDirectory(), filename))) { await createFile({ fileName: filename, content: isNuxtTwo() ? tailwindCSSJSConfig : tailwindCSSTSConfig, fullPath: join(projectRootDirectory(), filename) }); }
+        }
+        window.showInformationMessage(`${selected} configured.`);
+    } catch (error) { window.showErrorMessage(String(error)); }
+};
 
-        const tailwindOptions = Object.values(TailwindOptions)
-
-        window
-            .showQuickPick(tailwindOptions, {
-                canPickMany: true,
-                placeHolder: 'Select files to create',
-            })
-            .then(async (selections) => {
-                if (selections !== undefined && selections.length > 0) {
-                    if (selections.includes(TailwindOptions.installModule)) {
-                        const moduleName = '@nuxtjs/tailwindcss'
-                        const tailwindCommand = await getInstallationCommand('tailwindcss', true)
-                        const moduleCommand = await getInstallationCommand(moduleName, true)
-
-                        if (!isNuxtTwo()) {
-                            await runCommand({
-                                command: tailwindCommand,
-                                message: 'Installing TailwindCSS',
-                                successMessage: 'TailwindCSS installed successfully',
-                                errorMessage: 'TailwindCSS installation failed',
-                            })
-                        }
-
-                        await runCommand({
-                            command: moduleCommand,
-                            message: 'Installing TailwindCSS Module',
-                            successMessage: 'TailwindCSS Module installed successfully',
-                            errorMessage: 'TailwindCSS Module installation failed',
-                        })
-                        await updateNuxtConfig('add-module', moduleName)
-                    }
-
-                    if (selections.includes(TailwindOptions.createTailwindCSSFile)) {
-                        const filePath = `${await projectSrcDirectory()}/assets/css/tailwind.css`
-
-                        await createFile({
-                            fileName: 'tailwind.css',
-                            content: tailwindCSSFile,
-                            fullPath: filePath,
-                        })
-                    }
-
-                    if (selections.includes(TailwindOptions.createConfigFile)) {
-
-                        await createFile({
-                            fileName: `tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
-                            content: isNuxtTwo() ? tailwindCSSJSConfig : tailwindCSSTSConfig,
-                            fullPath: `${projectRootDirectory()}/tailwind.config.${isNuxtTwo() ? 'js' : 'ts'}`,
-                        })
-                    }
-
-                    window
-                        .showInformationMessage('TailwindCSS configured successfully.', 'Open documentation')
-                        .then((value) => {
-                            if (value) {
-                                openExternalLink('https://tailwindcss.nuxtjs.org/')
-                            }
-                        })
-                }
-            })
-    } catch (error: any) {
-        console.log(error)
-    }
-}
-
-
+/** Offer UnoCSS module installation and preserve its existing configuration. */
 const configureUno = async () => {
     try {
         const filePath = `${await projectSrcDirectory()}/uno.config.ts`
@@ -163,6 +122,7 @@ const configureUno = async () => {
     }
 }
 
+/** Offer Vuetify module installation and preserve its existing configuration. */
 const configureVuetify = async () => {
     try {
         const filePath = `${await projectSrcDirectory()}/vuetify.config.ts`

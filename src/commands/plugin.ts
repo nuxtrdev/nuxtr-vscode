@@ -1,9 +1,13 @@
+/** Prompt for and scaffold plugin files in the selected project’s resolved directories. */
+import { scaffoldExtension } from '../utils/files';
+import { directServerScaffold, projectDirectory } from '../utils/nuxt';
 import { window } from 'vscode'
 import { nitroPluginTemplate, nuxtPluginTemplate } from '../templates'
 import { createDir, createFile, createSubFolders, hasServerDir, normalizeFileExtension, projectSrcDirectory, showSubFolderQuickPick } from '../utils'
 
+/** Prompt for a plugin name and create its configured template under the resolved Nuxt directory. */
 const createPlugin = () => {
-    window
+    return window
         .showInputBox({
             prompt: 'What is your plugin name?',
             placeHolder: 'plugin name',
@@ -11,13 +15,13 @@ const createPlugin = () => {
         .then(async (name) => {
             if (!name) { return }
 
-            const pluginsDir = `${await projectSrcDirectory()}/plugins`
+            const pluginsDir = projectDirectory('plugins')
 
             await createDir('plugins')
 
             const subFolders = await createSubFolders(pluginsDir, 'plugins')
 
-            showSubFolderQuickPick({
+            return showSubFolderQuickPick({
                 name,
                 subFolders,
                 commandType: 'plugins',
@@ -28,10 +32,12 @@ const createPlugin = () => {
 }
 
 
+/** Create a file in the Explorer folder supplied by the command. */
 const directCreatePlugin = async (path: string) => {
-    const serverDir = await hasServerDir()
+    const server = await directServerScaffold(path);
+    if (server === undefined) { return; }
 
-    window
+    return window
         .showInputBox({
             prompt: 'What is your plugin name?',
             placeHolder: 'plugin name',
@@ -39,12 +45,12 @@ const directCreatePlugin = async (path: string) => {
         .then((name) => {
             if (!name) { return }
 
-            const filePath = `${path}/${normalizeFileExtension(name, '.ts')}.ts`
+            const filePath = `${path}/${normalizeFileExtension(name, scaffoldExtension())}${scaffoldExtension()}`
 
 
-            createFile({
-                fileName: `${name}.ts`,
-                content: filePath.includes(`${serverDir}`) ? nitroPluginTemplate : nuxtPluginTemplate,
+            return createFile({
+                fileName: `${name}${scaffoldExtension()}`,
+                content: server ? nitroPluginTemplate : nuxtPluginTemplate,
                 fullPath: filePath,
             })
         })

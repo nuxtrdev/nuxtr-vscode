@@ -1,107 +1,55 @@
-import { pathExistsSync } from 'fs-extra';
-import { parseModule } from 'magicast';
+/** Inspect and edit Nuxt project configuration without evaluating application code during activation. */
+import { ModuleMetadata, canonicalPackageName, configModule, editModuleConfig, hasConfiguredModule } from '../core/modules';
+import { currentProject } from '../services/project';
+import { join, relative } from 'node:path';
+import semver from 'semver';
+import { resolveDependency } from '../core/catalogs';
+import { DirectoryKind, readStaticConfig, resolveDirectories } from '../core/directories';
+import { configAt, containsPath } from '../core/project';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { trimEnd } from 'string-ts';
-import { window } from 'vscode';
+import { window, workspace } from 'vscode';
 import { projectRootDirectory } from '.';
 
+/** Find a supported config file in the active project, returning undefined in empty windows. */
 export const findNuxtConfig = (): string | undefined => {
-    const names = ['nuxt.config.ts', 'nuxt.config.js'];
-
-    for (const name of names) {
-        const path = `${projectRootDirectory()}/${name}`;
-        if (existsSync(path)) { return path; }
-    }
+    if (!workspace.workspaceFolders?.length) { return; }
+    try { return configAt(projectRootDirectory()); } catch { return; }
 };
 
-const isLayer = (module: any) => {
-    const modulePath = `${projectRootDirectory()}/node_modules/${module.npm}`;
-
-    if (existsSync(modulePath)) {
-        const nuxtConfigPath = `${modulePath}/nuxt.config.ts`;
-        const result = pathExistsSync(nuxtConfigPath)
-        return result ? true : false;
-    }
+/** Detect a project/workspace-installed layer from its own Nuxt configuration. */
+const isLayer = (value: string | ModuleMetadata): boolean => {
+    const name = canonicalPackageName(value);
+    return [projectRootDirectory(), currentProject().packageManagerRoot].some(root => Boolean(configAt(join(root, 'node_modules', name))));
 };
 
-
-export const isModuleConfigured = (module: string) => {
-    const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
-
-    const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-
-    const config =
-        mod.exports.default.$type === 'function-call'
-            ? mod.exports.default.$args[0]
-            : mod.exports.default;
-
-    const layer = isLayer(module);
-
-    if (layer) {
-        config.extends ||= [];
-        return config.extends.includes(module);
-    } else {
-        config.modules ||= [];
-        return config.modules.includes(module);
-    }
+/** Read the current configuration path and source, reporting a missing file before an attempted edit. */
+function currentConfig () {
+    const path = findNuxtConfig();
+    if (!path) { throw new Error('No Nuxt configuration found. Select a project first.'); }
+    return { path, source: readFileSync(path, 'utf8') };
 }
 
-
-export const removeNuxtModule = (module: any) => {
-    try {
-        const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
-
-        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-        const config =
-            mod.exports.default.$type === 'function-call'
-                ? mod.exports.default.$args[0]
-                : mod.exports.default;
-
-        const layer = isLayer(module);
-
-        if (layer) {
-            config.extends ||= [];
-
-            for (let i = 0; i < config.extends.length; i++) {
-                if (config.extends[i] === module) {
-                    config.extends.splice(i, 1);
-                }
-            }
-
-        } else {
-            config.modules ||= [];
-            for (let i = 0; i < config.modules.length; i++) {
-                if (config.modules[i] === module) {
-                    config.modules.splice(i, 1);
-                }
-            }
-        }
-
-
-        const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf8');
-    } catch (error) {
-        window.showErrorMessage(
-            `${module} failed to uninstall, please uninstall it manually, ${error}`
-        );
-    }
+/** Check whether a canonical module or tuple is configured without modifying the config. */
+export const isModuleConfigured = (value: string | ModuleMetadata) => {
+    const { source } = currentConfig();
+    return hasConfiguredModule(source, value, isLayer(value));
 };
 
+/** Remove a package’s config entry after successful uninstallation, propagating edit failure to the caller. */
+export const removeNuxtModule = (value: string | ModuleMetadata) => {
+    const { path, source } = currentConfig();
+    writeFileSync(path, editModuleConfig(source, value, 'remove', isLayer(value)), 'utf8');
+};
+
+/** Check whether the current workspace root contains a Nuxt configuration. */
 export const isNuxtProject = () => {
-    const names = ['nuxt.config.ts', 'nuxt.config.js'];
-
-    for (const name of names) {
-        const path = `${projectRootDirectory()}/${name}`;
-        const result = pathExistsSync(path);
-        if (result) { return true } else { continue }
-    }
-
-    return false;
+    if (!workspace.workspaceFolders?.length) { return false; }
+    return Boolean(findNuxtConfig());
 };
 
+/** Read the declared Nuxt version from the active package manifest. */
 export const getNuxtVersion = (): string | undefined => {
+    if (!workspace.workspaceFolders?.length) { return; }
     const packageJsonPath = `${projectRootDirectory()}/package.json`;
     if (existsSync(packageJsonPath)) {
         const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf8'));
@@ -111,48 +59,25 @@ export const getNuxtVersion = (): string | undefined => {
         };
         if ('nuxt' in dependencies) {
             const nuxtVersion = dependencies.nuxt;
-            return nuxtVersion.replace('^', '');
+            return resolveDependency(projectRootDirectory(), 'nuxt', nuxtVersion).version;
         }
     } else {
         return;
     }
 };
 
-export const hasSrcDir = async (): Promise<string> => {
-    const isNuxt = await isNuxtProject();
-    if (!isNuxt) {
-        return '/'
-    }
-    const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
-
-    const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-    const config =
-        mod.exports.default.$type === 'function-call'
-            ? mod.exports.default.$args[0]
-            : mod.exports.default;
-
-    return config.srcDir ? `/${config.srcDir}` : '/';
+/** Read a literal application source-directory override. */
+export const hasSrcDir = (): string => {
+    return '/' + relative(projectRootDirectory(), projectDirectories().app);
 };
 
 
-export const hasServerDir = async (): Promise<string> => {
-    const isNuxt = await isNuxtProject();
-    if (!isNuxt) {
-        return 'server'
-    }
-    const nuxtConfigPath = findNuxtConfig();
-    const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
-
-    const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-    const config =
-        mod.exports.default.$type === 'function-call'
-            ? mod.exports.default.$args[0]
-            : mod.exports.default;
-
-    return config.serverDir ? `${config.serverDir}` : 'server';
+/** Read a literal server-directory override. */
+export const hasServerDir = (): string => {
+    return relative(projectDirectories().app, projectDirectories().server);
 };
 
+/** Determine whether the declared project version is Nuxt 2. */
 export const isNuxtTwo = (): boolean | undefined => {
     const nuxtVersion = getNuxtVersion();
     if (typeof nuxtVersion === 'string') {
@@ -161,46 +86,38 @@ export const isNuxtTwo = (): boolean | undefined => {
 };
 
 
-export const updateNuxtConfig = (action: 'inject-eslint-devChcker' | 'add-module', input?: string) => {
-    try {
-        const nuxtConfigPath = findNuxtConfig();
-        const nuxtConfig = readFileSync(`${nuxtConfigPath}`, 'utf8');
-
-        const mod = parseModule(nuxtConfig, { sourceFileName: nuxtConfigPath });
-        const config =
-            mod.exports.default.$type === 'function-call'
-                ? mod.exports.default.$args[0]
-                : mod.exports.default;
-
-        if (action === 'inject-eslint-devChcker') {
-            config.eslint ||= {};
-            config.eslint.checker = true;
-        }
-
-        if (action === 'add-module') {
-            const layer = isLayer(input);
-
-            if (layer) {
-                config.extends ||= [];
-                if (!config.extends.includes(input)) {
-                    config.extends.push(input);
-                }
-            } else {
-                config.modules ||= [];
-                if (!config.modules.includes(input)) {
-                    config.modules.push(input);
-                }
-            }
-        }
-
-
-        const generated = mod.generate().code;
-        writeFileSync(`${nuxtConfigPath}`, `${trimEnd(generated)}\n`, 'utf8');
-
-
-    } catch {
-        window.showErrorMessage(
-            'Failed to update nuxt config.'
-        );
+/** Apply a supported static config edit and propagate failure so installation and edit outcomes remain distinguishable. */
+export const updateNuxtConfig = (action: 'inject-eslint-devChcker' | 'add-module', input?: string | ModuleMetadata) => {
+    const { path, source } = currentConfig();
+    if (action === 'add-module') {
+        if (!input) { throw new Error('A module package name is required.'); }
+        writeFileSync(path, editModuleConfig(source, input, 'add', isLayer(input)), 'utf8');
+    } else {
+        const { module, config } = configModule(source);
+        config.eslint ||= {};
+        config.eslint.checker = true;
+        writeFileSync(path, module.generate().code.trimEnd() + '\n', 'utf8');
     }
 };
+
+/** Resolve separate application and root-level directories from the current project's static config. */
+export function projectDirectories () {
+    const config = findNuxtConfig();
+    if (!config) { throw new Error('No Nuxt config found. Select a Nuxt project before creating files.'); }
+    const declared = getNuxtVersion();
+    const version = declared && semver.validRange(declared) ? semver.minVersion(declared) : undefined;
+    if (!version) { throw new Error('Cannot determine the Nuxt version. Install project dependencies or use an Explorer folder to create files.'); }
+    return resolveDirectories(projectRootDirectory(), readStaticConfig(config), version.major);
+}
+
+/** Resolve a logical Nuxt directory to its absolute filesystem location. */
+export function projectDirectory (kind: DirectoryKind): string { return projectDirectories()[kind]; }
+
+/** Classify an Explorer scaffold safely, asking for an explicit runtime when directory configuration is computed/inherited. */
+export async function directServerScaffold (path: string): Promise<boolean | undefined> {
+    try { return containsPath(projectDirectory('server'), path); }
+    catch {
+        const runtime = await window.showQuickPick(['Nuxt application', 'Nitro server'], { placeHolder: 'Cannot resolve inherited/computed directories. Choose the runtime for this Explorer file.' });
+        return runtime ? runtime === 'Nitro server' : undefined;
+    }
+}
